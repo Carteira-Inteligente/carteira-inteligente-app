@@ -15,15 +15,15 @@ const cEditButton = [Colors.grey, Colors.black];
 const cAppBar = [Colors.blue, Colors.green];
 
 // Svg
+const sAdd = "assets/svg/add.svg";
 const sCalendar = "assets/svg/calendar.svg";
-const sCheck = "assets/svg/check.svg";
-const sChevronDown = "assets/svg/chevron-down.svg";
-const sChevronLeft = "assets/svg/chevron-left.svg";
+const sCategory = "assets/svg/category.svg";
+const sDelete = "assets/svg/delete.svg";
+const sDollarCircle = "assets/svg/dollar-circle.svg";
 const sEdit = "assets/svg/edit.svg";
 const sHome = "assets/svg/home.svg";
-const sPlus = "assets/svg/plus.svg";
+const sMoneySend = "assets/svg/money-send.svg";
 const sSearch = "assets/svg/search.svg";
-const sTrash = "assets/svg/trash.svg";
 const sUser = "assets/svg/user.svg";
 
 // Images

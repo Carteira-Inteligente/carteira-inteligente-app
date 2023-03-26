@@ -18,45 +18,45 @@ class LightTheme extends StatelessWidget {
           secondary: cGreen,
         ),
         textTheme: theme.textTheme.copyWith(
-          headline1: const TextStyle(
+          displayLarge: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: cBlue,
           ),
-          headline2: const TextStyle(
+          displayMedium: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 17,
             fontWeight: FontWeight.bold,
             color: cBlack,
           ),
-          headline3: const TextStyle(
+          displaySmall: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: cBlack,
           ),
-          headline4: const TextStyle(
+          headlineMedium: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 14,
             color: cGrey,
           ),
-          headline5: const TextStyle(
+          headlineSmall: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 17,
             color: cWhite,
           ),
-          headline6: const TextStyle(
+          titleLarge: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 20,
             color: cWhite,
           ),
-          bodyText1: const TextStyle(
+          bodyLarge: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 25,
             color: cBlue,
           ),
-          bodyText2: const TextStyle(
+          bodyMedium: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 16,
             color: cBlack,

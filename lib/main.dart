@@ -1,5 +1,9 @@
+import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/screens/Home/home_screen.dart';
 import 'package:carteira_inteligente_app/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 void main() {
   runApp(const CarteiraInteligenteApp());
@@ -22,11 +26,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-
   static const List<Widget> _navBarOptions = <Widget>[
-    // Inserir aqui as telas da navbar
+    HomeScreen(),
   ];
+
+  int _selectedIndex = 0;
 
   _onItemTapped(int index) {
     setState(() {
@@ -37,26 +41,59 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Carteira Inteligente'),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: Text("Carteira Inteligente"),
+            pinned: true,
+            floating: true,
+            // flexibleSpace: Placeholder(),
+            // expandedHeight: 100,
+            elevation: 5,
+            shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25))),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              // const ListTile(title: Text('Item 1')),
+              // const ListTile(title: Text('Item 2')),
+              // const ListTile(title: Text('Item 3')),
+              SingleChildScrollView(
+                child: _navBarOptions.elementAt(_selectedIndex),
+              ),
+            ]),
+          ),
+        ],
       ),
-      body: SingleChildScrollView(
-        child: _navBarOptions.elementAt(_selectedIndex),
-      ),
+      // const Text("Home"),
+      // SingleChildScrollView(
+      //   child: _navBarOptions.elementAt(_selectedIndex),
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: SvgPicture.asset(sHome),
+            label: "Início",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Usuário',
+            icon: SvgPicture.asset(sMoneySend),
+            label: 'Lançamentos',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(sDollarCircle),
+            label: 'Orçamento',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(sUser),
+            label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,
-        showUnselectedLabels: false,
-        selectedItemColor: Colors.black,
+        showUnselectedLabels: true,
+        unselectedItemColor: cGrey,
+        selectedItemColor: cBlack,
         onTap: _onItemTapped,
       ),
     );
