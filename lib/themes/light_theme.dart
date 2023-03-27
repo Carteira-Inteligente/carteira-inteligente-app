@@ -18,16 +18,19 @@ class LightTheme extends StatelessWidget {
           secondary: cGreen,
         ),
         textTheme: theme.textTheme.copyWith(
-          displayLarge: const TextStyle(
+          titleLarge: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: cBlue,
+            color: cWhite,
           ),
-          displayMedium: const TextStyle(
+          bodyMedium: const TextStyle(
             fontFamily: "OpenSans",
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: cBlack,
+          ),
+          bodyLarge: const TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 25,
             color: cBlack,
           ),
           displaySmall: const TextStyle(
@@ -36,30 +39,27 @@ class LightTheme extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: cBlack,
           ),
-          headlineMedium: const TextStyle(
+          displayMedium: const TextStyle(
             fontFamily: "OpenSans",
-            fontSize: 14,
-            color: cGrey,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: cBlack,
+          ),
+          displayLarge: const TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: cBlack,
           ),
           headlineSmall: const TextStyle(
             fontFamily: "OpenSans",
-            fontSize: 17,
-            color: cWhite,
-          ),
-          titleLarge: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 20,
-            color: cWhite,
-          ),
-          bodyLarge: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 25,
-            color: cBlue,
-          ),
-          bodyMedium: const TextStyle(
-            fontFamily: "OpenSans",
             fontSize: 16,
-            color: cBlack,
+            color: cWhite,
+          ),
+          headlineMedium: const TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 18,
+            color: cGrey,
           ),
         ),
       ),

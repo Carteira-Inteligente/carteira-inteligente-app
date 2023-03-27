@@ -1,5 +1,8 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/screens/Budget/budget_screen.dart';
 import 'package:carteira_inteligente_app/screens/Home/home_screen.dart';
+import 'package:carteira_inteligente_app/screens/Lancamentos/lancamentos_screen.dart';
+import 'package:carteira_inteligente_app/screens/Profile/profile_screen.dart';
 import 'package:carteira_inteligente_app/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,6 +31,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _navBarOptions = <Widget>[
     HomeScreen(),
+    LancamentosScreen(),
+    BudgetScreen(),
+    ProfileScreen(),
   ];
 
   int _selectedIndex = 0;
@@ -48,29 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
             pinned: true,
             floating: true,
             // flexibleSpace: Placeholder(),
-            // expandedHeight: 100,
-            elevation: 5,
-            shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25))),
+            expandedHeight: 100,
           ),
           SliverList(
             delegate: SliverChildListDelegate([
-              // const ListTile(title: Text('Item 1')),
-              // const ListTile(title: Text('Item 2')),
-              // const ListTile(title: Text('Item 3')),
-              SingleChildScrollView(
-                child: _navBarOptions.elementAt(_selectedIndex),
-              ),
+              _navBarOptions.elementAt(_selectedIndex),
             ]),
           ),
         ],
       ),
-      // const Text("Home"),
-      // SingleChildScrollView(
-      //   child: _navBarOptions.elementAt(_selectedIndex),
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(

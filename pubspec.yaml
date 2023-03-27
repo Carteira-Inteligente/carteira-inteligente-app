@@ -63,12 +63,37 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/svg/authentication/hide-password.svg
+    - assets/svg/authentication/show-password.svg
+    - assets/svg/categories/cards.svg
+    - assets/svg/categories/culture.svg
+    - assets/svg/categories/dinner.svg
+    - assets/svg/categories/donate.svg
+    - assets/svg/categories/education.svg
+    - assets/svg/categories/electricity.svg
+    - assets/svg/categories/exercise.svg
+    - assets/svg/categories/gift.svg
+    - assets/svg/categories/health.svg
+    - assets/svg/categories/house.svg
+    - assets/svg/categories/leisure.svg
+    - assets/svg/categories/other.svg
+    - assets/svg/categories/pet.svg
+    - assets/svg/categories/shopping-cart.svg
+    - assets/svg/categories/streamming.svg
+    - assets/svg/categories/transport.svg
+    - assets/svg/categories/travel.svg
+    - assets/svg/categories/wifi.svg
+    - assets/svg/feedback/danger.svg
+    - assets/svg/feedback/error.svg
+    - assets/svg/feedback/notification.svg
+    - assets/svg/feedback/success.svg
     - assets/svg/add.svg
     - assets/svg/calendar.svg
     - assets/svg/category.svg
     - assets/svg/delete.svg
     - assets/svg/dollar-circle.svg
     - assets/svg/edit.svg
+    - assets/svg/filter.svg
     - assets/svg/home.svg
     - assets/svg/money-send.svg
     - assets/svg/search.svg
