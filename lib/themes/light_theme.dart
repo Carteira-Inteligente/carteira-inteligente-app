@@ -14,7 +14,7 @@ class LightTheme extends StatelessWidget {
       home: const MyHomePage(),
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(
-          primary: cWhite,
+          primary: cBlue,
           secondary: cGreen,
         ),
         textTheme: theme.textTheme.copyWith(

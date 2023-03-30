@@ -60,10 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
             pinned: true,
             floating: true,
             forceElevated: true,
+            backgroundColor: cWhite,
           ),
           SliverList(
             delegate: SliverChildListDelegate(
-              [
+              <Widget>[
                 _navBarOptions.elementAt(_selectedIndex),
               ],
             ),
@@ -71,28 +72,45 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(sDashboard),
+            backgroundColor: cWhite,
+            icon: SvgPicture.asset(
+              sDashboard,
+              color: _selectedIndex == 0 ? cBlue : cGrey,
+            ),
             label: "Dashboard",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(sWallet),
+            backgroundColor: cWhite,
+            icon: SvgPicture.asset(
+              sWallet,
+              color: _selectedIndex == 1 ? cBlue : cGrey,
+            ),
             label: 'Lançamentos',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(sDollarCircle),
+            backgroundColor: cWhite,
+            icon: SvgPicture.asset(
+              sDollarCircle,
+              color: _selectedIndex == 2 ? cBlue : cGrey,
+            ),
             label: 'Orçamento',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(sUser),
+            backgroundColor: cWhite,
+            icon: SvgPicture.asset(
+              sUser,
+              color: _selectedIndex == 3 ? cBlue : cGrey,
+            ),
             label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,
         showUnselectedLabels: true,
         unselectedItemColor: cGrey,
-        selectedItemColor: cBlack,
+        selectedItemColor: cBlue,
         onTap: _onItemTapped,
       ),
     );

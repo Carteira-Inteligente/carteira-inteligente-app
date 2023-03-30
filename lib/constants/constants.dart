@@ -9,9 +9,6 @@ const cYellow = Colors.yellow;
 const cBlack = Colors.black;
 const cGrey = Colors.grey;
 const cRed = Colors.red;
-const cSuccessButton = [Colors.lightGreen, Colors.green];
-const cDeleteButton = [Colors.pink, Colors.red];
-const cEditButton = [Colors.grey, Colors.black];
 const cCustomCardButton = [Colors.blueGrey, Colors.deepPurple];
 
 // Svg
@@ -60,6 +57,6 @@ const sWallet = "assets/svg/wallet.svg";
 const iLogo = "assets/images/logo.png";
 
 // Widgets
-const wInputBorderRadius = BorderRadius.all(
-  Radius.circular(15),
-);
+const wInputBorderRadius = BorderRadius.all(Radius.circular(15));
+const wButtonBorderRadius = BorderRadius.all(Radius.circular(50));
+const wButtonMinimunSize = Size(170, 60);

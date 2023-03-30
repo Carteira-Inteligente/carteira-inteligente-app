@@ -12,7 +12,7 @@ class InputLabel extends StatelessWidget {
         Text(
           "$label:",
           textAlign: TextAlign.left,
-          style: Theme.of(context).textTheme.displayMedium,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],
     );

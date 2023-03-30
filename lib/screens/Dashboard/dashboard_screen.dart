@@ -28,7 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         Row(
-          children: const <Widget>[
+          children: <Widget>[
             ToPayCard(134.54, 45.32),
             PaidCard(1003.30),
           ],

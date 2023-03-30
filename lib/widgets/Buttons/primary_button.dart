@@ -4,32 +4,27 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/constants.dart';
 
-class CreateButton extends StatelessWidget {
-  const CreateButton(this.onPressed, {super.key});
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton(this.textButton, this.onPressed, {super.key});
 
+  final String textButton;
   final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
-      ElevatedButton.icon(
-        icon: SvgPicture.asset(
-          sAdd,
-          color: cWhite,
-        ),
+      ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: const Size(170, 60),
+          minimumSize: wButtonMinimunSize,
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(50),
-            ),
+            borderRadius: wButtonBorderRadius,
           ),
-          backgroundColor: cGreen,
+          backgroundColor: cBlue,
           elevation: 0,
         ),
         onPressed: onPressed,
-        label: Text(
-          "Salvar",
+        child: Text(
+          textButton,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
