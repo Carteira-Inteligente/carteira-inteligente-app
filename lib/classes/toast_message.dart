@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../constants/constants.dart';
@@ -19,7 +18,7 @@ class ToastMessage {
 
   static void showSuccess(String message) {
     showToast(
-      "${SvgPicture.asset(sSuccess, color: cWhite)} $message",
+      message,
       cGreen,
       cWhite,
     );
@@ -27,7 +26,7 @@ class ToastMessage {
 
   static void showWarning(String message) {
     showToast(
-      "${SvgPicture.asset(sDanger, color: cBlack)} $message",
+      message,
       cYellow,
       cBlack,
     );
@@ -35,7 +34,7 @@ class ToastMessage {
 
   static void showDanger(String message) {
     showToast(
-      "${SvgPicture.asset(sError, color: cWhite)} $message",
+      message,
       cRed,
       cWhite,
     );

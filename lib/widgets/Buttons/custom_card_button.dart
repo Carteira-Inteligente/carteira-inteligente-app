@@ -22,20 +22,13 @@ class CustomCardButton extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(50),
-              ),
+              borderRadius: wButtonBorderRadius,
             ),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                textStyle: const TextStyle(
-                  fontSize: 20,
-                ),
                 minimumSize: const Size(300, 10),
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
+                  borderRadius: wButtonBorderRadius,
                 ),
                 backgroundColor: cTransparent,
                 elevation: 0,

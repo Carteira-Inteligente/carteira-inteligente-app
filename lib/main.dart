@@ -60,10 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
             pinned: true,
             floating: true,
             forceElevated: true,
+            backgroundColor: cWhite,
           ),
           SliverList(
             delegate: SliverChildListDelegate(
-              [
+              <Widget>[
                 _navBarOptions.elementAt(_selectedIndex),
               ],
             ),
@@ -73,18 +74,22 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+            backgroundColor: cWhite,
             icon: SvgPicture.asset(sDashboard),
             label: "Dashboard",
           ),
           BottomNavigationBarItem(
+            backgroundColor: cWhite,
             icon: SvgPicture.asset(sWallet),
             label: 'Lançamentos',
           ),
           BottomNavigationBarItem(
+            backgroundColor: cWhite,
             icon: SvgPicture.asset(sDollarCircle),
             label: 'Orçamento',
           ),
           BottomNavigationBarItem(
+            backgroundColor: cWhite,
             icon: SvgPicture.asset(sUser),
             label: 'Perfil',
           ),
