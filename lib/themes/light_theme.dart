@@ -14,52 +14,55 @@ class LightTheme extends StatelessWidget {
       home: const MyHomePage(),
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(
-          primary: cBlue,
+          primary: cWhite,
           secondary: cGreen,
         ),
         textTheme: theme.textTheme.copyWith(
-          headline1: const TextStyle(
+          titleLarge: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 20,
+            color: cWhite,
             fontWeight: FontWeight.bold,
-            color: cBlue,
           ),
-          headline2: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
-            color: cBlack,
-          ),
-          headline3: const TextStyle(
+          bodyMedium: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 16,
-            fontWeight: FontWeight.bold,
             color: cBlack,
           ),
-          headline4: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 14,
-            color: cGrey,
-          ),
-          headline5: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 17,
-            color: cWhite,
-          ),
-          headline6: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 20,
-            color: cWhite,
-          ),
-          bodyText1: const TextStyle(
+          bodyLarge: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 25,
-            color: cBlue,
+            color: cBlack,
+            fontWeight: FontWeight.bold,
           ),
-          bodyText2: const TextStyle(
+          displaySmall: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 16,
+            fontWeight: FontWeight.bold,
             color: cBlack,
+          ),
+          displayMedium: const TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: cBlack,
+          ),
+          displayLarge: const TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: cBlack,
+          ),
+          headlineSmall: const TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 16,
+            color: cWhite,
+          ),
+          headlineMedium: const TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 18,
+            color: cBlack,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
