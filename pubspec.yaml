@@ -90,14 +90,19 @@ flutter:
     - assets/svg/add.svg
     - assets/svg/calendar.svg
     - assets/svg/category.svg
+    - assets/svg/dashboard.svg
     - assets/svg/delete.svg
     - assets/svg/dollar-circle.svg
     - assets/svg/edit.svg
     - assets/svg/filter.svg
     - assets/svg/home.svg
     - assets/svg/money-send.svg
+    - assets/svg/refresh.svg
+    - assets/svg/repeat.svg
     - assets/svg/search.svg
+    - assets/svg/settings.svg
     - assets/svg/user.svg
+    - assets/svg/wallet.svg
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 

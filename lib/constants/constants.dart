@@ -12,6 +12,7 @@ const cRed = Colors.red;
 const cSuccessButton = [Colors.lightGreen, Colors.green];
 const cDeleteButton = [Colors.pink, Colors.red];
 const cEditButton = [Colors.grey, Colors.black];
+const cCustomCardButton = [Colors.blueGrey, Colors.deepPurple];
 
 // Svg
 const sHidePassword = "assets/svg/authentication/hide-password.svg";
@@ -41,14 +42,19 @@ const sSuccess = "assets/svg/feedback/success.svg";
 const sAdd = "assets/svg/add.svg";
 const sCalendar = "assets/svg/calendar.svg";
 const sCategory = "assets/svg/category.svg";
+const sDashboard = "assets/svg/dashboard.svg";
 const sDelete = "assets/svg/delete.svg";
 const sDollarCircle = "assets/svg/dollar-circle.svg";
 const sEdit = "assets/svg/edit.svg";
 const sFilter = "assets/svg/filter.svg";
 const sHome = "assets/svg/home.svg";
 const sMoneySend = "assets/svg/money-send.svg";
+const sRefresh = "assets/svg/refresh.svg";
+const sRepeat = "assets/svg/repeat.svg";
 const sSearch = "assets/svg/search.svg";
+const sSettings = "assets/svg/settings.svg";
 const sUser = "assets/svg/user.svg";
+const sWallet = "assets/svg/wallet.svg";
 
 // Images
 const iLogo = "assets/images/logo.png";

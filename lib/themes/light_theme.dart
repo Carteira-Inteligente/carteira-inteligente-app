@@ -14,7 +14,7 @@ class LightTheme extends StatelessWidget {
       home: const MyHomePage(),
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(
-          primary: cBlue,
+          primary: cWhite,
           secondary: cGreen,
         ),
         textTheme: theme.textTheme.copyWith(
@@ -22,6 +22,7 @@ class LightTheme extends StatelessWidget {
             fontFamily: "OpenSans",
             fontSize: 20,
             color: cWhite,
+            fontWeight: FontWeight.bold,
           ),
           bodyMedium: const TextStyle(
             fontFamily: "OpenSans",
@@ -32,6 +33,7 @@ class LightTheme extends StatelessWidget {
             fontFamily: "OpenSans",
             fontSize: 25,
             color: cBlack,
+            fontWeight: FontWeight.bold,
           ),
           displaySmall: const TextStyle(
             fontFamily: "OpenSans",
@@ -59,7 +61,8 @@ class LightTheme extends StatelessWidget {
           headlineMedium: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 18,
-            color: cGrey,
+            color: cBlack,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

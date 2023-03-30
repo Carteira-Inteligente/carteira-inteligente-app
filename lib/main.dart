@@ -1,9 +1,10 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/screens/Budget/budget_screen.dart';
-import 'package:carteira_inteligente_app/screens/Home/home_screen.dart';
-import 'package:carteira_inteligente_app/screens/Lancamentos/lancamentos_screen.dart';
+import 'package:carteira_inteligente_app/screens/Dashboard/dashboard_screen.dart';
+import 'package:carteira_inteligente_app/screens/Entry/entry_screen.dart';
 import 'package:carteira_inteligente_app/screens/Profile/profile_screen.dart';
 import 'package:carteira_inteligente_app/themes/light_theme.dart';
+import 'package:carteira_inteligente_app/widgets/AppBar/title_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -30,8 +31,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _navBarOptions = <Widget>[
-    HomeScreen(),
-    LancamentosScreen(),
+    DashboardScreen(),
+    EntryScreen(),
     BudgetScreen(),
     ProfileScreen(),
   ];
@@ -50,27 +51,33 @@ class _MyHomePageState extends State<MyHomePage> {
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
-            title: Text("Carteira Inteligente"),
+            shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(20),
+              ),
+            ),
+            title: TitleAppBar(),
             pinned: true,
             floating: true,
-            // flexibleSpace: Placeholder(),
-            expandedHeight: 100,
+            forceElevated: true,
           ),
           SliverList(
-            delegate: SliverChildListDelegate([
-              _navBarOptions.elementAt(_selectedIndex),
-            ]),
+            delegate: SliverChildListDelegate(
+              [
+                _navBarOptions.elementAt(_selectedIndex),
+              ],
+            ),
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(sHome),
-            label: "Início",
+            icon: SvgPicture.asset(sDashboard),
+            label: "Dashboard",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(sMoneySend),
+            icon: SvgPicture.asset(sWallet),
             label: 'Lançamentos',
           ),
           BottomNavigationBarItem(
