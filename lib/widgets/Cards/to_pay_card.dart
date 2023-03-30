@@ -1,12 +1,19 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/widgets/Cards/dashboard_default_card.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ToPayCard extends StatelessWidget {
-  const ToPayCard(this.toPayValue, this.overdueValue, {super.key});
+  ToPayCard(this.toPayValue, this.overdueValue, {super.key});
 
   final double toPayValue;
   final double overdueValue;
+  final formatCurrency = NumberFormat.currency(
+    locale: "pt-BR",
+    symbol: "R\$",
+    decimalDigits: 2,
+  );
+
   @override
   Widget build(BuildContext context) {
     return DashboardDefaultCard(
@@ -23,7 +30,7 @@ class ToPayCard extends StatelessWidget {
               ),
             ),
             Text(
-              "R\$ $toPayValue",
+              formatCurrency.format(toPayValue),
               style: const TextStyle(
                 color: cBlue,
                 fontSize: 20,
@@ -38,7 +45,7 @@ class ToPayCard extends StatelessWidget {
               ),
             ),
             Text(
-              "R\$ $overdueValue",
+              formatCurrency.format(overdueValue),
               style: const TextStyle(
                 color: cRed,
                 fontSize: 20,

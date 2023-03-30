@@ -1,11 +1,17 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/widgets/Cards/dashboard_default_card.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PaidCard extends StatelessWidget {
-  const PaidCard(this.paidValue, {super.key});
+  PaidCard(this.paidValue, {super.key});
 
   final double paidValue;
+  final formatCurrency = NumberFormat.currency(
+    locale: "pt-BR",
+    symbol: "R\$",
+    decimalDigits: 2,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class PaidCard extends StatelessWidget {
               ),
             ),
             Text(
-              "R\$ $paidValue",
+              formatCurrency.format(paidValue),
               style: const TextStyle(
                 color: cGreen,
                 fontSize: 20,

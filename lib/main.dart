@@ -72,32 +72,45 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             backgroundColor: cWhite,
-            icon: SvgPicture.asset(sDashboard),
+            icon: SvgPicture.asset(
+              sDashboard,
+              color: _selectedIndex == 0 ? cBlue : cGrey,
+            ),
             label: "Dashboard",
           ),
           BottomNavigationBarItem(
             backgroundColor: cWhite,
-            icon: SvgPicture.asset(sWallet),
+            icon: SvgPicture.asset(
+              sWallet,
+              color: _selectedIndex == 1 ? cBlue : cGrey,
+            ),
             label: 'Lançamentos',
           ),
           BottomNavigationBarItem(
             backgroundColor: cWhite,
-            icon: SvgPicture.asset(sDollarCircle),
+            icon: SvgPicture.asset(
+              sDollarCircle,
+              color: _selectedIndex == 2 ? cBlue : cGrey,
+            ),
             label: 'Orçamento',
           ),
           BottomNavigationBarItem(
             backgroundColor: cWhite,
-            icon: SvgPicture.asset(sUser),
+            icon: SvgPicture.asset(
+              sUser,
+              color: _selectedIndex == 3 ? cBlue : cGrey,
+            ),
             label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,
         showUnselectedLabels: true,
         unselectedItemColor: cGrey,
-        selectedItemColor: cBlack,
+        selectedItemColor: cBlue,
         onTap: _onItemTapped,
       ),
     );
