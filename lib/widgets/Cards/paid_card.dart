@@ -14,31 +14,21 @@ class PaidCard extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Row(
-              children: const <Widget>[
-                Text(
-                  "Total pago:",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
+            const Text(
+              "Total pago",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+              ),
             ),
-            Row(
-              children: <Widget>[
-                Text(
-                  "R\$ $paidValue",
-                  style: const TextStyle(
-                    color: cGreen,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+            Text(
+              "R\$ $paidValue",
+              style: const TextStyle(
+                color: cGreen,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
