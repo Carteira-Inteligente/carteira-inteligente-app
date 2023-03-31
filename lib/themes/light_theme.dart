@@ -1,7 +1,6 @@
+import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/main.dart';
 import 'package:flutter/material.dart';
-
-import '../constants/constants.dart';
-import '../main.dart';
 
 class LightTheme extends StatelessWidget {
   const LightTheme({super.key});

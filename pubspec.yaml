@@ -88,6 +88,7 @@ flutter:
     - assets/svg/feedback/notification.svg
     - assets/svg/feedback/success.svg
     - assets/svg/add.svg
+    - assets/svg/arrow-left.svg
     - assets/svg/calendar.svg
     - assets/svg/category.svg
     - assets/svg/dashboard.svg

@@ -37,6 +37,7 @@ const sError = "assets/svg/feedback/error.svg";
 const sNotification = "assets/svg/feedback/notification.svg";
 const sSuccess = "assets/svg/feedback/success.svg";
 const sAdd = "assets/svg/add.svg";
+const sArrowLeft = "assets/svg/arrow-left.svg";
 const sCalendar = "assets/svg/calendar.svg";
 const sCategory = "assets/svg/category.svg";
 const sDashboard = "assets/svg/dashboard.svg";
@@ -59,4 +60,5 @@ const iLogo = "assets/images/logo.png";
 // Widgets
 const wInputBorderRadius = BorderRadius.all(Radius.circular(15));
 const wButtonBorderRadius = BorderRadius.all(Radius.circular(50));
-const wButtonMinimunSize = Size(170, 60);
+const wSmallButtonMinimunSize = Size(170, 60);
+const wLargeButtonMinimunSize = Size(350, 60);
