@@ -2,8 +2,8 @@ import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
 import 'package:carteira_inteligente_app/widgets/Cards/dashboard_chart_card.dart';
 import 'package:carteira_inteligente_app/widgets/Cards/paid_card.dart';
 import 'package:carteira_inteligente_app/widgets/Cards/to_pay_card.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/subtitle_screen_container.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/title_screen_container.dart';
+import 'package:carteira_inteligente_app/widgets/Labels/subtitle_label.dart';
+import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -21,12 +21,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: [
           Row(
             children: const <Widget>[
-              TitleScreenContainer("Dashboard"),
+              TitleLabel("Dashboard"),
             ],
           ),
           Row(
             children: const <Widget>[
-              SubtitleScreenContainer("Mensal"),
+              SubtitleLabel("Mensal"),
             ],
           ),
           Row(
@@ -37,7 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           Row(
             children: const <Widget>[
-              SubtitleScreenContainer("Anual"),
+              SubtitleLabel("Anual"),
             ],
           ),
           Row(

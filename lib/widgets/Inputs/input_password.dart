@@ -34,11 +34,9 @@ class _InputPasswordState extends State<InputPassword> {
           ),
           suffixIcon: GestureDetector(
             onTap: () {
-              setState(
-                () {
-                  _obscureText = !_obscureText;
-                },
-              );
+              setState(() {
+                _obscureText = !_obscureText;
+              });
             },
             child: Transform.scale(
               scale: 0.5,

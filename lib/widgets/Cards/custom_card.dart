@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente_app/widgets/Buttons/custom_card_button.dart';
+import 'package:carteira_inteligente_app/widgets/Buttons/card_button.dart';
 import 'package:carteira_inteligente_app/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +31,7 @@ class _CustomCardState extends State<CustomCard> {
               ),
             ),
           ),
-          CustomCardButton(
+          CardButton(
             widget.buttonText,
             widget.onPressedButton,
           ),

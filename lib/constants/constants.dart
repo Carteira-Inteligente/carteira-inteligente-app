@@ -34,6 +34,7 @@ const sTravel = "assets/svg/categories/travel.svg";
 const sWifi = "assets/svg/categories/wifi.svg";
 const sDanger = "assets/svg/feedback/danger.svg";
 const sError = "assets/svg/feedback/error.svg";
+const sNotificationBing = "assets/svg/feedback/notification-bing.svg";
 const sNotification = "assets/svg/feedback/notification.svg";
 const sSuccess = "assets/svg/feedback/success.svg";
 const sAdd = "assets/svg/add.svg";
@@ -55,6 +56,7 @@ const sUser = "assets/svg/user.svg";
 const sWallet = "assets/svg/wallet.svg";
 
 // Images
+const iInitial = "assets/images/initial.jpg";
 const iLogo = "assets/images/logo.png";
 
 // Widgets

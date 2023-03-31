@@ -1,8 +1,8 @@
-class Authetication {
+class Authentication {
   final String email;
   final String password;
 
-  Authetication({
+  Authentication({
     required this.email,
     required this.password,
   });
