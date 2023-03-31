@@ -1,4 +1,5 @@
-import 'package:carteira_inteligente_app/widgets/Containers/title_screen_container.dart';
+import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
+import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -11,6 +12,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return const TitleScreenContainer("Perfil");
+    return const DarkStatusBarTheme(
+      TitleLabel("Perfil"),
+    );
   }
 }

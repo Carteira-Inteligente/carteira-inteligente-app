@@ -63,6 +63,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    # Images
+    - assets/images/initial.jpg
+    # Svg
+    - assets/svg/authentication/hide-password.svg
     - assets/svg/authentication/hide-password.svg
     - assets/svg/authentication/show-password.svg
     - assets/svg/categories/cards.svg
@@ -85,9 +89,11 @@ flutter:
     - assets/svg/categories/wifi.svg
     - assets/svg/feedback/danger.svg
     - assets/svg/feedback/error.svg
+    - assets/svg/feedback/notification-bing.svg
     - assets/svg/feedback/notification.svg
     - assets/svg/feedback/success.svg
     - assets/svg/add.svg
+    - assets/svg/arrow-left.svg
     - assets/svg/calendar.svg
     - assets/svg/category.svg
     - assets/svg/dashboard.svg

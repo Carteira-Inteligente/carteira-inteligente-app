@@ -1,4 +1,5 @@
-import 'package:carteira_inteligente_app/widgets/Containers/title_screen_container.dart';
+import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
+import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class EntryScreen extends StatefulWidget {
@@ -11,6 +12,8 @@ class EntryScreen extends StatefulWidget {
 class _LancamentosScreenState extends State<EntryScreen> {
   @override
   Widget build(BuildContext context) {
-    return const TitleScreenContainer("Lançamentos");
+    return const DarkStatusBarTheme(
+      TitleLabel("Lançamentos"),
+    );
   }
 }

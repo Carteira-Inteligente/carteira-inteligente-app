@@ -4,7 +4,8 @@ import 'package:carteira_inteligente_app/screens/Dashboard/dashboard_screen.dart
 import 'package:carteira_inteligente_app/screens/Entry/entry_screen.dart';
 import 'package:carteira_inteligente_app/screens/Profile/profile_screen.dart';
 import 'package:carteira_inteligente_app/themes/light_theme.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/title_app_bar.dart';
+import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_title.dart';
+import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -50,13 +51,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
-            shape: ContinuousRectangleBorder(
+          SliverAppBar(
+            shape: const ContinuousRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(20),
               ),
             ),
-            title: TitleAppBar(),
+            title: Row(
+              children: const <Widget>[
+                Expanded(
+                  flex: 6,
+                  child: AppBarTitle(),
+                ),
+                Expanded(
+                  child: AppBarButton(),
+                ),
+              ],
+            ),
             pinned: true,
             floating: true,
             forceElevated: true,

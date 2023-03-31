@@ -1,12 +1,12 @@
+import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../constants/constants.dart';
 
 class SecondaryButton extends StatelessWidget {
-  const SecondaryButton(this.textButton, this.onPressed, {super.key});
+  const SecondaryButton(this.buttonSize, this.textButton, this.onPressed,
+      {super.key});
 
+  final Size buttonSize;
   final String textButton;
   final void Function() onPressed;
 
@@ -15,7 +15,7 @@ class SecondaryButton extends StatelessWidget {
     return ButtonContainer(
       OutlinedButton(
         style: OutlinedButton.styleFrom(
-          minimumSize: wButtonMinimunSize,
+          minimumSize: buttonSize,
           shape: const RoundedRectangleBorder(
             borderRadius: wButtonBorderRadius,
           ),

@@ -1,6 +1,5 @@
+import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:flutter/material.dart';
-
-import '../../constants/constants.dart';
 
 class CardContainer extends StatefulWidget {
   const CardContainer(this.widget, {super.key});

@@ -1,7 +1,6 @@
+import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/widgets/Containers/input_container.dart';
 import 'package:flutter/material.dart';
-
-import '../../constants/constants.dart';
-import '../Containers/input_container.dart';
 
 class InputText extends StatelessWidget {
   const InputText(this.label, this.controller, this.keyboardType, this.onSubmit,
