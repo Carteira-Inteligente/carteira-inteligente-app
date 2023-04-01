@@ -47,20 +47,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             TextInputType.emailAddress,
             _submitForm,
           ),
-          Column(
-            children: <Widget>[
-              Container(
-                alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.all(10.0),
-                child: PrimaryButton(
-                  wLargeButtonMinimunSize,
-                  "Enviar e-mail",
-                  _submitForm,
-                ),
-              ),
-            ],
-          ),
         ],
+      ),
+      PrimaryButton(
+        wLargeButtonMinimunSize,
+        "Enviar e-mail",
+        _submitForm,
       ),
     );
   }
