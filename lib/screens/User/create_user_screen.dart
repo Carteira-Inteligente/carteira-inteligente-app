@@ -81,7 +81,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
             _submitForm,
           ),
           Column(
-            children: [
+            children: <Widget>[
               Row(
                 children: const <Widget>[
                   SubtitleLabel(
@@ -118,16 +118,12 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
               ),
             ],
           ),
-          Column(
-            children: <Widget>[
-              PrimaryButton(
-                wLargeButtonMinimunSize,
-                "Cadastrar",
-                _submitForm,
-              ),
-            ],
-          )
         ],
+      ),
+      PrimaryButton(
+        wLargeButtonMinimunSize,
+        "Cadastrar",
+        _submitForm,
       ),
     );
   }

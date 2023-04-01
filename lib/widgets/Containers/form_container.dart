@@ -1,42 +1,58 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
+import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_leading.dart';
+import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FormContainer extends StatelessWidget {
-  const FormContainer(this.widget, {super.key});
+  const FormContainer(this.bodyWidget, this.bottonButton, {super.key});
 
-  final Widget widget;
+  final Widget bodyWidget;
+  final Widget bottonButton;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: SvgPicture.asset(sArrowLeft),
-        ),
+        leading: const AppBarLeading(),
         elevation: 0,
-        backgroundColor: cTransparent,
+        backgroundColor: cWhite,
         iconTheme: const IconThemeData(
           color: cBlack,
         ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
+        title: const AppBarLogo(),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: const BoxDecoration(
-            color: cTransparent,
+      body: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    decoration: const BoxDecoration(color: cWhite),
+                    height: MediaQuery.of(context).size.height,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: bodyWidget,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          height: MediaQuery.of(context).size.height,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: widget,
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              decoration: const BoxDecoration(color: cWhite),
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: bottonButton,
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -10,10 +10,11 @@ class LightStatusBarTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: cWhite,
-        statusBarBrightness: Brightness.dark,
-      ),
+      value: SystemUiOverlayStyle.light,
+      // SystemUiOverlayStyle.light.copyWith(
+      //   statusBarColor: cWhite,
+      //   statusBarBrightness: Brightness.dark,
+      // ),
       child: widget,
     );
   }

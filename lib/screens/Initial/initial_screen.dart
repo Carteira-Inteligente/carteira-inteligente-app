@@ -61,75 +61,89 @@ class _InitialScreenState extends State<InitialScreen> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: const AssetImage(iInitial),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  cBlack.withOpacity(0.5),
-                  BlendMode.darken,
-                )),
+              image: const AssetImage(iInitial),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                cBlack.withOpacity(0.5),
+                BlendMode.darken,
+              ),
+            ),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Column(
-                  children: const <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 250.0,
-                        right: 25.0,
-                        left: 25.0,
-                        bottom: 25.0,
-                      ),
-                      child: Text(
-                        "Seja bem-vindo à Carteira Inteligente!",
-                        style: TextStyle(
-                          fontFamily: "OpenSans",
-                          fontSize: 25,
-                          color: cWhite,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(25.0),
-                      child: Text(
-                        "Uma nova maneira de organizar suas despesas.",
-                        style: TextStyle(
-                          fontFamily: "OpenSans",
-                          fontSize: 18,
-                          color: cWhite,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 250),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      PrimaryButton(
-                        wLargeButtonMinimunSize,
-                        "Entrar",
-                        () => _openAuthUserViewModal(),
-                      ),
-                      SecondaryButton(
-                        wLargeButtonMinimunSize,
-                        "Sou novo por aqui",
-                        () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CreateUserScreen(_addUser),
+                      Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 350,
+                            child: Image.asset(
+                              iInvertedLogo,
+                              alignment: Alignment.center,
                             ),
-                          );
-                        },
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 40.0,
+                              right: 25.0,
+                              left: 25.0,
+                              bottom: 25.0,
+                            ),
+                            child: Text(
+                              "Boas-vindas à Carteira Inteligente!",
+                              style: TextStyle(
+                                fontFamily: "OpenSans",
+                                fontSize: 25,
+                                color: cWhite,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(25.0),
+                            child: Text(
+                              "Uma nova maneira de organizar suas despesas.",
+                              style: TextStyle(
+                                fontFamily: "OpenSans",
+                                fontSize: 18,
+                                color: cWhite,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15.0),
+                child: Column(
+                  children: <Widget>[
+                    PrimaryButton(
+                      wLargeButtonMinimunSize,
+                      "Entrar",
+                      () => _openAuthUserViewModal(),
+                    ),
+                    SecondaryButton(
+                      wLargeButtonMinimunSize,
+                      "Ainda não tenho cadastro",
+                      () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateUserScreen(_addUser),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
