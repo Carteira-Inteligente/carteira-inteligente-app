@@ -14,7 +14,7 @@ class LightTheme extends StatelessWidget {
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(
           primary: cBlue,
-          secondary: cGreen,
+          secondary: cWhite,
         ),
         textTheme: theme.textTheme.copyWith(
           titleLarge: const TextStyle(
@@ -37,7 +37,6 @@ class LightTheme extends StatelessWidget {
           displaySmall: const TextStyle(
             fontFamily: "OpenSans",
             fontSize: 16,
-            fontWeight: FontWeight.bold,
             color: cBlack,
           ),
           displayMedium: const TextStyle(

@@ -1,17 +1,13 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/utils/format_currency.dart';
 import 'package:carteira_inteligente_app/widgets/Cards/dashboard_default_card.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class PaidCard extends StatelessWidget {
   PaidCard(this.paidValue, {super.key});
 
   final double paidValue;
-  final formatCurrency = NumberFormat.currency(
-    locale: "pt-BR",
-    symbol: "R\$",
-    decimalDigits: 2,
-  );
+  final formatCurrency = getFormatCurrency();
 
   @override
   Widget build(BuildContext context) {

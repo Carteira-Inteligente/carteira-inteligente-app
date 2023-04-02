@@ -1,14 +1,12 @@
 import 'package:carteira_inteligente_app/utils/toast_message.dart';
 import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/secondary_button.dart';
 import 'package:carteira_inteligente_app/widgets/Containers/form_container.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/subtitle_label.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:carteira_inteligente_app/widgets/Inputs/input_password.dart';
 import 'package:carteira_inteligente_app/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CreateUserScreen extends StatefulWidget {
   const CreateUserScreen(this.onSubmit, {super.key});

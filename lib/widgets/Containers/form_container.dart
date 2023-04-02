@@ -3,7 +3,6 @@ import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_leading.dart';
 import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class FormContainer extends StatelessWidget {
   const FormContainer(this.bodyWidget, this.bottonButton, {super.key});
