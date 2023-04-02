@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math';
 
 import 'package:carteira_inteligente_app/themes/light_status_bar_theme.dart';
@@ -70,7 +69,7 @@ class _InitialScreenState extends State<InitialScreen> {
             ),
           ),
           child: Column(
-            children: [
+            children: <Widget>[
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -101,7 +100,7 @@ class _InitialScreenState extends State<InitialScreen> {
                               ),
                             ),
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.all(25.0),
                             child: Text(
                               "Uma nova maneira de organizar suas despesas.",
