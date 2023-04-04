@@ -18,11 +18,7 @@ class EditButton extends StatelessWidget {
         ),
         style: ElevatedButton.styleFrom(
             minimumSize: wSmallButtonMinimunSize,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(50),
-              ),
-            ),
+            shape: wButtonBorderRadius,
             backgroundColor: cGrey,
             elevation: 0),
         onPressed: onPressed,

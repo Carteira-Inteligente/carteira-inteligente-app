@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/screens/Entry/create_entry_screen.dart';
-import 'package:carteira_inteligente_app/screens/Entry/show_entry_screen.dart';
+import 'package:carteira_inteligente_app/screens/Entry/entry_form_screen.dart';
+import 'package:carteira_inteligente_app/screens/Entry/entry_details_screen.dart';
 import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
 import 'package:carteira_inteligente_app/utils/format_currency.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/filter_button.dart';
@@ -173,7 +173,7 @@ class _LancamentosScreenState extends State<EntryScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ShowEntryScreen(),
+                            builder: (context) => const EntryDetailsScreen(),
                           ),
                         );
                       },
@@ -188,7 +188,7 @@ class _LancamentosScreenState extends State<EntryScreen> {
                             ),
                       entry.description,
                       """Valor: ${formatCurrency.format(entry.paidValue)}
-Data de vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
+Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
                       entry.paid == true
                           ? SvgPicture.asset(
                               sPaymentTick,
@@ -213,7 +213,7 @@ Data de vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CreateEntryScreen(_addEntry),
+                  builder: (context) => EntryFormScreen(_addEntry),
                 ),
               );
             },
@@ -223,7 +223,7 @@ Data de vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
               color: cWhite,
             ),
           ),
-        )
+        ),
       ],
     );
   }

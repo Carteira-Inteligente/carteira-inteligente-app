@@ -6,7 +6,7 @@ import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/models/authentication.dart';
 import 'package:carteira_inteligente_app/models/users.dart';
 import 'package:carteira_inteligente_app/screens/Authentication/authentication_screen.dart';
-import 'package:carteira_inteligente_app/screens/User/create_user_screen.dart';
+import 'package:carteira_inteligente_app/screens/User/user_form_screen.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -42,13 +42,6 @@ class _InitialScreenState extends State<InitialScreen> {
     final authUser = Authentication(
       email: email,
       password: password,
-    );
-  }
-
-  _openAuthUserViewModal() {
-    ShowModal.showModal(
-      context,
-      AuthenticationScreen(_authUser),
     );
   }
 
@@ -125,19 +118,20 @@ class _InitialScreenState extends State<InitialScreen> {
                     PrimaryButton(
                       wLargeButtonMinimunSize,
                       "Entrar",
-                      () => _openAuthUserViewModal(),
+                      () => ShowModal.showModal(
+                        context,
+                        AuthenticationScreen(_authUser),
+                      ),
                     ),
                     SecondaryButton(
                       wLargeButtonMinimunSize,
                       "Ainda não tenho cadastro",
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CreateUserScreen(_addUser),
-                          ),
-                        );
-                      },
+                      () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserFormScreen(_addUser),
+                        ),
+                      ),
                     ),
                   ],
                 ),

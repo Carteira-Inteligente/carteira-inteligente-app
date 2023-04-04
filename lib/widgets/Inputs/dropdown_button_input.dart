@@ -41,7 +41,7 @@ class _DropdownButtonInputState extends State<DropdownButtonInput> {
             ),
           ),
         ),
-        value: "Selecione",
+        value: selectedItem,
         onChanged: (newValue) {
           setState(() {
             selectedItem = newValue!;
@@ -53,6 +53,8 @@ class _DropdownButtonInputState extends State<DropdownButtonInput> {
             child: Text(value),
           );
         }).toList(),
+        borderRadius: wInputBorderRadius,
+        dropdownColor: cWhite,
         icon: SvgPicture.asset(sArrowDown),
       ),
     );

@@ -21,14 +21,12 @@ class CardButton extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              borderRadius: wButtonBorderRadius,
+              borderRadius: wBorderRadius50,
             ),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(300, 10),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: wButtonBorderRadius,
-                ),
+                shape: wButtonBorderRadius,
                 backgroundColor: cTransparent,
                 elevation: 0,
               ),

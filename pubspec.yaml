@@ -94,7 +94,7 @@ flutter:
     - assets/svg/categories/transport.svg
     - assets/svg/categories/travel.svg
     - assets/svg/categories/wifi.svg
-    - assets/svg/feedback/danger.svg
+    - assets/svg/feedback/warning.svg
     - assets/svg/feedback/error.svg
     - assets/svg/feedback/notification-bing.svg
     - assets/svg/feedback/notification.svg

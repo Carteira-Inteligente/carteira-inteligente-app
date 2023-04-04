@@ -35,7 +35,7 @@ const sStreamming = "assets/svg/categories/streamming.svg";
 const sTransport = "assets/svg/categories/transport.svg";
 const sTravel = "assets/svg/categories/travel.svg";
 const sWifi = "assets/svg/categories/wifi.svg";
-const sDanger = "assets/svg/feedback/danger.svg";
+const sWarning = "assets/svg/feedback/warning.svg";
 const sError = "assets/svg/feedback/error.svg";
 const sNotificationBing = "assets/svg/feedback/notification-bing.svg";
 const sNotification = "assets/svg/feedback/notification.svg";
@@ -71,7 +71,14 @@ const iSplash = "assets/images/splash.png";
 const iWhiteLogo = "assets/images/white-logo.png";
 
 // Widgets
-const wInputBorderRadius = BorderRadius.all(Radius.circular(15));
-const wButtonBorderRadius = BorderRadius.all(Radius.circular(50));
+const wInputBorderRadius = BorderRadius.all(
+  Radius.circular(15),
+);
+const wButtonBorderRadius = RoundedRectangleBorder(
+  borderRadius: wBorderRadius50,
+);
+const wBorderRadius50 = BorderRadius.all(
+  Radius.circular(50),
+);
 const wSmallButtonMinimunSize = Size(170, 60);
 const wLargeButtonMinimunSize = Size(350, 60);

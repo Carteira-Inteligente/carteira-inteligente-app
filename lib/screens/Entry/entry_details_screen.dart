@@ -5,14 +5,14 @@ import 'package:carteira_inteligente_app/widgets/Inputs/input_details.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
-class ShowEntryScreen extends StatefulWidget {
-  const ShowEntryScreen({super.key});
+class EntryDetailsScreen extends StatefulWidget {
+  const EntryDetailsScreen({super.key});
 
   @override
-  State<ShowEntryScreen> createState() => _ShowEntryScreenState();
+  State<EntryDetailsScreen> createState() => _EntryDetailsScreenState();
 }
 
-class _ShowEntryScreenState extends State<ShowEntryScreen> {
+class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
@@ -89,9 +89,9 @@ class _ShowEntryScreenState extends State<ShowEntryScreen> {
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           EditButton(() {}),
-          DeleteButton(() {}),
+          DeleteButton("lançamento", () {}),
         ],
       ),
     );

@@ -18,9 +18,7 @@ class FilterButton extends StatelessWidget {
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(150, 30),
-              shape: const RoundedRectangleBorder(
-                borderRadius: wButtonBorderRadius,
-              ),
+              shape: wButtonBorderRadius,
               backgroundColor: cBlue.shade50,
               elevation: 0,
             ),

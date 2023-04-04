@@ -8,16 +8,16 @@ import 'package:carteira_inteligente_app/widgets/Inputs/input_password.dart';
 import 'package:carteira_inteligente_app/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
 
-class CreateUserScreen extends StatefulWidget {
-  const CreateUserScreen(this.onSubmit, {super.key});
+class UserFormScreen extends StatefulWidget {
+  const UserFormScreen(this.onSubmit, {super.key});
 
   final void Function(String, String, String) onSubmit;
 
   @override
-  State<CreateUserScreen> createState() => _CreateUserScreenState();
+  State<UserFormScreen> createState() => _UserFormScreenState();
 }
 
-class _CreateUserScreenState extends State<CreateUserScreen> {
+class _UserFormScreenState extends State<UserFormScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();

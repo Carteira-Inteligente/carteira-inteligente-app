@@ -16,9 +16,7 @@ class PrimaryButton extends StatelessWidget {
       ElevatedButton(
         style: ElevatedButton.styleFrom(
           minimumSize: buttonSize,
-          shape: const RoundedRectangleBorder(
-            borderRadius: wButtonBorderRadius,
-          ),
+          shape: wButtonBorderRadius,
           backgroundColor: cBlue,
           elevation: 0,
         ),

@@ -9,8 +9,8 @@ import 'package:carteira_inteligente_app/widgets/Inputs/input_text.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
-class CreateEntryScreen extends StatefulWidget {
-  const CreateEntryScreen(this.onSubmit, {super.key});
+class EntryFormScreen extends StatefulWidget {
+  const EntryFormScreen(this.onSubmit, {super.key});
 
   final void Function(
     int,
@@ -24,10 +24,10 @@ class CreateEntryScreen extends StatefulWidget {
   ) onSubmit;
 
   @override
-  State<CreateEntryScreen> createState() => _CreateEntryScreenState();
+  State<EntryFormScreen> createState() => _EntryFormScreenState();
 }
 
-class _CreateEntryScreenState extends State<CreateEntryScreen> {
+class _EntryFormScreenState extends State<EntryFormScreen> {
   final _idUsercontroller = TextEditingController();
   final _idCategoryController = TextEditingController();
   final _descriptionController = TextEditingController();

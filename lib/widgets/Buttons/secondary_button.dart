@@ -16,9 +16,7 @@ class SecondaryButton extends StatelessWidget {
       OutlinedButton(
         style: OutlinedButton.styleFrom(
           minimumSize: buttonSize,
-          shape: const RoundedRectangleBorder(
-            borderRadius: wButtonBorderRadius,
-          ),
+          shape: wButtonBorderRadius,
           side: const BorderSide(color: cBlue),
           elevation: 0,
           backgroundColor: cWhite,
