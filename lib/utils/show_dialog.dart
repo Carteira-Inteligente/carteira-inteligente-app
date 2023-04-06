@@ -44,6 +44,27 @@ class ShowDialog {
     );
   }
 
+  static void cancelPayment(BuildContext context, Function() onPressed) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return DialogContainer(
+          "Deseja cancelar este pagamento?",
+          Text(
+            "Este lançamento ficará marcado como pendente até que você nos informe que já realizou o pagamento.",
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          const DialogSecondaryButton(),
+          DialogActionButton(
+            onPressed,
+            cBlue,
+            "Cancelar pagamento",
+          ),
+        );
+      },
+    );
+  }
+
   static void cancelDialog(BuildContext context, Function() onPressed) {
     showDialog(
       context: context,

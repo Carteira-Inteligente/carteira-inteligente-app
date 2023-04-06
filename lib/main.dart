@@ -1,6 +1,11 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/models/entries.dart';
 import 'package:carteira_inteligente_app/screens/Budget/budget_screen.dart';
 import 'package:carteira_inteligente_app/screens/Dashboard/dashboard_screen.dart';
+import 'package:carteira_inteligente_app/screens/Entry/entry_form_screen.dart';
 import 'package:carteira_inteligente_app/screens/Entry/entry_screen.dart';
 import 'package:carteira_inteligente_app/screens/Profile/profile_screen.dart';
 import 'package:carteira_inteligente_app/themes/light_theme.dart';
@@ -44,6 +49,38 @@ class _MyHomePageState extends State<MyHomePage> {
   _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  final List<Entries> _entries = [];
+  _addEntry(
+    int idUser,
+    int idCategory,
+    String description,
+    String period,
+    double paidValue,
+    DateTime paidDate,
+    bool paid,
+    DateTime dueDate,
+  ) {
+    final newEntry = Entries(
+      id: Random().nextInt(999).toInt(),
+      idUser: idUser,
+      idCategory: idCategory,
+      description: description,
+      period: period,
+      paidValue: paidValue,
+      paidDate: paidDate,
+      paid: paid,
+      dueDate: dueDate,
+    );
+
+    setState(() {
+      _entries.add(newEntry);
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.of(context).pop();
     });
   }
 
@@ -116,6 +153,26 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: _onItemTapped,
         backgroundColor: cWhite,
       ),
+      floatingActionButton: _selectedIndex == 1 || _selectedIndex == 2
+          ? FloatingActionButton(
+              backgroundColor: cBlue,
+              onPressed: _selectedIndex == 1
+                  ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EntryFormScreen(_addEntry),
+                        ),
+                      );
+                    }
+                  : () {},
+              child: SvgPicture.asset(
+                sAdd,
+                color: cWhite,
+              ),
+            )
+          : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

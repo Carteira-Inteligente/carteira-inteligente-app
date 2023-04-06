@@ -1,10 +1,11 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ListTileCard extends StatelessWidget {
-  const ListTileCard(
-      this.onTap, this.pageIcon, this.title, this.subtitle, this.paymentStatus,
+  const ListTileCard(this.onTap, this.pageIcon, this.title, this.subtitle,
+      this.paymentStatus, this.onPressedPayment,
       {super.key});
 
   final void Function() onTap;
@@ -12,29 +13,23 @@ class ListTileCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final SvgPicture paymentStatus;
+  final void Function() onPressedPayment;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(
-        vertical: 3.0,
-        horizontal: 8.0,
-      ),
-      child: ListTile(
+    return CardContainer(
+      ListTile(
         onTap: onTap,
         leading: Container(
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(50),
-            ),
+            borderRadius: wBorderRadius50,
             border: Border.all(color: cGrey.shade300),
           ),
           child: CircleAvatar(
             backgroundColor: cTransparent,
             radius: 24,
             child: Container(
-              padding: const EdgeInsets.all(6),
+              padding: const EdgeInsets.all(6.0),
               child: pageIcon,
             ),
           ),
@@ -49,7 +44,7 @@ class ListTileCard extends StatelessWidget {
         ),
         trailing: IconButton(
           icon: paymentStatus,
-          onPressed: () {},
+          onPressed: onPressedPayment,
         ),
       ),
     );
