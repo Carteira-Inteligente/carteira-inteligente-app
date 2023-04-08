@@ -19,18 +19,24 @@ class FilterButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(150, 30),
               shape: wButtonBorderRadius,
-              backgroundColor: cBlue.shade50,
+              side: const BorderSide(
+                color: cBlue,
+              ),
+              backgroundColor: cWhite,
               elevation: 0,
             ),
             onPressed: onPressed,
             label: Text(
               text,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.labelMedium,
             ),
             icon: GestureDetector(
               child: Transform.scale(
                 scale: 0.7,
-                child: SvgPicture.asset(sFilter),
+                child: SvgPicture.asset(
+                  sFilter,
+                  color: cBlue,
+                ),
               ),
             ),
           ),

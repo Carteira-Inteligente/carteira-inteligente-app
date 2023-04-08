@@ -2,6 +2,7 @@ import 'package:carteira_inteligente_app/utils/toast_message.dart';
 import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente_app/widgets/Containers/form_container.dart';
+import 'package:carteira_inteligente_app/widgets/Inputs/input_email.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/subtitle_label.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:carteira_inteligente_app/widgets/Inputs/input_password.dart';
@@ -33,39 +34,31 @@ class _UserFormScreenState extends State<UserFormScreen> {
         email.isEmpty ||
         password.isEmpty ||
         confirmPassword.isEmpty) {
-      ToastMessage.showWarning("Preencha todos os campos obrigatórios.");
+      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(name, email, password);
-    ToastMessage.showSuccess("Usuário cadastrado do sucesso.");
+    ToastMessage.showToast("Usuário cadastrado do sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
+      "Vamos começar!",
       Column(
         children: <Widget>[
-          Row(
-            children: const <Widget>[
-              TitleLabel(
-                "Vamos começar!",
-              ),
-            ],
-          ),
           const SubtitleLabel(
             "Preencha os campos abaixo para criar seu usuário.",
           ),
           InputText(
-            "Nome completo",
+            "Digite seu nome ou apelido",
             _nameController,
-            TextInputType.text,
             _submitForm,
           ),
-          InputText(
+          InputEmail(
             "E-mail",
             _emailController,
-            TextInputType.emailAddress,
             _submitForm,
           ),
           InputPassword(
@@ -92,23 +85,35 @@ class _UserFormScreenState extends State<UserFormScreen> {
                 child: Column(
                   children: <Widget>[
                     Row(
-                      children: const <Widget>[
-                        Text("・ Uma letra maiúscula e uma minúscula;"),
+                      children: <Widget>[
+                        Text(
+                          "・ Uma letra maiúscula e uma minúscula;",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
                       ],
                     ),
                     Row(
-                      children: const <Widget>[
-                        Text("・ Um número;"),
+                      children: <Widget>[
+                        Text(
+                          "・ Um número;",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
                       ],
                     ),
                     Row(
-                      children: const <Widget>[
-                        Text("・ Um caracter especial;"),
+                      children: <Widget>[
+                        Text(
+                          "・ Um caracter especial;",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
                       ],
                     ),
                     Row(
-                      children: const <Widget>[
-                        Text("・ Mínimo 8 caracteres."),
+                      children: <Widget>[
+                        Text(
+                          "・ Mínimo 8 caracteres.",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
                       ],
                     )
                   ],

@@ -7,9 +7,9 @@ class AppBarLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 45,
       child: Image.asset(
-        iLinearLogo,
+        iLinearWhiteLogo,
         alignment: Alignment.center,
       ),
     );

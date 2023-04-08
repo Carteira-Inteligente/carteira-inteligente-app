@@ -17,13 +17,13 @@ class PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: buttonSize,
           shape: wButtonBorderRadius,
-          backgroundColor: cBlue,
+          backgroundColor: Theme.of(context).primaryColor,
           elevation: 0,
         ),
         onPressed: onPressed,
         child: Text(
           textButton,
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );

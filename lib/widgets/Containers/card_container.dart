@@ -16,13 +16,7 @@ class _CardContainerState extends State<CardContainer> {
     return Card(
       color: cWhite,
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-        side: BorderSide(
-          color: cGrey.shade200,
-          width: 1,
-        ),
-      ),
+      shape: wCardShape,
       child: widget.widget,
     );
   }

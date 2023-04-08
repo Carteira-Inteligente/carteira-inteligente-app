@@ -33,7 +33,7 @@ class _ToggleButtonState extends State<ToggleButton> {
                 height: 30,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: _isOn ? cGreen : cGrey,
+                  color: _isOn ? cGreenAccent.shade400 : cGrey.shade300,
                 ),
                 child: Column(
                   children: [

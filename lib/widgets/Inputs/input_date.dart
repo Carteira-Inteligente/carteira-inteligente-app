@@ -1,5 +1,5 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/input_container.dart';
+import 'package:carteira_inteligente_app/widgets/Containers/inkwell_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -34,34 +34,15 @@ class _InputDateState extends State<InputDate> {
 
   @override
   Widget build(BuildContext context) {
-    return InputContainer(
+    return InkwellContainer(
       widget.label,
-      InkWell(
-        onTap: () {
-          _selectDate(context);
-        },
-        child: InputDecorator(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: wInputBorderRadius,
-              borderSide: BorderSide(
-                color: cBlack,
-              ),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                _selectedDate == null
-                    ? ""
-                    : DateFormat("dd/MM/y").format(widget.controller),
-              ),
-              SvgPicture.asset(sCalendar),
-            ],
-          ),
-        ),
-      ),
+      _selectedDate == null
+          ? ""
+          : DateFormat("dd/MM/y").format(widget.controller),
+      sCalendar,
+      () {
+        _selectDate(context);
+      },
     );
   }
 }

@@ -9,7 +9,10 @@ class AppBarLeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => Navigator.pop(context),
-      icon: SvgPicture.asset(sArrowLeft),
+      icon: SvgPicture.asset(
+        sArrowLeft,
+        color: cWhite,
+      ),
     );
   }
 }

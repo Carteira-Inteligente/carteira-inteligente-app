@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/models/entries.dart';
@@ -100,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             pinned: true,
             floating: true,
             forceElevated: true,
-            backgroundColor: cWhite,
+            backgroundColor: Theme.of(context).primaryColor,
             actions: const <Widget>[
               AppBarButton(),
             ],
@@ -120,52 +119,57 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               sDashboard,
-              color: _selectedIndex == 0 ? cBlue : cGrey,
+              color:
+                  _selectedIndex == 0 ? Theme.of(context).primaryColor : cGrey,
             ),
             label: "Dashboard",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               sWallet,
-              color: _selectedIndex == 1 ? cBlue : cGrey,
+              color:
+                  _selectedIndex == 1 ? Theme.of(context).primaryColor : cGrey,
             ),
             label: "Lançamentos",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              sDollarCircle,
-              color: _selectedIndex == 2 ? cBlue : cGrey,
+              sBudget,
+              color:
+                  _selectedIndex == 2 ? Theme.of(context).primaryColor : cGrey,
             ),
+            tooltip: "Orçamento",
             label: "Orçamento",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               sUser,
-              color: _selectedIndex == 3 ? cBlue : cGrey,
+              color:
+                  _selectedIndex == 3 ? Theme.of(context).primaryColor : cGrey,
             ),
             label: "Perfil",
           ),
         ],
         currentIndex: _selectedIndex,
-        showUnselectedLabels: true,
-        unselectedItemColor: cGrey,
-        selectedItemColor: cBlue,
+
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        // unselectedItemColor: cWhite,
+        selectedItemColor: Theme.of(context).primaryColor,
         onTap: _onItemTapped,
         backgroundColor: cWhite,
       ),
-      floatingActionButton: _selectedIndex == 1 || _selectedIndex == 2
+      floatingActionButton: _selectedIndex != 3
           ? FloatingActionButton(
-              backgroundColor: cBlue,
-              onPressed: _selectedIndex == 1
-                  ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EntryFormScreen(_addEntry),
-                        ),
-                      );
-                    }
-                  : () {},
+              backgroundColor: Theme.of(context).primaryColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EntryFormScreen(_addEntry),
+                  ),
+                );
+              },
               child: SvgPicture.asset(
                 sAdd,
                 color: cWhite,

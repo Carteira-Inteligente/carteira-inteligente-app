@@ -20,10 +20,7 @@ class DashboardDefaultCard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 cardText,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
             widget,

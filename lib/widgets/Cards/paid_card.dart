@@ -17,16 +17,14 @@ class PaidCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            const Text(
+            Text(
               "Total pago",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-              ),
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             Text(
               formatCurrency.format(paidValue),
               style: const TextStyle(
+                fontFamily: "OpenSans",
                 color: cGreen,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

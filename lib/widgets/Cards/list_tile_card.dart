@@ -36,7 +36,7 @@ class ListTileCard extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.displayMedium,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         subtitle: Text(
           subtitle,

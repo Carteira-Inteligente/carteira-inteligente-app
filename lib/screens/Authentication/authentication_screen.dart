@@ -1,8 +1,8 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
 import 'package:carteira_inteligente_app/screens/ForgotPassword/forgot_password_screen.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
+import 'package:carteira_inteligente_app/widgets/Inputs/input_email.dart';
 import 'package:carteira_inteligente_app/widgets/Inputs/input_password.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_text.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
 
@@ -23,13 +23,23 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const SubtitleLabel(
-          "Que bom que você voltou!",
+        SizedBox(
+          width: 300,
+          child: Image.asset(
+            iLinearLogo,
+            alignment: Alignment.center,
+          ),
         ),
-        InputText(
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
+          child: Text(
+            "Que bom que você voltou!",
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ),
+        InputEmail(
           "E-mail",
           _emailController,
-          TextInputType.emailAddress,
           () {},
         ),
         InputPassword(
@@ -46,7 +56,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
               ),
             );
           },
-          child: const Text("Esqueci minha senha"),
+          child: Text(
+            "Esqueci minha senha",
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
         ),
         PrimaryButton(
           wLargeButtonMinimunSize,

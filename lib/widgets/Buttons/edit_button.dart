@@ -17,14 +17,15 @@ class EditButton extends StatelessWidget {
           color: cWhite,
         ),
         style: ElevatedButton.styleFrom(
-            minimumSize: wSmallButtonMinimunSize,
-            shape: wButtonBorderRadius,
-            backgroundColor: cGrey,
-            elevation: 0),
+          minimumSize: wSmallButtonMinimunSize,
+          shape: wButtonBorderRadius,
+          backgroundColor: cGrey,
+          elevation: 0,
+        ),
         onPressed: onPressed,
         label: Text(
           "Editar",
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );

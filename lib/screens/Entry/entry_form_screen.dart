@@ -1,10 +1,14 @@
 import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente_app/screens/Categories/categories_list_screen.dart';
+import 'package:carteira_inteligente_app/screens/Recurrence/recurrence_list_screen.dart';
+import 'package:carteira_inteligente_app/utils/show_modal.dart';
 import 'package:carteira_inteligente_app/utils/toast_message.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente_app/widgets/Buttons/toggle_button.dart';
 import 'package:carteira_inteligente_app/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/dropdown_button_input.dart';
+import 'package:carteira_inteligente_app/widgets/Inputs/input_select.dart';
 import 'package:carteira_inteligente_app/widgets/Inputs/input_date.dart';
+import 'package:carteira_inteligente_app/widgets/Inputs/input_number.dart';
 import 'package:carteira_inteligente_app/widgets/Inputs/input_text.dart';
 import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +55,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
         period.isEmpty ||
         paidValue.isEmpty ||
         paid.isEmpty) {
-      ToastMessage.showWarning("Preencha todos os campos obrigatórios.");
+      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
@@ -65,37 +69,37 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
       paid as bool,
       _dueDateController,
     );
-    ToastMessage.showSuccess("Lançamento cadastrado do sucesso.");
+    ToastMessage.showToast("Lançamento cadastrado do sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
+      "Nova despesa",
       Column(
         children: <Widget>[
-          Row(
-            children: const <Widget>[
-              TitleLabel(
-                "Novo lançamento",
-              ),
-            ],
-          ),
           const ToggleButton("Pagamento realizado"),
-          DropdownButtonInput(
+          InputSelect(
             "Categoria",
             _idCategoryController,
-            _submitForm,
+            // _submitForm,
+            () => ShowModal.showModal(
+              context,
+              const CategoriesListScreen(),
+            ),
           ),
           InputText(
             "Descrição",
             _descriptionController,
-            TextInputType.text,
             _submitForm,
           ),
-          DropdownButtonInput(
+          InputSelect(
             "Recorrência",
             _periodController,
-            _submitForm,
+            () => ShowModal.showModal(
+              context,
+              const RecurrenceListScreen(),
+            ),
           ),
           Row(
             children: [
@@ -103,10 +107,9 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 4.0),
-                  child: InputText(
+                  child: InputNumber(
                     "Valor",
                     _paidValueController,
-                    const TextInputType.numberWithOptions(decimal: true),
                     _submitForm,
                   ),
                 ),
@@ -115,10 +118,9 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 4.0),
-                  child: InputText(
+                  child: InputNumber(
                     "Valor pago",
                     _paidValueController,
-                    const TextInputType.numberWithOptions(decimal: true),
                     _submitForm,
                   ),
                 ),

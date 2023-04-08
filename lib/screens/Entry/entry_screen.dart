@@ -93,10 +93,12 @@ class _EntryScreenState extends State<EntryScreen> {
     ),
   ];
 
-  Widget _buildListTileCard(
-      Entries entry, VoidCallback onTap, VoidCallback onPressedPaymend) {
+  Widget _buildListTileCard(BuildContext context, Entries entry) {
     return ListTileCard(
-      onTap,
+      () => ShowModal.showModal(
+        context,
+        const EntryDetailsScreen(),
+      ),
       entry.idCategory == 1
           ? SvgPicture.asset(
               sElectricity,
@@ -118,7 +120,18 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
               sPaymentWaiting,
               color: cOrange,
             ),
-      onPressedPaymend,
+      entry.paid == true
+          ? () {
+              ShowDialog.cancelPayment(context, () {
+                Navigator.pop(context);
+                ToastMessage.showToast("Pagamento desfeito com sucesso.");
+                entry.paid == false;
+              });
+            }
+          : () {
+              ToastMessage.showToast("Pagamento realizado com sucesso.");
+              entry.paid == true;
+            },
     );
   }
 
@@ -129,7 +142,7 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
         children: [
           Row(
             children: const <Widget>[
-              TitleLabel("Lançamentos"),
+              TitleLabel("Despesas"),
             ],
           ),
           SingleChildScrollView(
@@ -159,7 +172,7 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
             child: InputSearch(),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.59,
+            height: MediaQuery.of(context).size.height * 0.60,
             child: ListView.builder(
               itemCount: _entries.length,
               itemBuilder: (context, index) {
@@ -167,59 +180,11 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
 
                 if (index == _entries.length - 1) {
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 25.0),
-                    child: _buildListTileCard(
-                      entry,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const EntryDetailsScreen(),
-                          ),
-                        );
-                      },
-                      entry.paid == true
-                          ? () {
-                              ShowDialog.cancelPayment(context, () {
-                                Navigator.pop(context);
-                                ToastMessage.showSuccess(
-                                    "Pagamento desfeito com sucesso.");
-                                entry.paid == false;
-                              });
-                            }
-                          : () {
-                              ToastMessage.showSuccess(
-                                  "Pagamento realizado com sucesso.");
-                              entry.paid == true;
-                            },
-                    ),
+                    padding: const EdgeInsets.only(bottom: 35.0),
+                    child: _buildListTileCard(context, entry),
                   );
                 } else {
-                  return _buildListTileCard(
-                    entry,
-                    () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const EntryDetailsScreen(),
-                        ),
-                      );
-                    },
-                    entry.paid == true
-                        ? () {
-                            ShowDialog.cancelPayment(context, () {
-                              Navigator.pop(context);
-                              ToastMessage.showSuccess(
-                                  "Pagamento desfeito com sucesso.");
-                              entry.paid == false;
-                            });
-                          }
-                        : () {
-                            ToastMessage.showSuccess(
-                                "Pagamento realizado com sucesso.");
-                            entry.paid == true;
-                          },
-                  );
+                  return _buildListTileCard(context, entry);
                 }
               },
             ),

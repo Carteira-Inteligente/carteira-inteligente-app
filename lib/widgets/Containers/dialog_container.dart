@@ -18,13 +18,9 @@ class DialogContainer extends StatelessWidget {
         children: [
           Text(
             dialogTitle,
-            style: const TextStyle(
-              fontSize: 18,
-              color: cBlack,
-              fontFamily: "OpenSans",
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          const Divider(color: cBlack),
+          const Divider(color: cGrey),
         ],
       ),
       content: contentText,

@@ -18,31 +18,27 @@ class ToPayCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            const Text(
+            Text(
               "Total em aberto",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-              ),
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             Text(
               formatCurrency.format(toPayValue),
               style: const TextStyle(
+                fontFamily: "OpenSans",
                 color: cBlue,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text(
+            Text(
               "Total em atraso",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-              ),
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             Text(
               formatCurrency.format(overdueValue),
               style: const TextStyle(
+                fontFamily: "OpenSans",
                 color: cRed,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

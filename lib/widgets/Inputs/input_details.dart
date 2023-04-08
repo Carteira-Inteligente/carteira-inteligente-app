@@ -24,6 +24,7 @@ class InputDetails extends StatelessWidget {
               enabled: false,
               decoration: InputDecoration(
                 hintText: details,
+                hintStyle: Theme.of(context).textTheme.displaySmall,
                 border: const OutlineInputBorder(
                   borderRadius: wInputBorderRadius,
                   borderSide: BorderSide(

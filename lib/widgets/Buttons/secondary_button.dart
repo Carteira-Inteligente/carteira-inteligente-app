@@ -24,11 +24,7 @@ class SecondaryButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           textButton,
-          style: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 16,
-            color: cBlue,
-          ),
+          style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
     );

@@ -76,8 +76,8 @@ class _InitialScreenState extends State<InitialScreen> {
                               alignment: Alignment.center,
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(
+                          Padding(
+                            padding: const EdgeInsets.only(
                               top: 40.0,
                               right: 25.0,
                               left: 25.0,
@@ -85,24 +85,14 @@ class _InitialScreenState extends State<InitialScreen> {
                             ),
                             child: Text(
                               "Boas-vindas à Carteira Inteligente!",
-                              style: TextStyle(
-                                fontFamily: "OpenSans",
-                                fontSize: 25,
-                                color: cWhite,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.all(25.0),
+                          Padding(
+                            padding: const EdgeInsets.all(25.0),
                             child: Text(
                               "Uma nova maneira de organizar suas despesas.",
-                              style: TextStyle(
-                                fontFamily: "OpenSans",
-                                fontSize: 18,
-                                color: cWhite,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
                         ],

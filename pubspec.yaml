@@ -68,59 +68,67 @@ flutter:
     - assets/images/initial.jpg
     - assets/images/inverted-logo.png
     - assets/images/linear-logo.png
+    - assets/images/linear-white-logo.png
     - assets/images/logo.png
     - assets/images/splash.png
     - assets/images/white-logo.png
-    # Svg
-    - assets/svg/authentication/hide-password.svg
-    - assets/svg/authentication/hide-password.svg
-    - assets/svg/authentication/show-password.svg
+    ## Find our icons on: https://www.svgrepo.com/collection/iconsax-duotone-line-icons/
+    # Svg.Buttons
+    - assets/svg/buttons/add.svg
+    - assets/svg/buttons/arrow-down.svg
+    - assets/svg/buttons/arrow-left.svg
+    - assets/svg/buttons/delete.svg
+    - assets/svg/buttons/edit.svg
+    - assets/svg/buttons/filter.svg
+    - assets/svg/buttons/settings.svg
+    # Svg.Categories
+    - assets/svg/categories/bank.svg
     - assets/svg/categories/cards.svg
+    - assets/svg/categories/coffee.svg
     - assets/svg/categories/culture.svg
     - assets/svg/categories/dinner.svg
-    - assets/svg/categories/donate.svg
     - assets/svg/categories/education.svg
     - assets/svg/categories/electricity.svg
     - assets/svg/categories/exercise.svg
+    - assets/svg/categories/family.svg
     - assets/svg/categories/gift.svg
     - assets/svg/categories/health.svg
     - assets/svg/categories/house.svg
     - assets/svg/categories/leisure.svg
+    - assets/svg/categories/loans.svg
     - assets/svg/categories/mobile.svg
     - assets/svg/categories/other.svg
     - assets/svg/categories/pet.svg
+    - assets/svg/categories/self-care.svg
     - assets/svg/categories/shopping-cart.svg
-    - assets/svg/categories/streamming.svg
+    - assets/svg/categories/shopping.svg
+    - assets/svg/categories/streaming.svg
     - assets/svg/categories/transport.svg
     - assets/svg/categories/travel.svg
     - assets/svg/categories/wifi.svg
+    - assets/svg/categories/work.svg
+    # Svg.Feedback
     - assets/svg/feedback/warning.svg
     - assets/svg/feedback/error.svg
     - assets/svg/feedback/notification-bing.svg
     - assets/svg/feedback/notification.svg
     - assets/svg/feedback/success.svg
-    - assets/svg/add.svg
-    - assets/svg/arrow-down.svg
-    - assets/svg/arrow-left.svg
-    - assets/svg/calendar.svg
-    - assets/svg/category.svg
+    # Svg.Inputs
+    - assets/svg/inputs/calendar.svg
+    - assets/svg/inputs/hide-password.svg
+    - assets/svg/inputs/mail.svg
+    - assets/svg/inputs/money.svg
+    - assets/svg/inputs/search.svg
+    - assets/svg/inputs/show-password.svg
+    - assets/svg/inputs/text.svg
+    # Svg.Payment
+    - assets/svg/payment/payment-tick.svg
+    - assets/svg/payment/payment-waiting.svg
+    # Svg
+    - assets/svg/budget.svg
     - assets/svg/dashboard.svg
-    - assets/svg/delete.svg
-    - assets/svg/dollar-circle.svg
-    - assets/svg/edit.svg
-    - assets/svg/filter.svg
-    - assets/svg/home.svg
-    - assets/svg/money-send.svg
-    - assets/svg/payment-tick.svg
-    - assets/svg/payment-waiting.svg
-    - assets/svg/refresh.svg
-    - assets/svg/repeat.svg
-    - assets/svg/search.svg
-    - assets/svg/settings.svg
     - assets/svg/user.svg
     - assets/svg/wallet.svg
-    # - images/a_dot_burr.jpeg
-    # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

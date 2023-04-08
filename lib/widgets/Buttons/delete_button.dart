@@ -27,7 +27,7 @@ class DeleteButton extends StatelessWidget {
         onPressed: () => ShowDialog.deleteDialog(context, dataLabel, onPressed),
         label: Text(
           "Excluir",
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );
