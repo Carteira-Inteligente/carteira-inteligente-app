@@ -1,6 +1,6 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/input_container.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/input_icon_container.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Containers/input_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/input_icon_container.dart';
 import 'package:flutter/material.dart';
 
 class InputNumber extends StatelessWidget {

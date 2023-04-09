@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/models/categories.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/categories.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 List<Categories> categoryList = [
@@ -45,7 +45,7 @@ List<Categories> categoryList = [
   ),
   Categories(
     id: 6,
-    description: "Energia clétrica",
+    description: "Energia elétrica",
     icon: SvgPicture.asset(
       sElectricity,
       color: cAmber,

@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/widgets/Buttons/card_button.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/card_container.dart';
+import 'package:carteira_inteligente/widgets/Buttons/card_button.dart';
+import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatefulWidget {

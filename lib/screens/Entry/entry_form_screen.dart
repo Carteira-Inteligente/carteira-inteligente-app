@@ -1,16 +1,16 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/screens/Categories/categories_list_screen.dart';
-import 'package:carteira_inteligente_app/screens/Recurrence/recurrence_list_screen.dart';
-import 'package:carteira_inteligente_app/utils/show_modal.dart';
-import 'package:carteira_inteligente_app/utils/toast_message.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/toggle_button.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_select.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_date.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_number.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_text.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/screens/Categories/categories_list_screen.dart';
+import 'package:carteira_inteligente/screens/Recurrence/recurrence_list_screen.dart';
+import 'package:carteira_inteligente/utils/show_modal.dart';
+import 'package:carteira_inteligente/utils/toast_message.dart';
+import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
+import 'package:carteira_inteligente/widgets/Buttons/toggle_button.dart';
+import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_select.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_date.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_number.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class EntryFormScreen extends StatefulWidget {
@@ -75,7 +75,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Nova despesa",
+      "Novo lançamento",
       Column(
         children: <Widget>[
           const ToggleButton("Pagamento realizado"),

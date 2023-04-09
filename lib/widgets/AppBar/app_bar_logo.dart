@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class AppBarLogo extends StatelessWidget {

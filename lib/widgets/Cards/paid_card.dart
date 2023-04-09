@@ -1,6 +1,6 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/utils/format_currency.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/dashboard_default_card.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/utils/format_currency.dart';
+import 'package:carteira_inteligente/widgets/Cards/dashboard_default_card.dart';
 import 'package:flutter/material.dart';
 
 class PaidCard extends StatelessWidget {

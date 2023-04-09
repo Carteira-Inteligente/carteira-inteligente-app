@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/themes/light_status_bar_theme.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/themes/light_status_bar_theme.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {

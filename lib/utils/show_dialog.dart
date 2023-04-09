@@ -1,7 +1,7 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/dialog_action_button.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/dialog_secondary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/dialog_container.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Buttons/dialog_action_button.dart';
+import 'package:carteira_inteligente/widgets/Buttons/dialog_secondary_button.dart';
+import 'package:carteira_inteligente/widgets/Containers/dialog_container.dart';
 import 'package:flutter/material.dart';
 
 class ShowDialog {

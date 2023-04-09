@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/main.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/main.dart';
 import 'package:flutter/material.dart';
 
 class LightTheme extends StatelessWidget {
@@ -75,6 +75,19 @@ class LightTheme extends StatelessWidget {
             fontFamily: "OpenSans",
             fontSize: 16,
             color: theme.primaryColor,
+          ),
+          labelSmall: const TextStyle(
+            // Tema utilizado para dados da tela de detalhes
+            fontFamily: "OpenSans",
+            fontSize: 16,
+            color: cBlack,
+          ),
+          headlineSmall: const TextStyle(
+            // Tema utilizado para dados da tela de detalhes em negrito
+            fontFamily: "OpenSans",
+            fontSize: 16,
+            color: cBlack,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

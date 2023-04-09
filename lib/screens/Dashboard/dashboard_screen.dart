@@ -1,9 +1,9 @@
-import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/dashboard_chart_card.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/paid_card.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/to_pay_card.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/subtitle_label.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/themes/dark_status_bar_theme.dart';
+import 'package:carteira_inteligente/widgets/Cards/dashboard_chart_card.dart';
+import 'package:carteira_inteligente/widgets/Cards/paid_card.dart';
+import 'package:carteira_inteligente/widgets/Cards/to_pay_card.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {

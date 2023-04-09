@@ -1,15 +1,15 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/screens/Entry/entry_details_screen.dart';
-import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
-import 'package:carteira_inteligente_app/utils/format_currency.dart';
-import 'package:carteira_inteligente_app/utils/show_dialog.dart';
-import 'package:carteira_inteligente_app/utils/show_modal.dart';
-import 'package:carteira_inteligente_app/utils/toast_message.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/filter_button.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/list_tile_card.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_search.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
-import 'package:carteira_inteligente_app/models/entries.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/screens/Entry/entry_details_screen.dart';
+import 'package:carteira_inteligente/themes/dark_status_bar_theme.dart';
+import 'package:carteira_inteligente/utils/format_currency.dart';
+import 'package:carteira_inteligente/utils/show_dialog.dart';
+import 'package:carteira_inteligente/utils/show_modal.dart';
+import 'package:carteira_inteligente/utils/toast_message.dart';
+import 'package:carteira_inteligente/widgets/Buttons/filter_button.dart';
+import 'package:carteira_inteligente/widgets/Cards/list_tile_card.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/models/entries.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -142,7 +142,7 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
         children: [
           Row(
             children: const <Widget>[
-              TitleLabel("Despesas"),
+              TitleLabel("Lançamentos"),
             ],
           ),
           SingleChildScrollView(

@@ -1,9 +1,9 @@
-import 'package:carteira_inteligente_app/themes/dark_status_bar_theme.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/card_button.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/custom_card.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/paid_card.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/to_pay_card.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/themes/dark_status_bar_theme.dart';
+import 'package:carteira_inteligente/widgets/Buttons/card_button.dart';
+import 'package:carteira_inteligente/widgets/Cards/custom_card.dart';
+import 'package:carteira_inteligente/widgets/Cards/paid_card.dart';
+import 'package:carteira_inteligente/widgets/Cards/to_pay_card.dart';
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class BudgetScreen extends StatefulWidget {

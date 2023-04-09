@@ -1,10 +1,10 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/utils/toast_message.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_email.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/subtitle_label.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/utils/toast_message.dart';
+import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
+import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

@@ -1,6 +1,7 @@
-import 'package:carteira_inteligente_app/models/recurrence.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/recurrence_card.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/modal_label.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/recurrence.dart';
+import 'package:carteira_inteligente/widgets/Cards/recurrence_card.dart';
+import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
 
 class RecurrenceListScreen extends StatefulWidget {
@@ -74,7 +75,7 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
                 return Column(
                   children: <Widget>[
                     _buildRecurrenceCard(context, recurrence),
-                    const Divider(),
+                    const Divider(color: cGrey),
                   ],
                 );
               }

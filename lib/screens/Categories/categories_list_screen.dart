@@ -1,9 +1,9 @@
-import 'package:carteira_inteligente_app/constants/categories.dart';
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/models/categories.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Cards/category_card.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/modal_label.dart';
+import 'package:carteira_inteligente/constants/categories.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/categories.dart';
+import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
+import 'package:carteira_inteligente/widgets/Cards/category_card.dart';
+import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesListScreen extends StatefulWidget {
@@ -46,7 +46,7 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
                 return Column(
                   children: <Widget>[
                     _buildCategoryCard(context, category),
-                    const Divider(),
+                    const Divider(color: cGrey),
                   ],
                 );
               }

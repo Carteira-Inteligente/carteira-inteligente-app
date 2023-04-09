@@ -1,16 +1,16 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/models/entries.dart';
-import 'package:carteira_inteligente_app/screens/Budget/budget_screen.dart';
-import 'package:carteira_inteligente_app/screens/Dashboard/dashboard_screen.dart';
-import 'package:carteira_inteligente_app/screens/Entry/entry_form_screen.dart';
-import 'package:carteira_inteligente_app/screens/Entry/entry_screen.dart';
-import 'package:carteira_inteligente_app/screens/Profile/profile_screen.dart';
-import 'package:carteira_inteligente_app/themes/light_theme.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_logo.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_title.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_button.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/entries.dart';
+import 'package:carteira_inteligente/screens/Budget/budget_screen.dart';
+import 'package:carteira_inteligente/screens/Dashboard/dashboard_screen.dart';
+import 'package:carteira_inteligente/screens/Entry/entry_form_screen.dart';
+import 'package:carteira_inteligente/screens/Entry/entry_screen.dart';
+import 'package:carteira_inteligente/screens/Profile/profile_screen.dart';
+import 'package:carteira_inteligente/themes/light_theme.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_logo.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';

@@ -1,14 +1,14 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente_app/themes/light_status_bar_theme.dart';
-import 'package:carteira_inteligente_app/utils/show_modal.dart';
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/models/authentication.dart';
-import 'package:carteira_inteligente_app/models/users.dart';
-import 'package:carteira_inteligente_app/screens/Authentication/authentication_screen.dart';
-import 'package:carteira_inteligente_app/screens/User/user_form_screen.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/secondary_button.dart';
+import 'package:carteira_inteligente/themes/light_status_bar_theme.dart';
+import 'package:carteira_inteligente/utils/show_modal.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/authentication.dart';
+import 'package:carteira_inteligente/models/users.dart';
+import 'package:carteira_inteligente/screens/Authentication/authentication_screen.dart';
+import 'package:carteira_inteligente/screens/User/user_form_screen.dart';
+import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
+import 'package:carteira_inteligente/widgets/Buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 
 class InitialScreen extends StatefulWidget {

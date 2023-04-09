@@ -1,7 +1,7 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_leading.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_logo.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_logo.dart';
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

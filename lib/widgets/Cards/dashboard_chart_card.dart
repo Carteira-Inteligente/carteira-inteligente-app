@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente_app/widgets/Containers/card_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 
 class DashboardChartCard extends StatefulWidget {
