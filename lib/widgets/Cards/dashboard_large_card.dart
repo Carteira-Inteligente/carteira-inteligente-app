@@ -1,14 +1,16 @@
 import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 
-class DashboardChartCard extends StatefulWidget {
-  const DashboardChartCard({super.key});
+class DashboardLargeCard extends StatefulWidget {
+  const DashboardLargeCard(this.cardTitle, {super.key});
+
+  final String cardTitle;
 
   @override
-  State<DashboardChartCard> createState() => _DashboardChartCardState();
+  State<DashboardLargeCard> createState() => _DashboardLargeCardState();
 }
 
-class _DashboardChartCardState extends State<DashboardChartCard> {
+class _DashboardLargeCardState extends State<DashboardLargeCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,7 +22,7 @@ class _DashboardChartCardState extends State<DashboardChartCard> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Gráfico de evolução",
+                widget.cardTitle,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ),

@@ -45,9 +45,16 @@ class _UserFormScreenState extends State<UserFormScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Vamos começar!",
+      "Novo usuário",
       Column(
         children: <Widget>[
+          Row(
+            children: const <Widget>[
+              TitleLabel(
+                "Vamos começar!",
+              ),
+            ],
+          ),
           const SubtitleLabel(
             "Preencha os campos abaixo para criar seu usuário.",
           ),

@@ -1,9 +1,8 @@
-import 'package:carteira_inteligente/themes/dark_status_bar_theme.dart';
-import 'package:carteira_inteligente/widgets/Cards/dashboard_chart_card.dart';
-import 'package:carteira_inteligente/widgets/Cards/paid_card.dart';
-import 'package:carteira_inteligente/widgets/Cards/to_pay_card.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Cards/dashboard_large_card.dart';
+import 'package:carteira_inteligente/widgets/Cards/dashboard_small_card.dart';
+import 'package:carteira_inteligente/widgets/Labels/dashboard_card_label.dart';
 import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -16,37 +15,53 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    return DarkStatusBarTheme(
-      Column(
-        children: [
-          Row(
-            children: const <Widget>[
-              TitleLabel("Dashboard"),
-            ],
-          ),
-          Row(
-            children: const <Widget>[
-              SubtitleLabel("Mensal"),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              ToPayCard(134.54, 45.32),
-              PaidCard(1003.30),
-            ],
-          ),
-          Row(
-            children: const <Widget>[
-              SubtitleLabel("Anual"),
-            ],
-          ),
-          Row(
-            children: const <Widget>[
-              DashboardChartCard(),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        Row(
+          children: const <Widget>[
+            SubtitleLabel("Mensal"),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            DashboardSmallCard(
+              "A pagar",
+              Column(
+                children: <Widget>[
+                  DashboardCardLabel(
+                    "Total previsto",
+                    123.54,
+                    cBlue,
+                  ),
+                  DashboardCardLabel(
+                    "Total em atraso",
+                    45.32,
+                    cRed,
+                  ),
+                ],
+              ),
+            ),
+            DashboardSmallCard(
+              "Pagos",
+              DashboardCardLabel(
+                "Total pago",
+                1003.30,
+                cGreen,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: const <Widget>[
+            SubtitleLabel("Anual"),
+          ],
+        ),
+        Row(
+          children: const <Widget>[
+            DashboardLargeCard("Gráfico de evolução"),
+          ],
+        ),
+      ],
     );
   }
 }

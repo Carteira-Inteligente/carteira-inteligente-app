@@ -1,16 +1,19 @@
 import 'dart:math';
 
 import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/budget.dart';
 import 'package:carteira_inteligente/models/entries.dart';
+import 'package:carteira_inteligente/screens/Budget/budget_form_screen.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_screen.dart';
 import 'package:carteira_inteligente/screens/Dashboard/dashboard_screen.dart';
 import 'package:carteira_inteligente/screens/Entry/entry_form_screen.dart';
 import 'package:carteira_inteligente/screens/Entry/entry_screen.dart';
 import 'package:carteira_inteligente/screens/Profile/profile_screen.dart';
 import 'package:carteira_inteligente/themes/light_theme.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_logo.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_filter_button.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -83,6 +86,28 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  final List<Budget> _budgets = [];
+  _addBudget(
+    int idUser,
+    int idCategory,
+    double value,
+  ) {
+    final newBudget = Budget(
+      id: Random().nextInt(999).toInt(),
+      idUser: idUser,
+      idCategory: idCategory,
+      value: value,
+    );
+
+    setState(() {
+      _budgets.add(newBudget);
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.of(context).pop();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,15 +119,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 bottom: Radius.circular(20),
               ),
             ),
-            title:
-                _selectedIndex == 3 ? const AppBarTitle() : const AppBarLogo(),
+            title: Builder(
+              builder: (context) {
+                if (_selectedIndex == 0) {
+                  return const AppBarTitle("Dashboard");
+                } else if (_selectedIndex == 1) {
+                  return const AppBarTitle("Lançamentos");
+                } else if (_selectedIndex == 2) {
+                  return const AppBarTitle("Orçamentos");
+                } else {
+                  return const AppBarTitle("Perfil");
+                }
+              },
+            ),
             pinned: true,
             floating: true,
             forceElevated: true,
             backgroundColor: Theme.of(context).primaryColor,
-            actions: const <Widget>[
-              AppBarButton(),
-            ],
+            actions: _selectedIndex != 0 && _selectedIndex != 3
+                ? [
+                    const AppBarButton(),
+                    const AppBarFilterButton(),
+                  ]
+                : [
+                    const AppBarButton(),
+                  ],
           ),
           SliverList(
             delegate: SliverChildListDelegate(
@@ -113,8 +154,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: CupertinoTabBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -122,24 +165,42 @@ class _MyHomePageState extends State<MyHomePage> {
               color:
                   _selectedIndex == 0 ? Theme.of(context).primaryColor : cGrey,
             ),
-            label: "Dashboard",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              sWallet,
-              color:
-                  _selectedIndex == 1 ? Theme.of(context).primaryColor : cGrey,
-            ),
-            label: "Lançamentos",
+            icon: _selectedIndex != 0 && _selectedIndex != 3
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 35.0),
+                    child: SvgPicture.asset(
+                      sWallet,
+                      color: _selectedIndex == 1
+                          ? Theme.of(context).primaryColor
+                          : cGrey,
+                    ),
+                  )
+                : SvgPicture.asset(
+                    sWallet,
+                    color: _selectedIndex == 1
+                        ? Theme.of(context).primaryColor
+                        : cGrey,
+                  ),
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              sBudget,
-              color:
-                  _selectedIndex == 2 ? Theme.of(context).primaryColor : cGrey,
-            ),
-            tooltip: "Orçamento",
-            label: "Orçamento",
+            icon: _selectedIndex != 0 && _selectedIndex != 3
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 35.0),
+                    child: SvgPicture.asset(
+                      sBudget,
+                      color: _selectedIndex == 2
+                          ? Theme.of(context).primaryColor
+                          : cGrey,
+                    ),
+                  )
+                : SvgPicture.asset(
+                    sBudget,
+                    color: _selectedIndex == 2
+                        ? Theme.of(context).primaryColor
+                        : cGrey,
+                  ),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -147,36 +208,39 @@ class _MyHomePageState extends State<MyHomePage> {
               color:
                   _selectedIndex == 3 ? Theme.of(context).primaryColor : cGrey,
             ),
-            label: "Perfil",
           ),
         ],
-        currentIndex: _selectedIndex,
-
-        showUnselectedLabels: false,
-        showSelectedLabels: false,
-        // unselectedItemColor: cWhite,
-        selectedItemColor: Theme.of(context).primaryColor,
-        onTap: _onItemTapped,
-        backgroundColor: cWhite,
       ),
-      floatingActionButton: _selectedIndex != 3
+      floatingActionButton: _selectedIndex != 0 && _selectedIndex != 3
           ? FloatingActionButton(
+              elevation: 0,
+              mini: true,
               backgroundColor: Theme.of(context).primaryColor,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EntryFormScreen(_addEntry),
-                  ),
-                );
-              },
+              onPressed: _selectedIndex == 1
+                  ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EntryFormScreen(_addEntry),
+                        ),
+                      );
+                    }
+                  : () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BudgetFormScreen(_addBudget),
+                        ),
+                      );
+                    },
               child: SvgPicture.asset(
                 sAdd,
                 color: cWhite,
               ),
             )
           : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }

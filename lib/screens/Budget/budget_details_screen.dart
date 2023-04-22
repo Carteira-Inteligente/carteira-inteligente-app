@@ -6,14 +6,14 @@ import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class EntryDetailsScreen extends StatefulWidget {
-  const EntryDetailsScreen({super.key});
+class BudgetDetailsScreen extends StatefulWidget {
+  const BudgetDetailsScreen({super.key});
 
   @override
-  State<EntryDetailsScreen> createState() => _EntryDetailsScreenState();
+  State<BudgetDetailsScreen> createState() => _BudgetDetailsScreenState();
 }
 
-class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
+class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(

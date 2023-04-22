@@ -3,8 +3,8 @@ import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ListTileCard extends StatelessWidget {
-  const ListTileCard(this.onTap, this.pageIcon, this.title, this.subtitle,
+class EntryCard extends StatelessWidget {
+  const EntryCard(this.onTap, this.pageIcon, this.title, this.subtitle,
       this.paymentStatus, this.onPressedPayment,
       {super.key});
 

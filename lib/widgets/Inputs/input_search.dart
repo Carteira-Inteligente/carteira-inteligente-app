@@ -14,6 +14,7 @@ class _InputSearchState extends State<InputSearch> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(top: 10.0),
       decoration: const BoxDecoration(
         color: cWhite,
         borderRadius: wInputBorderRadius,

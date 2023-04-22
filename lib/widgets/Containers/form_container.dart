@@ -1,15 +1,14 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_logo.dart';
-import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FormContainer extends StatelessWidget {
-  const FormContainer(this.label, this.bodyWidget, this.bottonButton,
+  const FormContainer(this.title, this.bodyWidget, this.bottonButton,
       {super.key});
 
-  final String label;
+  final String title;
   final Widget bodyWidget;
   final Widget bottonButton;
 
@@ -21,7 +20,7 @@ class FormContainer extends StatelessWidget {
         elevation: 0,
         backgroundColor: Theme.of(context).primaryColor,
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: const AppBarLogo(),
+        title: AppBarTitle(title),
       ),
       body: Stack(
         children: <Widget>[
@@ -32,18 +31,12 @@ class FormContainer extends StatelessWidget {
                   child: Container(
                     decoration: const BoxDecoration(color: cWhite),
                     height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: <Widget>[
-                            TitleLabel(label),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: bodyWidget,
-                        ),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 10.0,
+                      ),
+                      child: bodyWidget,
                     ),
                   ),
                 ),

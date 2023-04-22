@@ -1,10 +1,13 @@
-import 'package:carteira_inteligente/themes/dark_status_bar_theme.dart';
-import 'package:carteira_inteligente/widgets/Buttons/card_button.dart';
-import 'package:carteira_inteligente/widgets/Cards/custom_card.dart';
-import 'package:carteira_inteligente/widgets/Cards/paid_card.dart';
-import 'package:carteira_inteligente/widgets/Cards/to_pay_card.dart';
-import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/budget.dart';
+import 'package:carteira_inteligente/screens/Budget/budget_details_screen.dart';
+import 'package:carteira_inteligente/utils/format_currency.dart';
+import 'package:carteira_inteligente/utils/show_modal.dart';
+import 'package:carteira_inteligente/widgets/Cards/budget_card.dart';
+import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BudgetScreen extends StatefulWidget {
   const BudgetScreen({super.key});
@@ -14,34 +17,136 @@ class BudgetScreen extends StatefulWidget {
 }
 
 class _BudgetScreenState extends State<BudgetScreen> {
+  var formatCurrency = getFormatCurrency();
+
+  final List<Budget> _budgets = [
+    Budget(
+      id: 1,
+      idUser: 1,
+      idCategory: 1,
+      value: 123.45,
+    ),
+    Budget(
+      id: 2,
+      idUser: 1,
+      idCategory: 2,
+      value: 542.33,
+    ),
+    Budget(
+      id: 1,
+      idUser: 1,
+      idCategory: 1,
+      value: 123.45,
+    ),
+    Budget(
+      id: 2,
+      idUser: 1,
+      idCategory: 2,
+      value: 542.33,
+    ),
+    Budget(
+      id: 1,
+      idUser: 1,
+      idCategory: 1,
+      value: 123.45,
+    ),
+    Budget(
+      id: 2,
+      idUser: 1,
+      idCategory: 2,
+      value: 542.33,
+    ),
+    Budget(
+      id: 1,
+      idUser: 1,
+      idCategory: 1,
+      value: 123.45,
+    ),
+    Budget(
+      id: 2,
+      idUser: 1,
+      idCategory: 2,
+      value: 542.33,
+    ),
+    Budget(
+      id: 1,
+      idUser: 1,
+      idCategory: 1,
+      value: 123.45,
+    ),
+    Budget(
+      id: 2,
+      idUser: 1,
+      idCategory: 2,
+      value: 542.33,
+    ),
+    Budget(
+      id: 1,
+      idUser: 1,
+      idCategory: 1,
+      value: 123.45,
+    ),
+    Budget(
+      id: 2,
+      idUser: 1,
+      idCategory: 2,
+      value: 542.33,
+    ),
+  ];
+
+  Widget _buildBudgetCards(BuildContext context, Budget budget) {
+    return BudgetCard(
+      () => ShowModal.showModal(
+        context,
+        const BudgetDetailsScreen(),
+      ),
+      budget.idCategory == 1
+          ? SvgPicture.asset(
+              sElectricity,
+              color: cAmber,
+            )
+          : SvgPicture.asset(
+              sHouse,
+              color: cCyan,
+            ),
+      budget.idCategory == 1 ? "Energia elétrica" : "Casa",
+      budget.value,
+      budget.value / 880 * 1,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DarkStatusBarTheme(
-      Column(
-        children: <Widget>[
-          Row(
-            children: const <Widget>[
-              TitleLabel("Orçamento"),
-            ],
+    return Column(
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 8.0,
+            horizontal: 20.0,
           ),
-          Column(
-            children: [
-              Row(
-                children: [
-                  CardButton("Novo grupo", () {}),
-                  // CardButton("Nova categoria", () {}),
-                ],
+          child: InputSearch(),
+        ),
+        _budgets.isEmpty
+            ? const NoDataContainer("orçamentos")
+            : SizedBox(
+                height: MediaQuery.of(context).size.height * 0.71,
+                child: ListView.builder(
+                  itemCount: _budgets.length,
+                  itemBuilder: (context, index) {
+                    final budget = _budgets[index];
+
+                    if (index == _budgets.length - 1) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 35.0),
+                        child: _buildBudgetCards(context, budget),
+                      );
+                    } else {
+                      return _buildBudgetCards(context, budget);
+                    }
+                  },
+                ),
               ),
-              Row(
-                children: [
-                  ToPayCard(123, 123),
-                  PaidCard(123),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
+      ],
     );
   }
 }

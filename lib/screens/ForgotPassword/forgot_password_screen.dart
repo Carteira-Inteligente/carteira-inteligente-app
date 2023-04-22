@@ -29,9 +29,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Esqueceu sua senha?",
+      "Esqueci minha senha",
       Column(
         children: <Widget>[
+          Row(
+            children: const <Widget>[
+              TitleLabel(
+                "Esqueceu sua senha?",
+              ),
+            ],
+          ),
           const SubtitleLabel(
             "Informe seu e-mail para que possamos enviar uma nova senha para você.",
           ),
