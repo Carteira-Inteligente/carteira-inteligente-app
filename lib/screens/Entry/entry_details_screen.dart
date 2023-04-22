@@ -23,10 +23,12 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 30.0),
-                child: EditButton(() {}),
+                child: EditButton(
+                  () {},
+                ),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -48,72 +50,66 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 30.0),
-                child: DeleteButton("lançamento", () {}),
+                child: DeleteButton(
+                  "lançamento",
+                  () {},
+                ),
               ),
             ],
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 30.0),
-          child: Column(children: [
-            Text(
-              "Conta de luz",
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            Text(
-              "R\$ 123,45",
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const Divider(color: cGrey),
-            Row(
-              children: const <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: InputDetails(
-                    "Status de pagamento",
-                    "Pago",
+          child: Column(
+            children: <Widget>[
+              Text(
+                "Conta de luz",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              Text(
+                "R\$ 123,45",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const Divider(color: cGrey),
+              Row(
+                children: const <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: InputDetails(
+                      "Status de pagamento",
+                      "Pago",
+                    ),
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: InputDetails(
-                    "Data de vencimento",
-                    "01/04/2023",
+                  Expanded(
+                    flex: 1,
+                    child: InputDetails(
+                      "Data de vencimento",
+                      "01/04/2023",
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: const <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: InputDetails(
-                    "Recorrência",
-                    "Mensal",
+                ],
+              ),
+              Row(
+                children: const <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: InputDetails(
+                      "Recorrência",
+                      "Mensal",
+                    ),
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: InputDetails(
-                    "Data de pagamento",
-                    "01/04/2023",
+                  Expanded(
+                    flex: 1,
+                    child: InputDetails(
+                      "Data de pagamento",
+                      "01/04/2023",
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ]),
+                ],
+              ),
+            ],
+          ),
         )
-
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 20.0),
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: <Widget>[
-        //       EditButton(() {}),
-        //       DeleteButton("lançamento", () {}),
-        //     ],
-        //   ),
-        // )
       ],
     );
   }

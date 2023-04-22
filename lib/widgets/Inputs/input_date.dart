@@ -1,7 +1,6 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/Containers/inkwell_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 class InputDate extends StatefulWidget {

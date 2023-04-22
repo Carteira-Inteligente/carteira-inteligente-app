@@ -3,7 +3,6 @@ import 'package:carteira_inteligente/screens/ForgotPassword/forgot_password_scre
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationScreen extends StatefulWidget {

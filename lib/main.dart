@@ -137,11 +137,11 @@ class _MyHomePageState extends State<MyHomePage> {
             forceElevated: true,
             backgroundColor: Theme.of(context).primaryColor,
             actions: _selectedIndex != 0 && _selectedIndex != 3
-                ? [
+                ? <Widget>[
                     const AppBarButton(),
                     const AppBarFilterButton(),
                   ]
-                : [
+                : <Widget>[
                     const AppBarButton(),
                   ],
           ),

@@ -1,8 +1,6 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/Containers/input_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class InkwellContainer extends StatelessWidget {

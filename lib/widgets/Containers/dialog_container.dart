@@ -15,7 +15,7 @@ class DialogContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Column(
-        children: [
+        children: <Widget>[
           Text(
             dialogTitle,
             style: Theme.of(context).textTheme.titleMedium,

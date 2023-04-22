@@ -2,7 +2,6 @@ import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/models/budget.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_details_screen.dart';
 import 'package:carteira_inteligente/utils/format_currency.dart';
-import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:carteira_inteligente/widgets/Cards/budget_card.dart';
 import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
@@ -96,10 +95,14 @@ class _BudgetScreenState extends State<BudgetScreen> {
 
   Widget _buildBudgetCards(BuildContext context, Budget budget) {
     return BudgetCard(
-      () => ShowModal.showModal(
-        context,
-        const BudgetDetailsScreen(),
-      ),
+      () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const BudgetDetailsScreen(),
+          ),
+        );
+      },
       budget.idCategory == 1
           ? SvgPicture.asset(
               sElectricity,

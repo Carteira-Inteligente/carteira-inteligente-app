@@ -10,7 +10,6 @@ import 'package:carteira_inteligente/widgets/Inputs/input_select.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_date.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_number.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
-import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 class EntryFormScreen extends StatefulWidget {
@@ -102,7 +101,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
             ),
           ),
           Row(
-            children: [
+            children: <Widget>[
               Expanded(
                 flex: 1,
                 child: Padding(
@@ -128,7 +127,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
             ],
           ),
           Row(
-            children: [
+            children: <Widget>[
               Expanded(
                 flex: 1,
                 child: Padding(

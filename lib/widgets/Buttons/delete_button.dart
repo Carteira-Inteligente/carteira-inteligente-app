@@ -15,7 +15,7 @@ class DeleteButton extends StatelessWidget {
     return ButtonContainer(
       ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(60, 60),
+          minimumSize: wRoundButtonSize,
           shape: wButtonBorderRadius,
           backgroundColor: cRed,
           elevation: 0,
@@ -25,9 +25,6 @@ class DeleteButton extends StatelessWidget {
           sDelete,
           color: cWhite,
         ),
-        // label: Text(
-        //   "Excluir",
-        //   style: Theme.of(context).textTheme.labelLarge,
       ),
     );
   }

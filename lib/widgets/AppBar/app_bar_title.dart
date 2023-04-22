@@ -17,18 +17,6 @@ class AppBarTitle extends StatelessWidget {
             ),
           ],
         ),
-        // Row(
-        //   children: const <Widget>[
-        //     Text(
-        //       "thiago@email.com",
-        //       style: TextStyle(
-        //         color: cWhite,
-        //         fontSize: 13,
-        //         fontWeight: FontWeight.normal,
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ],
     );
   }

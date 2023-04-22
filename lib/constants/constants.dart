@@ -121,3 +121,4 @@ const wBorderRadius50 = BorderRadius.all(
 );
 const wSmallButtonMinimunSize = Size(170, 60);
 const wLargeButtonMinimunSize = Size(350, 60);
+const wRoundButtonSize = Size(60, 60);

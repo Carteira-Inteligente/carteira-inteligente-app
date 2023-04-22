@@ -1,4 +1,3 @@
-import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,7 @@ class InputDetails extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Row(
-            children: [
+            children: <Widget>[
               InputLabel(label),
             ],
           ),

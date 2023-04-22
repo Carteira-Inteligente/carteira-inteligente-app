@@ -3,6 +3,7 @@ import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
+import 'package:carteira_inteligente/widgets/Labels/password_pattern_label.dart';
 import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
@@ -90,39 +91,13 @@ class _UserFormScreenState extends State<UserFormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "・ Uma letra maiúscula e uma minúscula;",
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ],
+                  children: const <Widget>[
+                    PasswordPatternLabel(
+                      "・ Uma letra maiúscula e uma minúscula;",
                     ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "・ Um número;",
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "・ Um caracter especial;",
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "・ Mínimo 8 caracteres.",
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ],
-                    )
+                    PasswordPatternLabel("・ Um número;"),
+                    PasswordPatternLabel("・ Um caracter especial;"),
+                    PasswordPatternLabel("・ Mínimo 8 caracteres."),
                   ],
                 ),
               ),

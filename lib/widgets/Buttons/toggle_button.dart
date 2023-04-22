@@ -36,7 +36,7 @@ class _ToggleButtonState extends State<ToggleButton> {
                   color: _isOn ? cGreenAccent.shade400 : cGrey.shade300,
                 ),
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Align(

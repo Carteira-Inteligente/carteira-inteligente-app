@@ -13,7 +13,7 @@ class EditButton extends StatelessWidget {
     return ButtonContainer(
       ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(60, 60),
+          minimumSize: wRoundButtonSize,
           shape: wButtonBorderRadius,
           backgroundColor: cGrey,
           elevation: 0,
@@ -23,9 +23,6 @@ class EditButton extends StatelessWidget {
           sEdit,
           color: cWhite,
         ),
-        // label: Text(
-        //   "Editar",
-        //   style: Theme.of(context).textTheme.labelLarge,
       ),
     );
   }

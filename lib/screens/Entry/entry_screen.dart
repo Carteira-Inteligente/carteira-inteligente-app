@@ -186,11 +186,14 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
             ),
       entry.paid == true
           ? () {
-              ShowDialog.cancelPayment(context, () {
-                Navigator.pop(context);
-                ToastMessage.showToast("Pagamento desfeito com sucesso.");
-                entry.paid == false;
-              });
+              ShowDialog.cancelPayment(
+                context,
+                () {
+                  Navigator.pop(context);
+                  ToastMessage.showToast("Pagamento desfeito com sucesso.");
+                  entry.paid == false;
+                },
+              );
             }
           : () {
               ToastMessage.showToast("Pagamento realizado com sucesso.");
@@ -203,25 +206,6 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // SingleChildScrollView(
-        //   scrollDirection: Axis.horizontal,
-        //   child: Row(
-        //     children: <Widget>[
-        //       FilterButton(
-        //         "Pagos",
-        //         () {},
-        //       ),
-        //       FilterButton(
-        //         "Mês",
-        //         () {},
-        //       ),
-        //       FilterButton(
-        //         "Categoria",
-        //         () {},
-        //       ),
-        //     ],
-        //   ),
-        // ),
         const Padding(
           padding: EdgeInsets.symmetric(
             vertical: 8.0,
