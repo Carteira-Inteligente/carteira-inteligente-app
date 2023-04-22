@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/input_container.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Containers/input_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -22,6 +22,7 @@ class _InputPasswordState extends State<InputPassword> {
     return InputContainer(
       widget.label,
       TextField(
+        style: Theme.of(context).textTheme.displaySmall,
         obscureText: _obscureText,
         controller: widget.controller,
         onSubmitted: (_) => widget.onSubmit,
@@ -41,8 +42,14 @@ class _InputPasswordState extends State<InputPassword> {
             child: Transform.scale(
               scale: 0.5,
               child: _obscureText
-                  ? SvgPicture.asset(sHidePassword)
-                  : SvgPicture.asset(sShowPassword),
+                  ? SvgPicture.asset(
+                      sHidePassword,
+                      color: cGrey.shade600,
+                    )
+                  : SvgPicture.asset(
+                      sShowPassword,
+                      color: cGrey.shade600,
+                    ),
             ),
           ),
         ),

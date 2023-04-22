@@ -1,11 +1,13 @@
-import 'package:carteira_inteligente_app/utils/toast_message.dart';
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/subtitle_label.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/title_label.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_password.dart';
-import 'package:carteira_inteligente_app/widgets/Inputs/input_text.dart';
+import 'package:carteira_inteligente/utils/toast_message.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
+import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
+import 'package:carteira_inteligente/widgets/Labels/password_pattern_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
 
 class UserFormScreen extends StatefulWidget {
@@ -33,17 +35,18 @@ class _UserFormScreenState extends State<UserFormScreen> {
         email.isEmpty ||
         password.isEmpty ||
         confirmPassword.isEmpty) {
-      ToastMessage.showWarning("Preencha todos os campos obrigatórios.");
+      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(name, email, password);
-    ToastMessage.showSuccess("Usuário cadastrado do sucesso.");
+    ToastMessage.showToast("Usuário cadastrado do sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
+      "Novo usuário",
       Column(
         children: <Widget>[
           Row(
@@ -57,15 +60,13 @@ class _UserFormScreenState extends State<UserFormScreen> {
             "Preencha os campos abaixo para criar seu usuário.",
           ),
           InputText(
-            "Nome completo",
+            "Digite seu nome ou apelido",
             _nameController,
-            TextInputType.text,
             _submitForm,
           ),
-          InputText(
+          InputEmail(
             "E-mail",
             _emailController,
-            TextInputType.emailAddress,
             _submitForm,
           ),
           InputPassword(
@@ -90,27 +91,13 @@ class _UserFormScreenState extends State<UserFormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  children: <Widget>[
-                    Row(
-                      children: const <Widget>[
-                        Text("・ Uma letra maiúscula e uma minúscula;"),
-                      ],
+                  children: const <Widget>[
+                    PasswordPatternLabel(
+                      "・ Uma letra maiúscula e uma minúscula;",
                     ),
-                    Row(
-                      children: const <Widget>[
-                        Text("・ Um número;"),
-                      ],
-                    ),
-                    Row(
-                      children: const <Widget>[
-                        Text("・ Um caracter especial;"),
-                      ],
-                    ),
-                    Row(
-                      children: const <Widget>[
-                        Text("・ Mínimo 8 caracteres."),
-                      ],
-                    )
+                    PasswordPatternLabel("・ Um número;"),
+                    PasswordPatternLabel("・ Um caracter especial;"),
+                    PasswordPatternLabel("・ Mínimo 8 caracteres."),
                   ],
                 ),
               ),

@@ -1,10 +1,10 @@
-import 'package:carteira_inteligente_app/widgets/Containers/card_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 
-class DashboardDefaultCard extends StatelessWidget {
-  const DashboardDefaultCard(this.cardText, this.widget, {super.key});
+class DashboardSmallCard extends StatelessWidget {
+  const DashboardSmallCard(this.cardTitle, this.widget, {super.key});
 
-  final String cardText;
+  final String cardTitle;
   final Widget widget;
 
   @override
@@ -19,14 +19,14 @@ class DashboardDefaultCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                cardText,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                cardTitle,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
-            widget,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: widget,
+            ),
           ],
         ),
       ),

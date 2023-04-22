@@ -1,12 +1,14 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_leading.dart';
-import 'package:carteira_inteligente_app/widgets/AppBar/app_bar_logo.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FormContainer extends StatelessWidget {
-  const FormContainer(this.bodyWidget, this.bottonButton, {super.key});
+  const FormContainer(this.title, this.bodyWidget, this.bottonButton,
+      {super.key});
 
+  final String title;
   final Widget bodyWidget;
   final Widget bottonButton;
 
@@ -16,12 +18,9 @@ class FormContainer extends StatelessWidget {
       appBar: AppBar(
         leading: const AppBarLeading(),
         elevation: 0,
-        backgroundColor: cWhite,
-        iconTheme: const IconThemeData(
-          color: cBlack,
-        ),
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        title: const AppBarLogo(),
+        backgroundColor: Theme.of(context).primaryColor,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        title: AppBarTitle(title),
       ),
       body: Stack(
         children: <Widget>[
@@ -33,7 +32,10 @@ class FormContainer extends StatelessWidget {
                     decoration: const BoxDecoration(color: cWhite),
                     height: MediaQuery.of(context).size.height,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 10.0,
+                      ),
                       child: bodyWidget,
                     ),
                   ),

@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/button_container.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryButton extends StatelessWidget {
@@ -24,11 +24,7 @@ class SecondaryButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           textButton,
-          style: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 16,
-            color: cBlue,
-          ),
+          style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
     );

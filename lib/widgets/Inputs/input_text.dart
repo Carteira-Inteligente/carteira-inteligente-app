@@ -1,14 +1,13 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/input_container.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Containers/input_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/input_icon_container.dart';
 import 'package:flutter/material.dart';
 
 class InputText extends StatelessWidget {
-  const InputText(this.label, this.controller, this.keyboardType, this.onSubmit,
-      {super.key});
+  const InputText(this.label, this.controller, this.onSubmit, {super.key});
 
   final String label;
   final TextEditingController controller;
-  final TextInputType keyboardType;
   final void Function() onSubmit;
 
   @override
@@ -16,8 +15,9 @@ class InputText extends StatelessWidget {
     return InputContainer(
       label,
       TextField(
+        style: Theme.of(context).textTheme.displaySmall,
         controller: controller,
-        keyboardType: keyboardType,
+        keyboardType: TextInputType.text,
         onSubmitted: (_) => onSubmit,
         decoration: const InputDecoration(
           border: OutlineInputBorder(
@@ -26,6 +26,7 @@ class InputText extends StatelessWidget {
               color: cBlack,
             ),
           ),
+          suffixIcon: InputIconContainer(sText),
         ),
       ),
     );

@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/main.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/main.dart';
 import 'package:flutter/material.dart';
 
 class LightTheme extends StatelessWidget {
@@ -17,48 +17,75 @@ class LightTheme extends StatelessWidget {
           secondary: cWhite,
         ),
         textTheme: theme.textTheme.copyWith(
-          titleLarge: const TextStyle(
+          titleLarge: TextStyle(
+            // Tema utilizado para títulos
             fontFamily: "OpenSans",
-            fontSize: 20,
+            fontSize: 25,
+            color: theme.primaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+          titleMedium: TextStyle(
+            // Tema utilizado para subtítulos
+            fontFamily: "OpenSans",
+            fontSize: 18,
+            color: cGrey.shade600,
+            fontWeight: FontWeight.bold,
+          ),
+          titleSmall: TextStyle(
+            // Tema utilizado para subtítulos menores
+            fontFamily: "OpenSans",
+            fontSize: 18,
+            color: cGrey.shade600,
+          ),
+          bodyLarge: const TextStyle(
+            // Tema utilizado para títulos brancos
+            fontFamily: "OpenSans",
+            fontSize: 25,
             color: cWhite,
             fontWeight: FontWeight.bold,
           ),
           bodyMedium: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 16,
-            color: cBlack,
-          ),
-          bodyLarge: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 25,
-            color: cBlack,
-            fontWeight: FontWeight.bold,
-          ),
-          displaySmall: const TextStyle(
-            fontFamily: "OpenSans",
-            fontSize: 16,
-            color: cBlack,
-          ),
-          displayMedium: const TextStyle(
+            // Tema utilizado para subtítulos brancos
             fontFamily: "OpenSans",
             fontSize: 18,
+            color: cWhite,
             fontWeight: FontWeight.bold,
-            color: cBlack,
           ),
-          displayLarge: const TextStyle(
+          displaySmall: TextStyle(
+            // Tema utilizado para labels e informações gerais
             fontFamily: "OpenSans",
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: cBlack,
+            fontSize: 16,
+            color: cGrey.shade600,
           ),
-          headlineSmall: const TextStyle(
+          headlineLarge: TextStyle(
+            // Tema utilizado para título do ListTile
+            fontFamily: "OpenSans",
+            fontSize: 16,
+            color: cGrey.shade600,
+            fontWeight: FontWeight.bold,
+          ),
+          labelLarge: const TextStyle(
+            // Tema utilizado para botões primários
             fontFamily: "OpenSans",
             fontSize: 16,
             color: cWhite,
           ),
-          headlineMedium: const TextStyle(
+          labelMedium: TextStyle(
+            // Tema utilizado para botões secundários
             fontFamily: "OpenSans",
-            fontSize: 18,
+            fontSize: 16,
+            color: theme.primaryColor,
+          ),
+          labelSmall: const TextStyle(
+            // Tema utilizado para dados da tela de detalhes
+            fontFamily: "OpenSans",
+            fontSize: 16,
+            color: cBlack,
+          ),
+          headlineSmall: const TextStyle(
+            // Tema utilizado para dados da tela de detalhes em negrito
+            fontFamily: "OpenSans",
+            fontSize: 16,
             color: cBlack,
             fontWeight: FontWeight.bold,
           ),

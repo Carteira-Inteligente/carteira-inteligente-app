@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class DialogContainer extends StatelessWidget {
@@ -15,16 +15,12 @@ class DialogContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Column(
-        children: [
+        children: <Widget>[
           Text(
             dialogTitle,
-            style: const TextStyle(
-              fontSize: 18,
-              color: cBlack,
-              fontFamily: "OpenSans",
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          const Divider(color: cBlack),
+          const Divider(color: cGrey),
         ],
       ),
       content: contentText,

@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/button_container.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -17,13 +17,13 @@ class PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: buttonSize,
           shape: wButtonBorderRadius,
-          backgroundColor: cBlue,
+          backgroundColor: Theme.of(context).primaryColor,
           elevation: 0,
         ),
         onPressed: onPressed,
         child: Text(
           textButton,
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );

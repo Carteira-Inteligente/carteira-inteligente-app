@@ -1,4 +1,4 @@
-# carteira_inteligente_app
+# carteira_inteligente
 
 A new Flutter project.
 

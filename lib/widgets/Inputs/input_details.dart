@@ -1,5 +1,4 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/input_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
 
 class InputDetails extends StatelessWidget {
@@ -14,24 +13,18 @@ class InputDetails extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(
         children: <Widget>[
-          InputLabel(label),
-          Container(
-            decoration: BoxDecoration(
-              color: cGrey.shade50,
-              borderRadius: wInputBorderRadius,
-            ),
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                hintText: details,
-                border: const OutlineInputBorder(
-                  borderRadius: wInputBorderRadius,
-                  borderSide: BorderSide(
-                    color: cBlack,
-                  ),
-                ),
+          Row(
+            children: <Widget>[
+              InputLabel(label),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Text(
+                details,
+                style: Theme.of(context).textTheme.labelSmall,
               ),
-            ),
+            ],
           ),
         ],
       ),

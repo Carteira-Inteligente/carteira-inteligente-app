@@ -11,7 +11,7 @@ class SubtitleLabel extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         subtitle,
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
     );
   }

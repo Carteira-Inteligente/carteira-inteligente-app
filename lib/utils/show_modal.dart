@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class ShowModal {
@@ -27,9 +27,9 @@ class ShowModal {
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 16.0),
                     height: 4.0,
-                    width: 50.0,
+                    width: 100.0,
                     decoration: BoxDecoration(
-                      color: cGrey,
+                      color: cGrey.shade100,
                       borderRadius: BorderRadius.circular(2.0),
                     ),
                   ),

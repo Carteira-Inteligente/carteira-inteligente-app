@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class CardContainer extends StatefulWidget {
@@ -16,13 +16,7 @@ class _CardContainerState extends State<CardContainer> {
     return Card(
       color: cWhite,
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-        side: BorderSide(
-          color: cGrey.shade200,
-          width: 1,
-        ),
-      ),
+      shape: wCardShape,
       child: widget.widget,
     );
   }

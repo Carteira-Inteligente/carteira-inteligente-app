@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Labels/input_label.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
 
 class ToggleButton extends StatefulWidget {
@@ -33,10 +33,10 @@ class _ToggleButtonState extends State<ToggleButton> {
                 height: 30,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: _isOn ? cGreen : cGrey,
+                  color: _isOn ? cGreenAccent.shade400 : cGrey.shade300,
                 ),
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Align(

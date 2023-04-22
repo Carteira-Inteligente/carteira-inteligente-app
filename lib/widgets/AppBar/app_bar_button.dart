@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/screens/Initial/initial_screen.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/screens/Initial/initial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,7 +13,7 @@ class AppBarButton extends StatefulWidget {
 class _AppBarButtonState extends State<AppBarButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return IconButton(
       onPressed: () {
         Navigator.push(
           context,
@@ -22,11 +22,10 @@ class _AppBarButtonState extends State<AppBarButton> {
           ),
         );
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: cTransparent,
-        elevation: 0,
+      icon: SvgPicture.asset(
+        sNotification,
+        color: cWhite,
       ),
-      child: SvgPicture.asset(sNotification),
     );
   }
 }

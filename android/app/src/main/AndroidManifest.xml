@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.carteira_inteligente_app">
+    package="com.example.carteira_inteligente">
    <application
-        android:label="carteira_inteligente_app"
+        android:label="Carteira Inteligente"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

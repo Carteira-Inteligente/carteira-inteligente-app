@@ -1,7 +1,7 @@
-import 'package:carteira_inteligente_app/constants/constants.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/dialog_action_button.dart';
-import 'package:carteira_inteligente_app/widgets/Buttons/dialog_secondary_button.dart';
-import 'package:carteira_inteligente_app/widgets/Containers/dialog_container.dart';
+import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Buttons/dialog_action_button.dart';
+import 'package:carteira_inteligente/widgets/Buttons/dialog_secondary_button.dart';
+import 'package:carteira_inteligente/widgets/Containers/dialog_container.dart';
 import 'package:flutter/material.dart';
 
 class ShowDialog {
@@ -38,6 +38,27 @@ class ShowDialog {
             onPressed,
             cRed,
             "Excluir $dataLabel",
+          ),
+        );
+      },
+    );
+  }
+
+  static void cancelPayment(BuildContext context, Function() onPressed) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return DialogContainer(
+          "Deseja cancelar este pagamento?",
+          Text(
+            "Este lançamento ficará marcado como pendente até que você nos informe que já realizou o pagamento.",
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          const DialogSecondaryButton(),
+          DialogActionButton(
+            onPressed,
+            cBlue,
+            "Cancelar pagamento",
           ),
         );
       },
