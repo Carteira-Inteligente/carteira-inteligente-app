@@ -1,6 +1,7 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
+import 'package:carteira_inteligente/widgets/Containers/positioned_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,7 +18,7 @@ class FormContainer extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AppBarLeading(),
-        elevation: 0,
+        elevation: 2,
         backgroundColor: Theme.of(context).primaryColor,
         systemOverlayStyle: SystemUiOverlayStyle.light,
         title: AppBarTitle(title),
@@ -43,16 +44,7 @@ class FormContainer extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              decoration: const BoxDecoration(color: cWhite),
-              padding: const EdgeInsets.only(bottom: 15.0),
-              child: bottonButton,
-            ),
-          ),
+          PositionedContainer(bottonButton),
         ],
       ),
     );

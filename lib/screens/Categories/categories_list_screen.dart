@@ -27,6 +27,27 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
     );
   }
 
+  // final List<Categories> _addCategories = [];
+  // _addCategory(
+  //   int idUser,
+  //   String description,
+  //   SvgPicture icon,
+  // ) {
+  //   final newCategory = Categories(
+  //     id: Random().nextInt(999).toInt(),
+  //     description: description,
+  //     icon: SvgPicture.asset(sOther),
+  //   );
+
+  //   setState(() {
+  //     _addCategories.add(newCategory);
+  //   });
+
+  //   Future.delayed(const Duration(milliseconds: 500), () {
+  //     Navigator.of(context).pop();
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     _sortCategories();
@@ -57,6 +78,12 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
           wLargeButtonMinimunSize,
           "Nova categoria",
           () {},
+          // () => Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => CategoriesFormScreen(_addCategory),
+          //   ),
+          // ),
         ),
       ],
     );

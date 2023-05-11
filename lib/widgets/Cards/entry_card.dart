@@ -1,4 +1,3 @@
-import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +8,7 @@ class EntryCard extends StatelessWidget {
       {super.key});
 
   final void Function() onTap;
-  final SvgPicture pageIcon;
+  final Widget pageIcon;
   final String title;
   final String subtitle;
   final SvgPicture paymentStatus;
@@ -20,20 +19,7 @@ class EntryCard extends StatelessWidget {
     return CardContainer(
       ListTile(
         onTap: onTap,
-        leading: Container(
-          decoration: BoxDecoration(
-            borderRadius: wBorderRadius50,
-            border: Border.all(color: cGrey.shade300),
-          ),
-          child: CircleAvatar(
-            backgroundColor: cTransparent,
-            radius: 24,
-            child: Container(
-              padding: const EdgeInsets.all(6.0),
-              child: pageIcon,
-            ),
-          ),
-        ),
+        leading: pageIcon,
         title: Text(
           title,
           style: Theme.of(context).textTheme.headlineLarge,

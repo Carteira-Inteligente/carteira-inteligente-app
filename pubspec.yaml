@@ -75,12 +75,14 @@ flutter:
     - assets/images/white-logo.png
     ## Find our icons on: https://www.svgrepo.com/collection/iconsax-duotone-line-icons/
     # Svg.Buttons
+    - assets/svg/buttons/add-square.svg
     - assets/svg/buttons/add.svg
     - assets/svg/buttons/arrow-down.svg
     - assets/svg/buttons/arrow-left.svg
     - assets/svg/buttons/delete.svg
     - assets/svg/buttons/edit.svg
     - assets/svg/buttons/filter.svg
+    - assets/svg/buttons/logout.svg
     - assets/svg/buttons/settings.svg
     # Svg.Categories
     - assets/svg/categories/bank.svg

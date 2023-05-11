@@ -14,6 +14,7 @@ class _AppBarFilterButtonState extends State<AppBarFilterButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      tooltip: "Filtrar",
       onPressed: () {
         Navigator.push(
           context,

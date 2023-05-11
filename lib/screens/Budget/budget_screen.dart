@@ -3,10 +3,9 @@ import 'package:carteira_inteligente/models/budget.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_details_screen.dart';
 import 'package:carteira_inteligente/utils/format_currency.dart';
 import 'package:carteira_inteligente/widgets/Cards/budget_card.dart';
+import 'package:carteira_inteligente/widgets/Containers/category_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class BudgetScreen extends StatefulWidget {
   const BudgetScreen({super.key});
@@ -104,13 +103,15 @@ class _BudgetScreenState extends State<BudgetScreen> {
         );
       },
       budget.idCategory == 1
-          ? SvgPicture.asset(
+          ? CategoryIconContainer(
               sElectricity,
-              color: cAmber,
+              cAmber.shade700,
+              14,
             )
-          : SvgPicture.asset(
+          : CategoryIconContainer(
               sHouse,
-              color: cCyan,
+              cCyan.shade700,
+              14,
             ),
       budget.idCategory == 1 ? "Energia elétrica" : "Casa",
       budget.value,
@@ -122,13 +123,6 @@ class _BudgetScreenState extends State<BudgetScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 8.0,
-            horizontal: 20.0,
-          ),
-          child: InputSearch(),
-        ),
         _budgets.isEmpty
             ? const NoDataContainer("orçamentos")
             : SizedBox(

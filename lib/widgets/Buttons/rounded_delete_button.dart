@@ -4,8 +4,8 @@ import 'package:carteira_inteligente/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class DeleteButton extends StatelessWidget {
-  const DeleteButton(this.dataLabel, this.onPressed, {super.key});
+class RoundedDeleteButton extends StatelessWidget {
+  const RoundedDeleteButton(this.dataLabel, this.onPressed, {super.key});
 
   final String dataLabel;
   final void Function() onPressed;
@@ -13,21 +13,17 @@ class DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
-      ElevatedButton.icon(
+      ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: wSmallButtonMinimunSize,
+          minimumSize: wRoundButtonSize,
           shape: wButtonBorderRadius,
           backgroundColor: cRed,
           elevation: 0,
         ),
         onPressed: () => ShowDialog.deleteDialog(context, dataLabel, onPressed),
-        icon: SvgPicture.asset(
+        child: SvgPicture.asset(
           sDelete,
           color: cWhite,
-        ),
-        label: Text(
-          "Excluir",
-          style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );

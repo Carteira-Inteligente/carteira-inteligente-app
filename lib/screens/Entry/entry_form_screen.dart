@@ -78,6 +78,11 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
       Column(
         children: <Widget>[
           const ToggleButton("Pagamento realizado"),
+          InputText(
+            "Descrição",
+            _descriptionController,
+            _submitForm,
+          ),
           InputSelect(
             "Categoria",
             _idCategoryController,
@@ -87,13 +92,17 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
               const CategoriesListScreen(),
             ),
           ),
-          InputText(
-            "Descrição",
-            _descriptionController,
-            _submitForm,
-          ),
           InputSelect(
             "Recorrência",
+            _periodController,
+            () => ShowModal.showModal(
+              context,
+              const RecurrenceListScreen(),
+            ),
+          ),
+          // Ajustar informações
+          InputSelect(
+            "Forma de pagamento",
             _periodController,
             () => ShowModal.showModal(
               context,

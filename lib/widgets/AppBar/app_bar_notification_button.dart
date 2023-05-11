@@ -3,17 +3,19 @@ import 'package:carteira_inteligente/screens/Initial/initial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class AppBarButton extends StatefulWidget {
-  const AppBarButton({super.key});
+class AppBarNotificationButton extends StatefulWidget {
+  const AppBarNotificationButton({super.key});
 
   @override
-  State<AppBarButton> createState() => _AppBarButtonState();
+  State<AppBarNotificationButton> createState() =>
+      _AppBarNotificationButtonState();
 }
 
-class _AppBarButtonState extends State<AppBarButton> {
+class _AppBarNotificationButtonState extends State<AppBarNotificationButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      tooltip: "Notificações",
       onPressed: () {
         Navigator.push(
           context,

@@ -10,7 +10,7 @@ class InputLabel extends StatelessWidget {
     return Row(
       children: <Widget>[
         Text(
-          "$label:",
+          label,
           textAlign: TextAlign.left,
           style: Theme.of(context).textTheme.displaySmall,
         ),

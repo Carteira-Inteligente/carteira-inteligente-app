@@ -26,6 +26,7 @@ class _ToggleButtonState extends State<ToggleButton> {
         child: Row(
           children: <Widget>[
             InputLabel(widget.label),
+            // Switch.adaptive(value: true, onChanged: (value) {}),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Container(

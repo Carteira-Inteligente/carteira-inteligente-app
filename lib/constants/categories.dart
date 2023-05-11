@@ -1,206 +1,231 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/models/categories.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:carteira_inteligente/widgets/Containers/category_icon_container.dart';
 
 List<Categories> categoryList = [
   Categories(
     id: 1,
     description: "Cartão de crédito",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sCards,
-      color: cBlueGrey,
+      cBlueGrey.shade700,
+      24,
     ),
   ),
   Categories(
     id: 2,
     description: "Cultura",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sCulture,
-      color: cGreen,
+      cGreen.shade700,
+      24,
     ),
   ),
   Categories(
     id: 3,
     description: "Alimentação",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sDinner,
-      color: cRed,
+      cRed.shade700,
+      24,
     ),
   ),
   Categories(
     id: 4,
     description: "Família e filhos",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sFamily,
-      color: cBlue,
+      cBlue.shade700,
+      24,
     ),
   ),
   Categories(
     id: 5,
     description: "Educação",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sEducation,
-      color: cPurple,
+      cPurple.shade700,
+      24,
     ),
   ),
   Categories(
     id: 6,
     description: "Energia elétrica",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sElectricity,
-      color: cAmber,
+      cAmber.shade700,
+      24,
     ),
   ),
   Categories(
     id: 7,
     description: "Atividades físicas",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sExercise,
-      color: cOrange,
+      cOrange.shade700,
+      24,
     ),
   ),
   Categories(
     id: 8,
     description: "Presentes e doações",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sGift,
-      color: cPink,
+      cPink.shade700,
+      24,
     ),
   ),
   Categories(
     id: 9,
     description: "Saúde",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sHealth,
-      color: cBrown,
+      cBrown.shade700,
+      24,
     ),
   ),
   Categories(
     id: 10,
     description: "Casa",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sHouse,
-      color: cCyan,
+      cCyan.shade700,
+      24,
     ),
   ),
   Categories(
     id: 11,
     description: "Lazer e hobbies",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sLeisure,
-      color: cIndigo,
+      cIndigo.shade700,
+      24,
     ),
   ),
   Categories(
     id: 12,
     description: "Dívidas e empréstimos",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sLoans,
-      color: cLime,
+      cLime.shade700,
+      24,
     ),
   ),
   Categories(
     id: 13,
     description: "Telefonia",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sMobile,
-      color: cTeal,
+      cTeal.shade700,
+      24,
     ),
   ),
   Categories(
     id: 14,
     description: "Outros",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sOther,
-      color: cGrey,
+      cGrey.shade700,
+      24,
     ),
   ),
   Categories(
     id: 15,
     description: "Animais de estimação",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sPet,
-      color: cDeepPurple,
+      cDeepPurple.shade700,
+      24,
     ),
   ),
   Categories(
     id: 16,
     description: "Mercado",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sShoppingCart,
-      color: cDeepOrange,
+      cDeepOrange.shade700,
+      24,
     ),
   ),
   Categories(
     id: 17,
     description: "Serviços de streaming",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sStreaming,
-      color: cRedAccent,
+      cRedAccent.shade700,
+      24,
     ),
   ),
   Categories(
     id: 18,
     description: "Transporte",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sTransport,
-      color: cIndigoAccent,
+      cIndigoAccent.shade700,
+      24,
     ),
   ),
   Categories(
     id: 19,
     description: "Viagens",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sTravel,
-      color: cLightBlue,
+      cLightBlue.shade700,
+      24,
     ),
   ),
   Categories(
     id: 20,
     description: "Internet",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sWifi,
-      color: cLightGreen,
+      cLightGreen.shade700,
+      24,
     ),
   ),
   Categories(
     id: 21,
     description: "Bares e restaurantes",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sCoffee,
-      color: cGreenAccent,
+      cGreenAccent.shade700,
+      24,
     ),
   ),
   Categories(
     id: 22,
     description: "Cuidados pessoais",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sSelfCare,
-      color: cYellow,
+      cYellow.shade700,
+      24,
     ),
   ),
   Categories(
     id: 23,
     description: "Compras",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sShopping,
-      color: cAmberAccent,
+      cAmberAccent.shade700,
+      24,
     ),
   ),
   Categories(
     id: 24,
     description: "Impostos e taxas",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sBank,
-      color: cBlueAccent,
+      cBlueAccent.shade700,
+      24,
     ),
   ),
   Categories(
     id: 25,
     description: "Trabalho",
-    icon: SvgPicture.asset(
+    icon: CategoryIconContainer(
       sWork,
-      color: cPinkAccent,
+      cPinkAccent.shade700,
+      24,
     ),
   ),
 ];

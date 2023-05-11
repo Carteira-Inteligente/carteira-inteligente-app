@@ -5,8 +5,8 @@ import 'package:carteira_inteligente/utils/show_dialog.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Cards/entry_card.dart';
+import 'package:carteira_inteligente/widgets/Containers/category_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
 import 'package:carteira_inteligente/models/entries.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -164,17 +164,19 @@ class _EntryScreenState extends State<EntryScreen> {
         const EntryDetailsScreen(),
       ),
       entry.idCategory == 1
-          ? SvgPicture.asset(
+          ? CategoryIconContainer(
               sElectricity,
-              color: cAmber,
+              cAmber.shade700,
+              24,
             )
-          : SvgPicture.asset(
+          : CategoryIconContainer(
               sHouse,
-              color: cCyan,
+              cCyan.shade700,
+              24,
             ),
       entry.description,
-      """Valor: ${formatCurrency.format(entry.paidValue)}
-Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
+      "Valor: ${formatCurrency.format(entry.paidValue)}\n"
+      "Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}",
       entry.paid == true
           ? SvgPicture.asset(
               sPaymentTick,
@@ -206,13 +208,6 @@ Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}""",
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 8.0,
-            horizontal: 20.0,
-          ),
-          child: InputSearch(),
-        ),
         _entries.isEmpty
             ? const NoDataContainer("lançamentos")
             : SizedBox(

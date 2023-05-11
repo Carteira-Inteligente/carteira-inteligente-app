@@ -1,6 +1,6 @@
 import 'package:carteira_inteligente/constants/constants.dart';
-import 'package:carteira_inteligente/widgets/Buttons/delete_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/edit_button.dart';
+import 'package:carteira_inteligente/widgets/Buttons/rounded_delete_button.dart';
+import 'package:carteira_inteligente/widgets/Buttons/rounded_edit_button.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_details.dart';
 import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
@@ -26,23 +26,22 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 30.0),
-                child: EditButton(
+                child: RoundedEditButton(
                   () {},
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: wBorderRadius50,
-                  border: Border.all(color: cGrey.shade300),
                 ),
                 child: CircleAvatar(
-                  backgroundColor: cTransparent,
+                  backgroundColor: cAmber.shade700,
                   radius: 34,
                   child: Container(
                     padding: const EdgeInsets.all(6.0),
                     child: SvgPicture.asset(
                       sElectricity,
-                      color: cAmber,
+                      color: cWhite,
                       height: 34,
                     ),
                   ),
@@ -50,7 +49,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 30.0),
-                child: DeleteButton(
+                child: RoundedDeleteButton(
                   "lançamento",
                   () {},
                 ),

@@ -31,12 +31,14 @@ const cBlueAccent = Colors.blueAccent;
 const cPinkAccent = Colors.pinkAccent;
 
 // Svg.Buttons
+const sAddSquare = "assets/svg/buttons/add-square.svg";
 const sAdd = "assets/svg/buttons/add.svg";
 const sArrowDown = "assets/svg/buttons/arrow-down.svg";
 const sArrowLeft = "assets/svg/buttons/arrow-left.svg";
 const sDelete = "assets/svg/buttons/delete.svg";
 const sEdit = "assets/svg/buttons/edit.svg";
 const sFilter = "assets/svg/buttons/filter.svg";
+const sLogout = "assets/svg/buttons/logout.svg";
 const sSettings = "assets/svg/buttons/settings.svg";
 
 // Svg.Categories

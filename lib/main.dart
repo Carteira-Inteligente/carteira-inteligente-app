@@ -1,18 +1,23 @@
 import 'dart:math';
 
 import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/models/basic_entries.dart';
 import 'package:carteira_inteligente/models/budget.dart';
 import 'package:carteira_inteligente/models/entries.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_form_screen.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_screen.dart';
 import 'package:carteira_inteligente/screens/Dashboard/dashboard_screen.dart';
 import 'package:carteira_inteligente/screens/Entry/entry_form_screen.dart';
+import 'package:carteira_inteligente/screens/Entry/fast_entry_screen.dart';
 import 'package:carteira_inteligente/screens/Entry/entry_screen.dart';
 import 'package:carteira_inteligente/screens/Profile/profile_screen.dart';
 import 'package:carteira_inteligente/themes/light_theme.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_filter_button.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_notification_button.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_button.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_add_button.dart';
+import 'package:carteira_inteligente/widgets/Buttons/fast_entry_button.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -42,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _navBarOptions = <Widget>[
     DashboardScreen(),
     EntryScreen(),
+    Placeholder(),
     BudgetScreen(),
     ProfileScreen(),
   ];
@@ -86,6 +92,28 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  final List<BasicEntries> _basicEntries = [];
+  _addBasicEntry(
+    int idUser,
+    String description,
+    double paidValue,
+  ) {
+    final newBasicEntry = BasicEntries(
+      id: Random().nextInt(999).toInt(),
+      idUser: idUser,
+      description: description,
+      paidValue: paidValue,
+    );
+
+    setState(() {
+      _basicEntries.add(newBasicEntry);
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.of(context).pop();
+    });
+  }
+
   final List<Budget> _budgets = [];
   _addBudget(
     int idUser,
@@ -110,40 +138,91 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    _selectedIndex == 2 ? _selectedIndex = 1 : null;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            shape: const ContinuousRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20),
-              ),
-            ),
             title: Builder(
               builder: (context) {
                 if (_selectedIndex == 0) {
                   return const AppBarTitle("Dashboard");
                 } else if (_selectedIndex == 1) {
                   return const AppBarTitle("Lançamentos");
-                } else if (_selectedIndex == 2) {
+                } else if (_selectedIndex == 3) {
                   return const AppBarTitle("Orçamentos");
-                } else {
+                } else if (_selectedIndex == 4) {
                   return const AppBarTitle("Perfil");
+                } else {
+                  return Container();
                 }
               },
             ),
+            flexibleSpace: _selectedIndex == 1 || _selectedIndex == 3
+                ? Container(
+                    padding: const EdgeInsets.only(top: 105),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                      ),
+                      child: InputSearch(),
+                    ),
+                  )
+                : null,
+            expandedHeight:
+                _selectedIndex == 1 || _selectedIndex == 3 ? 130 : 0,
             pinned: true,
             floating: true,
             forceElevated: true,
             backgroundColor: Theme.of(context).primaryColor,
-            actions: _selectedIndex != 0 && _selectedIndex != 3
-                ? <Widget>[
-                    const AppBarButton(),
-                    const AppBarFilterButton(),
-                  ]
-                : <Widget>[
-                    const AppBarButton(),
-                  ],
+            actions: <Widget>[
+              Builder(
+                builder: (context) {
+                  if (_selectedIndex == 1) {
+                    return Row(
+                      children: <Widget>[
+                        const AppBarFilterButton(),
+                        AppBarAddButton(
+                          "lançamento",
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    EntryFormScreen(_addEntry),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  } else if (_selectedIndex == 3) {
+                    return Row(
+                      children: <Widget>[
+                        const AppBarFilterButton(),
+                        AppBarAddButton(
+                          "orçamento",
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    BudgetFormScreen(_addBudget),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  } else if (_selectedIndex == 4) {
+                    return const AppBarNotificationButton();
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+            ],
           ),
           SliverList(
             delegate: SliverChildListDelegate(
@@ -157,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        backgroundColor: Colors.white,
+        backgroundColor: cWhite,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -165,82 +244,37 @@ class _MyHomePageState extends State<MyHomePage> {
               color:
                   _selectedIndex == 0 ? Theme.of(context).primaryColor : cGrey,
             ),
+            label: _selectedIndex == 0 ? "Dashboard" : null,
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex != 0 && _selectedIndex != 3
-                ? Padding(
-                    padding: const EdgeInsets.only(right: 35.0),
-                    child: SvgPicture.asset(
-                      sWallet,
-                      color: _selectedIndex == 1
-                          ? Theme.of(context).primaryColor
-                          : cGrey,
-                    ),
-                  )
-                : SvgPicture.asset(
-                    sWallet,
-                    color: _selectedIndex == 1
-                        ? Theme.of(context).primaryColor
-                        : cGrey,
-                  ),
+            icon: SvgPicture.asset(
+              sWallet,
+              color:
+                  _selectedIndex == 1 ? Theme.of(context).primaryColor : cGrey,
+            ),
+            label: _selectedIndex == 1 ? "Lançamentos" : null,
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex != 0 && _selectedIndex != 3
-                ? Padding(
-                    padding: const EdgeInsets.only(left: 35.0),
-                    child: SvgPicture.asset(
-                      sBudget,
-                      color: _selectedIndex == 2
-                          ? Theme.of(context).primaryColor
-                          : cGrey,
-                    ),
-                  )
-                : SvgPicture.asset(
-                    sBudget,
-                    color: _selectedIndex == 2
-                        ? Theme.of(context).primaryColor
-                        : cGrey,
-                  ),
+            icon: FastEntryButton(FastEntryScreen(_addBasicEntry)),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              sBudget,
+              color:
+                  _selectedIndex == 3 ? Theme.of(context).primaryColor : cGrey,
+            ),
+            label: _selectedIndex == 3 ? "Orçamentos" : null,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               sUser,
               color:
-                  _selectedIndex == 3 ? Theme.of(context).primaryColor : cGrey,
+                  _selectedIndex == 4 ? Theme.of(context).primaryColor : cGrey,
             ),
+            label: _selectedIndex == 4 ? "Perfil" : null,
           ),
         ],
       ),
-      floatingActionButton: _selectedIndex != 0 && _selectedIndex != 3
-          ? FloatingActionButton(
-              elevation: 0,
-              mini: true,
-              backgroundColor: Theme.of(context).primaryColor,
-              onPressed: _selectedIndex == 1
-                  ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EntryFormScreen(_addEntry),
-                        ),
-                      );
-                    }
-                  : () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BudgetFormScreen(_addBudget),
-                        ),
-                      );
-                    },
-              child: SvgPicture.asset(
-                sAdd,
-                color: cWhite,
-              ),
-            )
-          : null,
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }
