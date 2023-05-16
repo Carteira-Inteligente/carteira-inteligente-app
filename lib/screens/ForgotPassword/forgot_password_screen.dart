@@ -34,13 +34,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         children: <Widget>[
           Row(
             children: const <Widget>[
-              TitleLabel(
-                "Esqueceu sua senha?",
-              ),
+              TitleLabel("Esqueceu sua senha?"),
             ],
           ),
           const SubtitleLabel(
-            "Informe seu e-mail para que possamos enviar uma nova senha para você.",
+            "Informe seu e-mail para que possamos enviar uma nova "
+            "senha para você.",
           ),
           InputEmail(
             "E-mail",

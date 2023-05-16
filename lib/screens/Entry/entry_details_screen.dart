@@ -1,6 +1,7 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/widgets/Buttons/rounded_delete_button.dart';
 import 'package:carteira_inteligente/widgets/Buttons/rounded_edit_button.dart';
+import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_details.dart';
 import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                 "R\$ 123,45",
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
-              const Divider(color: cGrey),
+              const DividerContainer(),
               Row(
                 children: const <Widget>[
                   Expanded(

@@ -1,4 +1,5 @@
 import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
 import 'package:flutter/material.dart';
 
 class DialogContainer extends StatelessWidget {
@@ -16,11 +17,15 @@ class DialogContainer extends StatelessWidget {
     return AlertDialog(
       title: Column(
         children: <Widget>[
-          Text(
-            dialogTitle,
-            style: Theme.of(context).textTheme.titleMedium,
+          Row(
+            children: [
+              Text(
+                dialogTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ],
           ),
-          const Divider(color: cGrey),
+          const DividerContainer(),
         ],
       ),
       content: contentText,

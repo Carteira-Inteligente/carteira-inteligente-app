@@ -16,7 +16,7 @@ class _AppBarAddButtonState extends State<AppBarAddButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      tooltip: "Novo ${widget.tooltip}",
+      tooltip: widget.tooltip,
       onPressed: widget.onPressed,
       icon: SvgPicture.asset(
         sAdd,

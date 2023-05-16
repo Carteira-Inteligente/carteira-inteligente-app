@@ -29,9 +29,7 @@ class _InputPasswordState extends State<InputPassword> {
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderRadius: wInputBorderRadius,
-            borderSide: BorderSide(
-              color: cBlack,
-            ),
+            borderSide: BorderSide(color: cBlack),
           ),
           suffixIcon: GestureDetector(
             onTap: () {

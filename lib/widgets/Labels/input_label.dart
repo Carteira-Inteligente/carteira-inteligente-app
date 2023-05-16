@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class InputLabel extends StatelessWidget {
@@ -11,8 +12,14 @@ class InputLabel extends StatelessWidget {
       children: <Widget>[
         Text(
           label,
-          textAlign: TextAlign.left,
-          style: Theme.of(context).textTheme.displaySmall,
+          style: label == "Excluir conta"
+              ? const TextStyle(
+                  fontFamily: "OpenSans",
+                  fontSize: 16,
+                  color: cRed,
+                  fontWeight: FontWeight.normal,
+                )
+              : Theme.of(context).textTheme.displaySmall,
         ),
       ],
     );

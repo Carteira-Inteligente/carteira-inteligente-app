@@ -22,9 +22,7 @@ class InkwellContainer extends StatelessWidget {
           decoration: const InputDecoration(
             border: OutlineInputBorder(
               borderRadius: wInputBorderRadius,
-              borderSide: BorderSide(
-                color: cBlack,
-              ),
+              borderSide: BorderSide(color: cBlack),
             ),
           ),
           child: Row(

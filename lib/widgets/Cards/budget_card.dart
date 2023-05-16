@@ -37,9 +37,7 @@ class BudgetCard extends StatelessWidget {
         ),
         subtitle: Column(
           children: <Widget>[
-            Divider(
-              color: cGrey.shade400,
-            ),
+            Divider(color: cGrey.shade400),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Row(

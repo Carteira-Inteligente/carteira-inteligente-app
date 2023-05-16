@@ -30,7 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.18.0
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
   fluttertoast: ^8.2.1
   flutter_svg: ^1.1.6
 
@@ -75,7 +77,7 @@ flutter:
     - assets/images/white-logo.png
     ## Find our icons on: https://www.svgrepo.com/collection/iconsax-duotone-line-icons/
     # Svg.Buttons
-    - assets/svg/buttons/add-square.svg
+    - assets/svg/buttons/add-budget.svg
     - assets/svg/buttons/add.svg
     - assets/svg/buttons/arrow-down.svg
     - assets/svg/buttons/arrow-left.svg
@@ -87,6 +89,7 @@ flutter:
     # Svg.Categories
     - assets/svg/categories/bank.svg
     - assets/svg/categories/cards.svg
+    - assets/svg/categories/category.svg
     - assets/svg/categories/coffee.svg
     - assets/svg/categories/culture.svg
     - assets/svg/categories/dinner.svg

@@ -1,6 +1,7 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/models/recurrence.dart';
 import 'package:carteira_inteligente/widgets/Cards/recurrence_card.dart';
+import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
 import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +64,7 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
       children: <Widget>[
         const ModalLabel("Selecionar recorrência"),
         SizedBox(
-          height: 300,
+          height: 450,
           child: ListView.builder(
             itemCount: _recurrences.length,
             itemBuilder: (context, index) {
@@ -75,7 +76,7 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
                 return Column(
                   children: <Widget>[
                     _buildRecurrenceCard(context, recurrence),
-                    const Divider(color: cGrey),
+                    const DividerContainer(),
                   ],
                 );
               }

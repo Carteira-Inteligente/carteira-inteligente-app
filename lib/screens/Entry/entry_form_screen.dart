@@ -1,5 +1,6 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/screens/Categories/categories_list_screen.dart';
+import 'package:carteira_inteligente/screens/PaymentType/payment_type_list_screen.dart';
 import 'package:carteira_inteligente/screens/Recurrence/recurrence_list_screen.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
@@ -106,34 +107,16 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
             _periodController,
             () => ShowModal.showModal(
               context,
-              const RecurrenceListScreen(),
+              const PaymentTypeListScreen(),
             ),
           ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 4.0),
-                  child: InputNumber(
-                    "Valor",
-                    _paidValueController,
-                    _submitForm,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 4.0),
-                  child: InputNumber(
-                    "Valor pago",
-                    _paidValueController,
-                    _submitForm,
-                  ),
-                ),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(right: 4.0),
+            child: InputNumber(
+              "Valor",
+              _paidValueController,
+              _submitForm,
+            ),
           ),
           Row(
             children: <Widget>[

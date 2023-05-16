@@ -31,7 +31,7 @@ const cBlueAccent = Colors.blueAccent;
 const cPinkAccent = Colors.pinkAccent;
 
 // Svg.Buttons
-const sAddSquare = "assets/svg/buttons/add-square.svg";
+const sAddBudget = "assets/svg/buttons/add-budget.svg";
 const sAdd = "assets/svg/buttons/add.svg";
 const sArrowDown = "assets/svg/buttons/arrow-down.svg";
 const sArrowLeft = "assets/svg/buttons/arrow-left.svg";
@@ -44,6 +44,7 @@ const sSettings = "assets/svg/buttons/settings.svg";
 // Svg.Categories
 const sBank = "assets/svg/categories/bank.svg";
 const sCards = "assets/svg/categories/cards.svg";
+const sCategory = "assets/svg/categories/category.svg";
 const sCoffee = "assets/svg/categories/coffee.svg";
 const sCulture = "assets/svg/categories/culture.svg";
 const sDinner = "assets/svg/categories/dinner.svg";

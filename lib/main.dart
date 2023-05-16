@@ -140,141 +140,143 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     _selectedIndex == 2 ? _selectedIndex = 1 : null;
 
+    final sliverAppBar = SliverAppBar(
+      title: Builder(
+        builder: (context) {
+          if (_selectedIndex == 0) {
+            return const AppBarTitle("Dashboard");
+          } else if (_selectedIndex == 1) {
+            return const AppBarTitle("Lançamentos");
+          } else if (_selectedIndex == 3) {
+            return const AppBarTitle("Orçamentos");
+          } else if (_selectedIndex == 4) {
+            return const AppBarTitle("Perfil");
+          } else {
+            return Container();
+          }
+        },
+      ),
+      flexibleSpace: _selectedIndex == 1 || _selectedIndex == 3
+          ? Container(
+              padding: const EdgeInsets.only(top: 105),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: InputSearch(),
+              ),
+            )
+          : null,
+      expandedHeight: _selectedIndex == 1 || _selectedIndex == 3 ? 130 : 0,
+      pinned: true,
+      floating: true,
+      forceElevated: true,
+      backgroundColor: Theme.of(context).primaryColor,
+      actions: <Widget>[
+        Builder(
+          builder: (context) {
+            if (_selectedIndex == 1) {
+              return Row(
+                children: <Widget>[
+                  const AppBarFilterButton(),
+                  AppBarAddButton(
+                    "Novo lançamento",
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EntryFormScreen(_addEntry),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              );
+            } else if (_selectedIndex == 3) {
+              return Row(
+                children: <Widget>[
+                  const AppBarFilterButton(),
+                  AppBarAddButton(
+                    "Novo orçamento",
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BudgetFormScreen(_addBudget),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              );
+            } else if (_selectedIndex == 4) {
+              return const AppBarNotificationButton();
+            } else {
+              return Container();
+            }
+          },
+        ),
+      ],
+    );
+
+    final bottomNavigationBar = CupertinoTabBar(
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      backgroundColor: cWhite,
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            sDashboard,
+            color: _selectedIndex == 0 ? Theme.of(context).primaryColor : cGrey,
+          ),
+          label: _selectedIndex == 0 ? "Dashboard" : null,
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            sWallet,
+            color: _selectedIndex == 1 ? Theme.of(context).primaryColor : cGrey,
+          ),
+          label: _selectedIndex == 1 ? "Lançamentos" : null,
+        ),
+        BottomNavigationBarItem(
+          icon: FastEntryButton(FastEntryScreen(_addBasicEntry)),
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            sBudget,
+            color: _selectedIndex == 3 ? Theme.of(context).primaryColor : cGrey,
+          ),
+          label: _selectedIndex == 3 ? "Orçamentos" : null,
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            sUser,
+            color: _selectedIndex == 4 ? Theme.of(context).primaryColor : cGrey,
+          ),
+          label: _selectedIndex == 4 ? "Perfil" : null,
+        ),
+      ],
+    );
+
+    final height = MediaQuery.of(context).size.height -
+        sliverAppBar.toolbarHeight -
+        bottomNavigationBar.height;
+
     return Scaffold(
       body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            title: Builder(
-              builder: (context) {
-                if (_selectedIndex == 0) {
-                  return const AppBarTitle("Dashboard");
-                } else if (_selectedIndex == 1) {
-                  return const AppBarTitle("Lançamentos");
-                } else if (_selectedIndex == 3) {
-                  return const AppBarTitle("Orçamentos");
-                } else if (_selectedIndex == 4) {
-                  return const AppBarTitle("Perfil");
-                } else {
-                  return Container();
-                }
-              },
-            ),
-            flexibleSpace: _selectedIndex == 1 || _selectedIndex == 3
-                ? Container(
-                    padding: const EdgeInsets.only(top: 105),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10.0,
-                      ),
-                      child: InputSearch(),
-                    ),
-                  )
-                : null,
-            expandedHeight:
-                _selectedIndex == 1 || _selectedIndex == 3 ? 130 : 0,
-            pinned: true,
-            floating: true,
-            forceElevated: true,
-            backgroundColor: Theme.of(context).primaryColor,
-            actions: <Widget>[
-              Builder(
-                builder: (context) {
-                  if (_selectedIndex == 1) {
-                    return Row(
-                      children: <Widget>[
-                        const AppBarFilterButton(),
-                        AppBarAddButton(
-                          "lançamento",
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    EntryFormScreen(_addEntry),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    );
-                  } else if (_selectedIndex == 3) {
-                    return Row(
-                      children: <Widget>[
-                        const AppBarFilterButton(),
-                        AppBarAddButton(
-                          "orçamento",
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    BudgetFormScreen(_addBudget),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    );
-                  } else if (_selectedIndex == 4) {
-                    return const AppBarNotificationButton();
-                  } else {
-                    return Container();
-                  }
-                },
-              ),
-            ],
-          ),
+        slivers: <Widget>[
+          sliverAppBar,
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                _navBarOptions.elementAt(_selectedIndex),
+                SizedBox(
+                  height: height,
+                  child: _navBarOptions.elementAt(_selectedIndex),
+                ),
               ],
             ),
           ),
         ],
       ),
-      bottomNavigationBar: CupertinoTabBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        backgroundColor: cWhite,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              sDashboard,
-              color:
-                  _selectedIndex == 0 ? Theme.of(context).primaryColor : cGrey,
-            ),
-            label: _selectedIndex == 0 ? "Dashboard" : null,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              sWallet,
-              color:
-                  _selectedIndex == 1 ? Theme.of(context).primaryColor : cGrey,
-            ),
-            label: _selectedIndex == 1 ? "Lançamentos" : null,
-          ),
-          BottomNavigationBarItem(
-            icon: FastEntryButton(FastEntryScreen(_addBasicEntry)),
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              sBudget,
-              color:
-                  _selectedIndex == 3 ? Theme.of(context).primaryColor : cGrey,
-            ),
-            label: _selectedIndex == 3 ? "Orçamentos" : null,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              sUser,
-              color:
-                  _selectedIndex == 4 ? Theme.of(context).primaryColor : cGrey,
-            ),
-            label: _selectedIndex == 4 ? "Perfil" : null,
-          ),
-        ],
-      ),
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

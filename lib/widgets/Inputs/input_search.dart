@@ -24,9 +24,7 @@ class _InputSearchState extends State<InputSearch> {
           decoration: InputDecoration(
             border: const OutlineInputBorder(
               borderRadius: wInputBorderRadius,
-              borderSide: BorderSide(
-                color: cBlack,
-              ),
+              borderSide: BorderSide(color: cBlack),
             ),
             hintText: "Pesquisar",
             hintStyle: Theme.of(context).textTheme.displaySmall,

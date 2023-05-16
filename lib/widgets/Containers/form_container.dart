@@ -15,14 +15,19 @@ class FormContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      leading: const AppBarLeading(),
+      elevation: 2,
+      backgroundColor: Theme.of(context).primaryColor,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+      title: AppBarTitle(title),
+    );
+    final positionedContainer = PositionedContainer(bottonButton);
+    final height =
+        MediaQuery.of(context).size.height - appBar.preferredSize.height;
+
     return Scaffold(
-      appBar: AppBar(
-        leading: const AppBarLeading(),
-        elevation: 2,
-        backgroundColor: Theme.of(context).primaryColor,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: AppBarTitle(title),
-      ),
+      appBar: appBar,
       body: Stack(
         children: <Widget>[
           Column(
@@ -31,7 +36,7 @@ class FormContainer extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Container(
                     decoration: const BoxDecoration(color: cWhite),
-                    height: MediaQuery.of(context).size.height,
+                    height: height,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20.0,
@@ -44,7 +49,7 @@ class FormContainer extends StatelessWidget {
               ),
             ],
           ),
-          PositionedContainer(bottonButton),
+          positionedContainer,
         ],
       ),
     );

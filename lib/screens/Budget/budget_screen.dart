@@ -3,7 +3,7 @@ import 'package:carteira_inteligente/models/budget.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_details_screen.dart';
 import 'package:carteira_inteligente/utils/format_currency.dart';
 import 'package:carteira_inteligente/widgets/Cards/budget_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/category_icon_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
 import 'package:flutter/material.dart';
 
@@ -103,12 +103,12 @@ class _BudgetScreenState extends State<BudgetScreen> {
         );
       },
       budget.idCategory == 1
-          ? CategoryIconContainer(
+          ? RoundedIconContainer(
               sElectricity,
               cAmber.shade700,
               14,
             )
-          : CategoryIconContainer(
+          : RoundedIconContainer(
               sHouse,
               cCyan.shade700,
               14,
@@ -131,15 +131,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                   itemCount: _budgets.length,
                   itemBuilder: (context, index) {
                     final budget = _budgets[index];
-
-                    if (index == _budgets.length - 1) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 35.0),
-                        child: _buildBudgetCards(context, budget),
-                      );
-                    } else {
-                      return _buildBudgetCards(context, budget);
-                    }
+                    return _buildBudgetCards(context, budget);
                   },
                 ),
               ),

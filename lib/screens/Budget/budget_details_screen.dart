@@ -7,7 +7,7 @@ import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Buttons/delete_button.dart';
 import 'package:carteira_inteligente/widgets/Buttons/edit_button.dart';
 import 'package:carteira_inteligente/widgets/Cards/entry_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/category_icon_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
 import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 6.0),
                   child: Row(
                     children: <Widget>[
-                      CategoryIconContainer(
+                      RoundedIconContainer(
                         sElectricity,
                         cAmber.shade700,
                         24,
@@ -213,7 +213,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                               context,
                               const EntryDetailsScreen(),
                             ),
-                            CategoryIconContainer(
+                            RoundedIconContainer(
                               sElectricity,
                               cAmber.shade700,
                               24,

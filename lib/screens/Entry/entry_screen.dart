@@ -5,7 +5,7 @@ import 'package:carteira_inteligente/utils/show_dialog.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Cards/entry_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/category_icon_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
 import 'package:carteira_inteligente/models/entries.dart';
 import 'package:flutter/material.dart';
@@ -164,12 +164,12 @@ class _EntryScreenState extends State<EntryScreen> {
         const EntryDetailsScreen(),
       ),
       entry.idCategory == 1
-          ? CategoryIconContainer(
+          ? RoundedIconContainer(
               sElectricity,
               cAmber.shade700,
               24,
             )
-          : CategoryIconContainer(
+          : RoundedIconContainer(
               sHouse,
               cCyan.shade700,
               24,
@@ -216,15 +216,7 @@ class _EntryScreenState extends State<EntryScreen> {
                   itemCount: _entries.length,
                   itemBuilder: (context, index) {
                     final entry = _entries[index];
-
-                    if (index == _entries.length - 1) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 35.0),
-                        child: _buildEntryCards(context, entry),
-                      );
-                    } else {
-                      return _buildEntryCards(context, entry);
-                    }
+                    return _buildEntryCards(context, entry);
                   },
                 ),
               ),

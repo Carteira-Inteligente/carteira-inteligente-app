@@ -4,22 +4,20 @@ import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
 import 'package:carteira_inteligente/widgets/Labels/password_rules_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
 
-class UserFormScreen extends StatefulWidget {
-  const UserFormScreen(this.onSubmit, {super.key});
+class EditUserFormScreen extends StatefulWidget {
+  const EditUserFormScreen(this.onSubmit, {super.key});
 
   final void Function(String, String, String) onSubmit;
 
   @override
-  State<UserFormScreen> createState() => _UserFormScreenState();
+  State<EditUserFormScreen> createState() => _EditUserFormScreenState();
 }
 
-class _UserFormScreenState extends State<UserFormScreen> {
+class _EditUserFormScreenState extends State<EditUserFormScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -40,23 +38,15 @@ class _UserFormScreenState extends State<UserFormScreen> {
     }
 
     widget.onSubmit(name, email, password);
-    ToastMessage.showToast("Usuário cadastrado do sucesso.");
+    ToastMessage.showToast("Usuário alterado do sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Novo usuário",
+      "Edição de usuário",
       Column(
         children: <Widget>[
-          Row(
-            children: const <Widget>[
-              TitleLabel("Vamos começar!"),
-            ],
-          ),
-          const SubtitleLabel(
-            "Preencha os campos abaixo para criar seu usuário.",
-          ),
           InputText(
             "Digite seu nome ou apelido",
             _nameController,
@@ -82,7 +72,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
       ),
       PrimaryButton(
         wLargeButtonMinimunSize,
-        "Cadastrar",
+        "Salvar",
         _submitForm,
       ),
     );

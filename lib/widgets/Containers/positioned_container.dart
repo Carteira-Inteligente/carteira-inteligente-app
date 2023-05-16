@@ -13,6 +13,7 @@ class PositionedContainer extends StatelessWidget {
       right: 0,
       bottom: 0,
       child: Container(
+        height: 100,
         decoration: const BoxDecoration(color: cWhite),
         padding: const EdgeInsets.only(bottom: 15.0),
         child: bottonButton,

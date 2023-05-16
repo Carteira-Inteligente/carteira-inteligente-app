@@ -1,9 +1,9 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/modal_form_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_number.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
+import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
 
 class FastEntryScreen extends StatefulWidget {
@@ -44,29 +44,40 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ModalFormContainer(
-      "Novo lançamento rápido",
-      Column(
-        children: <Widget>[
-          InputText(
-            "Descrição",
-            _descriptionController,
-            _submitForm,
+    return Column(
+      children: <Widget>[
+        const ModalLabel("Novo lançamento rápido"),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.25,
+          child: Column(
+            children: <Widget>[
+              InputText(
+                "Descrição",
+                _descriptionController,
+                _submitForm,
+              ),
+              InputNumber(
+                "Valor",
+                _paidValueController,
+                _submitForm,
+              ),
+            ],
           ),
-          InputNumber(
-            "Valor",
-            _paidValueController,
-            _submitForm,
-          ),
-        ],
-      ),
-      "Após salvar, você poderá editar e incluir outras informações neste "
-          "registro. Basta acessar o item \"Lançamentos\" no menu.",
-      PrimaryButton(
-        wLargeButtonMinimunSize,
-        "Salvar",
-        _submitForm,
-      ),
+        ),
+        Column(
+          children: <Widget>[
+            const ModalLabel(
+              "Após salvar, você poderá editar e incluir outras informações "
+              "neste registro. Basta acessar o item \"Lançamentos\" no menu.",
+            ),
+            PrimaryButton(
+              wLargeButtonMinimunSize,
+              "Salvar",
+              _submitForm,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

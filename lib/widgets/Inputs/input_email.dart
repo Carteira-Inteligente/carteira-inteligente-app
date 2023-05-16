@@ -22,9 +22,7 @@ class InputEmail extends StatelessWidget {
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderRadius: wInputBorderRadius,
-            borderSide: BorderSide(
-              color: cBlack,
-            ),
+            borderSide: BorderSide(color: cBlack),
           ),
           hintStyle: Theme.of(context).textTheme.displaySmall,
           suffixIcon: const InputIconContainer(sMail),

@@ -22,9 +22,7 @@ class InputNumber extends StatelessWidget {
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderRadius: wInputBorderRadius,
-            borderSide: BorderSide(
-              color: cBlack,
-            ),
+            borderSide: BorderSide(color: cBlack),
           ),
           prefixText: "R\$ ",
           hintStyle: Theme.of(context).textTheme.displaySmall,

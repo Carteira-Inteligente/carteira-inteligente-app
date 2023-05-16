@@ -1,6 +1,7 @@
 import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class LightTheme extends StatelessWidget {
   const LightTheme({super.key});
@@ -10,6 +11,11 @@ class LightTheme extends StatelessWidget {
     final ThemeData theme = ThemeData();
 
     return MaterialApp(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale("pt")],
       home: const MyHomePage(),
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(

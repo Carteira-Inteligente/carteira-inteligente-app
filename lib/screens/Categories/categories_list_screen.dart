@@ -3,6 +3,7 @@ import 'package:carteira_inteligente/constants/constants.dart';
 import 'package:carteira_inteligente/models/categories.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Cards/category_card.dart';
+import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
 import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,7 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
                 return Column(
                   children: <Widget>[
                     _buildCategoryCard(context, category),
-                    const Divider(color: cGrey),
+                    const DividerContainer(),
                   ],
                 );
               }
