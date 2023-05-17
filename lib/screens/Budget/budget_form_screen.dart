@@ -1,12 +1,12 @@
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/screens/Category/category_list_screen.dart';
-import 'package:carteira_inteligente/utils/show_modal.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_select.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_number.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/show_modal.dart';
+import '../../utils/toast_message.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Inputs/input_number.dart';
+import '../../widgets/Inputs/input_select.dart';
+import '../Category/category_list_screen.dart';
 
 class BudgetFormScreen extends StatefulWidget {
   const BudgetFormScreen(this.onSubmit, {super.key});
@@ -72,7 +72,6 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
         ],
       ),
       PrimaryButton(
-        wLargeButtonMinimunSize,
         "Salvar",
         _submitForm,
       ),

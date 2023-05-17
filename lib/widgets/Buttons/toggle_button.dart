@@ -1,7 +1,7 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../Labels/input_label.dart';
 
 class ToggleButton extends StatefulWidget {
   const ToggleButton(this.label, {super.key});
@@ -13,6 +13,8 @@ class ToggleButton extends StatefulWidget {
 }
 
 class _ToggleButtonState extends State<ToggleButton> {
+  bool isPaid = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,8 +29,14 @@ class _ToggleButtonState extends State<ToggleButton> {
               height: 30,
               child: Switch.adaptive(
                 activeColor: cBlue,
-                value: false,
-                onChanged: (value) {},
+                value: isPaid,
+                onChanged: (value) => setState(() {
+                  if (isPaid == false) {
+                    isPaid = true;
+                  } else {
+                    isPaid = false;
+                  }
+                }),
               ),
             ),
           ),

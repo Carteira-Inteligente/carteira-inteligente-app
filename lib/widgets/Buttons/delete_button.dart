@@ -1,10 +1,11 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/utils/show_dialog.dart';
-import 'package:carteira_inteligente/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../constants/widgets.dart';
+import '../../utils/show_dialog.dart';
+import '../Containers/button_container.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton(this.dataLabel, this.onPressed, {super.key});
@@ -17,7 +18,7 @@ class DeleteButton extends StatelessWidget {
     return ButtonContainer(
       ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-          minimumSize: wSmallButtonMinimunSize,
+          minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 60),
           shape: wButtonBorderRadius,
           backgroundColor: cRed,
           elevation: 0,

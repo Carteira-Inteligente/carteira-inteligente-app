@@ -1,10 +1,11 @@
-import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/progres_bar_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/budget_value_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/list_tile_label.dart';
 import 'package:flutter/material.dart';
+
+import '../Containers/card_container.dart';
+import '../Containers/divider_container.dart';
+import '../Containers/progres_bar_container.dart';
+import '../Labels/budget_value_label.dart';
+import '../Labels/input_label.dart';
+import '../Labels/list_tile_label.dart';
 
 class BudgetCard extends StatelessWidget {
   const BudgetCard(

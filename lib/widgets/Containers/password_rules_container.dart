@@ -1,6 +1,7 @@
-import 'package:carteira_inteligente/widgets/Labels/password_pattern_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
+
+import '../Labels/password_pattern_label.dart';
+import '../Labels/subtitle_label.dart';
 
 class PasswordRulesContainer extends StatelessWidget {
   const PasswordRulesContainer(this.labelColor, {super.key});

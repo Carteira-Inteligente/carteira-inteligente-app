@@ -1,6 +1,7 @@
-import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle2_label.dart';
 import 'package:flutter/material.dart';
+
+import '../Containers/card_container.dart';
+import '../Labels/subtitle2_label.dart';
 
 class DashboardLargeCard extends StatefulWidget {
   const DashboardLargeCard(this.cardTitle, {super.key});

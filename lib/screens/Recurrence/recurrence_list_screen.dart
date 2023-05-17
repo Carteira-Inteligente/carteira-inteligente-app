@@ -1,10 +1,10 @@
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/data/recurrences_data.dart';
-import 'package:carteira_inteligente/models/recurrence.dart';
-import 'package:carteira_inteligente/widgets/Cards/recurrence_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/recurrences_data.dart';
+import '../../models/recurrence.dart';
+import '../../widgets/Cards/recurrence_card.dart';
+import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Labels/modal_title_label.dart';
 
 class RecurrenceListScreen extends StatefulWidget {
   const RecurrenceListScreen(this.onCategoryRecurrence, {super.key});

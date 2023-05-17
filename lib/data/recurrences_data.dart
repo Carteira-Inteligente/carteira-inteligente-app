@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente/models/recurrence.dart';
+import '../models/recurrence.dart';
 
 List<Recurrence> recurrencesList = [
   Recurrence(

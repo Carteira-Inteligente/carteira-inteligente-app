@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente/models/entry.dart';
+import '../models/entry.dart';
 
 List<Entry> entryList = [
   Entry(

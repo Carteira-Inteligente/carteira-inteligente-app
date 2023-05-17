@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente/models/payment_type.dart';
+import '../models/payment_type.dart';
 
 List<PaymentType> paymentTypesList = [
   PaymentType(

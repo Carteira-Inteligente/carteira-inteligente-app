@@ -1,8 +1,9 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Containers/input_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/widgets.dart';
+import 'input_container.dart';
 
 class InkwellContainer extends StatelessWidget {
   const InkwellContainer(this.label, this.text, this.icon, this.onTap,

@@ -1,7 +1,7 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/models/category.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
+import '../constants/colors.dart';
+import '../constants/svgs.dart';
+import '../models/category.dart';
+import '../widgets/Containers/rounded_icon_container.dart';
 
 List<Category> categoryList = [
   Category(

@@ -1,11 +1,12 @@
-import 'package:carteira_inteligente/constants/images.dart';
-import 'package:carteira_inteligente/screens/ForgotPassword/forgot_password_screen.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle2_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/images.dart';
+import '../../main.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Inputs/input_email.dart';
+import '../../widgets/Inputs/input_password.dart';
+import '../../widgets/Labels/subtitle2_label.dart';
+import '../ForgotPassword/forgot_password_screen.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen(this.onSubmit, {super.key});
@@ -61,9 +62,15 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           ),
         ),
         PrimaryButton(
-          wLargeButtonMinimunSize,
           "Entrar",
-          () {},
+          () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CarteiraInteligenteApp(),
+              ),
+            );
+          },
         ),
       ],
     );

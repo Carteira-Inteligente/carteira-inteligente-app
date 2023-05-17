@@ -1,6 +1,7 @@
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/widgets/Containers/inkwell_container.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/svgs.dart';
+import '../Containers/inkwell_container.dart';
 
 class InputSelect extends StatefulWidget {
   const InputSelect(

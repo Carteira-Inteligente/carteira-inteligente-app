@@ -1,13 +1,12 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
 
-class SecondaryButton extends StatelessWidget {
-  const SecondaryButton(this.buttonSize, this.textButton, this.onPressed,
-      {super.key});
+import '../../constants/colors.dart';
+import '../../constants/widgets.dart';
+import '../Containers/button_container.dart';
 
-  final Size buttonSize;
+class SecondaryButton extends StatelessWidget {
+  const SecondaryButton(this.textButton, this.onPressed, {super.key});
+
   final String textButton;
   final void Function() onPressed;
 
@@ -16,7 +15,7 @@ class SecondaryButton extends StatelessWidget {
     return ButtonContainer(
       OutlinedButton(
         style: OutlinedButton.styleFrom(
-          minimumSize: buttonSize,
+          minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
           shape: wButtonBorderRadius,
           side: const BorderSide(color: cBlue),
           elevation: 0,

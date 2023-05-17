@@ -1,16 +1,16 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/images.dart';
-import 'package:carteira_inteligente/utils/show_modal.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/models/authentication.dart';
-import 'package:carteira_inteligente/models/users.dart';
-import 'package:carteira_inteligente/screens/Authentication/authentication_screen.dart';
-import 'package:carteira_inteligente/screens/User/user_form_screen.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/images.dart';
+import '../../models/authentication.dart';
+import '../../models/users.dart';
+import '../../utils/show_modal.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Buttons/secondary_button.dart';
+import '../Authentication/authentication_screen.dart';
+import '../User/user_form_screen.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
@@ -106,7 +106,6 @@ class _InitialScreenState extends State<InitialScreen> {
               child: Column(
                 children: <Widget>[
                   PrimaryButton(
-                    wLargeButtonMinimunSize,
                     "Entrar",
                     () => ShowModal.showModal(
                       context,
@@ -114,7 +113,6 @@ class _InitialScreenState extends State<InitialScreen> {
                     ),
                   ),
                   SecondaryButton(
-                    wLargeButtonMinimunSize,
                     "Ainda não tenho cadastro",
                     () => Navigator.push(
                       context,

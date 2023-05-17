@@ -1,9 +1,10 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
-import 'package:carteira_inteligente/widgets/Containers/positioned_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../constants/colors.dart';
+import '../AppBar/app_bar_leading.dart';
+import '../AppBar/app_bar_title.dart';
+import 'positioned_container.dart';
 
 class FormContainer extends StatelessWidget {
   const FormContainer(this.title, this.bodyWidget, this.bottonButton,

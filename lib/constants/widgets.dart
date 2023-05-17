@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import 'colors.dart';
 
 // Widgets.Input
 const wInputDecorarion = InputDecoration(
@@ -13,8 +14,6 @@ const wInputBorderRadius = BorderRadius.all(
 );
 
 // Widgets.Button
-const wSmallButtonMinimunSize = Size(170, 60);
-const wLargeButtonMinimunSize = Size(350, 60);
 const wRoundButtonSize = Size(60, 60);
 const wButtonBorderRadius = RoundedRectangleBorder(
   borderRadius: wBorderRadius50,

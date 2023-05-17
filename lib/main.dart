@@ -1,29 +1,28 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/models/basic_entries.dart';
-import 'package:carteira_inteligente/models/budget.dart';
-import 'package:carteira_inteligente/models/entry.dart';
-import 'package:carteira_inteligente/screens/Budget/budget_form_screen.dart';
-import 'package:carteira_inteligente/screens/Budget/budget_screen.dart';
-import 'package:carteira_inteligente/screens/Dashboard/dashboard_screen.dart';
-import 'package:carteira_inteligente/screens/Entry/fast_entry_screen.dart';
-import 'package:carteira_inteligente/screens/Entry/entry_screen.dart';
-import 'package:carteira_inteligente/screens/Profile/profile_screen.dart';
-import 'package:carteira_inteligente/themes/light_theme.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_filter_button.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_notification_button.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_add_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/fast_entry_button.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 
+import 'constants/colors.dart';
+import 'constants/svgs.dart';
+import 'models/basic_entries.dart';
+import 'models/budget.dart';
+import 'models/entry.dart';
+import 'screens/Budget/budget_form_screen.dart';
+import 'screens/Budget/budget_screen.dart';
+import 'screens/Dashboard/dashboard_screen.dart';
 import 'screens/Entry/entry_form_screen.dart';
+import 'screens/Entry/entry_screen.dart';
+import 'screens/Entry/fast_entry_screen.dart';
+import 'screens/Profile/profile_screen.dart';
+import 'themes/light_theme.dart';
+import 'widgets/AppBar/app_bar_add_button.dart';
+import 'widgets/AppBar/app_bar_filter_button.dart';
+import 'widgets/AppBar/app_bar_notification_button.dart';
+import 'widgets/AppBar/app_bar_title.dart';
+import 'widgets/Buttons/fast_entry_button.dart';
+import 'widgets/Inputs/input_search.dart';
 
 void main() {
   runApp(const CarteiraInteligenteApp());

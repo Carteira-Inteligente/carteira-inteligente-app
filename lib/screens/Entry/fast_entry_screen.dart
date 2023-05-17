@@ -1,10 +1,10 @@
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_number.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/toast_message.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Inputs/input_number.dart';
+import '../../widgets/Inputs/input_text.dart';
+import '../../widgets/Labels/modal_title_label.dart';
 
 class FastEntryScreen extends StatefulWidget {
   const FastEntryScreen(this.onSubmit, {super.key});
@@ -49,29 +49,34 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
         const ModalTitleLabel("Novo lançamento rápido"),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.25,
-          child: Column(
-            children: <Widget>[
-              InputText(
-                "Descrição",
-                _descriptionController,
-                _submitForm,
-              ),
-              InputNumber(
-                "Valor",
-                _paidValueController,
-                _submitForm,
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: Column(
+              children: <Widget>[
+                InputText(
+                  "Descrição",
+                  _descriptionController,
+                  _submitForm,
+                ),
+                InputNumber(
+                  "Valor",
+                  _paidValueController,
+                  _submitForm,
+                ),
+              ],
+            ),
           ),
         ),
         Column(
           children: <Widget>[
-            const ModalTitleLabel(
-              "Após salvar, você poderá editar e incluir outras informações "
-              "neste registro. Basta acessar o item \"Lançamentos\" no menu.",
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.0),
+              child: ModalTitleLabel(
+                "Após salvar, você poderá editar e incluir outras informações "
+                "neste registro. Basta acessar o item \"Lançamentos\" no menu.",
+              ),
             ),
             PrimaryButton(
-              wLargeButtonMinimunSize,
               "Salvar",
               _submitForm,
             ),

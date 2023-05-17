@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
+
+import 'subtitle_label.dart';
 
 class ListLabel extends StatelessWidget {
   const ListLabel(this.label, {super.key});

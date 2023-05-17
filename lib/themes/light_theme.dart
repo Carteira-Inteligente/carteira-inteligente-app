@@ -1,7 +1,8 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import '../constants/colors.dart';
+import '../main.dart';
 
 class LightTheme extends StatelessWidget {
   const LightTheme({super.key});

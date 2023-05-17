@@ -1,25 +1,26 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/models/budget.dart';
-import 'package:carteira_inteligente/models/users.dart';
-import 'package:carteira_inteligente/screens/Budget/budget_form_screen.dart';
-import 'package:carteira_inteligente/screens/Category/category_screen.dart';
-import 'package:carteira_inteligente/screens/Initial/initial_screen.dart';
-import 'package:carteira_inteligente/screens/PaymentType/account_screen.dart';
-import 'package:carteira_inteligente/screens/PaymentType/credit_card_screen.dart';
-import 'package:carteira_inteligente/screens/User/edit_user_form_screen.dart';
-import 'package:carteira_inteligente/utils/show_dialog.dart';
-import 'package:carteira_inteligente/widgets/Buttons/dialog_action_button.dart';
-import 'package:carteira_inteligente/widgets/Cards/list_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/list_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../models/budget.dart';
+import '../../models/users.dart';
+import '../../utils/show_dialog.dart';
+import '../../widgets/Buttons/dialog_action_button.dart';
+import '../../widgets/Cards/list_card.dart';
+import '../../widgets/Containers/card_container.dart';
+import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Containers/rounded_icon_container.dart';
+import '../../widgets/Labels/list_label.dart';
+import '../../widgets/Labels/modal_title_label.dart';
+import '../../widgets/Labels/subtitle_label.dart';
+import '../Budget/budget_form_screen.dart';
+import '../Category/category_screen.dart';
+import '../Initial/initial_screen.dart';
+import '../PaymentType/account_screen.dart';
+import '../PaymentType/credit_card_screen.dart';
+import '../User/edit_user_form_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

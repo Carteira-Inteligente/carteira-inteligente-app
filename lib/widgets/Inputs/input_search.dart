@@ -1,8 +1,9 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Containers/input_icon_container.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../constants/widgets.dart';
+import '../Containers/input_icon_container.dart';
 
 class InputSearch extends StatefulWidget {
   const InputSearch({super.key});

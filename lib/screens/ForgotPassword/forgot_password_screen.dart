@@ -1,11 +1,11 @@
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/toast_message.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Inputs/input_email.dart';
+import '../../widgets/Labels/subtitle_label.dart';
+import '../../widgets/Labels/title_label.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -49,7 +49,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ],
       ),
       PrimaryButton(
-        wLargeButtonMinimunSize,
         "Enviar e-mail",
         _submitForm,
       ),

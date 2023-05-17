@@ -1,12 +1,11 @@
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton(this.buttonSize, this.textButton, this.onPressed,
-      {super.key});
+import '../../constants/widgets.dart';
+import '../Containers/button_container.dart';
 
-  final Size buttonSize;
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton(this.textButton, this.onPressed, {super.key});
+
   final String textButton;
   final void Function() onPressed;
 
@@ -15,7 +14,7 @@ class PrimaryButton extends StatelessWidget {
     return ButtonContainer(
       ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: buttonSize,
+          minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
           shape: wButtonBorderRadius,
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0,

@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/colors.dart';
 
 class ShowModal {
   static void showModal(BuildContext context, Widget widget) {
@@ -36,8 +37,8 @@ class ShowModal {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 20.0,
-                    right: 20.0,
+                    left: 10.0,
+                    right: 10.0,
                     bottom: 15.0,
                   ),
                   child: widget,

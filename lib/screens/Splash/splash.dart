@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/constants/images.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/images.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

@@ -1,7 +1,8 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../Labels/input_label.dart';
 
 class ListCard extends StatelessWidget {
   const ListCard(this.svgIcon, this.label, this.onTap, {super.key});

@@ -1,13 +1,14 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/utils/format_currency.dart';
-import 'package:carteira_inteligente/utils/show_dialog.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/list_tile_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../utils/format_currency.dart';
+import '../../utils/show_dialog.dart';
+import '../../utils/toast_message.dart';
+import '../Containers/card_container.dart';
+import '../Containers/rounded_icon_container.dart';
+import '../Labels/list_tile_label.dart';
 
 class EntryCard extends StatelessWidget {
   const EntryCard(this.onTap, this.categoryIcon, this.categoryColor, this.title,

@@ -1,10 +1,10 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Cards/dashboard_large_card.dart';
-import 'package:carteira_inteligente/widgets/Cards/dashboard_small_card.dart';
-import 'package:carteira_inteligente/widgets/Labels/dashboard_card_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../widgets/Cards/dashboard_large_card.dart';
+import '../../widgets/Cards/dashboard_small_card.dart';
+import '../../widgets/Labels/dashboard_card_label.dart';
+import '../../widgets/Labels/subtitle_label.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});

@@ -1,9 +1,10 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle2_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../Labels/subtitle2_label.dart';
+import '../Labels/subtitle_label.dart';
 
 class NoDataContainer extends StatelessWidget {
   const NoDataContainer(this.description, {super.key});

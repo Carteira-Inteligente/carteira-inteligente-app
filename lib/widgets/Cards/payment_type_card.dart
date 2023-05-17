@@ -1,7 +1,8 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../Containers/rounded_icon_container.dart';
 
 class PaymentTypeCard extends StatelessWidget {
   const PaymentTypeCard(this.onTap, this.description, this.svgIcon,

@@ -1,9 +1,10 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Containers/button_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../constants/widgets.dart';
+import '../Containers/button_container.dart';
 
 class EditButton extends StatelessWidget {
   const EditButton(this.onPressed, {super.key});
@@ -15,7 +16,7 @@ class EditButton extends StatelessWidget {
     return ButtonContainer(
       ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-          minimumSize: wSmallButtonMinimunSize,
+          minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 60),
           shape: wButtonBorderRadius,
           backgroundColor: cGrey,
           elevation: 0,

@@ -1,17 +1,17 @@
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/screens/Category/category_list_screen.dart';
-import 'package:carteira_inteligente/screens/PaymentType/payment_type_list_screen.dart';
-import 'package:carteira_inteligente/screens/Recurrence/recurrence_list_screen.dart';
-import 'package:carteira_inteligente/utils/show_modal.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/toggle_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_select.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_date.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_number.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/show_modal.dart';
+import '../../utils/toast_message.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Buttons/toggle_button.dart';
+import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Inputs/input_date.dart';
+import '../../widgets/Inputs/input_number.dart';
+import '../../widgets/Inputs/input_select.dart';
+import '../../widgets/Inputs/input_text.dart';
+import '../Category/category_list_screen.dart';
+import '../PaymentType/payment_type_list_screen.dart';
+import '../Recurrence/recurrence_list_screen.dart';
 
 class EntryFormScreen extends StatefulWidget {
   const EntryFormScreen(this.onSubmit, {super.key});
@@ -169,7 +169,6 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
         ],
       ),
       PrimaryButton(
-        wLargeButtonMinimunSize,
         "Salvar",
         _submitForm,
       ),

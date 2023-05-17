@@ -1,7 +1,7 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/widgets.dart';
+import '../Labels/input_label.dart';
 
 class InputContainer extends StatelessWidget {
   const InputContainer(this.label, this.widget, {super.key});

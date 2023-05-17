@@ -1,11 +1,11 @@
-import 'package:carteira_inteligente/data/categories_data.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/models/category.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Cards/category_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/categories_data.dart';
+import '../../models/category.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Cards/category_card.dart';
+import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Labels/modal_title_label.dart';
 
 class CategoryListScreen extends StatefulWidget {
   const CategoryListScreen(this.onCategorySelected, {super.key});
@@ -61,7 +61,6 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
           ),
         ),
         PrimaryButton(
-          wLargeButtonMinimunSize,
           "Nova categoria",
           () {},
         ),

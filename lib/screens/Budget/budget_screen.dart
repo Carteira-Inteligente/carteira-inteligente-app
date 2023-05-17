@@ -1,13 +1,14 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/data/budgets_data.dart';
-import 'package:carteira_inteligente/models/budget.dart';
-import 'package:carteira_inteligente/screens/Budget/budget_details_screen.dart';
-import 'package:carteira_inteligente/utils/format_currency.dart';
-import 'package:carteira_inteligente/widgets/Cards/budget_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../data/budgets_data.dart';
+import '../../models/budget.dart';
+import '../../utils/format_currency.dart';
+import '../../widgets/Cards/budget_card.dart';
+import '../../widgets/Containers/no_data_container.dart';
+import '../../widgets/Containers/rounded_icon_container.dart';
+import 'budget_details_screen.dart';
 
 class BudgetScreen extends StatefulWidget {
   const BudgetScreen({super.key});

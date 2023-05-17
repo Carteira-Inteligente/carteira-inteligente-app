@@ -1,11 +1,7 @@
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/secondary_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import '../../widgets/Buttons/secondary_button.dart';
+import '../../widgets/Containers/form_container.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -21,7 +17,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
       "Notificações",
       const Placeholder(),
       SecondaryButton(
-        wLargeButtonMinimunSize,
         "Limpar tudo",
         () {},
       ),

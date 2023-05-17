@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
 
 class DividerContainer extends StatelessWidget {
   const DividerContainer({super.key});

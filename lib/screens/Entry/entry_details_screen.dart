@@ -1,13 +1,14 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Buttons/rounded_delete_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/rounded_edit_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_details.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../constants/widgets.dart';
+import '../../widgets/Buttons/rounded_delete_button.dart';
+import '../../widgets/Buttons/rounded_edit_button.dart';
+import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Inputs/input_details.dart';
+import '../../widgets/Labels/modal_title_label.dart';
 
 class EntryDetailsScreen extends StatefulWidget {
   const EntryDetailsScreen({super.key});

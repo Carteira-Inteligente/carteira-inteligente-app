@@ -1,8 +1,9 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/screens/Initial/initial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../screens/Initial/initial_screen.dart';
 
 class AppBarFilterButton extends StatefulWidget {
   const AppBarFilterButton({super.key});

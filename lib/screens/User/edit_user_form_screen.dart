@@ -1,14 +1,14 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/utils/password_rules.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
-import 'package:carteira_inteligente/widgets/Containers/password_rules_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../utils/password_rules.dart';
+import '../../utils/toast_message.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Containers/password_rules_container.dart';
+import '../../widgets/Inputs/input_email.dart';
+import '../../widgets/Inputs/input_password.dart';
+import '../../widgets/Inputs/input_text.dart';
 
 class EditUserFormScreen extends StatefulWidget {
   const EditUserFormScreen(this.onSubmit, {super.key});
@@ -90,7 +90,6 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
         ],
       ),
       PrimaryButton(
-        wLargeButtonMinimunSize,
         "Salvar",
         _submitForm,
       ),

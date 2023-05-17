@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/utils/format_currency.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/format_currency.dart';
 
 class DashboardCardLabel extends StatelessWidget {
   DashboardCardLabel(this.cardSubtitle, this.value, this.valueColor,

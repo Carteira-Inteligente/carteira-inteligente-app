@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
+
+import '../Labels/input_label.dart';
 
 class InputDetails extends StatelessWidget {
   const InputDetails(this.label, this.details, {super.key});

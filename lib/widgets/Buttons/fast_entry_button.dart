@@ -1,9 +1,10 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../constants/widgets.dart';
+import '../../utils/show_modal.dart';
 
 class FastEntryButton extends StatelessWidget {
   const FastEntryButton(this.fastEntryScreen, {super.key});

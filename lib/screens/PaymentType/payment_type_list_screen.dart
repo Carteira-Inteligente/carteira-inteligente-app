@@ -1,12 +1,12 @@
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/data/payment_data.dart';
-import 'package:carteira_inteligente/models/payment_type.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Cards/payment_type_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/svgs.dart';
+import '../../data/payment_data.dart';
+import '../../models/payment_type.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Cards/payment_type_card.dart';
+import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Labels/modal_title_label.dart';
 
 class PaymentTypeListScreen extends StatefulWidget {
   const PaymentTypeListScreen(this.onPaymentTypeSelected, {super.key});
@@ -57,7 +57,6 @@ class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
           ),
         ),
         PrimaryButton(
-          wLargeButtonMinimunSize,
           "Nova forma de pagamento",
           () {},
         ),

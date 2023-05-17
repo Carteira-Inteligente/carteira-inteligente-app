@@ -1,9 +1,9 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/Buttons/dialog_action_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/dialog_secondary_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/dialog_container.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/colors.dart';
+import '../widgets/Buttons/dialog_action_button.dart';
+import '../widgets/Buttons/dialog_secondary_button.dart';
+import '../widgets/Containers/dialog_container.dart';
 
 class ShowDialog {
   static void deleteDialog(
@@ -18,8 +18,8 @@ class ShowDialog {
           "Deseja excluir este $dataLabel?",
           Text.rich(
             TextSpan(
-              text:
-                  "Todas informações associadas a este registro serão permanentemente removidas.\n",
+              text: "Todas informações associadas a este registro serão "
+                  "permanentemente removidas.\n",
               style: Theme.of(context).textTheme.displaySmall,
               children: const <TextSpan>[
                 TextSpan(
@@ -52,7 +52,8 @@ class ShowDialog {
         return DialogContainer(
           "Deseja cancelar este pagamento?",
           Text(
-            "Este lançamento ficará marcado como pendente até que você nos informe que já realizou o pagamento.",
+            "Este lançamento ficará marcado como pendente até que você nos "
+            "informe que já realizou o pagamento.",
             style: Theme.of(context).textTheme.displaySmall,
           ),
           const DialogSecondaryButton(),
@@ -73,7 +74,8 @@ class ShowDialog {
         return DialogContainer(
           "Deseja cancelar este cadastro?",
           Text(
-            "Este cadastro não será salvo e você perderá as informações preenchidas.",
+            "Este cadastro não será salvo e você perderá as informações "
+            "preenchidas.",
             style: Theme.of(context).textTheme.displaySmall,
           ),
           const DialogSecondaryButton(),

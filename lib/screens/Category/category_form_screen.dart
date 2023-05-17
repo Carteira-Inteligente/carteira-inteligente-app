@@ -1,11 +1,11 @@
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
-import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/svgs.dart';
+import '../../utils/toast_message.dart';
+import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Inputs/input_text.dart';
 
 class CategoryFormScreen extends StatefulWidget {
   const CategoryFormScreen(this.onSubmit, {super.key});
@@ -49,7 +49,6 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
         ],
       ),
       PrimaryButton(
-        wLargeButtonMinimunSize,
         "Salvar",
         _submitForm,
       ),

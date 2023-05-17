@@ -1,10 +1,10 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_add_button.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../constants/colors.dart';
+import '../AppBar/app_bar_add_button.dart';
+import '../AppBar/app_bar_leading.dart';
+import '../AppBar/app_bar_title.dart';
 
 class ScreenFormContainer extends StatelessWidget {
   const ScreenFormContainer(

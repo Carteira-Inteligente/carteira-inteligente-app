@@ -1,6 +1,7 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/widgets.dart';
 
 class CardContainer extends StatefulWidget {
   const CardContainer(this.widget, {super.key});

@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/widgets/Containers/screen_form_container.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/Containers/screen_form_container.dart';
 
 class CreditCardScreen extends StatefulWidget {
   const CreditCardScreen({super.key});

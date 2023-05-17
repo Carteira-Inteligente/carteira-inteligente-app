@@ -1,7 +1,7 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
 
 class InputIconContainer extends StatelessWidget {
   const InputIconContainer(this.svgIcon, {super.key});

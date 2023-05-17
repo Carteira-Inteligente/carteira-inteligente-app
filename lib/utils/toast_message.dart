@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../constants/colors.dart';
 
 class ToastMessage {
   static void showToast(String message) {

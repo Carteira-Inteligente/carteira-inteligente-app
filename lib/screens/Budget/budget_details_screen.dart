@@ -1,21 +1,22 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/constants/svgs.dart';
-import 'package:carteira_inteligente/data/entries_data.dart';
-import 'package:carteira_inteligente/models/entry.dart';
-import 'package:carteira_inteligente/screens/Entry/entry_details_screen.dart';
-import 'package:carteira_inteligente/utils/show_modal.dart';
-import 'package:carteira_inteligente/widgets/Buttons/delete_button.dart';
-import 'package:carteira_inteligente/widgets/Buttons/edit_button.dart';
-import 'package:carteira_inteligente/widgets/Cards/entry_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/progres_bar_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
-import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/budget_value_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/svgs.dart';
+import '../../data/entries_data.dart';
+import '../../models/entry.dart';
+import '../../utils/show_modal.dart';
+import '../../widgets/Buttons/delete_button.dart';
+import '../../widgets/Buttons/edit_button.dart';
+import '../../widgets/Cards/entry_card.dart';
+import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Containers/no_data_container.dart';
+import '../../widgets/Containers/progres_bar_container.dart';
+import '../../widgets/Containers/rounded_icon_container.dart';
+import '../../widgets/Labels/budget_value_label.dart';
+import '../../widgets/Labels/input_label.dart';
+import '../../widgets/Labels/subtitle_label.dart';
+import '../Entry/entry_details_screen.dart';
 
 class BudgetDetailsScreen extends StatefulWidget {
   const BudgetDetailsScreen({super.key});
