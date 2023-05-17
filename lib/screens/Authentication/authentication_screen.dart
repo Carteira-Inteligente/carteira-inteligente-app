@@ -1,8 +1,10 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/images.dart';
 import 'package:carteira_inteligente/screens/ForgotPassword/forgot_password_screen.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle2_label.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationScreen extends StatefulWidget {
@@ -29,12 +31,9 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             alignment: Alignment.center,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
-          child: Text(
-            "Que bom que você voltou!",
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
+        const Padding(
+          padding: EdgeInsets.only(top: 8.0),
+          child: Subtitle2Label("Que bom que você voltou!"),
         ),
         InputEmail(
           "E-mail",
@@ -45,6 +44,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           "Senha",
           _passwordController,
           () {},
+          (_) {},
         ),
         TextButton(
           onPressed: () {

@@ -1,4 +1,5 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +17,7 @@ class InputContainer extends StatelessWidget {
         children: <Widget>[
           InputLabel(label),
           Container(
-            decoration: const BoxDecoration(
-              color: cWhite,
-              borderRadius: wInputBorderRadius,
-            ),
+            decoration: wBoxDecoration,
             child: widget,
           ),
         ],

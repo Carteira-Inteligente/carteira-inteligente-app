@@ -1,9 +1,10 @@
-import 'package:carteira_inteligente/constants/constants.dart';
-import 'package:carteira_inteligente/models/categories.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/models/category.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
 import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 
-List<Categories> categoryList = [
-  Categories(
+List<Category> categoryList = [
+  Category(
     id: 1,
     description: "Cartão de crédito",
     icon: RoundedIconContainer(
@@ -12,7 +13,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 2,
     description: "Cultura",
     icon: RoundedIconContainer(
@@ -21,7 +22,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 3,
     description: "Alimentação",
     icon: RoundedIconContainer(
@@ -30,7 +31,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 4,
     description: "Família e filhos",
     icon: RoundedIconContainer(
@@ -39,7 +40,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 5,
     description: "Educação",
     icon: RoundedIconContainer(
@@ -48,7 +49,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 6,
     description: "Energia elétrica",
     icon: RoundedIconContainer(
@@ -57,7 +58,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 7,
     description: "Atividades físicas",
     icon: RoundedIconContainer(
@@ -66,7 +67,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 8,
     description: "Presentes e doações",
     icon: RoundedIconContainer(
@@ -75,7 +76,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 9,
     description: "Saúde",
     icon: RoundedIconContainer(
@@ -84,7 +85,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 10,
     description: "Casa",
     icon: RoundedIconContainer(
@@ -93,7 +94,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 11,
     description: "Lazer e hobbies",
     icon: RoundedIconContainer(
@@ -102,7 +103,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 12,
     description: "Dívidas e empréstimos",
     icon: RoundedIconContainer(
@@ -111,7 +112,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 13,
     description: "Telefonia",
     icon: RoundedIconContainer(
@@ -120,7 +121,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 14,
     description: "Outros",
     icon: RoundedIconContainer(
@@ -129,7 +130,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 15,
     description: "Animais de estimação",
     icon: RoundedIconContainer(
@@ -138,7 +139,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 16,
     description: "Mercado",
     icon: RoundedIconContainer(
@@ -147,7 +148,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 17,
     description: "Serviços de streaming",
     icon: RoundedIconContainer(
@@ -156,7 +157,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 18,
     description: "Transporte",
     icon: RoundedIconContainer(
@@ -165,7 +166,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 19,
     description: "Viagens",
     icon: RoundedIconContainer(
@@ -174,7 +175,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 20,
     description: "Internet",
     icon: RoundedIconContainer(
@@ -183,7 +184,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 21,
     description: "Bares e restaurantes",
     icon: RoundedIconContainer(
@@ -192,7 +193,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 22,
     description: "Cuidados pessoais",
     icon: RoundedIconContainer(
@@ -201,7 +202,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 23,
     description: "Compras",
     icon: RoundedIconContainer(
@@ -210,7 +211,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 24,
     description: "Impostos e taxas",
     icon: RoundedIconContainer(
@@ -219,7 +220,7 @@ List<Categories> categoryList = [
       24,
     ),
   ),
-  Categories(
+  Category(
     id: 25,
     description: "Trabalho",
     icon: RoundedIconContainer(

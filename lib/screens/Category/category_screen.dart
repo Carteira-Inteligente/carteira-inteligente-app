@@ -1,14 +1,14 @@
 import 'package:carteira_inteligente/widgets/Containers/screen_form_container.dart';
 import 'package:flutter/material.dart';
 
-class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({super.key});
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen({super.key});
 
   @override
-  State<CategoriesScreen> createState() => _CategoriesScreenState();
+  State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenFormContainer(

@@ -1,4 +1,7 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle2_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,40 +9,45 @@ class NoDataContainer extends StatelessWidget {
   const NoDataContainer(this.description, {super.key});
 
   final String description;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 50.0),
       child: Column(
         children: <Widget>[
-          Text(
-            "Não existem $description cadastrados",
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
+          SubtitleLabel("Não existem $description cadastrados"),
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  "Toque em ",
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                CircleAvatar(
-                  backgroundColor: cGrey.shade600,
-                  radius: 16,
+                const Subtitle2Label("Toque em"),
+                ElevatedButton(
+                  onPressed: null,
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                    ),
+                    backgroundColor: cGrey.shade800,
+                    elevation: 0,
+                  ),
                   child: SvgPicture.asset(
                     sAdd,
                     color: cWhite,
                   ),
                 ),
+                const Subtitle2Label("ou em"),
+                SvgPicture.asset(
+                  sAdd,
+                  color: cGrey,
+                ),
               ],
             ),
           ),
-          Text(
-            "para cadastrar um lançamento",
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
+          const Subtitle2Label("para cadastrar um lançamento"),
         ],
       ),
     );

@@ -1,35 +1,3 @@
-import 'package:flutter/material.dart';
-
-// Colors
-const cTransparent = Colors.transparent;
-const cGreen = Colors.green;
-const cGreenAccent = Colors.greenAccent;
-const cBlue = Colors.blue;
-const cPurple = Colors.purple;
-const cWhite = Colors.white;
-const cYellow = Colors.yellow;
-const cOrange = Colors.orange;
-const cBlack = Colors.black;
-const cGrey = Colors.grey;
-const cRed = Colors.red;
-const cPink = Colors.pink;
-const cBlueGrey = Colors.blueGrey;
-const cAmber = Colors.amber;
-const cBrown = Colors.brown;
-const cCyan = Colors.cyan;
-const cIndigo = Colors.indigo;
-const cLime = Colors.lime;
-const cTeal = Colors.teal;
-const cDeepPurple = Colors.deepPurple;
-const cDeepOrange = Colors.deepOrange;
-const cRedAccent = Colors.redAccent;
-const cIndigoAccent = Colors.indigoAccent;
-const cLightBlue = Colors.lightBlue;
-const cLightGreen = Colors.lightGreen;
-const cAmberAccent = Colors.amberAccent;
-const cBlueAccent = Colors.blueAccent;
-const cPinkAccent = Colors.pinkAccent;
-
 // Svg.Buttons
 const sAddBudget = "assets/svg/buttons/add-budget.svg";
 const sAdd = "assets/svg/buttons/add.svg";
@@ -94,34 +62,3 @@ const sBudget = "assets/svg/budget.svg";
 const sDashboard = "assets/svg/dashboard.svg";
 const sUser = "assets/svg/user.svg";
 const sWallet = "assets/svg/wallet.svg";
-
-// Images
-const iIconLogo = "assets/images/icon-logo.png";
-const iInitial = "assets/images/initial.jpg";
-const iInvertedLogo = "assets/images/inverted-logo.png";
-const iLinearLogo = "assets/images/linear-logo.png";
-const iLinearWhiteLogo = "assets/images/linear-white-logo.png";
-const iLogo = "assets/images/logo.png";
-const iSplash = "assets/images/splash.png";
-const iWhiteLogo = "assets/images/white-logo.png";
-
-// Widgets
-const wInputBorderRadius = BorderRadius.all(
-  Radius.circular(15),
-);
-const wButtonBorderRadius = RoundedRectangleBorder(
-  borderRadius: wBorderRadius50,
-);
-var wCardShape = RoundedRectangleBorder(
-  borderRadius: BorderRadius.circular(10),
-  side: BorderSide(
-    color: cGrey.shade200,
-    width: 1,
-  ),
-);
-const wBorderRadius50 = BorderRadius.all(
-  Radius.circular(50),
-);
-const wSmallButtonMinimunSize = Size(170, 60);
-const wLargeButtonMinimunSize = Size(350, 60);
-const wRoundButtonSize = Size(60, 60);

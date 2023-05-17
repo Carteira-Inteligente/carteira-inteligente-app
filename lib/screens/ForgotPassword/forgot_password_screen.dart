@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';

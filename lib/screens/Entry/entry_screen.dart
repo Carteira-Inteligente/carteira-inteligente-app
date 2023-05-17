@@ -1,16 +1,13 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/data/entries_data.dart';
 import 'package:carteira_inteligente/screens/Entry/entry_details_screen.dart';
 import 'package:carteira_inteligente/utils/format_currency.dart';
-import 'package:carteira_inteligente/utils/show_dialog.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Cards/entry_card.dart';
-import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
-import 'package:carteira_inteligente/models/entries.dart';
+import 'package:carteira_inteligente/models/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 
 class EntryScreen extends StatefulWidget {
   const EntryScreen({super.key});
@@ -21,186 +18,21 @@ class EntryScreen extends StatefulWidget {
 
 class _EntryScreenState extends State<EntryScreen> {
   var formatCurrency = getFormatCurrency();
+  final List<Entry> _entries = entryList;
 
-  final List<Entries> _entries = [
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      description: "IPTU",
-      period: "Anual",
-      paidValue: 542.33,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      description: "IPTU",
-      period: "Anual",
-      paidValue: 542.33,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      description: "IPTU",
-      period: "Anual",
-      paidValue: 542.33,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      description: "IPTU",
-      period: "Anual",
-      paidValue: 542.33,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      description: "IPTU",
-      period: "Anual",
-      paidValue: 542.33,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      description: "IPTU",
-      period: "Anual",
-      paidValue: 542.33,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-  ];
-
-  Widget _buildEntryCards(BuildContext context, Entries entry) {
+  Widget _buildEntryCards(BuildContext context, Entry entry) {
     return EntryCard(
       () => ShowModal.showModal(
         context,
         const EntryDetailsScreen(),
       ),
-      entry.idCategory == 1
-          ? RoundedIconContainer(
-              sElectricity,
-              cAmber.shade700,
-              24,
-            )
-          : RoundedIconContainer(
-              sHouse,
-              cCyan.shade700,
-              24,
-            ),
+      entry.idCategory == 1 ? sElectricity : sHouse,
+      entry.idCategory == 1 ? cAmber.shade700 : cCyan.shade700,
       entry.description,
-      "Valor: ${formatCurrency.format(entry.paidValue)}\n"
-      "Vencimento: ${DateFormat("dd/MM/y").format(entry.dueDate)}",
-      entry.paid == true
-          ? SvgPicture.asset(
-              sPaymentTick,
-              color: cGreen,
-            )
-          : SvgPicture.asset(
-              sPaymentWaiting,
-              color: cOrange,
-            ),
-      entry.paid == true
-          ? () {
-              ShowDialog.cancelPayment(
-                context,
-                () {
-                  Navigator.pop(context);
-                  ToastMessage.showToast("Pagamento desfeito com sucesso.");
-                  entry.paid == false;
-                },
-              );
-            }
-          : () {
-              ToastMessage.showToast("Pagamento realizado com sucesso.");
-              entry.paid == true;
-            },
+      100.00,
+      "14/05/2023",
+      entry.paid,
+      entry.paid,
     );
   }
 

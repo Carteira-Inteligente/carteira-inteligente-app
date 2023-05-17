@@ -1,10 +1,12 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
 import 'package:carteira_inteligente/models/budget.dart';
 import 'package:carteira_inteligente/models/users.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_form_screen.dart';
-import 'package:carteira_inteligente/screens/Categories/categories_screen.dart';
+import 'package:carteira_inteligente/screens/Category/category_screen.dart';
+import 'package:carteira_inteligente/screens/Initial/initial_screen.dart';
 import 'package:carteira_inteligente/screens/PaymentType/account_screen.dart';
 import 'package:carteira_inteligente/screens/PaymentType/credit_card_screen.dart';
 import 'package:carteira_inteligente/screens/User/edit_user_form_screen.dart';
@@ -15,7 +17,7 @@ import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Labels/list_label.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
 
@@ -85,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         const SubtitleLabel("Thiago Martins Proença"),
-        const ModalLabel("thiagoenca@gmail.com"),
+        const ModalTitleLabel("thiagoenca@gmail.com"),
         DialogActionButton(
           () {
             Navigator.push(
@@ -143,7 +145,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CategoriesScreen(),
+                            builder: (context) => const CategoryScreen(),
                           ),
                         );
                       },
@@ -175,7 +177,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ShowDialog.logoutDialog(
                           context,
                           () {
-                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const InitialScreen(),
+                              ),
+                            );
                           },
                         );
                       },
@@ -189,7 +196,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           context,
                           "usuário",
                           () {
-                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const InitialScreen(),
+                              ),
+                            );
                           },
                         );
                       },

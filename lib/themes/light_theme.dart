@@ -1,4 +1,4 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:carteira_inteligente/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -70,6 +70,13 @@ class LightTheme extends StatelessWidget {
             color: cGrey.shade600,
             fontWeight: FontWeight.bold,
           ),
+          headlineSmall: const TextStyle(
+            // Tema utilizado para dados da tela de detalhes em negrito
+            fontFamily: "OpenSans",
+            fontSize: 16,
+            color: cBlack,
+            fontWeight: FontWeight.bold,
+          ),
           labelLarge: const TextStyle(
             // Tema utilizado para botões primários
             fontFamily: "OpenSans",
@@ -87,13 +94,6 @@ class LightTheme extends StatelessWidget {
             fontFamily: "OpenSans",
             fontSize: 16,
             color: cBlack,
-          ),
-          headlineSmall: const TextStyle(
-            // Tema utilizado para dados da tela de detalhes em negrito
-            fontFamily: "OpenSans",
-            fontSize: 16,
-            color: cBlack,
-            fontWeight: FontWeight.bold,
           ),
         ),
       ),

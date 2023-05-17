@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Categories {
+class Category {
   final int id;
   final String description;
   final Widget icon;
 
-  Categories({
+  Category({
     required this.id,
     required this.description,
     required this.icon,

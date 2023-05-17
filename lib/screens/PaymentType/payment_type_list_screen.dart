@@ -1,48 +1,31 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
+import 'package:carteira_inteligente/data/payment_data.dart';
 import 'package:carteira_inteligente/models/payment_type.dart';
+import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Cards/payment_type_card.dart';
 import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
 
 class PaymentTypeListScreen extends StatefulWidget {
-  const PaymentTypeListScreen({super.key});
+  const PaymentTypeListScreen(this.onPaymentTypeSelected, {super.key});
+
+  final void Function(String) onPaymentTypeSelected;
 
   @override
   State<PaymentTypeListScreen> createState() => _PaymentTypeListScreenState();
 }
 
 class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
-  List<PaymentType> _paymentTypes = [
-    PaymentType(
-      id: 1,
-      description: "Carteira",
-      type: "ACCOUNT",
-    ),
-    PaymentType(
-      id: 2,
-      description: "Sicredi",
-      type: "ACCOUNT",
-    ),
-    PaymentType(
-      id: 3,
-      description: "Credicard Zero",
-      type: "CREDIT_CARD",
-    ),
-    PaymentType(
-      id: 4,
-      description: "Nubank",
-      type: "CREDIT_CARD",
-    ),
-    PaymentType(
-      id: 5,
-      description: "Sicredi",
-      type: "CREDIT_CARD",
-    ),
-  ];
+  final List<PaymentType> _paymentTypes = paymentTypesList;
 
   _buildAccountPaymentCard(BuildContext context, PaymentType paymentType) {
     return PaymentTypeCard(
+      () {
+        widget.onPaymentTypeSelected(paymentType.description);
+        Navigator.pop(context);
+      },
       paymentType.description,
       paymentType.type == "ACCOUNT" ? sBank : sCards,
     );
@@ -52,7 +35,7 @@ class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalLabel("Selecionar forma de pagamento"),
+        const ModalTitleLabel("Selecionar forma de pagamento"),
         SizedBox(
           height: 450,
           child: ListView.builder(
@@ -72,6 +55,11 @@ class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
               }
             },
           ),
+        ),
+        PrimaryButton(
+          wLargeButtonMinimunSize,
+          "Nova forma de pagamento",
+          () {},
         ),
       ],
     );

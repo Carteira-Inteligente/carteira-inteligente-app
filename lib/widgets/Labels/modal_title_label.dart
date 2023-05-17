@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ModalLabel extends StatelessWidget {
-  const ModalLabel(this.label, {super.key});
+class ModalTitleLabel extends StatelessWidget {
+  const ModalTitleLabel(this.label, {super.key});
 
   final String label;
 

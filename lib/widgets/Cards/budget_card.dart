@@ -1,10 +1,13 @@
-import 'package:carteira_inteligente/constants/constants.dart';
-import 'package:carteira_inteligente/utils/format_currency.dart';
 import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/progres_bar_container.dart';
+import 'package:carteira_inteligente/widgets/Labels/budget_value_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/list_tile_label.dart';
 import 'package:flutter/material.dart';
 
 class BudgetCard extends StatelessWidget {
-  BudgetCard(
+  const BudgetCard(
       this.onTap, this.pageIcon, this.description, this.value, this.percentage,
       {super.key});
 
@@ -13,7 +16,6 @@ class BudgetCard extends StatelessWidget {
   final String description;
   final double value;
   final double percentage;
-  final formatCurrency = getFormatCurrency();
 
   @override
   Widget build(BuildContext context) {
@@ -27,72 +29,20 @@ class BudgetCard extends StatelessWidget {
               pageIcon,
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  description,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
+                child: ListTileLabel(description),
               ),
             ],
           ),
         ),
         subtitle: Column(
           children: <Widget>[
-            Divider(color: cGrey.shade400),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    "Disponível",
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ],
-              ),
+            const DividerContainer(),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0),
+              child: InputLabel("Disponível"),
             ),
-            Row(
-              children: <Widget>[
-                Text(
-                  formatCurrency.format(value),
-                  style: const TextStyle(
-                    fontFamily: "OpenSans",
-                    color: cBlack,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  " de R\$ 880,00",
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: SizedBox(
-                height: 10,
-                width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  alignment: Alignment.centerLeft,
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        color: cGrey.shade300,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                    FractionallySizedBox(
-                      widthFactor: percentage,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: cGreen,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            BudgetValueLabel(value, 880.00),
+            ProgresBarContainer(percentage),
           ],
         ),
       ),

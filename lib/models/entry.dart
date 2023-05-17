@@ -1,4 +1,4 @@
-class Entries {
+class Entry {
   final int id;
   final int idUser;
   final int idCategory;
@@ -9,7 +9,7 @@ class Entries {
   final bool paid;
   final DateTime dueDate;
 
-  Entries({
+  Entry({
     required this.id,
     required this.idUser,
     required this.idCategory,

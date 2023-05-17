@@ -1,14 +1,19 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Containers/input_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class InputPassword extends StatefulWidget {
-  const InputPassword(this.label, this.controller, this.onSubmit, {super.key});
+  const InputPassword(
+      this.label, this.controller, this.onSubmit, this.onChanged,
+      {super.key});
 
   final String label;
   final TextEditingController controller;
   final void Function() onSubmit;
+  final void Function(String) onChanged;
 
   @override
   State<InputPassword> createState() => _InputPasswordState();
@@ -22,6 +27,7 @@ class _InputPasswordState extends State<InputPassword> {
     return InputContainer(
       widget.label,
       TextField(
+        onChanged: widget.onChanged,
         style: Theme.of(context).textTheme.displaySmall,
         obscureText: _obscureText,
         controller: widget.controller,

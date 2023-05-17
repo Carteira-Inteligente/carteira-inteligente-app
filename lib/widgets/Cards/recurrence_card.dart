@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class RecurrenceCard extends StatelessWidget {
-  const RecurrenceCard(this.description, {super.key});
+  const RecurrenceCard(this.onTap, this.description, {super.key});
 
+  final void Function() onTap;
   final String description;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       title: Text(
         description,
         style: Theme.of(context).textTheme.displaySmall,

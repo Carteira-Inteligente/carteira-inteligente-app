@@ -1,9 +1,11 @@
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/utils/password_rules.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
-import 'package:carteira_inteligente/widgets/Labels/password_rules_label.dart';
+import 'package:carteira_inteligente/widgets/Containers/password_rules_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
+  bool _isPasswordValid = false;
+
   _submitForm() {
     final name = _nameController.text;
     final email = _emailController.text;
@@ -37,12 +41,25 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
       return;
     }
 
+    if (!_isPasswordValid) {
+      ToastMessage.showToast("A senha não atende aos requisitos.");
+      return;
+    }
+
     widget.onSubmit(name, email, password);
     ToastMessage.showToast("Usuário alterado do sucesso.");
   }
 
+  void _validatePassword(String password) {
+    setState(() {
+      _isPasswordValid = PasswordRules().passwordMustHave(password);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Color passwordLabelColor = _isPasswordValid ? cGreen : cRed;
+
     return FormContainer(
       "Edição de usuário",
       Column(
@@ -61,13 +78,15 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
             "Senha",
             _passwordController,
             _submitForm,
+            _validatePassword,
           ),
           InputPassword(
             "Confirmar senha",
             _confirmPasswordController,
             _submitForm,
+            (_) {},
           ),
-          const PasswordRulesLabel(),
+          PasswordRulesContainer(passwordLabelColor),
         ],
       ),
       PrimaryButton(

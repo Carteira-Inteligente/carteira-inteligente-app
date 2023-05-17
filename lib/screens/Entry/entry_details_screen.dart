@@ -1,9 +1,11 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Buttons/rounded_delete_button.dart';
 import 'package:carteira_inteligente/widgets/Buttons/rounded_edit_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_details.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,7 +21,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalLabel("Detalhes do lançamento"),
+        const ModalTitleLabel("Detalhes do lançamento"),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

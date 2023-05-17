@@ -35,7 +35,9 @@ dependencies:
   intl: ^0.17.0
   fluttertoast: ^8.2.1
   flutter_svg: ^1.1.6
+  http: ^0.13.6
 
+#https://carteira-inteligente-e0367-default-rtdb.firebaseio.com
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -76,6 +78,7 @@ flutter:
     - assets/images/splash.png
     - assets/images/white-logo.png
     ## Find our icons on: https://www.svgrepo.com/collection/iconsax-duotone-line-icons/
+    ## and https://www.svgrepo.com/collection/iconwrap-line-duotone-interface-icons/
     # Svg.Buttons
     - assets/svg/buttons/add-budget.svg
     - assets/svg/buttons/add.svg

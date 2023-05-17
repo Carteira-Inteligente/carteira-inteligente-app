@@ -1,9 +1,11 @@
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/utils/password_rules.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_email.dart';
-import 'package:carteira_inteligente/widgets/Labels/password_rules_label.dart';
+import 'package:carteira_inteligente/widgets/Containers/password_rules_container.dart';
 import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_password.dart';
@@ -25,6 +27,8 @@ class _UserFormScreenState extends State<UserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
+  bool _isPasswordValid = false;
+
   _submitForm() {
     final name = _nameController.text;
     final email = _emailController.text;
@@ -39,12 +43,30 @@ class _UserFormScreenState extends State<UserFormScreen> {
       return;
     }
 
+    if (!_isPasswordValid) {
+      ToastMessage.showToast("A senha não atende aos requisitos.");
+      return;
+    }
+
+    if (password != confirmPassword) {
+      ToastMessage.showToast("A confirmação de senha não coincide.");
+      return;
+    }
+
     widget.onSubmit(name, email, password);
     ToastMessage.showToast("Usuário cadastrado do sucesso.");
   }
 
+  void _validatePassword(String password) {
+    setState(() {
+      _isPasswordValid = PasswordRules().passwordMustHave(password);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Color passwordLabelColor = _isPasswordValid ? cGreen : cGrey.shade600;
+
     return FormContainer(
       "Novo usuário",
       Column(
@@ -71,13 +93,15 @@ class _UserFormScreenState extends State<UserFormScreen> {
             "Senha",
             _passwordController,
             _submitForm,
+            _validatePassword,
           ),
           InputPassword(
             "Confirmar senha",
             _confirmPasswordController,
             _submitForm,
+            (_) {},
           ),
-          const PasswordRulesLabel(),
+          PasswordRulesContainer(passwordLabelColor),
         ],
       ),
       PrimaryButton(

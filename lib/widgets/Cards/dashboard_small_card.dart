@@ -1,4 +1,5 @@
 import 'package:carteira_inteligente/widgets/Containers/card_container.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle2_label.dart';
 import 'package:flutter/material.dart';
 
 class DashboardSmallCard extends StatelessWidget {
@@ -16,13 +17,7 @@ class DashboardSmallCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                cardTitle,
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-            ),
+            Subtitle2Label(cardTitle),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: widget,

@@ -1,5 +1,8 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
+import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/list_tile_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
 
 class DialogContainer extends StatelessWidget {
@@ -18,11 +21,8 @@ class DialogContainer extends StatelessWidget {
       title: Column(
         children: <Widget>[
           Row(
-            children: [
-              Text(
-                dialogTitle,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
+            children: <Widget>[
+              ListTileLabel(dialogTitle),
             ],
           ),
           const DividerContainer(),

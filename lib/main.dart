@@ -1,13 +1,13 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
 import 'package:carteira_inteligente/models/basic_entries.dart';
 import 'package:carteira_inteligente/models/budget.dart';
-import 'package:carteira_inteligente/models/entries.dart';
+import 'package:carteira_inteligente/models/entry.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_form_screen.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_screen.dart';
 import 'package:carteira_inteligente/screens/Dashboard/dashboard_screen.dart';
-import 'package:carteira_inteligente/screens/Entry/entry_form_screen.dart';
 import 'package:carteira_inteligente/screens/Entry/fast_entry_screen.dart';
 import 'package:carteira_inteligente/screens/Entry/entry_screen.dart';
 import 'package:carteira_inteligente/screens/Profile/profile_screen.dart';
@@ -22,6 +22,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'screens/Entry/entry_form_screen.dart';
 
 void main() {
   runApp(const CarteiraInteligenteApp());
@@ -60,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final List<Entries> _entries = [];
+  final List<Entry> _entries = [];
   _addEntry(
     int idUser,
     int idCategory,
@@ -71,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
     bool paid,
     DateTime dueDate,
   ) {
-    final newEntry = Entries(
+    final newEntry = Entry(
       id: Random().nextInt(999).toInt(),
       idUser: idUser,
       idCategory: idCategory,

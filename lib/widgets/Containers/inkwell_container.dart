@@ -1,4 +1,5 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Containers/input_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,12 +20,7 @@ class InkwellContainer extends StatelessWidget {
       InkWell(
         onTap: onTap,
         child: InputDecorator(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: wInputBorderRadius,
-              borderSide: BorderSide(color: cBlack),
-            ),
-          ),
+          decoration: wInputDecorarion,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

@@ -1,9 +1,9 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_number.dart';
 import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
-import 'package:carteira_inteligente/widgets/Labels/modal_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/modal_title_label.dart';
 import 'package:flutter/material.dart';
 
 class FastEntryScreen extends StatefulWidget {
@@ -46,7 +46,7 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalLabel("Novo lançamento rápido"),
+        const ModalTitleLabel("Novo lançamento rápido"),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.25,
           child: Column(
@@ -66,7 +66,7 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
         ),
         Column(
           children: <Widget>[
-            const ModalLabel(
+            const ModalTitleLabel(
               "Após salvar, você poderá editar e incluir outras informações "
               "neste registro. Basta acessar o item \"Lançamentos\" no menu.",
             ),

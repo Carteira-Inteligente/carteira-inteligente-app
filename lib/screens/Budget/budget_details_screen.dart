@@ -1,17 +1,21 @@
-import 'package:carteira_inteligente/constants/constants.dart';
-import 'package:carteira_inteligente/models/entries.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/data/entries_data.dart';
+import 'package:carteira_inteligente/models/entry.dart';
 import 'package:carteira_inteligente/screens/Entry/entry_details_screen.dart';
-import 'package:carteira_inteligente/utils/show_dialog.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
-import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Buttons/delete_button.dart';
 import 'package:carteira_inteligente/widgets/Buttons/edit_button.dart';
 import 'package:carteira_inteligente/widgets/Cards/entry_card.dart';
+import 'package:carteira_inteligente/widgets/Containers/divider_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/no_data_container.dart';
+import 'package:carteira_inteligente/widgets/Containers/progres_bar_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
+import 'package:carteira_inteligente/widgets/Labels/budget_value_label.dart';
+import 'package:carteira_inteligente/widgets/Labels/input_label.dart';
 import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class BudgetDetailsScreen extends StatefulWidget {
   const BudgetDetailsScreen({super.key});
@@ -21,74 +25,23 @@ class BudgetDetailsScreen extends StatefulWidget {
 }
 
 class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
-  final List<Entries> _entries = [
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: true,
-      dueDate: DateTime.now(),
-    ),
-    Entries(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      description: "Conta de luz",
-      period: "Mensal",
-      paidValue: 123.45,
-      paidDate: DateTime.now(),
-      paid: false,
-      dueDate: DateTime.now(),
-    ),
-  ];
+  final List<Entry> _entries = budgetEntryList;
+
+  Widget _buildEntryCards(BuildContext context, Entry entry) {
+    return EntryCard(
+      () => ShowModal.showModal(
+        context,
+        const EntryDetailsScreen(),
+      ),
+      sElectricity,
+      cAmber.shade700,
+      entry.description,
+      100.00,
+      "14/05/2023",
+      entry.paid,
+      entry.paid,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +52,6 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6.0),
@@ -118,67 +70,16 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                   ),
                 ),
                 Column(
-                  children: <Widget>[
+                  children: const <Widget>[
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Disponível",
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                        ],
-                      ),
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: InputLabel("Disponível"),
                     ),
-                    Row(
-                      children: <Widget>[
-                        const Text(
-                          "R\$ 500,00",
-                          style: TextStyle(
-                            fontFamily: "OpenSans",
-                            color: cBlack,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          " de R\$ 880,00",
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: SizedBox(
-                        height: 10,
-                        width: MediaQuery.of(context).size.width,
-                        child: Stack(
-                          alignment: Alignment.centerLeft,
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                color: cGrey.shade300,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                            ),
-                            FractionallySizedBox(
-                              widthFactor: 0.3,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: cGreen,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    BudgetValueLabel(500.00, 880.00),
+                    ProgresBarContainer(0.3),
                   ],
                 ),
-                Divider(
-                  color: cGrey.shade400,
-                ),
+                const DividerContainer(),
               ],
             ),
           ),
@@ -189,67 +90,28 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                   SubtitleLabel("Lançamentos do mês"),
                 ],
               ),
-              _entries.isEmpty
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 50.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            "Nenhum lançamento encontrado",
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                        ],
-                      ),
-                    )
-                  : SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.71,
-                      child: ListView.builder(
-                        itemCount: _entries.length,
-                        itemBuilder: (context, index) {
-                          final entry = _entries[index];
+              SingleChildScrollView(
+                child: _entries.isEmpty
+                    ? const NoDataContainer("lançamento")
+                    : SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.67,
+                        child: ListView.builder(
+                          itemCount: _entries.length,
+                          itemBuilder: (context, index) {
+                            final entry = _entries[index];
 
-                          return EntryCard(
-                            () => ShowModal.showModal(
-                              context,
-                              const EntryDetailsScreen(),
-                            ),
-                            RoundedIconContainer(
-                              sElectricity,
-                              cAmber.shade700,
-                              24,
-                            ),
-                            entry.description,
-                            "Valor: R\$ 100,00\n"
-                            "Vencimento: 14/12/2023",
-                            entry.paid == true
-                                ? SvgPicture.asset(
-                                    sPaymentTick,
-                                    color: cGreen,
-                                  )
-                                : SvgPicture.asset(
-                                    sPaymentWaiting,
-                                    color: cOrange,
-                                  ),
-                            entry.paid == true
-                                ? () {
-                                    ShowDialog.cancelPayment(context, () {
-                                      Navigator.pop(context);
-                                      ToastMessage.showToast(
-                                        "Pagamento desfeito com sucesso.",
-                                      );
-                                      entry.paid == false;
-                                    });
-                                  }
-                                : () {
-                                    ToastMessage.showToast(
-                                      "Pagamento realizado com sucesso.",
-                                    );
-                                    entry.paid == true;
-                                  },
-                          );
-                        },
+                            if (index == _entries.length - 1) {
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 120.0),
+                                child: _buildEntryCards(context, entry),
+                              );
+                            } else {
+                              return _buildEntryCards(context, entry);
+                            }
+                          },
+                        ),
                       ),
-                    ),
+              ),
             ],
           )
         ],

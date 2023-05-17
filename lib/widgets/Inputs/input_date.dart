@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
 import 'package:carteira_inteligente/widgets/Containers/inkwell_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,5 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/Buttons/dialog_action_button.dart';
 import 'package:carteira_inteligente/widgets/Buttons/dialog_secondary_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/dialog_container.dart';

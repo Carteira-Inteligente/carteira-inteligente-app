@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/images.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/models/authentication.dart';
 import 'package:carteira_inteligente/models/users.dart';
 import 'package:carteira_inteligente/screens/Authentication/authentication_screen.dart';

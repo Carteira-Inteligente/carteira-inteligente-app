@@ -1,4 +1,5 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_add_button.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
 import 'package:carteira_inteligente/widgets/AppBar/app_bar_title.dart';

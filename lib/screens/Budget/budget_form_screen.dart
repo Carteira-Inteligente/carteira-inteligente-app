@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente/constants/constants.dart';
-import 'package:carteira_inteligente/screens/Categories/categories_list_screen.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
+import 'package:carteira_inteligente/screens/Category/category_list_screen.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
@@ -22,6 +22,8 @@ class BudgetFormScreen extends StatefulWidget {
 }
 
 class _BudgetFormScreenState extends State<BudgetFormScreen> {
+  String _selectedCategory = "";
+
   final _idUsercontroller = TextEditingController();
   final _idCategoryController = TextEditingController();
   final _valueController = TextEditingController();
@@ -52,8 +54,15 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
             // _submitForm,
             () => ShowModal.showModal(
               context,
-              const CategoriesListScreen(),
+              CategoryListScreen(
+                (category) {
+                  setState(() {
+                    _selectedCategory = category;
+                  });
+                },
+              ),
             ),
+            _selectedCategory,
           ),
           InputNumber(
             "Valor limite",

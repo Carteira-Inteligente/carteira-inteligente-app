@@ -1,4 +1,6 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/data/budgets_data.dart';
 import 'package:carteira_inteligente/models/budget.dart';
 import 'package:carteira_inteligente/screens/Budget/budget_details_screen.dart';
 import 'package:carteira_inteligente/utils/format_currency.dart';
@@ -16,81 +18,7 @@ class BudgetScreen extends StatefulWidget {
 
 class _BudgetScreenState extends State<BudgetScreen> {
   var formatCurrency = getFormatCurrency();
-
-  final List<Budget> _budgets = [
-    Budget(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      value: 123.45,
-    ),
-    Budget(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      value: 542.33,
-    ),
-    Budget(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      value: 123.45,
-    ),
-    Budget(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      value: 542.33,
-    ),
-    Budget(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      value: 123.45,
-    ),
-    Budget(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      value: 542.33,
-    ),
-    Budget(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      value: 123.45,
-    ),
-    Budget(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      value: 542.33,
-    ),
-    Budget(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      value: 123.45,
-    ),
-    Budget(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      value: 542.33,
-    ),
-    Budget(
-      id: 1,
-      idUser: 1,
-      idCategory: 1,
-      value: 123.45,
-    ),
-    Budget(
-      id: 2,
-      idUser: 1,
-      idCategory: 2,
-      value: 542.33,
-    ),
-  ];
+  final List<Budget> _budgets = budgetsList;
 
   Widget _buildBudgetCards(BuildContext context, Budget budget) {
     return BudgetCard(

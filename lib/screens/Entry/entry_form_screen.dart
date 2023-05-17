@@ -1,5 +1,5 @@
-import 'package:carteira_inteligente/constants/constants.dart';
-import 'package:carteira_inteligente/screens/Categories/categories_list_screen.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
+import 'package:carteira_inteligente/screens/Category/category_list_screen.dart';
 import 'package:carteira_inteligente/screens/PaymentType/payment_type_list_screen.dart';
 import 'package:carteira_inteligente/screens/Recurrence/recurrence_list_screen.dart';
 import 'package:carteira_inteligente/utils/show_modal.dart';
@@ -32,6 +32,10 @@ class EntryFormScreen extends StatefulWidget {
 }
 
 class _EntryFormScreenState extends State<EntryFormScreen> {
+  String _selectedCategory = "";
+  String _selectedRecurrence = "";
+  String _selectedPaymentType = "";
+
   final _idUsercontroller = TextEditingController();
   final _idCategoryController = TextEditingController();
   final _descriptionController = TextEditingController();
@@ -87,19 +91,32 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
           InputSelect(
             "Categoria",
             _idCategoryController,
-            // _submitForm,
             () => ShowModal.showModal(
               context,
-              const CategoriesListScreen(),
+              CategoryListScreen(
+                (category) {
+                  setState(() {
+                    _selectedCategory = category;
+                  });
+                },
+              ),
             ),
+            _selectedCategory,
           ),
           InputSelect(
             "Recorrência",
             _periodController,
             () => ShowModal.showModal(
               context,
-              const RecurrenceListScreen(),
+              RecurrenceListScreen(
+                (recurrence) {
+                  setState(() {
+                    _selectedRecurrence = recurrence;
+                  });
+                },
+              ),
             ),
+            _selectedRecurrence,
           ),
           // Ajustar informações
           InputSelect(
@@ -107,8 +124,15 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
             _periodController,
             () => ShowModal.showModal(
               context,
-              const PaymentTypeListScreen(),
+              PaymentTypeListScreen(
+                (paymentType) {
+                  setState(() {
+                    _selectedPaymentType = paymentType;
+                  });
+                },
+              ),
             ),
+            _selectedPaymentType,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 4.0),

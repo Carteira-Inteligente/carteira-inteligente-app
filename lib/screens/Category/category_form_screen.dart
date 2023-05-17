@@ -1,4 +1,5 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/constants/widgets.dart';
 import 'package:carteira_inteligente/utils/toast_message.dart';
 import 'package:carteira_inteligente/widgets/Buttons/primary_button.dart';
 import 'package:carteira_inteligente/widgets/Containers/form_container.dart';
@@ -6,8 +7,8 @@ import 'package:carteira_inteligente/widgets/Inputs/input_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CategoriesFormScreen extends StatefulWidget {
-  const CategoriesFormScreen(this.onSubmit, {super.key});
+class CategoryFormScreen extends StatefulWidget {
+  const CategoryFormScreen(this.onSubmit, {super.key});
 
   final void Function(
     String,
@@ -15,10 +16,10 @@ class CategoriesFormScreen extends StatefulWidget {
   ) onSubmit;
 
   @override
-  State<CategoriesFormScreen> createState() => _CategoriesFormScreenState();
+  State<CategoryFormScreen> createState() => _CategoryFormScreenState();
 }
 
-class _CategoriesFormScreenState extends State<CategoriesFormScreen> {
+class _CategoryFormScreenState extends State<CategoryFormScreen> {
   final _descriptionController = TextEditingController();
 
   _submitForm() {

@@ -1,28 +1,24 @@
-import 'package:carteira_inteligente/constants/constants.dart';
+import 'package:carteira_inteligente/constants/colors.dart';
+import 'package:carteira_inteligente/constants/svgs.dart';
+import 'package:carteira_inteligente/widgets/Containers/rounded_icon_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentTypeCard extends StatelessWidget {
-  const PaymentTypeCard(this.description, this.svgIcon, {super.key});
+  const PaymentTypeCard(this.onTap, this.description, this.svgIcon,
+      {super.key});
 
+  final void Function() onTap;
   final String description;
   final String svgIcon;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Container(
-        decoration: const BoxDecoration(borderRadius: wBorderRadius50),
-        child: CircleAvatar(
-          backgroundColor: cGrey.shade200,
-          radius: 24,
-          child: Container(
-            padding: const EdgeInsets.all(6.0),
-            child: SvgPicture.asset(
-              description == "Carteira" ? sWallet : svgIcon,
-            ),
-          ),
-        ),
+      onTap: onTap,
+      leading: RoundedIconContainer(
+        description == "Carteira" ? sWallet : svgIcon,
+        cGrey.shade200,
+        24,
       ),
       title: Text(
         description,
