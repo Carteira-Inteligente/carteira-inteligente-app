@@ -31,7 +31,7 @@ class _InputSearchState extends State<InputSearch> {
             ),
             hintText: "Pesquisar",
             hintStyle: Theme.of(context).textTheme.displaySmall,
-            suffixIcon: const InputIconContainer(sSearch),
+            suffixIcon: const InputIconContainer(svgIcon: sSearch),
           ),
         ),
       ),

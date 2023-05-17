@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class PasswordPatternLabel extends StatelessWidget {
-  const PasswordPatternLabel(this.passwordPattern, this.labelColor,
-      {super.key});
+  const PasswordPatternLabel({
+    super.key,
+    required this.label,
+    required this.labelColor,
+  });
 
-  final String passwordPattern;
+  final String label;
   final Color labelColor;
 
   @override
@@ -12,7 +15,7 @@ class PasswordPatternLabel extends StatelessWidget {
     return Row(
       children: <Widget>[
         Text(
-          passwordPattern,
+          label,
           style: TextStyle(
             // Tema utilizado para labels e informações gerais
             fontFamily: "OpenSans",

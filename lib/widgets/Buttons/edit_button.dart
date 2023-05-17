@@ -7,14 +7,17 @@ import '../../constants/widgets.dart';
 import '../Containers/button_container.dart';
 
 class EditButton extends StatelessWidget {
-  const EditButton(this.onPressed, {super.key});
+  const EditButton({
+    super.key,
+    required this.onPressed,
+  });
 
   final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
-      ElevatedButton.icon(
+      child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 60),
           shape: wButtonBorderRadius,

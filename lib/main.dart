@@ -145,13 +145,13 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Builder(
         builder: (context) {
           if (_selectedIndex == 0) {
-            return const AppBarTitle("Dashboard");
+            return const AppBarTitle(title: "Dashboard");
           } else if (_selectedIndex == 1) {
-            return const AppBarTitle("Lançamentos");
+            return const AppBarTitle(title: "Lançamentos");
           } else if (_selectedIndex == 3) {
-            return const AppBarTitle("Orçamentos");
+            return const AppBarTitle(title: "Orçamentos");
           } else if (_selectedIndex == 4) {
-            return const AppBarTitle("Perfil");
+            return const AppBarTitle(title: "Perfil");
           } else {
             return Container();
           }
@@ -179,8 +179,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   const AppBarFilterButton(),
                   AppBarAddButton(
-                    "Novo lançamento",
-                    () {
+                    tooltip: "Novo lançamento",
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -196,8 +196,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   const AppBarFilterButton(),
                   AppBarAddButton(
-                    "Novo orçamento",
-                    () {
+                    tooltip: "Novo orçamento",
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -238,7 +238,9 @@ class _MyHomePageState extends State<MyHomePage> {
           label: _selectedIndex == 1 ? "Lançamentos" : null,
         ),
         BottomNavigationBarItem(
-          icon: FastEntryButton(FastEntryScreen(_addBasicEntry)),
+          icon: FastEntryButton(
+            fastEntryScreen: FastEntryScreen(_addBasicEntry),
+          ),
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(

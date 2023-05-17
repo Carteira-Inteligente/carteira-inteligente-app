@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'subtitle_label.dart';
 
 class ListLabel extends StatelessWidget {
-  const ListLabel(this.label, {super.key});
+  const ListLabel({
+    super.key,
+    required this.label,
+  });
 
   final String label;
 
@@ -13,7 +16,7 @@ class ListLabel extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 5.0),
-          child: SubtitleLabel(label),
+          child: SubtitleLabel(label: label),
         ),
       ],
     );

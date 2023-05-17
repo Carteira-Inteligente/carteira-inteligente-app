@@ -5,9 +5,13 @@ import '../../utils/format_currency.dart';
 import 'input_label.dart';
 
 class BudgetValueLabel extends StatelessWidget {
-  const BudgetValueLabel(this.value, this.availableValue, {super.key});
+  const BudgetValueLabel({
+    super.key,
+    required this.usedValue,
+    required this.availableValue,
+  });
 
-  final double value;
+  final double usedValue;
   final double availableValue;
 
   @override
@@ -16,7 +20,7 @@ class BudgetValueLabel extends StatelessWidget {
     return Row(
       children: <Widget>[
         Text(
-          formatCurrency.format(value),
+          formatCurrency.format(usedValue),
           style: const TextStyle(
             fontFamily: "OpenSans",
             color: cBlack,
@@ -24,7 +28,9 @@ class BudgetValueLabel extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        InputLabel(" de R\$ ${formatCurrency.format(availableValue)}"),
+        InputLabel(
+          label: " de R\$ ${formatCurrency.format(availableValue)}",
+        ),
       ],
     );
   }

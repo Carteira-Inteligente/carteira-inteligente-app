@@ -7,7 +7,12 @@ import '../Containers/input_container.dart';
 import '../Containers/input_icon_container.dart';
 
 class InputText extends StatelessWidget {
-  const InputText(this.label, this.controller, this.onSubmit, {super.key});
+  const InputText({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.onSubmit,
+  });
 
   final String label;
   final TextEditingController controller;
@@ -16,8 +21,8 @@ class InputText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InputContainer(
-      label,
-      TextField(
+      label: label,
+      child: TextField(
         style: Theme.of(context).textTheme.displaySmall,
         controller: controller,
         keyboardType: TextInputType.text,
@@ -27,7 +32,7 @@ class InputText extends StatelessWidget {
             borderRadius: wInputBorderRadius,
             borderSide: BorderSide(color: cBlack),
           ),
-          suffixIcon: InputIconContainer(sText),
+          suffixIcon: InputIconContainer(svgIcon: sText),
         ),
       ),
     );

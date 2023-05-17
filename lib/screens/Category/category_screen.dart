@@ -13,9 +13,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenFormContainer(
-      "Categorias personalizadas",
-      "Nova categoria",
-      () {
+      title: "Categorias personalizadas",
+      tooltip: "Nova categoria",
+      onPressed: () {
         // Navigator.push(
         //   context,
         //   MaterialPageRoute(
@@ -23,7 +23,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         //   ),
         // );
       },
-      const Placeholder(),
+      child: const Placeholder(),
     );
   }
 }

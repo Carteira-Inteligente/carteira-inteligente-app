@@ -7,13 +7,17 @@ import '../AppBar/app_bar_leading.dart';
 import '../AppBar/app_bar_title.dart';
 
 class ScreenFormContainer extends StatelessWidget {
-  const ScreenFormContainer(
-      this.title, this.tooltip, this.onPressed, this.bodyWidget,
-      {super.key});
+  const ScreenFormContainer({
+    super.key,
+    required this.title,
+    required this.tooltip,
+    required this.child,
+    required this.onPressed,
+  });
 
   final String title;
   final String tooltip;
-  final Widget bodyWidget;
+  final Widget child;
   final void Function() onPressed;
 
   @override
@@ -24,11 +28,11 @@ class ScreenFormContainer extends StatelessWidget {
         elevation: 2,
         backgroundColor: Theme.of(context).primaryColor,
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: AppBarTitle(title),
+        title: AppBarTitle(title: title),
         actions: <Widget>[
           AppBarAddButton(
-            tooltip,
-            onPressed,
+            tooltip: tooltip,
+            onPressed: onPressed,
           ),
         ],
       ),
@@ -44,7 +48,7 @@ class ScreenFormContainer extends StatelessWidget {
                     horizontal: 20.0,
                     vertical: 10.0,
                   ),
-                  child: bodyWidget,
+                  child: child,
                 ),
               ),
             ),

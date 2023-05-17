@@ -70,27 +70,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  final divider = Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-    child: Divider(color: cGrey.shade400),
-  );
-
   @override
   Widget build(BuildContext context) {
+    const divider = Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
+      child: DividerContainer(),
+    );
+
     return Column(
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: 15.0),
           child: RoundedIconContainer(
-            sUser,
-            cGrey.shade200,
-            45,
+            svgPicture: sUser,
+            backgroundColor: cGrey.shade200,
+            radius: 45,
           ),
         ),
-        const SubtitleLabel("Thiago Martins Proença"),
-        const ModalTitleLabel("thiagoenca@gmail.com"),
+        const SubtitleLabel(label: "Thiago Martins Proença"),
+        const ModalTitleLabel(label: "thiagoenca@gmail.com"),
         DialogActionButton(
-          () {
+          onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -98,8 +98,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             );
           },
-          cBlue,
-          "Editar usuário",
+          backgroundColor: cBlue,
+          label: "Editar usuário",
         ),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -110,13 +110,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: ListView(
             children: <Widget>[
               CardContainer(
-                Column(
+                child: Column(
                   children: <Widget>[
-                    const ListLabel("Configurações"),
+                    const ListLabel(label: "Configurações"),
                     ListCard(
-                      sBank,
-                      "Contas",
-                      () {
+                      svgIcon: sBank,
+                      label: "Contas",
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -127,9 +127,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     divider,
                     ListCard(
-                      sCards,
-                      "Cartões de crédito",
-                      () {
+                      svgIcon: sCards,
+                      label: "Cartões de crédito",
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -140,9 +140,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     divider,
                     ListCard(
-                      sCategory,
-                      "Categorias personalizadas",
-                      () {
+                      svgIcon: sCategory,
+                      label: "Categorias personalizadas",
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -153,9 +153,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     divider,
                     ListCard(
-                      sAddBudget,
-                      "Novo orçamento",
-                      () {
+                      svgIcon: sAddBudget,
+                      label: "Novo orçamento",
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -168,13 +168,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               CardContainer(
-                Column(
+                child: Column(
                   children: <Widget>[
-                    const ListLabel("Outros"),
+                    const ListLabel(label: "Outros"),
                     ListCard(
-                      sLogout,
-                      "Sair do aplicativo",
-                      () {
+                      svgIcon: sLogout,
+                      label: "Sair do aplicativo",
+                      onTap: () {
                         ShowDialog.logoutDialog(
                           context,
                           () {
@@ -190,9 +190,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     divider,
                     ListCard(
-                      sDelete,
-                      "Excluir conta",
-                      () {
+                      svgIcon: sDelete,
+                      label: "Excluir conta",
+                      onTap: () {
                         ShowDialog.deleteDialog(
                           context,
                           "usuário",

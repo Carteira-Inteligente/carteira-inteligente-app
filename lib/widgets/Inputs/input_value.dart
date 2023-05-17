@@ -6,8 +6,13 @@ import '../../constants/widgets.dart';
 import '../Containers/input_container.dart';
 import '../Containers/input_icon_container.dart';
 
-class InputNumber extends StatelessWidget {
-  const InputNumber(this.label, this.controller, this.onSubmit, {super.key});
+class InputValue extends StatelessWidget {
+  const InputValue({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.onSubmit,
+  });
 
   final String label;
   final TextEditingController controller;
@@ -16,8 +21,8 @@ class InputNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InputContainer(
-      label,
-      TextField(
+      label: label,
+      child: TextField(
         style: Theme.of(context).textTheme.displaySmall,
         controller: controller,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -29,7 +34,7 @@ class InputNumber extends StatelessWidget {
           ),
           prefixText: "R\$ ",
           hintStyle: Theme.of(context).textTheme.displaySmall,
-          suffixIcon: const InputIconContainer(sMoney),
+          suffixIcon: const InputIconContainer(svgIcon: sMoney),
         ),
       ),
     );

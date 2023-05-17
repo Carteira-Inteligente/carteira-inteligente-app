@@ -13,9 +13,9 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenFormContainer(
-      "Contas",
-      "Nova conta",
-      () {
+      title: "Contas",
+      tooltip: "Nova conta",
+      onPressed: () {
         // Navigator.push(
         //   context,
         //   MaterialPageRoute(
@@ -23,7 +23,7 @@ class _AccountScreenState extends State<AccountScreen> {
         //   ),
         // );
       },
-      const Placeholder(),
+      child: const Placeholder(),
     );
   }
 }

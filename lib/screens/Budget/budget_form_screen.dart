@@ -4,7 +4,7 @@ import '../../utils/show_modal.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_button.dart';
 import '../../widgets/Containers/form_container.dart';
-import '../../widgets/Inputs/input_number.dart';
+import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_select.dart';
 import '../Category/category_list_screen.dart';
 
@@ -45,14 +45,17 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Novo orçamento",
-      Column(
+      title: "Novo orçamento",
+      bottonButton: PrimaryButton(
+        textButton: "Salvar",
+        onPressed: _submitForm,
+      ),
+      child: Column(
         children: <Widget>[
           InputSelect(
-            "Categoria",
-            _idCategoryController,
-            // _submitForm,
-            () => ShowModal.showModal(
+            label: "Categoria",
+            controller: _idCategoryController,
+            onTap: () => ShowModal.showModal(
               context,
               CategoryListScreen(
                 (category) {
@@ -62,18 +65,14 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
                 },
               ),
             ),
-            _selectedCategory,
+            selectedOption: _selectedCategory,
           ),
-          InputNumber(
-            "Valor limite",
-            _valueController,
-            _submitForm,
+          InputValue(
+            label: "Valor limite",
+            controller: _valueController,
+            onSubmit: _submitForm,
           ),
         ],
-      ),
-      PrimaryButton(
-        "Salvar",
-        _submitForm,
       ),
     );
   }

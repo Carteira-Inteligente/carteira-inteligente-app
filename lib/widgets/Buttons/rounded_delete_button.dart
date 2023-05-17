@@ -8,7 +8,11 @@ import '../../utils/show_dialog.dart';
 import '../Containers/button_container.dart';
 
 class RoundedDeleteButton extends StatelessWidget {
-  const RoundedDeleteButton(this.dataLabel, this.onPressed, {super.key});
+  const RoundedDeleteButton({
+    super.key,
+    required this.dataLabel,
+    required this.onPressed,
+  });
 
   final String dataLabel;
   final void Function() onPressed;
@@ -16,7 +20,7 @@ class RoundedDeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
-      ElevatedButton(
+      child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           minimumSize: wRoundButtonSize,
           shape: wButtonBorderRadius,

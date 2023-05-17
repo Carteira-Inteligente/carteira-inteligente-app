@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Subtitle2Label extends StatelessWidget {
-  const Subtitle2Label(this.subtitle, {super.key});
+  const Subtitle2Label({
+    super.key,
+    required this.label,
+  });
 
-  final String subtitle;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(
-        subtitle,
+        label,
         style: Theme.of(context).textTheme.titleSmall,
       ),
     );

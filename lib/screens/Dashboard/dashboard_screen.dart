@@ -20,46 +20,46 @@ class _DashboardScreenState extends State<DashboardScreen> {
       children: <Widget>[
         Row(
           children: const <Widget>[
-            SubtitleLabel("Mensal"),
+            SubtitleLabel(label: "Mensal"),
           ],
         ),
         Row(
           children: <Widget>[
             DashboardSmallCard(
-              "A pagar",
-              Column(
-                children: <Widget>[
+              cardTitle: "A pagar",
+              child: Column(
+                children: const <Widget>[
                   DashboardCardLabel(
-                    "Total previsto",
-                    123.54,
-                    cBlue,
+                    cardSubtitle: "Total previsto",
+                    value: 123.54,
+                    valueColor: cBlue,
                   ),
                   DashboardCardLabel(
-                    "Total em atraso",
-                    45.32,
-                    cRed,
+                    cardSubtitle: "Total em atraso",
+                    value: 45.32,
+                    valueColor: cRed,
                   ),
                 ],
               ),
             ),
-            DashboardSmallCard(
-              "Pagos",
-              DashboardCardLabel(
-                "Total pago",
-                1003.30,
-                cGreen,
+            const DashboardSmallCard(
+              cardTitle: "Pagos",
+              child: DashboardCardLabel(
+                cardSubtitle: "Total pago",
+                value: 1003.30,
+                valueColor: cGreen,
               ),
             ),
           ],
         ),
         Row(
           children: const <Widget>[
-            SubtitleLabel("Anual"),
+            SubtitleLabel(label: "Anual"),
           ],
         ),
         Row(
           children: const <Widget>[
-            DashboardLargeCard("Gráfico de evolução"),
+            DashboardLargeCard(cardTitle: "Gráfico de evolução"),
           ],
         ),
       ],

@@ -4,8 +4,12 @@ import '../../constants/colors.dart';
 import '../../constants/widgets.dart';
 
 class DialogActionButton extends StatelessWidget {
-  const DialogActionButton(this.onPressed, this.backgroundColor, this.label,
-      {super.key});
+  const DialogActionButton({
+    super.key,
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.label,
+  });
 
   final void Function() onPressed;
   final Color backgroundColor;

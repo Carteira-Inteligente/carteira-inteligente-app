@@ -7,14 +7,17 @@ import '../../constants/widgets.dart';
 import '../Containers/button_container.dart';
 
 class RoundedEditButton extends StatelessWidget {
-  const RoundedEditButton(this.onPressed, {super.key});
+  const RoundedEditButton({
+    super.key,
+    required this.onPressed,
+  });
 
   final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
-      ElevatedButton(
+      child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           minimumSize: wRoundButtonSize,
           shape: wButtonBorderRadius,

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RecurrenceCard extends StatelessWidget {
-  const RecurrenceCard(this.onTap, this.description, {super.key});
+  const RecurrenceCard({
+    super.key,
+    required this.onTap,
+    required this.description,
+  });
 
   final void Function() onTap;
   final String description;

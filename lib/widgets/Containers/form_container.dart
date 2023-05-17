@@ -7,12 +7,16 @@ import '../AppBar/app_bar_title.dart';
 import 'positioned_container.dart';
 
 class FormContainer extends StatelessWidget {
-  const FormContainer(this.title, this.bodyWidget, this.bottonButton,
-      {super.key});
+  const FormContainer({
+    super.key,
+    required this.title,
+    required this.bottonButton,
+    required this.child,
+  });
 
   final String title;
-  final Widget bodyWidget;
   final Widget bottonButton;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +25,9 @@ class FormContainer extends StatelessWidget {
       elevation: 2,
       backgroundColor: Theme.of(context).primaryColor,
       systemOverlayStyle: SystemUiOverlayStyle.light,
-      title: AppBarTitle(title),
+      title: AppBarTitle(title: title),
     );
-    final positionedContainer = PositionedContainer(bottonButton);
+    final positionedContainer = PositionedContainer(bottonButton: bottonButton);
     final height =
         MediaQuery.of(context).size.height - appBar.preferredSize.height;
 
@@ -43,7 +47,7 @@ class FormContainer extends StatelessWidget {
                         horizontal: 20.0,
                         vertical: 10.0,
                       ),
-                      child: bodyWidget,
+                      child: child,
                     ),
                   ),
                 ),

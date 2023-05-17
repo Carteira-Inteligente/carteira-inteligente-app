@@ -34,18 +34,18 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         ),
         const Padding(
           padding: EdgeInsets.only(top: 8.0),
-          child: Subtitle2Label("Que bom que você voltou!"),
+          child: Subtitle2Label(label: "Que bom que você voltou!"),
         ),
         InputEmail(
-          "E-mail",
-          _emailController,
-          () {},
+          label: "E-mail",
+          controller: _emailController,
+          onSubmit: () {},
         ),
         InputPassword(
-          "Senha",
-          _passwordController,
-          () {},
-          (_) {},
+          label: "Senha",
+          controller: _passwordController,
+          onSubmit: () {},
+          onChanged: (_) {},
         ),
         TextButton(
           onPressed: () {
@@ -62,8 +62,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           ),
         ),
         PrimaryButton(
-          "Entrar",
-          () {
+          textButton: "Entrar",
+          onPressed: () {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(

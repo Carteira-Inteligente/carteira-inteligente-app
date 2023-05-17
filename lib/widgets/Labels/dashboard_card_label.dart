@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 import '../../utils/format_currency.dart';
 
 class DashboardCardLabel extends StatelessWidget {
-  DashboardCardLabel(this.cardSubtitle, this.value, this.valueColor,
-      {super.key});
+  const DashboardCardLabel({
+    super.key,
+    required this.cardSubtitle,
+    required this.value,
+    required this.valueColor,
+  });
 
   final String cardSubtitle;
   final double value;
   final Color valueColor;
-  final formatCurrency = getFormatCurrency();
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = getFormatCurrency();
+
     return Column(
       children: <Widget>[
         Text(

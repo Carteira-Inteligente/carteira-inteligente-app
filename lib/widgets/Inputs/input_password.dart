@@ -7,9 +7,13 @@ import '../../constants/widgets.dart';
 import '../Containers/input_container.dart';
 
 class InputPassword extends StatefulWidget {
-  const InputPassword(
-      this.label, this.controller, this.onSubmit, this.onChanged,
-      {super.key});
+  const InputPassword({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.onSubmit,
+    required this.onChanged,
+  });
 
   final String label;
   final TextEditingController controller;
@@ -26,8 +30,8 @@ class _InputPasswordState extends State<InputPassword> {
   @override
   Widget build(BuildContext context) {
     return InputContainer(
-      widget.label,
-      TextField(
+      label: widget.label,
+      child: TextField(
         onChanged: widget.onChanged,
         style: Theme.of(context).textTheme.displaySmall,
         obscureText: _obscureText,

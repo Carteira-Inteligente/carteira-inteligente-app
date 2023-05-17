@@ -5,9 +5,13 @@ import '../Labels/list_tile_label.dart';
 import 'divider_container.dart';
 
 class DialogContainer extends StatelessWidget {
-  const DialogContainer(this.dialogTitle, this.contentText, this.actionButton,
-      this.secondaryButton,
-      {super.key});
+  const DialogContainer({
+    super.key,
+    required this.dialogTitle,
+    required this.contentText,
+    required this.actionButton,
+    required this.secondaryButton,
+  });
 
   final String dialogTitle;
   final Widget contentText;
@@ -21,7 +25,7 @@ class DialogContainer extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              ListTileLabel(dialogTitle),
+              ListTileLabel(label: dialogTitle),
             ],
           ),
           const DividerContainer(),

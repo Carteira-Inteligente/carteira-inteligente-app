@@ -4,7 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../constants/colors.dart';
 
 class InputIconContainer extends StatelessWidget {
-  const InputIconContainer(this.svgIcon, {super.key});
+  const InputIconContainer({
+    super.key,
+    required this.svgIcon,
+  });
 
   final String svgIcon;
 

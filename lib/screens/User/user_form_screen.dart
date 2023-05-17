@@ -68,45 +68,45 @@ class _UserFormScreenState extends State<UserFormScreen> {
     Color passwordLabelColor = _isPasswordValid ? cGreen : cGrey.shade600;
 
     return FormContainer(
-      "Novo usuário",
-      Column(
+      title: "Novo usuário",
+      bottonButton: PrimaryButton(
+        textButton: "Cadastrar",
+        onPressed: _submitForm,
+      ),
+      child: Column(
         children: <Widget>[
           Row(
             children: const <Widget>[
-              TitleLabel("Vamos começar!"),
+              TitleLabel(label: "Vamos começar!"),
             ],
           ),
           const SubtitleLabel(
-            "Preencha os campos abaixo para criar seu usuário.",
+            label: "Preencha os campos abaixo para criar seu usuário.",
           ),
           InputText(
-            "Digite seu nome ou apelido",
-            _nameController,
-            _submitForm,
+            label: "Digite seu nome ou apelido",
+            controller: _nameController,
+            onSubmit: _submitForm,
           ),
           InputEmail(
-            "E-mail",
-            _emailController,
-            _submitForm,
+            label: "E-mail",
+            controller: _emailController,
+            onSubmit: _submitForm,
           ),
           InputPassword(
-            "Senha",
-            _passwordController,
-            _submitForm,
-            _validatePassword,
+            label: "Senha",
+            controller: _passwordController,
+            onSubmit: _submitForm,
+            onChanged: _validatePassword,
           ),
           InputPassword(
-            "Confirmar senha",
-            _confirmPasswordController,
-            _submitForm,
-            (_) {},
+            label: "Confirmar senha",
+            controller: _confirmPasswordController,
+            onSubmit: _submitForm,
+            onChanged: (_) {},
           ),
-          PasswordRulesContainer(passwordLabelColor),
+          PasswordRulesContainer(labelColor: passwordLabelColor),
         ],
-      ),
-      PrimaryButton(
-        "Cadastrar",
-        _submitForm,
       ),
     );
   }

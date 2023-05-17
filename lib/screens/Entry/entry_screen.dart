@@ -23,17 +23,17 @@ class _EntryScreenState extends State<EntryScreen> {
 
   Widget _buildEntryCards(BuildContext context, Entry entry) {
     return EntryCard(
-      () => ShowModal.showModal(
+      onTap: () => ShowModal.showModal(
         context,
         const EntryDetailsScreen(),
       ),
-      entry.idCategory == 1 ? sElectricity : sHouse,
-      entry.idCategory == 1 ? cAmber.shade700 : cCyan.shade700,
-      entry.description,
-      100.00,
-      "14/05/2023",
-      entry.paid,
-      entry.paid,
+      categoryIcon: entry.idCategory == 1 ? sElectricity : sHouse,
+      categoryColor: entry.idCategory == 1 ? cAmber.shade700 : cCyan.shade700,
+      title: entry.description,
+      value: 100.00,
+      dueDate: "14/05/2023",
+      paymentStatus: entry.paid,
+      onPressedPayment: entry.paid,
     );
   }
 
@@ -42,7 +42,7 @@ class _EntryScreenState extends State<EntryScreen> {
     return Column(
       children: <Widget>[
         _entries.isEmpty
-            ? const NoDataContainer("lançamentos")
+            ? const NoDataContainer(description: "lançamentos")
             : SizedBox(
                 height: MediaQuery.of(context).size.height * 0.71,
                 child: ListView.builder(

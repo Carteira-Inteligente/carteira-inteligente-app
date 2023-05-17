@@ -5,7 +5,12 @@ import '../../constants/colors.dart';
 import '../Labels/input_label.dart';
 
 class ListCard extends StatelessWidget {
-  const ListCard(this.svgIcon, this.label, this.onTap, {super.key});
+  const ListCard({
+    super.key,
+    required this.svgIcon,
+    required this.label,
+    required this.onTap,
+  });
 
   final String svgIcon;
   final String label;
@@ -18,7 +23,7 @@ class ListCard extends StatelessWidget {
         svgIcon,
         color: label == "Excluir conta" ? cRed : cGrey.shade600,
       ),
-      title: InputLabel(label),
+      title: InputLabel(label: label),
       onTap: onTap,
     );
   }

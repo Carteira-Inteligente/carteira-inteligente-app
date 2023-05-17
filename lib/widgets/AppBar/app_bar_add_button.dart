@@ -5,7 +5,11 @@ import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 
 class AppBarAddButton extends StatefulWidget {
-  const AppBarAddButton(this.tooltip, this.onPressed, {super.key});
+  const AppBarAddButton({
+    super.key,
+    required this.tooltip,
+    required this.onPressed,
+  });
 
   final String tooltip;
   final void Function() onPressed;

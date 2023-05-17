@@ -11,9 +11,17 @@ import '../Containers/rounded_icon_container.dart';
 import '../Labels/list_tile_label.dart';
 
 class EntryCard extends StatelessWidget {
-  const EntryCard(this.onTap, this.categoryIcon, this.categoryColor, this.title,
-      this.value, this.dueDate, this.paymentStatus, this.onPressedPayment,
-      {super.key});
+  const EntryCard({
+    super.key,
+    required this.onTap,
+    required this.categoryIcon,
+    required this.categoryColor,
+    required this.title,
+    required this.value,
+    required this.dueDate,
+    required this.paymentStatus,
+    required this.onPressedPayment,
+  });
 
   final void Function() onTap;
   final String categoryIcon;
@@ -29,14 +37,14 @@ class EntryCard extends StatelessWidget {
     var formatCurrency = getFormatCurrency();
 
     return CardContainer(
-      ListTile(
+      child: ListTile(
         onTap: onTap,
         leading: RoundedIconContainer(
-          categoryIcon,
-          categoryColor,
-          24,
+          svgPicture: categoryIcon,
+          backgroundColor: categoryColor,
+          radius: 24,
         ),
-        title: ListTileLabel(title),
+        title: ListTileLabel(label: title),
         subtitle: Text(
           "Valor: ${formatCurrency.format(value)}\n"
           "Vencimento: $dueDate",

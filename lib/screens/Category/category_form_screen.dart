@@ -38,19 +38,19 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Nova categoria",
-      Column(
+      title: "Nova categoria",
+      bottonButton: PrimaryButton(
+        textButton: "Salvar",
+        onPressed: _submitForm,
+      ),
+      child: Column(
         children: <Widget>[
           InputText(
-            "Descrição",
-            _descriptionController,
-            _submitForm,
+            label: "Descrição",
+            controller: _descriptionController,
+            onSubmit: _submitForm,
           ),
         ],
-      ),
-      PrimaryButton(
-        "Salvar",
-        _submitForm,
       ),
     );
   }

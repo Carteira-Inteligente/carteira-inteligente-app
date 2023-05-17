@@ -14,12 +14,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Notificações",
-      const Placeholder(),
-      SecondaryButton(
-        "Limpar tudo",
-        () {},
+      title: "Notificações",
+      bottonButton: SecondaryButton(
+        textButton: "Limpar tudo",
+        onPressed: () {},
       ),
+      child: const Placeholder(),
     );
   }
 }

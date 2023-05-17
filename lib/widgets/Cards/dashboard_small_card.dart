@@ -4,10 +4,14 @@ import '../Containers/card_container.dart';
 import '../Labels/subtitle2_label.dart';
 
 class DashboardSmallCard extends StatelessWidget {
-  const DashboardSmallCard(this.cardTitle, this.widget, {super.key});
+  const DashboardSmallCard({
+    super.key,
+    required this.cardTitle,
+    required this.child,
+  });
 
   final String cardTitle;
-  final Widget widget;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +19,13 @@ class DashboardSmallCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.5,
       height: 170,
       child: CardContainer(
-        Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Subtitle2Label(cardTitle),
+            Subtitle2Label(label: cardTitle),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: widget,
+              child: child,
             ),
           ],
         ),

@@ -7,7 +7,10 @@ import '../../constants/widgets.dart';
 import '../../utils/show_modal.dart';
 
 class FastEntryButton extends StatelessWidget {
-  const FastEntryButton(this.fastEntryScreen, {super.key});
+  const FastEntryButton({
+    super.key,
+    required this.fastEntryScreen,
+  });
 
   final Widget fastEntryScreen;
 

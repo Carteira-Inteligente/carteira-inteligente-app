@@ -33,14 +33,14 @@ class _BudgetScreenState extends State<BudgetScreen> {
       },
       budget.idCategory == 1
           ? RoundedIconContainer(
-              sElectricity,
-              cAmber.shade700,
-              14,
+              svgPicture: sElectricity,
+              backgroundColor: cAmber.shade700,
+              radius: 14,
             )
           : RoundedIconContainer(
-              sHouse,
-              cCyan.shade700,
-              14,
+              svgPicture: sHouse,
+              backgroundColor: cCyan.shade700,
+              radius: 14,
             ),
       budget.idCategory == 1 ? "Energia elétrica" : "Casa",
       budget.value,
@@ -53,7 +53,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
     return Column(
       children: <Widget>[
         _budgets.isEmpty
-            ? const NoDataContainer("orçamentos")
+            ? const NoDataContainer(description: "orçamentos")
             : SizedBox(
                 height: MediaQuery.of(context).size.height * 0.71,
                 child: ListView.builder(

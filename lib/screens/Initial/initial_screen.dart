@@ -106,15 +106,15 @@ class _InitialScreenState extends State<InitialScreen> {
               child: Column(
                 children: <Widget>[
                   PrimaryButton(
-                    "Entrar",
-                    () => ShowModal.showModal(
+                    textButton: "Entrar",
+                    onPressed: () => ShowModal.showModal(
                       context,
                       AuthenticationScreen(_authUser),
                     ),
                   ),
                   SecondaryButton(
-                    "Ainda não tenho cadastro",
-                    () => Navigator.push(
+                    textButton: "Ainda não tenho cadastro",
+                    onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => UserFormScreen(_addUser),

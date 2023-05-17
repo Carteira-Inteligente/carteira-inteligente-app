@@ -8,7 +8,11 @@ import '../../constants/svgs.dart';
 import '../Containers/inkwell_container.dart';
 
 class InputDate extends StatefulWidget {
-  const InputDate(this.label, this.controller, {super.key});
+  const InputDate({
+    super.key,
+    required this.label,
+    required this.controller,
+  });
 
   final String label;
   final DateTime controller;
@@ -84,12 +88,12 @@ class _InputDateState extends State<InputDate> {
   @override
   Widget build(BuildContext context) {
     return InkwellContainer(
-      widget.label,
-      _selectedDate == null
+      label: widget.label,
+      text: _selectedDate == null
           ? DateFormat("dd/MM/y").format(DateTime.now())
           : DateFormat("dd/MM/y").format(widget.controller),
-      sCalendar,
-      () => Platform.isIOS
+      icon: sCalendar,
+      onTap: () => Platform.isIOS
           ? _selectCupertinoDatePicker(context)
           : _selectDatePicker(context),
     );

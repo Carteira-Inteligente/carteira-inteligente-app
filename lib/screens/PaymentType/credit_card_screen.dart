@@ -13,9 +13,9 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenFormContainer(
-      "Cartões de crédito",
-      "Novo cartão de crédito",
-      () {
+      title: "Cartões de crédito",
+      tooltip: "Novo cartão de crédito",
+      onPressed: () {
         // Navigator.push(
         //   context,
         //   MaterialPageRoute(
@@ -23,7 +23,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         //   ),
         // );
       },
-      const Placeholder(),
+      child: const Placeholder(),
     );
   }
 }

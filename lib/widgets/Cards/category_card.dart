@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard(this.onTap, this.icon, this.description, {super.key});
+  const CategoryCard({
+    super.key,
+    required this.onTap,
+    required this.icon,
+    required this.description,
+  });
 
   final void Function() onTap;
   final Widget icon;

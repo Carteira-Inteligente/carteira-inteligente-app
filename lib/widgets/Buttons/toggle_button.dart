@@ -4,7 +4,10 @@ import '../../constants/colors.dart';
 import '../Labels/input_label.dart';
 
 class ToggleButton extends StatefulWidget {
-  const ToggleButton(this.label, {super.key});
+  const ToggleButton({
+    super.key,
+    required this.label,
+  });
 
   final String label;
 
@@ -21,7 +24,7 @@ class _ToggleButtonState extends State<ToggleButton> {
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
         children: <Widget>[
-          InputLabel(widget.label),
+          InputLabel(label: widget.label),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: SizedBox(

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppBarTitle extends StatelessWidget {
-  const AppBarTitle(this.title, {super.key});
+  const AppBarTitle({
+    super.key,
+    required this.title,
+  });
 
   final String title;
 

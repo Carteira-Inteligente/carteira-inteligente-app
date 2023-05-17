@@ -5,7 +5,11 @@ import '../../constants/widgets.dart';
 import '../Containers/button_container.dart';
 
 class SecondaryButton extends StatelessWidget {
-  const SecondaryButton(this.textButton, this.onPressed, {super.key});
+  const SecondaryButton({
+    super.key,
+    required this.textButton,
+    required this.onPressed,
+  });
 
   final String textButton;
   final void Function() onPressed;
@@ -13,7 +17,7 @@ class SecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
-      OutlinedButton(
+      child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
           shape: wButtonBorderRadius,

@@ -30,25 +30,35 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
 
   Widget _buildEntryCards(BuildContext context, Entry entry) {
     return EntryCard(
-      () => ShowModal.showModal(
+      onTap: () => ShowModal.showModal(
         context,
         const EntryDetailsScreen(),
       ),
-      sElectricity,
-      cAmber.shade700,
-      entry.description,
-      100.00,
-      "14/05/2023",
-      entry.paid,
-      entry.paid,
+      categoryIcon: sElectricity,
+      categoryColor: cAmber.shade700,
+      title: entry.description,
+      value: 100.00,
+      dueDate: "14/05/2023",
+      paymentStatus: entry.paid,
+      onPressedPayment: entry.paid,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Detalhes do orçamento",
-      Column(
+      title: "Detalhes do orçamento",
+      bottonButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          EditButton(onPressed: () {}),
+          DeleteButton(
+            dataLabel: "orçamento",
+            onPressed: () {},
+          ),
+        ],
+      ),
+      child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -59,13 +69,13 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                   child: Row(
                     children: <Widget>[
                       RoundedIconContainer(
-                        sElectricity,
-                        cAmber.shade700,
-                        24,
+                        svgPicture: sElectricity,
+                        backgroundColor: cAmber.shade700,
+                        radius: 24,
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 8.0),
-                        child: SubtitleLabel("Energia elétrica"),
+                        child: SubtitleLabel(label: "Energia elétrica"),
                       ),
                     ],
                   ),
@@ -74,10 +84,13 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                   children: const <Widget>[
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: InputLabel("Disponível"),
+                      child: InputLabel(label: "Disponível"),
                     ),
-                    BudgetValueLabel(500.00, 880.00),
-                    ProgresBarContainer(0.3),
+                    BudgetValueLabel(
+                      usedValue: 500.00,
+                      availableValue: 880.00,
+                    ),
+                    ProgresBarContainer(percentage: 0.3),
                   ],
                 ),
                 const DividerContainer(),
@@ -88,12 +101,12 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
             children: <Widget>[
               Row(
                 children: const <Widget>[
-                  SubtitleLabel("Lançamentos do mês"),
+                  SubtitleLabel(label: "Lançamentos do mês"),
                 ],
               ),
               SingleChildScrollView(
                 child: _entries.isEmpty
-                    ? const NoDataContainer("lançamento")
+                    ? const NoDataContainer(description: "lançamento")
                     : SizedBox(
                         height: MediaQuery.of(context).size.height * 0.67,
                         child: ListView.builder(
@@ -115,13 +128,6 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
               ),
             ],
           )
-        ],
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          EditButton(() {}),
-          DeleteButton("orçamento", () {}),
         ],
       ),
     );

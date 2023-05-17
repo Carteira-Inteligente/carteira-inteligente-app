@@ -25,12 +25,12 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
 
   Widget _buildCategoryCard(BuildContext context, Category category) {
     return CategoryCard(
-      () {
+      onTap: () {
         widget.onCategorySelected(category.description);
         Navigator.pop(context);
       },
-      category.icon,
-      category.description,
+      icon: category.icon,
+      description: category.description,
     );
   }
 
@@ -39,7 +39,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
     _sortCategories();
     return Column(
       children: <Widget>[
-        const ModalTitleLabel("Selecionar categoria"),
+        const ModalTitleLabel(label: "Selecionar categoria"),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.66,
           child: ListView.builder(
@@ -61,8 +61,8 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
           ),
         ),
         PrimaryButton(
-          "Nova categoria",
-          () {},
+          textButton: "Nova categoria",
+          onPressed: () {},
         ),
       ],
     );

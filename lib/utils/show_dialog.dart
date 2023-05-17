@@ -15,8 +15,8 @@ class ShowDialog {
       context: context,
       builder: (BuildContext context) {
         return DialogContainer(
-          "Deseja excluir este $dataLabel?",
-          Text.rich(
+          dialogTitle: "Deseja excluir este $dataLabel?",
+          contentText: Text.rich(
             TextSpan(
               text: "Todas informações associadas a este registro serão "
                   "permanentemente removidas.\n",
@@ -34,11 +34,11 @@ class ShowDialog {
               ],
             ),
           ),
-          const DialogSecondaryButton(),
-          DialogActionButton(
-            onPressed,
-            cRed,
-            "Excluir $dataLabel",
+          secondaryButton: const DialogSecondaryButton(),
+          actionButton: DialogActionButton(
+            onPressed: onPressed,
+            backgroundColor: cRed,
+            label: "Excluir $dataLabel",
           ),
         );
       },
@@ -50,17 +50,17 @@ class ShowDialog {
       context: context,
       builder: (BuildContext context) {
         return DialogContainer(
-          "Deseja cancelar este pagamento?",
-          Text(
+          dialogTitle: "Deseja cancelar este pagamento?",
+          contentText: Text(
             "Este lançamento ficará marcado como pendente até que você nos "
             "informe que já realizou o pagamento.",
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          const DialogSecondaryButton(),
-          DialogActionButton(
-            onPressed,
-            cBlue,
-            "Cancelar pagamento",
+          secondaryButton: const DialogSecondaryButton(),
+          actionButton: DialogActionButton(
+            onPressed: onPressed,
+            backgroundColor: cBlue,
+            label: "Cancelar pagamento",
           ),
         );
       },
@@ -72,17 +72,17 @@ class ShowDialog {
       context: context,
       builder: (BuildContext context) {
         return DialogContainer(
-          "Deseja cancelar este cadastro?",
-          Text(
+          dialogTitle: "Deseja cancelar este cadastro?",
+          contentText: Text(
             "Este cadastro não será salvo e você perderá as informações "
             "preenchidas.",
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          const DialogSecondaryButton(),
-          DialogActionButton(
-            onPressed,
-            cBlue,
-            "Cancelar cadastro",
+          secondaryButton: const DialogSecondaryButton(),
+          actionButton: DialogActionButton(
+            onPressed: onPressed,
+            backgroundColor: cBlue,
+            label: "Cancelar cadastro",
           ),
         );
       },
@@ -94,16 +94,16 @@ class ShowDialog {
       context: context,
       builder: (BuildContext context) {
         return DialogContainer(
-          "Encerrar sessão",
-          Text(
+          dialogTitle: "Encerrar sessão",
+          contentText: Text(
             "Tem certeza que deseja sair do aplicativo?",
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          const DialogSecondaryButton(),
-          DialogActionButton(
-            onPressed,
-            cBlue,
-            "Sair do aplicativo",
+          secondaryButton: const DialogSecondaryButton(),
+          actionButton: DialogActionButton(
+            onPressed: onPressed,
+            backgroundColor: cBlue,
+            label: "Sair do aplicativo",
           ),
         );
       },

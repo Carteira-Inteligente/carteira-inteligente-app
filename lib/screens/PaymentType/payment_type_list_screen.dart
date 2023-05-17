@@ -22,12 +22,12 @@ class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
 
   _buildAccountPaymentCard(BuildContext context, PaymentType paymentType) {
     return PaymentTypeCard(
-      () {
+      onTap: () {
         widget.onPaymentTypeSelected(paymentType.description);
         Navigator.pop(context);
       },
-      paymentType.description,
-      paymentType.type == "ACCOUNT" ? sBank : sCards,
+      description: paymentType.description,
+      svgIcon: paymentType.type == "ACCOUNT" ? sBank : sCards,
     );
   }
 
@@ -35,7 +35,7 @@ class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel("Selecionar forma de pagamento"),
+        const ModalTitleLabel(label: "Selecionar forma de pagamento"),
         SizedBox(
           height: 450,
           child: ListView.builder(
@@ -57,8 +57,8 @@ class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
           ),
         ),
         PrimaryButton(
-          "Nova forma de pagamento",
-          () {},
+          textButton: "Nova forma de pagamento",
+          onPressed: () {},
         ),
       ],
     );

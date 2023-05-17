@@ -21,7 +21,7 @@ class BudgetCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardContainer(
-      ListTile(
+      child: ListTile(
         onTap: onTap,
         title: Padding(
           padding: const EdgeInsets.symmetric(vertical: 6.0),
@@ -30,7 +30,7 @@ class BudgetCard extends StatelessWidget {
               pageIcon,
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: ListTileLabel(description),
+                child: ListTileLabel(label: description),
               ),
             ],
           ),
@@ -40,10 +40,13 @@ class BudgetCard extends StatelessWidget {
             const DividerContainer(),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: InputLabel("Disponível"),
+              child: InputLabel(label: "Disponível"),
             ),
-            BudgetValueLabel(value, 880.00),
-            ProgresBarContainer(percentage),
+            BudgetValueLabel(
+              usedValue: value,
+              availableValue: 880.00,
+            ),
+            ProgresBarContainer(percentage: percentage),
           ],
         ),
       ),

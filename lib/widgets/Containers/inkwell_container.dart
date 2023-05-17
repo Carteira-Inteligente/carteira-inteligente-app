@@ -6,8 +6,13 @@ import '../../constants/widgets.dart';
 import 'input_container.dart';
 
 class InkwellContainer extends StatelessWidget {
-  const InkwellContainer(this.label, this.text, this.icon, this.onTap,
-      {super.key});
+  const InkwellContainer({
+    super.key,
+    required this.label,
+    required this.text,
+    required this.icon,
+    required this.onTap,
+  });
 
   final String label;
   final String text;
@@ -17,8 +22,8 @@ class InkwellContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InputContainer(
-      label,
-      InkWell(
+      label: label,
+      child: InkWell(
         onTap: onTap,
         child: InputDecorator(
           decoration: wInputDecorarion,

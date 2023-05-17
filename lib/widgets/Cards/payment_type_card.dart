@@ -5,8 +5,12 @@ import '../../constants/svgs.dart';
 import '../Containers/rounded_icon_container.dart';
 
 class PaymentTypeCard extends StatelessWidget {
-  const PaymentTypeCard(this.onTap, this.description, this.svgIcon,
-      {super.key});
+  const PaymentTypeCard({
+    super.key,
+    required this.onTap,
+    required this.description,
+    required this.svgIcon,
+  });
 
   final void Function() onTap;
   final String description;
@@ -17,9 +21,9 @@ class PaymentTypeCard extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: RoundedIconContainer(
-        description == "Carteira" ? sWallet : svgIcon,
-        cGrey.shade200,
-        24,
+        svgPicture: description == "Carteira" ? sWallet : svgIcon,
+        backgroundColor: cGrey.shade200,
+        radius: 24,
       ),
       title: Text(
         description,

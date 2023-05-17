@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ButtonContainer extends StatelessWidget {
-  const ButtonContainer(this.widget, {super.key});
+  const ButtonContainer({
+    super.key,
+    required this.child,
+  });
 
-  final Widget widget;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class ButtonContainer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          widget,
+          child,
         ],
       ),
     );

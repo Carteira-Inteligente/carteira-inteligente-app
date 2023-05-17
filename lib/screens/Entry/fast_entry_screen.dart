@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_button.dart';
-import '../../widgets/Inputs/input_number.dart';
+import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_text.dart';
 import '../../widgets/Labels/modal_title_label.dart';
 
@@ -46,7 +46,7 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel("Novo lançamento rápido"),
+        const ModalTitleLabel(label: "Novo lançamento rápido"),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.25,
           child: Padding(
@@ -54,14 +54,14 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
             child: Column(
               children: <Widget>[
                 InputText(
-                  "Descrição",
-                  _descriptionController,
-                  _submitForm,
+                  label: "Descrição",
+                  controller: _descriptionController,
+                  onSubmit: _submitForm,
                 ),
-                InputNumber(
-                  "Valor",
-                  _paidValueController,
-                  _submitForm,
+                InputValue(
+                  label: "Valor",
+                  controller: _paidValueController,
+                  onSubmit: _submitForm,
                 ),
               ],
             ),
@@ -72,13 +72,14 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.0),
               child: ModalTitleLabel(
-                "Após salvar, você poderá editar e incluir outras informações "
-                "neste registro. Basta acessar o item \"Lançamentos\" no menu.",
+                label: "Após salvar, você poderá editar e incluir outras "
+                    "informações neste registro. Basta acessar o item "
+                    "\"Lançamentos\" no menu.",
               ),
             ),
             PrimaryButton(
-              "Salvar",
-              _submitForm,
+              textButton: "Salvar",
+              onPressed: _submitForm,
             ),
           ],
         ),

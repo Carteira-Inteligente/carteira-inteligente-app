@@ -22,7 +22,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel("Detalhes do lançamento"),
+        const ModalTitleLabel(label: "Detalhes do lançamento"),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -30,9 +30,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 30.0),
-                child: RoundedEditButton(
-                  () {},
-                ),
+                child: RoundedEditButton(onPressed: () {}),
               ),
               Container(
                 decoration: const BoxDecoration(
@@ -54,8 +52,8 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 30.0),
                 child: RoundedDeleteButton(
-                  "lançamento",
-                  () {},
+                  dataLabel: "lançamento",
+                  onPressed: () {},
                 ),
               ),
             ],
@@ -79,15 +77,15 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                   Expanded(
                     flex: 1,
                     child: InputDetails(
-                      "Status de pagamento",
-                      "Pago",
+                      label: "Status de pagamento",
+                      details: "Pago",
                     ),
                   ),
                   Expanded(
                     flex: 1,
                     child: InputDetails(
-                      "Data de vencimento",
-                      "01/04/2023",
+                      label: "Data de vencimento",
+                      details: "01/04/2023",
                     ),
                   ),
                 ],
@@ -97,15 +95,15 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                   Expanded(
                     flex: 1,
                     child: InputDetails(
-                      "Recorrência",
-                      "Mensal",
+                      label: "Recorrência",
+                      details: "Mensal",
                     ),
                   ),
                   Expanded(
                     flex: 1,
                     child: InputDetails(
-                      "Data de pagamento",
-                      "01/04/2023",
+                      label: "Data de pagamento",
+                      details: "01/04/2023",
                     ),
                   ),
                 ],

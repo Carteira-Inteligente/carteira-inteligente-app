@@ -61,37 +61,37 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
     Color passwordLabelColor = _isPasswordValid ? cGreen : cRed;
 
     return FormContainer(
-      "Edição de usuário",
-      Column(
+      title: "Edição de usuário",
+      bottonButton: PrimaryButton(
+        textButton: "Salvar",
+        onPressed: _submitForm,
+      ),
+      child: Column(
         children: <Widget>[
           InputText(
-            "Digite seu nome ou apelido",
-            _nameController,
-            _submitForm,
+            label: "Digite seu nome ou apelido",
+            controller: _nameController,
+            onSubmit: _submitForm,
           ),
           InputEmail(
-            "E-mail",
-            _emailController,
-            _submitForm,
+            label: "E-mail",
+            controller: _emailController,
+            onSubmit: _submitForm,
           ),
           InputPassword(
-            "Senha",
-            _passwordController,
-            _submitForm,
-            _validatePassword,
+            label: "Senha",
+            controller: _passwordController,
+            onSubmit: _submitForm,
+            onChanged: _validatePassword,
           ),
           InputPassword(
-            "Confirmar senha",
-            _confirmPasswordController,
-            _submitForm,
-            (_) {},
+            label: "Confirmar senha",
+            controller: _confirmPasswordController,
+            onSubmit: _submitForm,
+            onChanged: (_) {},
           ),
-          PasswordRulesContainer(passwordLabelColor),
+          PasswordRulesContainer(labelColor: passwordLabelColor),
         ],
-      ),
-      PrimaryButton(
-        "Salvar",
-        _submitForm,
       ),
     );
   }

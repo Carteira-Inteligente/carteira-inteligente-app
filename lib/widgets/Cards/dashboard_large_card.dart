@@ -4,7 +4,10 @@ import '../Containers/card_container.dart';
 import '../Labels/subtitle2_label.dart';
 
 class DashboardLargeCard extends StatefulWidget {
-  const DashboardLargeCard(this.cardTitle, {super.key});
+  const DashboardLargeCard({
+    super.key,
+    required this.cardTitle,
+  });
 
   final String cardTitle;
 
@@ -18,10 +21,10 @@ class _DashboardLargeCardState extends State<DashboardLargeCard> {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: CardContainer(
-        Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Subtitle2Label(widget.cardTitle),
+            Subtitle2Label(label: widget.cardTitle),
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: SizedBox(

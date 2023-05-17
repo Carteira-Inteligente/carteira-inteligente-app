@@ -6,7 +6,7 @@ import '../../widgets/Buttons/primary_button.dart';
 import '../../widgets/Buttons/toggle_button.dart';
 import '../../widgets/Containers/form_container.dart';
 import '../../widgets/Inputs/input_date.dart';
-import '../../widgets/Inputs/input_number.dart';
+import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_select.dart';
 import '../../widgets/Inputs/input_text.dart';
 import '../Category/category_list_screen.dart';
@@ -79,19 +79,23 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      "Novo lançamento",
-      Column(
+      title: "Novo lançamento",
+      bottonButton: PrimaryButton(
+        textButton: "Salvar",
+        onPressed: _submitForm,
+      ),
+      child: Column(
         children: <Widget>[
-          const ToggleButton("Pagamento realizado"),
+          const ToggleButton(label: "Pagamento realizado"),
           InputText(
-            "Descrição",
-            _descriptionController,
-            _submitForm,
+            label: "Descrição",
+            controller: _descriptionController,
+            onSubmit: _submitForm,
           ),
           InputSelect(
-            "Categoria",
-            _idCategoryController,
-            () => ShowModal.showModal(
+            label: "Categoria",
+            controller: _idCategoryController,
+            onTap: () => ShowModal.showModal(
               context,
               CategoryListScreen(
                 (category) {
@@ -101,12 +105,12 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
                 },
               ),
             ),
-            _selectedCategory,
+            selectedOption: _selectedCategory,
           ),
           InputSelect(
-            "Recorrência",
-            _periodController,
-            () => ShowModal.showModal(
+            label: "Recorrência",
+            controller: _periodController,
+            onTap: () => ShowModal.showModal(
               context,
               RecurrenceListScreen(
                 (recurrence) {
@@ -116,13 +120,13 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
                 },
               ),
             ),
-            _selectedRecurrence,
+            selectedOption: _selectedRecurrence,
           ),
           // Ajustar informações
           InputSelect(
-            "Forma de pagamento",
-            _periodController,
-            () => ShowModal.showModal(
+            label: "Forma de pagamento",
+            controller: _periodController,
+            onTap: () => ShowModal.showModal(
               context,
               PaymentTypeListScreen(
                 (paymentType) {
@@ -132,14 +136,14 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
                 },
               ),
             ),
-            _selectedPaymentType,
+            selectedOption: _selectedPaymentType,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 4.0),
-            child: InputNumber(
-              "Valor",
-              _paidValueController,
-              _submitForm,
+            child: InputValue(
+              label: "Valor",
+              controller: _paidValueController,
+              onSubmit: _submitForm,
             ),
           ),
           Row(
@@ -149,8 +153,8 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 4.0),
                   child: InputDate(
-                    "Data de vencimento",
-                    _paidDateController,
+                    label: "Data de vencimento",
+                    controller: _paidDateController,
                   ),
                 ),
               ),
@@ -159,18 +163,14 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 4.0),
                   child: InputDate(
-                    "Data de pagamento",
-                    _paidDateController,
+                    label: "Data de pagamento",
+                    controller: _paidDateController,
                   ),
                 ),
               ),
             ],
           ),
         ],
-      ),
-      PrimaryButton(
-        "Salvar",
-        _submitForm,
       ),
     );
   }

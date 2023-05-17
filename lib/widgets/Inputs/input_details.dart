@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../Labels/input_label.dart';
 
 class InputDetails extends StatelessWidget {
-  const InputDetails(this.label, this.details, {super.key});
+  const InputDetails({
+    super.key,
+    required this.label,
+    required this.details,
+  });
 
   final String label;
   final String details;
@@ -16,7 +20,7 @@ class InputDetails extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              InputLabel(label),
+              InputLabel(label: label),
             ],
           ),
           Row(

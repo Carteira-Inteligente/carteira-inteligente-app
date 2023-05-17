@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 
 class ProgresBarContainer extends StatelessWidget {
-  const ProgresBarContainer(this.percentage, {super.key});
+  const ProgresBarContainer({
+    super.key,
+    required this.percentage,
+  });
 
   final double percentage;
 

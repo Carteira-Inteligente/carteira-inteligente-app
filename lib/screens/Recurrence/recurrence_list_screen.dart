@@ -20,11 +20,11 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
 
   _buildRecurrenceCard(BuildContext context, Recurrence recurrence) {
     return RecurrenceCard(
-      () {
+      onTap: () {
         widget.onCategoryRecurrence(recurrence.description);
         Navigator.pop(context);
       },
-      recurrence.description,
+      description: recurrence.description,
     );
   }
 
@@ -32,7 +32,7 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel("Selecionar recorrência"),
+        const ModalTitleLabel(label: "Selecionar recorrência"),
         SizedBox(
           height: 450,
           child: ListView.builder(

@@ -7,7 +7,10 @@ import '../Labels/subtitle2_label.dart';
 import '../Labels/subtitle_label.dart';
 
 class NoDataContainer extends StatelessWidget {
-  const NoDataContainer(this.description, {super.key});
+  const NoDataContainer({
+    super.key,
+    required this.description,
+  });
 
   final String description;
 
@@ -17,13 +20,13 @@ class NoDataContainer extends StatelessWidget {
       padding: const EdgeInsets.only(top: 50.0),
       child: Column(
         children: <Widget>[
-          SubtitleLabel("Não existem $description cadastrados"),
+          SubtitleLabel(label: "Não existem $description cadastrados"),
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Subtitle2Label("Toque em"),
+                const Subtitle2Label(label: "Toque em"),
                 ElevatedButton(
                   onPressed: null,
                   style: ElevatedButton.styleFrom(
@@ -40,7 +43,7 @@ class NoDataContainer extends StatelessWidget {
                     color: cWhite,
                   ),
                 ),
-                const Subtitle2Label("ou em"),
+                const Subtitle2Label(label: "ou em"),
                 SvgPicture.asset(
                   sAdd,
                   color: cGrey,
@@ -48,7 +51,7 @@ class NoDataContainer extends StatelessWidget {
               ],
             ),
           ),
-          const Subtitle2Label("para cadastrar um lançamento"),
+          const Subtitle2Label(label: "para cadastrar um lançamento"),
         ],
       ),
     );

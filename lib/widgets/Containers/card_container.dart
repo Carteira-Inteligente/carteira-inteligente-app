@@ -4,9 +4,12 @@ import '../../constants/colors.dart';
 import '../../constants/widgets.dart';
 
 class CardContainer extends StatefulWidget {
-  const CardContainer(this.widget, {super.key});
+  const CardContainer({
+    super.key,
+    required this.child,
+  });
 
-  final Widget widget;
+  final Widget child;
 
   @override
   State<CardContainer> createState() => _CardContainerState();
@@ -19,7 +22,7 @@ class _CardContainerState extends State<CardContainer> {
       color: cWhite,
       elevation: 2,
       shape: wCardShape,
-      child: widget.widget,
+      child: widget.child,
     );
   }
 }

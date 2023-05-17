@@ -6,8 +6,12 @@ import '../../constants/svgs.dart';
 import '../../constants/widgets.dart';
 
 class RoundedIconContainer extends StatelessWidget {
-  const RoundedIconContainer(this.svgPicture, this.backgroundColor, this.radius,
-      {super.key});
+  const RoundedIconContainer({
+    super.key,
+    required this.svgPicture,
+    required this.backgroundColor,
+    required this.radius,
+  });
 
   final String svgPicture;
   final Color backgroundColor;

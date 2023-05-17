@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 
 class PositionedContainer extends StatelessWidget {
-  const PositionedContainer(this.bottonButton, {super.key});
+  const PositionedContainer({
+    super.key,
+    required this.bottonButton,
+  });
 
   final Widget bottonButton;
 

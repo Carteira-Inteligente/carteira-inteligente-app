@@ -7,7 +7,12 @@ import '../Containers/input_container.dart';
 import '../Containers/input_icon_container.dart';
 
 class InputEmail extends StatelessWidget {
-  const InputEmail(this.label, this.controller, this.onSubmit, {super.key});
+  const InputEmail({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.onSubmit,
+  });
 
   final String label;
   final TextEditingController controller;
@@ -16,8 +21,8 @@ class InputEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InputContainer(
-      label,
-      TextField(
+      label: label,
+      child: TextField(
         style: Theme.of(context).textTheme.displaySmall,
         controller: controller,
         keyboardType: TextInputType.emailAddress,
@@ -28,7 +33,7 @@ class InputEmail extends StatelessWidget {
             borderSide: BorderSide(color: cBlack),
           ),
           hintStyle: Theme.of(context).textTheme.displaySmall,
-          suffixIcon: const InputIconContainer(sMail),
+          suffixIcon: const InputIconContainer(svgIcon: sMail),
         ),
       ),
     );

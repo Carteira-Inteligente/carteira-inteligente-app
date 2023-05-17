@@ -18,6 +18,7 @@ class LightTheme extends StatelessWidget {
       ],
       supportedLocales: const [Locale("pt")],
       home: const MyHomePage(),
+      debugShowCheckedModeBanner: false,
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(
           primary: cBlue,

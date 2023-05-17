@@ -8,7 +8,11 @@ import '../../utils/show_dialog.dart';
 import '../Containers/button_container.dart';
 
 class DeleteButton extends StatelessWidget {
-  const DeleteButton(this.dataLabel, this.onPressed, {super.key});
+  const DeleteButton({
+    super.key,
+    required this.dataLabel,
+    required this.onPressed,
+  });
 
   final String dataLabel;
   final void Function() onPressed;
@@ -16,7 +20,7 @@ class DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
-      ElevatedButton.icon(
+      child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 60),
           shape: wButtonBorderRadius,
