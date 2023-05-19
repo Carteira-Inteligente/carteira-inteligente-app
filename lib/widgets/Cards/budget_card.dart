@@ -8,9 +8,14 @@ import '../Labels/input_label.dart';
 import '../Labels/list_tile_label.dart';
 
 class BudgetCard extends StatelessWidget {
-  const BudgetCard(
-      this.onTap, this.pageIcon, this.description, this.value, this.percentage,
-      {super.key});
+  const BudgetCard({
+    super.key,
+    required this.onTap,
+    required this.pageIcon,
+    required this.description,
+    required this.value,
+    required this.percentage,
+  });
 
   final void Function() onTap;
   final Widget pageIcon;

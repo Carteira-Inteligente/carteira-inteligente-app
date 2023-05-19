@@ -37,7 +37,7 @@ class ShowDialog {
           secondaryButton: const DialogSecondaryButton(),
           actionButton: DialogActionButton(
             onPressed: onPressed,
-            backgroundColor: cRed,
+            backgroundColor: cRed.shade800,
             label: "Excluir $dataLabel",
           ),
         );
@@ -59,7 +59,7 @@ class ShowDialog {
           secondaryButton: const DialogSecondaryButton(),
           actionButton: DialogActionButton(
             onPressed: onPressed,
-            backgroundColor: cBlue,
+            backgroundColor: cBlue.shade800,
             label: "Cancelar pagamento",
           ),
         );
@@ -81,7 +81,7 @@ class ShowDialog {
           secondaryButton: const DialogSecondaryButton(),
           actionButton: DialogActionButton(
             onPressed: onPressed,
-            backgroundColor: cBlue,
+            backgroundColor: cBlue.shade800,
             label: "Cancelar cadastro",
           ),
         );
@@ -102,7 +102,7 @@ class ShowDialog {
           secondaryButton: const DialogSecondaryButton(),
           actionButton: DialogActionButton(
             onPressed: onPressed,
-            backgroundColor: cBlue,
+            backgroundColor: cBlue.shade800,
             label: "Sair do aplicativo",
           ),
         );

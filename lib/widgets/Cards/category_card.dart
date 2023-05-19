@@ -16,10 +16,19 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      leading: icon,
-      title: Text(
-        description,
-        style: Theme.of(context).textTheme.displaySmall,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          icon,
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: Text(
+              description,
+              style: Theme.of(context).textTheme.displaySmall,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
     );
   }

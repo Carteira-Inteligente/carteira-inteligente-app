@@ -23,7 +23,7 @@ class FormContainer extends StatelessWidget {
     final appBar = AppBar(
       leading: const AppBarLeading(),
       elevation: 2,
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: cBlue.shade700,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       title: AppBarTitle(title: title),
     );

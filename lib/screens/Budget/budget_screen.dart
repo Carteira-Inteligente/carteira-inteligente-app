@@ -23,7 +23,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
 
   Widget _buildBudgetCards(BuildContext context, Budget budget) {
     return BudgetCard(
-      () {
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -31,7 +31,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
           ),
         );
       },
-      budget.idCategory == 1
+      pageIcon: budget.idCategory == 1
           ? RoundedIconContainer(
               svgPicture: sElectricity,
               backgroundColor: cAmber.shade700,
@@ -42,9 +42,9 @@ class _BudgetScreenState extends State<BudgetScreen> {
               backgroundColor: cCyan.shade700,
               radius: 14,
             ),
-      budget.idCategory == 1 ? "Energia elétrica" : "Casa",
-      budget.value,
-      budget.value / 880 * 1,
+      description: budget.idCategory == 1 ? "Energia elétrica" : "Casa",
+      value: budget.value,
+      percentage: budget.value / 880 * 1,
     );
   }
 
@@ -55,7 +55,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
         _budgets.isEmpty
             ? const NoDataContainer(description: "orçamentos")
             : SizedBox(
-                height: MediaQuery.of(context).size.height * 0.71,
+                height: MediaQuery.of(context).size.height * 0.78,
                 child: ListView.builder(
                   itemCount: _budgets.length,
                   itemBuilder: (context, index) {

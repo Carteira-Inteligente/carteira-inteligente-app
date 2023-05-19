@@ -7,7 +7,10 @@ import '../../widgets/Inputs/input_text.dart';
 import '../../widgets/Labels/modal_title_label.dart';
 
 class FastEntryScreen extends StatefulWidget {
-  const FastEntryScreen(this.onSubmit, {super.key});
+  const FastEntryScreen({
+    super.key,
+    required this.onSubmit,
+  });
 
   final void Function(
     int,
@@ -39,7 +42,7 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
       description,
       paidValue as double,
     );
-    ToastMessage.showToast("Lançamento cadastrado do sucesso.");
+    ToastMessage.showToast("Lançamento cadastrado com sucesso.");
   }
 
   @override

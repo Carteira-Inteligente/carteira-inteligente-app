@@ -24,7 +24,7 @@ class RoundedDeleteButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: wRoundButtonSize,
           shape: wButtonBorderRadius,
-          backgroundColor: cRed,
+          backgroundColor: cRed.shade800,
           elevation: 0,
         ),
         onPressed: () => ShowDialog.deleteDialog(context, dataLabel, onPressed),

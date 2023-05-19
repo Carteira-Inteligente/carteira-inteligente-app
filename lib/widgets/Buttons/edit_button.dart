@@ -21,7 +21,7 @@ class EditButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 60),
           shape: wButtonBorderRadius,
-          backgroundColor: cGrey,
+          backgroundColor: cGrey.shade800,
           elevation: 0,
         ),
         onPressed: onPressed,

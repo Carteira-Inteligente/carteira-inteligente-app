@@ -24,7 +24,7 @@ class DeleteButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 60),
           shape: wButtonBorderRadius,
-          backgroundColor: cRed,
+          backgroundColor: cRed.shade800,
           elevation: 0,
         ),
         onPressed: () => ShowDialog.deleteDialog(context, dataLabel, onPressed),

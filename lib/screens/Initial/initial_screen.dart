@@ -109,7 +109,7 @@ class _InitialScreenState extends State<InitialScreen> {
                     textButton: "Entrar",
                     onPressed: () => ShowModal.showModal(
                       context,
-                      AuthenticationScreen(_authUser),
+                      AuthenticationScreen(onSubmit: _authUser),
                     ),
                   ),
                   SecondaryButton(
@@ -117,7 +117,8 @@ class _InitialScreenState extends State<InitialScreen> {
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UserFormScreen(_addUser),
+                        builder: (context) =>
+                            UserFormScreen(onSubmit: _addUser),
                       ),
                     ),
                   ),

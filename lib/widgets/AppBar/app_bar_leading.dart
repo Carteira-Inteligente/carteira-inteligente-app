@@ -1,8 +1,8 @@
+import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
+import '../Containers/rounded_icon_container.dart';
 
 class AppBarLeading extends StatelessWidget {
   const AppBarLeading({super.key});
@@ -11,9 +11,10 @@ class AppBarLeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => Navigator.pop(context),
-      icon: SvgPicture.asset(
-        sArrowLeft,
-        color: cWhite,
+      icon: RoundedIconContainer(
+        backgroundColor: cBlue.shade800,
+        radius: 24,
+        svgPicture: sArrowLeft,
       ),
     );
   }

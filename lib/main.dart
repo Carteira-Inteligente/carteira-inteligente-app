@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'constants/colors.dart';
 import 'constants/svgs.dart';
-import 'models/basic_entries.dart';
 import 'models/budget.dart';
 import 'models/entry.dart';
 import 'screens/Budget/budget_form_screen.dart';
@@ -18,11 +17,9 @@ import 'screens/Entry/fast_entry_screen.dart';
 import 'screens/Profile/profile_screen.dart';
 import 'themes/light_theme.dart';
 import 'widgets/AppBar/app_bar_add_button.dart';
-import 'widgets/AppBar/app_bar_filter_button.dart';
 import 'widgets/AppBar/app_bar_notification_button.dart';
 import 'widgets/AppBar/app_bar_title.dart';
 import 'widgets/Buttons/fast_entry_button.dart';
-import 'widgets/Inputs/input_search.dart';
 
 void main() {
   runApp(const CarteiraInteligenteApp());
@@ -45,6 +42,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+  final List<Entry> _entries = [];
+  final List<Budget> _budgets = [];
+
   static const List<Widget> _navBarOptions = <Widget>[
     DashboardScreen(),
     EntryScreen(),
@@ -53,15 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
     ProfileScreen(),
   ];
 
-  int _selectedIndex = 0;
-
   _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  final List<Entry> _entries = [];
   _addEntry(
     int idUser,
     int idCategory,
@@ -93,21 +91,25 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final List<BasicEntries> _basicEntries = [];
-  _addBasicEntry(
+  _addFastEntry(
     int idUser,
     String description,
     double paidValue,
   ) {
-    final newBasicEntry = BasicEntries(
+    final newFastEntry = Entry(
       id: Random().nextInt(999).toInt(),
       idUser: idUser,
+      idCategory: 1,
       description: description,
+      period: "Não repete",
       paidValue: paidValue,
+      paidDate: DateTime.now(),
+      paid: true,
+      dueDate: DateTime.now(),
     );
 
     setState(() {
-      _basicEntries.add(newBasicEntry);
+      _entries.add(newFastEntry);
     });
 
     Future.delayed(const Duration(milliseconds: 500), () {
@@ -115,7 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final List<Budget> _budgets = [];
   _addBudget(
     int idUser,
     int idCategory,
@@ -157,56 +158,38 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         },
       ),
-      flexibleSpace: _selectedIndex == 1 || _selectedIndex == 3
-          ? Container(
-              padding: const EdgeInsets.only(top: 105),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: InputSearch(),
-              ),
-            )
-          : null,
-      expandedHeight: _selectedIndex == 1 || _selectedIndex == 3 ? 130 : 0,
       pinned: true,
       floating: true,
       forceElevated: true,
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: cBlue.shade700,
       actions: <Widget>[
         Builder(
           builder: (context) {
             if (_selectedIndex == 1) {
-              return Row(
-                children: <Widget>[
-                  const AppBarFilterButton(),
-                  AppBarAddButton(
-                    tooltip: "Novo lançamento",
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EntryFormScreen(_addEntry),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+              return AppBarAddButton(
+                tooltip: "Novo lançamento",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          EntryFormScreen(onSubmit: _addEntry),
+                    ),
+                  );
+                },
               );
             } else if (_selectedIndex == 3) {
-              return Row(
-                children: <Widget>[
-                  const AppBarFilterButton(),
-                  AppBarAddButton(
-                    tooltip: "Novo orçamento",
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BudgetFormScreen(_addBudget),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+              return AppBarAddButton(
+                tooltip: "Novo orçamento",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          BudgetFormScreen(onSubmit: _addBudget),
+                    ),
+                  );
+                },
               );
             } else if (_selectedIndex == 4) {
               return const AppBarNotificationButton();
@@ -226,33 +209,33 @@ class _MyHomePageState extends State<MyHomePage> {
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             sDashboard,
-            color: _selectedIndex == 0 ? Theme.of(context).primaryColor : cGrey,
+            color: _selectedIndex == 0 ? cBlue.shade800 : cGrey,
           ),
           label: _selectedIndex == 0 ? "Dashboard" : null,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             sWallet,
-            color: _selectedIndex == 1 ? Theme.of(context).primaryColor : cGrey,
+            color: _selectedIndex == 1 ? cBlue.shade800 : cGrey,
           ),
           label: _selectedIndex == 1 ? "Lançamentos" : null,
         ),
         BottomNavigationBarItem(
           icon: FastEntryButton(
-            fastEntryScreen: FastEntryScreen(_addBasicEntry),
+            fastEntryScreen: FastEntryScreen(onSubmit: _addFastEntry),
           ),
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             sBudget,
-            color: _selectedIndex == 3 ? Theme.of(context).primaryColor : cGrey,
+            color: _selectedIndex == 3 ? cBlue.shade800 : cGrey,
           ),
           label: _selectedIndex == 3 ? "Orçamentos" : null,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             sUser,
-            color: _selectedIndex == 4 ? Theme.of(context).primaryColor : cGrey,
+            color: _selectedIndex == 4 ? cBlue.shade800 : cGrey,
           ),
           label: _selectedIndex == 4 ? "Perfil" : null,
         ),

@@ -37,8 +37,17 @@ class DialogContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       actions: <Widget>[
-        actionButton,
-        secondaryButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                actionButton,
+                secondaryButton,
+              ],
+            ),
+          ],
+        )
       ],
     );
   }

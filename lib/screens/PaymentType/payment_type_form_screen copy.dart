@@ -4,51 +4,48 @@ import '../../utils/show_modal.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_button.dart';
 import '../../widgets/Containers/form_container.dart';
-import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_select.dart';
-import '../Category/category_list_screen.dart';
+import '../../widgets/Inputs/input_text.dart';
+import 'payment_type_form_list_screen.dart';
 
-class BudgetFormScreen extends StatefulWidget {
-  const BudgetFormScreen({
+class PaymentTypeFormScreen extends StatefulWidget {
+  const PaymentTypeFormScreen({
     super.key,
     required this.onSubmit,
   });
 
   final void Function(
-    int,
-    int,
-    double,
+    String,
+    String,
   ) onSubmit;
 
   @override
-  State<BudgetFormScreen> createState() => _BudgetFormScreenState();
+  State<PaymentTypeFormScreen> createState() => _PaymentTypeFormScreenState();
 }
 
-class _BudgetFormScreenState extends State<BudgetFormScreen> {
+class _PaymentTypeFormScreenState extends State<PaymentTypeFormScreen> {
   String _selectedCategory = "";
 
-  final _idUsercontroller = TextEditingController();
-  final _idCategoryController = TextEditingController();
-  final _valueController = TextEditingController();
+  final _paymentTypeController = TextEditingController();
+  final _descriptionController = TextEditingController();
 
   _submitForm() {
-    final idUser = _idUsercontroller.text;
-    final idCategory = _idCategoryController.text;
-    final value = _valueController.text;
+    final paymentType = _paymentTypeController.text;
+    final description = _descriptionController.text;
 
-    if (idUser.isEmpty || idCategory.isEmpty || value.isEmpty) {
+    if (paymentType.isEmpty || description.isEmpty) {
       ToastMessage.showToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
-    widget.onSubmit(idUser as int, idCategory as int, value as double);
-    ToastMessage.showToast("Orçamento cadastrado com sucesso.");
+    widget.onSubmit(paymentType, description);
+    ToastMessage.showToast("Tipo de pagamento cadastrado com sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      title: "Novo orçamento",
+      title: "Nova forma de pagamento",
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
@@ -56,12 +53,12 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
       child: Column(
         children: <Widget>[
           InputSelect(
-            label: "Categoria",
-            controller: _idCategoryController,
+            label: "Tipo de pagamento",
+            controller: _paymentTypeController,
             onTap: () => ShowModal.showModal(
               context,
-              CategoryListScreen(
-                onCategorySelected: (category) {
+              PaymentTypeListFormScreen(
+                onPaymentTypeSelected: (category) {
                   setState(() {
                     _selectedCategory = category;
                   });
@@ -70,9 +67,9 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
             ),
             selectedOption: _selectedCategory,
           ),
-          InputValue(
-            label: "Valor limite",
-            controller: _valueController,
+          InputText(
+            label: "Descrição",
+            controller: _descriptionController,
             onSubmit: _submitForm,
           ),
         ],

@@ -4,7 +4,7 @@ List<PaymentType> paymentTypesList = [
   PaymentType(
     id: 1,
     description: "Carteira",
-    type: "ACCOUNT",
+    type: "WALLET",
   ),
   PaymentType(
     id: 2,

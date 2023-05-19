@@ -13,9 +13,16 @@ import '../../widgets/Labels/subtitle_label.dart';
 import '../../widgets/Labels/title_label.dart';
 
 class UserFormScreen extends StatefulWidget {
-  const UserFormScreen(this.onSubmit, {super.key});
+  const UserFormScreen({
+    super.key,
+    required this.onSubmit,
+  });
 
-  final void Function(String, String, String) onSubmit;
+  final void Function(
+    String,
+    String,
+    String,
+  ) onSubmit;
 
   @override
   State<UserFormScreen> createState() => _UserFormScreenState();
@@ -54,7 +61,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
     }
 
     widget.onSubmit(name, email, password);
-    ToastMessage.showToast("Usuário cadastrado do sucesso.");
+    ToastMessage.showToast("Usuário cadastrado com sucesso.");
   }
 
   void _validatePassword(String password) {

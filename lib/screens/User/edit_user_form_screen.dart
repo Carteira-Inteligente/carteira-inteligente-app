@@ -11,9 +11,16 @@ import '../../widgets/Inputs/input_password.dart';
 import '../../widgets/Inputs/input_text.dart';
 
 class EditUserFormScreen extends StatefulWidget {
-  const EditUserFormScreen(this.onSubmit, {super.key});
+  const EditUserFormScreen({
+    super.key,
+    required this.onSubmit,
+  });
 
-  final void Function(String, String, String) onSubmit;
+  final void Function(
+    String,
+    String,
+    String,
+  ) onSubmit;
 
   @override
   State<EditUserFormScreen> createState() => _EditUserFormScreenState();
@@ -47,7 +54,7 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
     }
 
     widget.onSubmit(name, email, password);
-    ToastMessage.showToast("Usuário alterado do sucesso.");
+    ToastMessage.showToast("Usuário alterado com sucesso.");
   }
 
   void _validatePassword(String password) {

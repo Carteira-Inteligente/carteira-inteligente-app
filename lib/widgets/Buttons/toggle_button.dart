@@ -31,7 +31,7 @@ class _ToggleButtonState extends State<ToggleButton> {
               width: 50,
               height: 30,
               child: Switch.adaptive(
-                activeColor: cBlue,
+                activeColor: cBlue.shade800,
                 value: isPaid,
                 onChanged: (value) => setState(() {
                   if (isPaid == false) {

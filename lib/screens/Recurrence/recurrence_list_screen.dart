@@ -7,9 +7,12 @@ import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Labels/modal_title_label.dart';
 
 class RecurrenceListScreen extends StatefulWidget {
-  const RecurrenceListScreen(this.onCategoryRecurrence, {super.key});
+  const RecurrenceListScreen({
+    super.key,
+    required this.onRecurrenceSelected,
+  });
 
-  final void Function(String) onCategoryRecurrence;
+  final void Function(String) onRecurrenceSelected;
 
   @override
   State<RecurrenceListScreen> createState() => _RecurrenceListScreenState();
@@ -19,12 +22,17 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
   final List<Recurrence> _recurrences = recurrencesList;
 
   _buildRecurrenceCard(BuildContext context, Recurrence recurrence) {
-    return RecurrenceCard(
-      onTap: () {
-        widget.onCategoryRecurrence(recurrence.description);
-        Navigator.pop(context);
-      },
-      description: recurrence.description,
+    return Column(
+      children: <Widget>[
+        RecurrenceCard(
+          onTap: () {
+            widget.onRecurrenceSelected(recurrence.description);
+            Navigator.pop(context);
+          },
+          description: recurrence.description,
+        ),
+        const DividerContainer(),
+      ],
     );
   }
 
@@ -32,24 +40,14 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel(label: "Selecionar recorrência"),
+        const ModalTitleLabel(label: "Selecione a recorrência"),
         SizedBox(
           height: 450,
           child: ListView.builder(
             itemCount: _recurrences.length,
             itemBuilder: (context, index) {
               final recurrence = _recurrences[index];
-
-              if (index == _recurrences.length - 1) {
-                return _buildRecurrenceCard(context, recurrence);
-              } else {
-                return Column(
-                  children: <Widget>[
-                    _buildRecurrenceCard(context, recurrence),
-                    const DividerContainer(),
-                  ],
-                );
-              }
+              return _buildRecurrenceCard(context, recurrence);
             },
           ),
         ),

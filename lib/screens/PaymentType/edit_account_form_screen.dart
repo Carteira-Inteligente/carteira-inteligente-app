@@ -5,8 +5,8 @@ import '../../widgets/Buttons/primary_button.dart';
 import '../../widgets/Containers/form_container.dart';
 import '../../widgets/Inputs/input_text.dart';
 
-class CategoryFormScreen extends StatefulWidget {
-  const CategoryFormScreen({
+class EditCreditCardFormScreen extends StatefulWidget {
+  const EditCreditCardFormScreen({
     super.key,
     required this.onSubmit,
   });
@@ -14,10 +14,11 @@ class CategoryFormScreen extends StatefulWidget {
   final void Function(String) onSubmit;
 
   @override
-  State<CategoryFormScreen> createState() => _CategoryFormScreenState();
+  State<EditCreditCardFormScreen> createState() =>
+      _EditCreditCardFormScreenState();
 }
 
-class _CategoryFormScreenState extends State<CategoryFormScreen> {
+class _EditCreditCardFormScreenState extends State<EditCreditCardFormScreen> {
   final _descriptionController = TextEditingController();
 
   _submitForm() {
@@ -29,13 +30,13 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
     }
 
     widget.onSubmit(description);
-    ToastMessage.showToast("Categoria cadastrada com sucesso.");
+    ToastMessage.showToast("Cartão de crédito alterado com sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      title: "Nova categoria",
+      title: "Edição de cartão de crédito",
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,

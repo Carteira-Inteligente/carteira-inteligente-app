@@ -44,7 +44,7 @@ class _EntryScreenState extends State<EntryScreen> {
         _entries.isEmpty
             ? const NoDataContainer(description: "lançamentos")
             : SizedBox(
-                height: MediaQuery.of(context).size.height * 0.71,
+                height: MediaQuery.of(context).size.height * 0.78,
                 child: ListView.builder(
                   itemCount: _entries.length,
                   itemBuilder: (context, index) {

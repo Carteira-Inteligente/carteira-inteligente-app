@@ -85,6 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             svgPicture: sUser,
             backgroundColor: cGrey.shade200,
             radius: 45,
+            heigth: 45,
           ),
         ),
         const SubtitleLabel(label: "Thiago Martins Proença"),
@@ -94,11 +95,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => EditUserFormScreen(_addUser),
+                builder: (context) => EditUserFormScreen(onSubmit: _addUser),
               ),
             );
           },
-          backgroundColor: cBlue,
+          backgroundColor: cBlue.shade800,
           label: "Editar usuário",
         ),
         const Padding(
@@ -159,7 +160,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BudgetFormScreen(_addBudget),
+                            builder: (context) =>
+                                BudgetFormScreen(onSubmit: _addBudget),
                           ),
                         );
                       },

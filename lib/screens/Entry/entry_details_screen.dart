@@ -1,9 +1,13 @@
+import 'dart:math';
+
+import 'package:carteira_inteligente/screens/Entry/edit_entry_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../constants/widgets.dart';
+import '../../models/entry.dart';
 import '../../widgets/Buttons/rounded_delete_button.dart';
 import '../../widgets/Buttons/rounded_edit_button.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -18,6 +22,38 @@ class EntryDetailsScreen extends StatefulWidget {
 }
 
 class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
+  final List<Entry> _entries = [];
+  _editEntry(
+    int idUser,
+    int idCategory,
+    String description,
+    String period,
+    double paidValue,
+    DateTime paidDate,
+    bool paid,
+    DateTime dueDate,
+  ) {
+    final editEntry = Entry(
+      id: Random().nextInt(999).toInt(),
+      idUser: idUser,
+      idCategory: idCategory,
+      description: description,
+      period: period,
+      paidValue: paidValue,
+      paidDate: paidDate,
+      paid: paid,
+      dueDate: dueDate,
+    );
+
+    setState(() {
+      _entries.add(editEntry);
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.of(context).pop();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,7 +66,17 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 30.0),
-                child: RoundedEditButton(onPressed: () {}),
+                child: RoundedEditButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            EditEntryFormScreen(onSubmit: _editEntry),
+                      ),
+                    );
+                  },
+                ),
               ),
               Container(
                 decoration: const BoxDecoration(
@@ -53,7 +99,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                 padding: const EdgeInsets.only(left: 30.0),
                 child: RoundedDeleteButton(
                   dataLabel: "lançamento",
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                 ),
               ),
             ],

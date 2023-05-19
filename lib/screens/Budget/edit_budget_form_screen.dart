@@ -8,8 +8,8 @@ import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_select.dart';
 import '../Category/category_list_screen.dart';
 
-class BudgetFormScreen extends StatefulWidget {
-  const BudgetFormScreen({
+class EditBudgetFormScreen extends StatefulWidget {
+  const EditBudgetFormScreen({
     super.key,
     required this.onSubmit,
   });
@@ -21,10 +21,10 @@ class BudgetFormScreen extends StatefulWidget {
   ) onSubmit;
 
   @override
-  State<BudgetFormScreen> createState() => _BudgetFormScreenState();
+  State<EditBudgetFormScreen> createState() => _EditBudgetFormScreenState();
 }
 
-class _BudgetFormScreenState extends State<BudgetFormScreen> {
+class _EditBudgetFormScreenState extends State<EditBudgetFormScreen> {
   String _selectedCategory = "";
 
   final _idUsercontroller = TextEditingController();
@@ -42,13 +42,13 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
     }
 
     widget.onSubmit(idUser as int, idCategory as int, value as double);
-    ToastMessage.showToast("Orçamento cadastrado com sucesso.");
+    ToastMessage.showToast("Orçamento alterado com sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      title: "Novo orçamento",
+      title: "Edição de orçamento",
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,

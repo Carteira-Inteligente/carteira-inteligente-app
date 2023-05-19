@@ -13,8 +13,8 @@ import '../Category/category_list_screen.dart';
 import '../PaymentType/payment_type_list_screen.dart';
 import '../Recurrence/recurrence_list_screen.dart';
 
-class EntryFormScreen extends StatefulWidget {
-  const EntryFormScreen({
+class EditEntryFormScreen extends StatefulWidget {
+  const EditEntryFormScreen({
     super.key,
     required this.onSubmit,
   });
@@ -31,10 +31,10 @@ class EntryFormScreen extends StatefulWidget {
   ) onSubmit;
 
   @override
-  State<EntryFormScreen> createState() => _EntryFormScreenState();
+  State<EditEntryFormScreen> createState() => _EditEntryFormScreenState();
 }
 
-class _EntryFormScreenState extends State<EntryFormScreen> {
+class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
   String _selectedCategory = "";
   String _selectedRecurrence = "";
   String _selectedPaymentType = "";
@@ -76,13 +76,13 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
       paid as bool,
       _dueDateController,
     );
-    ToastMessage.showToast("Lançamento cadastrado com sucesso.");
+    ToastMessage.showToast("Lançamento alterado com sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      title: "Novo lançamento",
+      title: "Edição de lançamento",
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
@@ -141,10 +141,13 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
             ),
             selectedOption: _selectedPaymentType,
           ),
-          InputValue(
-            label: "Valor",
-            controller: _paidValueController,
-            onSubmit: _submitForm,
+          Padding(
+            padding: const EdgeInsets.only(right: 4.0),
+            child: InputValue(
+              label: "Valor",
+              controller: _paidValueController,
+              onSubmit: _submitForm,
+            ),
           ),
           Row(
             children: <Widget>[

@@ -20,6 +20,9 @@ class DialogActionButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
+        minimumSize: label == "Editar usuário"
+            ? null
+            : Size(MediaQuery.of(context).size.width * 0.5, 44),
         shape: wButtonBorderRadius,
         backgroundColor: backgroundColor,
         elevation: 0,

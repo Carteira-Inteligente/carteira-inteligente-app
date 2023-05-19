@@ -9,9 +9,15 @@ import '../../widgets/Labels/subtitle2_label.dart';
 import '../ForgotPassword/forgot_password_screen.dart';
 
 class AuthenticationScreen extends StatefulWidget {
-  const AuthenticationScreen(this.onSubmit, {super.key});
+  const AuthenticationScreen({
+    super.key,
+    required this.onSubmit,
+  });
 
-  final void Function(String, String) onSubmit;
+  final void Function(
+    String,
+    String,
+  ) onSubmit;
 
   @override
   State<AuthenticationScreen> createState() => _AuthenticationScreenState();

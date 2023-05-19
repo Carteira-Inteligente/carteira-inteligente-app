@@ -10,7 +10,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sCards,
       backgroundColor: cBlueGrey.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -19,7 +19,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sCulture,
       backgroundColor: cGreen.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -28,7 +28,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sDinner,
       backgroundColor: cRed.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -37,7 +37,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sFamily,
       backgroundColor: cBlue.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -46,7 +46,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sEducation,
       backgroundColor: cPurple.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -55,7 +55,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sElectricity,
       backgroundColor: cAmber.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -64,7 +64,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sExercise,
       backgroundColor: cOrange.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -73,7 +73,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sGift,
       backgroundColor: cPink.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -82,7 +82,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sHealth,
       backgroundColor: cBrown.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -91,7 +91,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sHouse,
       backgroundColor: cCyan.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -100,7 +100,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sLeisure,
       backgroundColor: cIndigo.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -109,7 +109,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sLoans,
       backgroundColor: cLime.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -118,7 +118,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sMobile,
       backgroundColor: cTeal.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -127,7 +127,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sOther,
       backgroundColor: cGrey.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -136,7 +136,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sPet,
       backgroundColor: cDeepPurple.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -145,7 +145,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sShoppingCart,
       backgroundColor: cDeepOrange.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -154,7 +154,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sStreaming,
       backgroundColor: cRedAccent.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -163,7 +163,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sTransport,
       backgroundColor: cIndigoAccent.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -172,7 +172,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sTravel,
       backgroundColor: cLightBlue.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -181,7 +181,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sWifi,
       backgroundColor: cLightGreen.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -190,7 +190,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sCoffee,
       backgroundColor: cGreenAccent.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -199,7 +199,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sSelfCare,
       backgroundColor: cYellow.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -208,7 +208,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sShopping,
       backgroundColor: cAmberAccent.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -217,7 +217,7 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sBank,
       backgroundColor: cBlueAccent.shade700,
-      radius: 24,
+      radius: 30,
     ),
   ),
   Category(
@@ -226,7 +226,16 @@ List<Category> categoryList = [
     icon: RoundedIconContainer(
       svgPicture: sWork,
       backgroundColor: cPinkAccent.shade700,
-      radius: 24,
+      radius: 30,
+    ),
+  ),
+  Category(
+    id: 26,
+    description: "Personalizada",
+    icon: RoundedIconContainer(
+      svgPicture: sCategory,
+      backgroundColor: cPurple.shade200,
+      radius: 30,
     ),
   ),
 ];

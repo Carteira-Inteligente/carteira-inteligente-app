@@ -21,7 +21,7 @@ class SecondaryButton extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
           shape: wButtonBorderRadius,
-          side: const BorderSide(color: cBlue),
+          side: BorderSide(color: cBlue.shade800),
           elevation: 0,
           backgroundColor: cWhite,
         ),

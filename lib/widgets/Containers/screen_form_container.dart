@@ -26,7 +26,7 @@ class ScreenFormContainer extends StatelessWidget {
       appBar: AppBar(
         leading: const AppBarLeading(),
         elevation: 2,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: cBlue.shade700,
         systemOverlayStyle: SystemUiOverlayStyle.light,
         title: AppBarTitle(title: title),
         actions: <Widget>[
@@ -45,7 +45,6 @@ class ScreenFormContainer extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0,
                     vertical: 10.0,
                   ),
                   child: child,

@@ -21,7 +21,7 @@ class RoundedEditButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: wRoundButtonSize,
           shape: wButtonBorderRadius,
-          backgroundColor: cGrey,
+          backgroundColor: cGrey.shade800,
           elevation: 0,
         ),
         onPressed: onPressed,

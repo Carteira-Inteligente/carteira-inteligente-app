@@ -21,15 +21,15 @@ class LightTheme extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(
-          primary: cBlue,
-          secondary: cWhite,
+          primary: cBlue.shade800,
+          secondary: cBlue.shade300,
         ),
         textTheme: theme.textTheme.copyWith(
           titleLarge: TextStyle(
             // Tema utilizado para títulos
             fontFamily: "OpenSans",
             fontSize: 25,
-            color: theme.primaryColor,
+            color: cBlue.shade800,
             fontWeight: FontWeight.bold,
           ),
           titleMedium: TextStyle(
@@ -89,7 +89,7 @@ class LightTheme extends StatelessWidget {
             // Tema utilizado para botões secundários
             fontFamily: "OpenSans",
             fontSize: 16,
-            color: theme.primaryColor,
+            color: cBlue.shade800,
           ),
           labelSmall: const TextStyle(
             // Tema utilizado para dados da tela de detalhes

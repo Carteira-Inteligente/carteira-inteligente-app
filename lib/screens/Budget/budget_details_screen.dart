@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../data/entries_data.dart';
+import '../../models/budget.dart';
 import '../../models/entry.dart';
 import '../../utils/show_modal.dart';
 import '../../widgets/Buttons/delete_button.dart';
@@ -17,6 +20,7 @@ import '../../widgets/Labels/budget_value_label.dart';
 import '../../widgets/Labels/input_label.dart';
 import '../../widgets/Labels/subtitle_label.dart';
 import '../Entry/entry_details_screen.dart';
+import 'edit_budget_form_screen.dart';
 
 class BudgetDetailsScreen extends StatefulWidget {
   const BudgetDetailsScreen({super.key});
@@ -26,6 +30,28 @@ class BudgetDetailsScreen extends StatefulWidget {
 }
 
 class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
+  final List<Budget> _budgets = [];
+  _editBudget(
+    int idUser,
+    int idCategory,
+    double value,
+  ) {
+    final editBudget = Budget(
+      id: Random().nextInt(999).toInt(),
+      idUser: idUser,
+      idCategory: idCategory,
+      value: value,
+    );
+
+    setState(() {
+      _budgets.add(editBudget);
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.of(context).pop();
+    });
+  }
+
   final List<Entry> _entries = budgetEntryList;
 
   Widget _buildEntryCards(BuildContext context, Entry entry) {
@@ -51,10 +77,20 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
       bottonButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          EditButton(onPressed: () {}),
+          EditButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      EditBudgetFormScreen(onSubmit: _editBudget),
+                ),
+              );
+            },
+          ),
           DeleteButton(
             dataLabel: "orçamento",
-            onPressed: () {},
+            onPressed: () => Navigator.pop(context),
           ),
         ],
       ),

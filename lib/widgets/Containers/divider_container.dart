@@ -7,6 +7,6 @@ class DividerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(color: cGrey.shade400);
+    return Divider(color: cGrey.shade300);
   }
 }

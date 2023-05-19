@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/colors.dart';
-import '../../constants/svgs.dart';
 import '../../constants/widgets.dart';
 
 class RoundedIconContainer extends StatelessWidget {
@@ -11,11 +10,13 @@ class RoundedIconContainer extends StatelessWidget {
     required this.svgPicture,
     required this.backgroundColor,
     required this.radius,
+    this.heigth,
   });
 
   final String svgPicture;
   final Color backgroundColor;
   final double radius;
+  final double? heigth;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class RoundedIconContainer extends StatelessWidget {
           child: SvgPicture.asset(
             svgPicture,
             color: backgroundColor == cGrey.shade200 ? cBlack : cWhite,
-            height: svgPicture == sUser ? 45 : null,
+            height: heigth,
           ),
         ),
       ),

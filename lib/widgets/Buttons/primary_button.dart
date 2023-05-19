@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/widgets.dart';
@@ -20,7 +21,7 @@ class PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
           shape: wButtonBorderRadius,
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: cBlue.shade800,
           elevation: 0,
         ),
         onPressed: onPressed,

@@ -19,7 +19,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         textButton: "Limpar tudo",
         onPressed: () {},
       ),
-      child: const Placeholder(),
+      child: Container(),
     );
   }
 }

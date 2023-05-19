@@ -11,16 +11,17 @@ class DialogSecondaryButton extends StatelessWidget {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         shape: wButtonBorderRadius,
-        side: const BorderSide(color: cBlue),
+        minimumSize: Size(MediaQuery.of(context).size.width * 0.5, 44),
+        side: BorderSide(color: cBlue.shade800),
         elevation: 0,
         backgroundColor: cWhite,
       ),
       onPressed: () => Navigator.pop(context),
-      child: const Text(
+      child: Text(
         "Voltar",
         style: TextStyle(
           fontFamily: "OpenSans",
-          color: cBlue,
+          color: cBlue.shade800,
         ),
       ),
     );
