@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
     super.key,
@@ -24,7 +26,12 @@ class CategoryCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5.0),
             child: Text(
               description,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: TextStyle(
+                fontFamily: "OpenSans",
+                fontSize: 12,
+                color: cGrey.shade600,
+                fontWeight: FontWeight.normal,
+              ),
               textAlign: TextAlign.center,
             ),
           ),

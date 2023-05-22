@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import '../../constants/colors.dart';
 import '../AppBar/app_bar_add_button.dart';
 import '../AppBar/app_bar_leading.dart';
-import '../AppBar/app_bar_title.dart';
 
 class ScreenFormContainer extends StatelessWidget {
   const ScreenFormContainer({
@@ -25,14 +24,27 @@ class ScreenFormContainer extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AppBarLeading(),
-        elevation: 2,
-        backgroundColor: cBlue.shade700,
+        elevation: 0,
+        backgroundColor: cWhite,
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: AppBarTitle(title: title),
+        title: Row(
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(
+                fontFamily: "OpenSans",
+                fontSize: 16,
+                color: cGrey.shade600,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
         actions: <Widget>[
           AppBarAddButton(
             tooltip: tooltip,
             onPressed: onPressed,
+            blueIcon: true,
           ),
         ],
       ),

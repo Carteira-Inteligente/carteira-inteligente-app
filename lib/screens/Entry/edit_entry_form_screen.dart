@@ -83,6 +83,7 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Edição de lançamento",
+      height: MediaQuery.of(context).size.height * 0.76,
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,

@@ -4,7 +4,6 @@ import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_button.dart';
 import '../../widgets/Containers/form_container.dart';
 import '../../widgets/Inputs/input_email.dart';
-import '../../widgets/Labels/subtitle_label.dart';
 import '../../widgets/Labels/title_label.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -29,19 +28,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return FormContainer(
-      title: "Esqueci minha senha",
+      title: "Esqueceu sua senha?",
       bottonButton: PrimaryButton(
         textButton: "Enviar e-mail",
         onPressed: _submitForm,
       ),
       child: Column(
         children: <Widget>[
-          Row(
-            children: const <Widget>[
-              TitleLabel(label: "Esqueceu sua senha?"),
-            ],
-          ),
-          const SubtitleLabel(
+          const TitleLabel(
             label: "Informe seu e-mail para que possamos enviar uma nova "
                 "senha para você.",
           ),

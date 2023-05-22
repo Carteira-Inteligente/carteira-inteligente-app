@@ -63,7 +63,7 @@ class _InputDateState extends State<InputDate> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('Confirmar'),
+                    child: const Text('OK'),
                   ),
                 ],
               ),

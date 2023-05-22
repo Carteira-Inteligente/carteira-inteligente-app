@@ -73,7 +73,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              crossAxisSpacing: 5,
+              crossAxisSpacing: 20,
             ),
             itemCount: _categories.length,
             itemBuilder: (context, index) {

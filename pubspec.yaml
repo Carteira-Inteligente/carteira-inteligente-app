@@ -36,6 +36,7 @@ dependencies:
   fluttertoast: ^8.2.1
   flutter_svg: ^1.1.6
   http: ^0.13.6
+  provider: ^6.0.5
 
 #https://carteira-inteligente-e0367-default-rtdb.firebaseio.com
 
@@ -81,6 +82,7 @@ flutter:
     ## and https://www.svgrepo.com/collection/iconwrap-line-duotone-interface-icons/
     # Svg.Buttons
     - assets/svg/buttons/add-budget.svg
+    - assets/svg/buttons/add-circle.svg
     - assets/svg/buttons/add.svg
     - assets/svg/buttons/arrow-down.svg
     - assets/svg/buttons/arrow-left.svg

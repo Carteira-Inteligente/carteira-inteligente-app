@@ -9,10 +9,12 @@ class AppBarAddButton extends StatefulWidget {
     super.key,
     required this.tooltip,
     required this.onPressed,
+    this.blueIcon,
   });
 
   final String tooltip;
   final void Function() onPressed;
+  final bool? blueIcon;
 
   @override
   State<AppBarAddButton> createState() => _AppBarAddButtonState();
@@ -25,8 +27,8 @@ class _AppBarAddButtonState extends State<AppBarAddButton> {
       tooltip: widget.tooltip,
       onPressed: widget.onPressed,
       icon: SvgPicture.asset(
-        sAdd,
-        color: cWhite,
+        sAddCircle,
+        color: widget.blueIcon == true ? cBlue.shade800 : cWhite,
       ),
     );
   }

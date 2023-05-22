@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:carteira_inteligente/widgets/Labels/subtitle2_label.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/svgs.dart';

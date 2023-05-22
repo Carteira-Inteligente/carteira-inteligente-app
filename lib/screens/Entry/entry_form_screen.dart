@@ -83,6 +83,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Novo lançamento",
+      height: MediaQuery.of(context).size.height * 0.76,
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,

@@ -8,12 +8,14 @@ class RoundedIconContainer extends StatelessWidget {
   const RoundedIconContainer({
     super.key,
     required this.svgPicture,
+    this.svgColor,
     required this.backgroundColor,
     required this.radius,
     this.heigth,
   });
 
   final String svgPicture;
+  final Color? svgColor;
   final Color backgroundColor;
   final double radius;
   final double? heigth;
@@ -29,7 +31,7 @@ class RoundedIconContainer extends StatelessWidget {
           padding: const EdgeInsets.all(6.0),
           child: SvgPicture.asset(
             svgPicture,
-            color: backgroundColor == cGrey.shade200 ? cBlack : cWhite,
+            color: backgroundColor == cGrey.shade200 ? cBlack : svgColor,
             height: heigth,
           ),
         ),

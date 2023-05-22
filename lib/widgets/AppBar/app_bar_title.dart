@@ -10,15 +10,11 @@ class AppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: <Widget>[
-            Text(
-              title,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ],
+    return Row(
+      children: <Widget>[
+        Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],
     );

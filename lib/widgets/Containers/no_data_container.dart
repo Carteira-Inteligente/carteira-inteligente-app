@@ -26,7 +26,7 @@ class NoDataContainer extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Subtitle2Label(label: "Toque em"),
+                const Subtitle2Label(label: "Toque em "),
                 ElevatedButton(
                   onPressed: null,
                   style: ElevatedButton.styleFrom(
@@ -43,9 +43,9 @@ class NoDataContainer extends StatelessWidget {
                     color: cWhite,
                   ),
                 ),
-                const Subtitle2Label(label: "ou em"),
+                const Subtitle2Label(label: " ou em "),
                 SvgPicture.asset(
-                  sAdd,
+                  sAddCircle,
                   color: cGrey,
                 ),
               ],

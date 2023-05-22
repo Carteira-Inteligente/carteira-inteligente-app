@@ -1,5 +1,6 @@
 // Svg.Buttons
 const sAddBudget = "assets/svg/buttons/add-budget.svg";
+const sAddCircle = "assets/svg/buttons/add-circle.svg";
 const sAdd = "assets/svg/buttons/add.svg";
 const sArrowDown = "assets/svg/buttons/arrow-down.svg";
 const sArrowLeft = "assets/svg/buttons/arrow-left.svg";

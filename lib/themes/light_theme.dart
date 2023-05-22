@@ -28,9 +28,9 @@ class LightTheme extends StatelessWidget {
           titleLarge: TextStyle(
             // Tema utilizado para títulos
             fontFamily: "OpenSans",
-            fontSize: 25,
+            fontSize: 18,
             color: cBlue.shade800,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
           ),
           titleMedium: TextStyle(
             // Tema utilizado para subtítulos
@@ -44,6 +44,7 @@ class LightTheme extends StatelessWidget {
             fontFamily: "OpenSans",
             fontSize: 18,
             color: cGrey.shade600,
+            fontWeight: FontWeight.normal,
           ),
           bodyLarge: const TextStyle(
             // Tema utilizado para títulos brancos

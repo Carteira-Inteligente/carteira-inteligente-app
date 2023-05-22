@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -9,8 +10,6 @@ import '../../widgets/Containers/password_rules_container.dart';
 import '../../widgets/Inputs/input_email.dart';
 import '../../widgets/Inputs/input_password.dart';
 import '../../widgets/Inputs/input_text.dart';
-import '../../widgets/Labels/subtitle_label.dart';
-import '../../widgets/Labels/title_label.dart';
 
 class UserFormScreen extends StatefulWidget {
   const UserFormScreen({
@@ -75,19 +74,15 @@ class _UserFormScreenState extends State<UserFormScreen> {
     Color passwordLabelColor = _isPasswordValid ? cGreen : cGrey.shade600;
 
     return FormContainer(
-      title: "Novo usuário",
+      title: "Vamos começar!",
+      height: MediaQuery.of(context).size.height * 0.75,
       bottonButton: PrimaryButton(
         textButton: "Cadastrar",
         onPressed: _submitForm,
       ),
       child: Column(
         children: <Widget>[
-          Row(
-            children: const <Widget>[
-              TitleLabel(label: "Vamos começar!"),
-            ],
-          ),
-          const SubtitleLabel(
+          const TitleLabel(
             label: "Preencha os campos abaixo para criar seu usuário.",
           ),
           InputText(

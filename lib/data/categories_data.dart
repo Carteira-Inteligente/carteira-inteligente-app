@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import '../constants/colors.dart';
 import '../constants/svgs.dart';
 import '../models/category.dart';
@@ -9,7 +11,8 @@ List<Category> categoryList = [
     description: "Cartão de crédito",
     icon: RoundedIconContainer(
       svgPicture: sCards,
-      backgroundColor: cBlueGrey.shade700,
+      svgColor: cBlueGrey.shade700,
+      backgroundColor: cBlueGrey.shade100,
       radius: 30,
     ),
   ),
@@ -18,7 +21,8 @@ List<Category> categoryList = [
     description: "Cultura",
     icon: RoundedIconContainer(
       svgPicture: sCulture,
-      backgroundColor: cGreen.shade700,
+      svgColor: cGreen.shade700,
+      backgroundColor: cGreen.shade100,
       radius: 30,
     ),
   ),
@@ -27,7 +31,8 @@ List<Category> categoryList = [
     description: "Alimentação",
     icon: RoundedIconContainer(
       svgPicture: sDinner,
-      backgroundColor: cRed.shade700,
+      svgColor: cRed.shade700,
+      backgroundColor: cRed.shade100,
       radius: 30,
     ),
   ),
@@ -36,7 +41,8 @@ List<Category> categoryList = [
     description: "Família e filhos",
     icon: RoundedIconContainer(
       svgPicture: sFamily,
-      backgroundColor: cBlue.shade700,
+      svgColor: cBlue.shade700,
+      backgroundColor: cBlue.shade100,
       radius: 30,
     ),
   ),
@@ -45,7 +51,8 @@ List<Category> categoryList = [
     description: "Educação",
     icon: RoundedIconContainer(
       svgPicture: sEducation,
-      backgroundColor: cPurple.shade700,
+      svgColor: cPurple.shade700,
+      backgroundColor: cPurple.shade100,
       radius: 30,
     ),
   ),
@@ -54,7 +61,8 @@ List<Category> categoryList = [
     description: "Energia elétrica",
     icon: RoundedIconContainer(
       svgPicture: sElectricity,
-      backgroundColor: cAmber.shade700,
+      svgColor: cAmber.shade700,
+      backgroundColor: cAmber.shade100,
       radius: 30,
     ),
   ),
@@ -63,7 +71,8 @@ List<Category> categoryList = [
     description: "Atividades físicas",
     icon: RoundedIconContainer(
       svgPicture: sExercise,
-      backgroundColor: cOrange.shade700,
+      svgColor: cOrange.shade700,
+      backgroundColor: cOrange.shade100,
       radius: 30,
     ),
   ),
@@ -72,7 +81,8 @@ List<Category> categoryList = [
     description: "Presentes e doações",
     icon: RoundedIconContainer(
       svgPicture: sGift,
-      backgroundColor: cPink.shade700,
+      svgColor: cPink.shade700,
+      backgroundColor: cPink.shade100,
       radius: 30,
     ),
   ),
@@ -81,7 +91,8 @@ List<Category> categoryList = [
     description: "Saúde",
     icon: RoundedIconContainer(
       svgPicture: sHealth,
-      backgroundColor: cBrown.shade700,
+      svgColor: cBrown.shade700,
+      backgroundColor: cBrown.shade100,
       radius: 30,
     ),
   ),
@@ -90,7 +101,8 @@ List<Category> categoryList = [
     description: "Casa",
     icon: RoundedIconContainer(
       svgPicture: sHouse,
-      backgroundColor: cCyan.shade700,
+      svgColor: cCyan.shade700,
+      backgroundColor: cCyan.shade100,
       radius: 30,
     ),
   ),
@@ -99,7 +111,8 @@ List<Category> categoryList = [
     description: "Lazer e hobbies",
     icon: RoundedIconContainer(
       svgPicture: sLeisure,
-      backgroundColor: cIndigo.shade700,
+      svgColor: cIndigo.shade700,
+      backgroundColor: cIndigo.shade100,
       radius: 30,
     ),
   ),
@@ -108,7 +121,8 @@ List<Category> categoryList = [
     description: "Dívidas e empréstimos",
     icon: RoundedIconContainer(
       svgPicture: sLoans,
-      backgroundColor: cLime.shade700,
+      svgColor: cLime.shade700,
+      backgroundColor: cLime.shade100,
       radius: 30,
     ),
   ),
@@ -117,7 +131,8 @@ List<Category> categoryList = [
     description: "Telefonia",
     icon: RoundedIconContainer(
       svgPicture: sMobile,
-      backgroundColor: cTeal.shade700,
+      svgColor: cTeal.shade700,
+      backgroundColor: cTeal.shade100,
       radius: 30,
     ),
   ),
@@ -126,7 +141,8 @@ List<Category> categoryList = [
     description: "Outros",
     icon: RoundedIconContainer(
       svgPicture: sOther,
-      backgroundColor: cGrey.shade700,
+      svgColor: cGrey.shade700,
+      backgroundColor: cGrey.shade100,
       radius: 30,
     ),
   ),
@@ -135,7 +151,8 @@ List<Category> categoryList = [
     description: "Animais de estimação",
     icon: RoundedIconContainer(
       svgPicture: sPet,
-      backgroundColor: cDeepPurple.shade700,
+      svgColor: cDeepPurple.shade700,
+      backgroundColor: cDeepPurple.shade100,
       radius: 30,
     ),
   ),
@@ -144,7 +161,8 @@ List<Category> categoryList = [
     description: "Mercado",
     icon: RoundedIconContainer(
       svgPicture: sShoppingCart,
-      backgroundColor: cDeepOrange.shade700,
+      svgColor: cDeepOrange.shade700,
+      backgroundColor: cDeepOrange.shade100,
       radius: 30,
     ),
   ),
@@ -153,7 +171,8 @@ List<Category> categoryList = [
     description: "Serviços de streaming",
     icon: RoundedIconContainer(
       svgPicture: sStreaming,
-      backgroundColor: cRedAccent.shade700,
+      svgColor: cRedAccent.shade700,
+      backgroundColor: cRedAccent.shade100,
       radius: 30,
     ),
   ),
@@ -162,7 +181,8 @@ List<Category> categoryList = [
     description: "Transporte",
     icon: RoundedIconContainer(
       svgPicture: sTransport,
-      backgroundColor: cIndigoAccent.shade700,
+      svgColor: cIndigoAccent.shade700,
+      backgroundColor: cIndigoAccent.shade100,
       radius: 30,
     ),
   ),
@@ -171,7 +191,8 @@ List<Category> categoryList = [
     description: "Viagens",
     icon: RoundedIconContainer(
       svgPicture: sTravel,
-      backgroundColor: cLightBlue.shade700,
+      svgColor: cLightBlue.shade700,
+      backgroundColor: cLightBlue.shade100,
       radius: 30,
     ),
   ),
@@ -180,7 +201,8 @@ List<Category> categoryList = [
     description: "Internet",
     icon: RoundedIconContainer(
       svgPicture: sWifi,
-      backgroundColor: cLightGreen.shade700,
+      svgColor: cLightGreen.shade700,
+      backgroundColor: cLightGreen.shade100,
       radius: 30,
     ),
   ),
@@ -189,7 +211,8 @@ List<Category> categoryList = [
     description: "Bares e restaurantes",
     icon: RoundedIconContainer(
       svgPicture: sCoffee,
-      backgroundColor: cGreenAccent.shade700,
+      svgColor: cGreenAccent.shade700,
+      backgroundColor: cGreenAccent.shade100,
       radius: 30,
     ),
   ),
@@ -198,7 +221,8 @@ List<Category> categoryList = [
     description: "Cuidados pessoais",
     icon: RoundedIconContainer(
       svgPicture: sSelfCare,
-      backgroundColor: cYellow.shade700,
+      svgColor: cYellow.shade700,
+      backgroundColor: cYellow.shade100,
       radius: 30,
     ),
   ),
@@ -207,7 +231,8 @@ List<Category> categoryList = [
     description: "Compras",
     icon: RoundedIconContainer(
       svgPicture: sShopping,
-      backgroundColor: cAmberAccent.shade700,
+      svgColor: cAmberAccent.shade700,
+      backgroundColor: cAmberAccent.shade100,
       radius: 30,
     ),
   ),
@@ -216,7 +241,8 @@ List<Category> categoryList = [
     description: "Impostos e taxas",
     icon: RoundedIconContainer(
       svgPicture: sBank,
-      backgroundColor: cBlueAccent.shade700,
+      svgColor: cBlueAccent.shade700,
+      backgroundColor: cBlueAccent.shade100,
       radius: 30,
     ),
   ),
@@ -225,16 +251,18 @@ List<Category> categoryList = [
     description: "Trabalho",
     icon: RoundedIconContainer(
       svgPicture: sWork,
-      backgroundColor: cPinkAccent.shade700,
+      svgColor: cPinkAccent.shade700,
+      backgroundColor: cPinkAccent.shade100,
       radius: 30,
     ),
   ),
   Category(
     id: 26,
     description: "Personalizada",
-    icon: RoundedIconContainer(
+    icon: const RoundedIconContainer(
       svgPicture: sCategory,
-      backgroundColor: cPurple.shade200,
+      svgColor: Color(0xFF1F70A2),
+      backgroundColor: Color(0xFFBED3E7),
       radius: 30,
     ),
   ),

@@ -69,6 +69,7 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
 
     return FormContainer(
       title: "Edição de usuário",
+      height: MediaQuery.of(context).size.height * 0.69,
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,

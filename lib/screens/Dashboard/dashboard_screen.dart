@@ -20,7 +20,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
       children: <Widget>[
         Row(
           children: const <Widget>[
-            SubtitleLabel(label: "Mensal"),
+            SubtitleLabel(
+              padding: EdgeInsets.all(8.0),
+              label: "Mensal",
+            ),
           ],
         ),
         Row(
@@ -54,7 +57,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         Row(
           children: const <Widget>[
-            SubtitleLabel(label: "Anual"),
+            SubtitleLabel(
+              padding: EdgeInsets.all(8.0),
+              label: "Anual",
+            ),
           ],
         ),
         Row(

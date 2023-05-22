@@ -242,21 +242,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final height = MediaQuery.of(context).size.height -
-        sliverAppBar.toolbarHeight -
-        bottomNavigationBar.height;
-
     return Scaffold(
+      backgroundColor: cWhite,
       body: CustomScrollView(
         slivers: <Widget>[
           sliverAppBar,
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                SizedBox(
-                  height: height,
-                  child: _navBarOptions.elementAt(_selectedIndex),
-                ),
+                _navBarOptions.elementAt(_selectedIndex),
               ],
             ),
           ),

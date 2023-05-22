@@ -107,13 +107,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: DividerContainer(),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.53,
+          height: MediaQuery.of(context).size.height * 0.54,
           child: ListView(
             children: <Widget>[
               CardContainer(
                 child: Column(
                   children: <Widget>[
-                    const ListLabel(label: "Configurações"),
+                    const ListLabel(
+                      padding: EdgeInsets.all(8.0),
+                      label: "Configurações",
+                    ),
                     ListCard(
                       svgIcon: sBank,
                       label: "Contas",
@@ -172,7 +175,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               CardContainer(
                 child: Column(
                   children: <Widget>[
-                    const ListLabel(label: "Outros"),
+                    const ListLabel(
+                      padding: EdgeInsets.all(8.0),
+                      label: "Outros",
+                    ),
                     ListCard(
                       svgIcon: sLogout,
                       label: "Sair do aplicativo",

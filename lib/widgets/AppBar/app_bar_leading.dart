@@ -15,6 +15,7 @@ class AppBarLeading extends StatelessWidget {
         backgroundColor: cBlue.shade800,
         radius: 24,
         svgPicture: sArrowLeft,
+        svgColor: cWhite,
       ),
     );
   }
