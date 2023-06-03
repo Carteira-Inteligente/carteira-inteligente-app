@@ -11,7 +11,6 @@ import '../../data/categories_data.dart';
 import '../../models/category.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
-import '../../widgets/Containers/rounded_icon_container.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -52,11 +51,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final newCategory = Category(
       id: Random().nextInt(999).toInt(),
       description: description,
-      icon: RoundedIconContainer(
-        svgPicture: sCategory,
-        backgroundColor: cPurple.shade200,
-        radius: 30,
-      ),
+      icon: sCategory,
+      iconColor: const Color(0xFF1F70A2),
+      backgroundColor: const Color(0xFFBED3E7),
+      // const RoundedIconContainer(
+      //   svgPicture: sCategory,
+      //   svgColor: Color(0xFF1F70A2),
+      //   backgroundColor: Color(0xFFBED3E7),
+      //   radius: 30,
+      // ),
     );
 
     setState(() {

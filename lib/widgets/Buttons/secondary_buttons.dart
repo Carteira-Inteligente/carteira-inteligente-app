@@ -43,7 +43,7 @@ class SmallSecondaryButton extends StatelessWidget {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         shape: wButtonBorderRadius,
-        minimumSize: Size(MediaQuery.of(context).size.width * 0.5, 44),
+        minimumSize: Size(MediaQuery.of(context).size.width * 0.7, 44),
         side: BorderSide(color: cBlue.shade800),
         elevation: 0,
         backgroundColor: cWhite,

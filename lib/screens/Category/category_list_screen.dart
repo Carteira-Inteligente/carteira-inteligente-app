@@ -10,7 +10,6 @@ import '../../models/category.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/category_card.dart';
 import '../../widgets/Containers/divider_container.dart';
-import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/modal_title_label.dart';
 import 'category_form_screen.dart';
 
@@ -40,6 +39,8 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
         Navigator.pop(context);
       },
       icon: category.icon,
+      iconColor: category.iconColor,
+      backgroundColor: category.backgroundColor,
       description: category.description,
     );
   }
@@ -53,6 +54,8 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
             Navigator.pop(context);
           },
           icon: category.icon,
+          iconColor: category.iconColor,
+          backgroundColor: category.backgroundColor,
           description: category.description,
         ),
         const DividerContainer(),
@@ -64,11 +67,9 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
     final newCategory = Category(
       id: Random().nextInt(999).toInt(),
       description: description,
-      icon: RoundedIconContainer(
-        svgPicture: sCategory,
-        backgroundColor: cPurple.shade200,
-        radius: 30,
-      ),
+      icon: sCategory,
+      iconColor: const Color(0xFF1F70A2),
+      backgroundColor: const Color(0xFFBED3E7),
     );
 
     setState(() {
@@ -80,7 +81,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
     });
   }
 
-  bool _isGridView = true;
+  bool _isGridView = false;
 
   void toggleView() {
     setState(() {

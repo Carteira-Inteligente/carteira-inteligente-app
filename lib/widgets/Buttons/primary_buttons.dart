@@ -56,7 +56,7 @@ class SmallPrimaryButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         minimumSize: label == "Editar usuário"
             ? null
-            : Size(MediaQuery.of(context).size.width * 0.5, 44),
+            : Size(MediaQuery.of(context).size.width * 0.7, 44),
         shape: wButtonBorderRadius,
         backgroundColor: backgroundColor,
         elevation: 0,

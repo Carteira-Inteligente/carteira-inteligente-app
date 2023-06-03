@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/widgets/Labels/subtitle_label.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -22,21 +23,18 @@ class DialogContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              ListTileLabel(label: dialogTitle),
-            ],
-          ),
-          const DividerContainer(),
+          SubtitleLabel(label: dialogTitle),
         ],
       ),
       content: contentText,
       backgroundColor: cWhite,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
       ),
       actions: <Widget>[
+        const DividerContainer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

@@ -48,9 +48,10 @@ class CategoryListCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: ListTile(
-          leading: RoundedIconContainer(
+          leading: const RoundedIconContainer(
             svgPicture: sCategory,
-            backgroundColor: cPurple.shade200,
+            svgColor: Color(0xFF1F70A2),
+            backgroundColor: Color(0xFFBED3E7),
             radius: 24,
           ),
           title: Text(
