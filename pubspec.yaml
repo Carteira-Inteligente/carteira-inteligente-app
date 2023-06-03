@@ -36,7 +36,7 @@ dependencies:
   fluttertoast: ^8.2.1
   flutter_svg: ^1.1.6
   http: ^0.13.6
-  provider: ^6.0.5
+  provider: ^5.0.0
 
 #https://carteira-inteligente-e0367-default-rtdb.firebaseio.com
 
@@ -89,6 +89,8 @@ flutter:
     - assets/svg/buttons/delete.svg
     - assets/svg/buttons/edit.svg
     - assets/svg/buttons/filter.svg
+    - assets/svg/buttons/grid-view.svg
+    - assets/svg/buttons/list-view.svg
     - assets/svg/buttons/logout.svg
     - assets/svg/buttons/settings.svg
     # Svg.Categories

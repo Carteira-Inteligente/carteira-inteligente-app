@@ -7,8 +7,8 @@ import '../../constants/images.dart';
 import '../../models/authentication.dart';
 import '../../models/users.dart';
 import '../../utils/show_modal.dart';
-import '../../widgets/Buttons/primary_button.dart';
-import '../../widgets/Buttons/secondary_button.dart';
+import '../../widgets/Buttons/primary_buttons.dart';
+import '../../widgets/Buttons/secondary_buttons.dart';
 import '../Authentication/authentication_screen.dart';
 import '../User/user_form_screen.dart';
 

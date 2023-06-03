@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../constants/svgs.dart';
 import '../../data/payment_data.dart';
 import '../../models/payment_type.dart';
-import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/payment_type_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Labels/modal_title_label.dart';
@@ -72,7 +72,7 @@ class _PaymentTypeListScreenState extends State<PaymentTypeListScreen> {
       children: <Widget>[
         const ModalTitleLabel(label: "Selecione a forma de pagamento"),
         SizedBox(
-          height: 450,
+          height: MediaQuery.of(context).size.height * 0.5,
           child: ListView.builder(
             itemCount: _paymentTypes.length,
             itemBuilder: (context, index) {

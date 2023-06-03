@@ -16,10 +16,9 @@ import 'screens/Entry/entry_screen.dart';
 import 'screens/Entry/fast_entry_screen.dart';
 import 'screens/Profile/profile_screen.dart';
 import 'themes/light_theme.dart';
-import 'widgets/AppBar/app_bar_add_button.dart';
-import 'widgets/AppBar/app_bar_notification_button.dart';
+import 'widgets/AppBar/app_bar_buttons.dart';
 import 'widgets/AppBar/app_bar_title.dart';
-import 'widgets/Buttons/fast_entry_button.dart';
+import 'widgets/Buttons/primary_buttons.dart';
 
 void main() {
   runApp(const CarteiraInteligenteApp());
@@ -222,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         BottomNavigationBarItem(
           icon: FastEntryButton(
-            fastEntryScreen: FastEntryScreen(onSubmit: _addFastEntry),
+            screen: FastEntryScreen(onSubmit: _addFastEntry),
           ),
         ),
         BottomNavigationBarItem(

@@ -16,7 +16,7 @@ class InputLabel extends StatelessWidget {
       children: <Widget>[
         Text(
           label,
-          style: label == "Excluir conta"
+          style: label == "Excluir usuário"
               ? const TextStyle(
                   fontFamily: "OpenSans",
                   fontSize: 16,

@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../constants/widgets.dart';
-import '../Containers/input_container.dart';
+import '../Containers/input_containers.dart';
 
 class InputPassword extends StatefulWidget {
   const InputPassword({
@@ -12,13 +12,13 @@ class InputPassword extends StatefulWidget {
     required this.label,
     required this.controller,
     required this.onSubmit,
-    required this.onChanged,
+    this.onChanged,
   });
 
   final String label;
   final TextEditingController controller;
   final void Function() onSubmit;
-  final void Function(String) onChanged;
+  final void Function(String)? onChanged;
 
   @override
   State<InputPassword> createState() => _InputPasswordState();

@@ -34,11 +34,7 @@ class _ToggleButtonState extends State<ToggleButton> {
                 activeColor: cBlue.shade800,
                 value: isPaid,
                 onChanged: (value) => setState(() {
-                  if (isPaid == false) {
-                    isPaid = true;
-                  } else {
-                    isPaid = false;
-                  }
+                  isPaid = !isPaid;
                 }),
               ),
             ),

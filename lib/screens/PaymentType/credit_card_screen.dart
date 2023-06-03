@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../constants/svgs.dart';
 import '../../data/payment_data.dart';
 import '../../models/payment_type.dart';
-import '../../widgets/Cards/list_payment_type_card.dart';
-import '../../widgets/Containers/screen_form_container.dart';
+import '../../widgets/Cards/list_cards.dart';
+import '../../widgets/Containers/form_containers.dart';
 import 'credit_card_form_screen.dart';
 import 'edit_account_form_screen.dart';
 
@@ -21,7 +21,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
   final List<PaymentType> _paymentTypes = paymentTypesList;
 
   _buildCreditCardPaymentCard(BuildContext context, PaymentType paymentType) {
-    return ListPaymentTypeCard(
+    return PaymentTypeListCard(
       type: paymentType.type,
       description: paymentType.description,
       svgIcon: sCards,

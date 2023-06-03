@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../Labels/input_label.dart';
+import 'input_label.dart';
 
-class InputDetails extends StatelessWidget {
-  const InputDetails({
+class EntryDetailsLabel extends StatelessWidget {
+  const EntryDetailsLabel({
     super.key,
     required this.label,
     required this.details,

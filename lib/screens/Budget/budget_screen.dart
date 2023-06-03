@@ -34,12 +34,14 @@ class _BudgetScreenState extends State<BudgetScreen> {
       pageIcon: budget.idCategory == 1
           ? RoundedIconContainer(
               svgPicture: sElectricity,
-              backgroundColor: cAmber.shade700,
+              svgColor: cAmber.shade700,
+              backgroundColor: cAmber.shade100,
               radius: 14,
             )
           : RoundedIconContainer(
               svgPicture: sHouse,
-              backgroundColor: cCyan.shade700,
+              svgColor: cCyan.shade700,
+              backgroundColor: cCyan.shade100,
               radius: 14,
             ),
       description: budget.idCategory == 1 ? "Energia elétrica" : "Casa",

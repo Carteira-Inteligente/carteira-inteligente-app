@@ -15,7 +15,8 @@ class EntryCard extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.categoryIcon,
-    required this.categoryColor,
+    required this.categoryBackgroundColor,
+    required this.categoryIconColor,
     required this.title,
     required this.value,
     required this.dueDate,
@@ -25,7 +26,8 @@ class EntryCard extends StatelessWidget {
 
   final void Function() onTap;
   final String categoryIcon;
-  final Color categoryColor;
+  final Color categoryIconColor;
+  final Color categoryBackgroundColor;
   final String title;
   final double value;
   final String dueDate;
@@ -41,7 +43,8 @@ class EntryCard extends StatelessWidget {
         onTap: onTap,
         leading: RoundedIconContainer(
           svgPicture: categoryIcon,
-          backgroundColor: categoryColor,
+          svgColor: categoryIconColor,
+          backgroundColor: categoryBackgroundColor,
           radius: 24,
         ),
         title: ListTileLabel(label: title),

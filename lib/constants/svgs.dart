@@ -7,6 +7,8 @@ const sArrowLeft = "assets/svg/buttons/arrow-left.svg";
 const sDelete = "assets/svg/buttons/delete.svg";
 const sEdit = "assets/svg/buttons/edit.svg";
 const sFilter = "assets/svg/buttons/filter.svg";
+const sGridView = "assets/svg/buttons/grid-view.svg";
+const sListView = "assets/svg/buttons/list-view.svg";
 const sLogout = "assets/svg/buttons/logout.svg";
 const sSettings = "assets/svg/buttons/settings.svg";
 

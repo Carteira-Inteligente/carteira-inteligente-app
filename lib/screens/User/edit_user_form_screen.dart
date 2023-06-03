@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
+import '../../providers/users.dart';
 import '../../utils/password_rules.dart';
-import '../../utils/toast_message.dart';
-import '../../widgets/Buttons/primary_button.dart';
-import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Buttons/primary_buttons.dart';
+import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/password_rules_container.dart';
 import '../../widgets/Inputs/input_email.dart';
 import '../../widgets/Inputs/input_password.dart';
@@ -32,30 +32,18 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  bool _isPasswordValid = false;
-
   _submitForm() {
-    final name = _nameController.text;
-    final email = _emailController.text;
-    final password = _passwordController.text;
-    final confirmPassword = _confirmPasswordController.text;
-
-    if (name.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        confirmPassword.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
-      return;
-    }
-
-    if (!_isPasswordValid) {
-      ToastMessage.showToast("A senha não atende aos requisitos.");
-      return;
-    }
-
-    widget.onSubmit(name, email, password);
-    ToastMessage.showToast("Usuário alterado com sucesso.");
+    UsersProvider.editUser(
+      _nameController,
+      _emailController,
+      _passwordController,
+      _confirmPasswordController,
+      _isPasswordValid,
+      widget.onSubmit,
+    );
   }
+
+  bool _isPasswordValid = false;
 
   void _validatePassword(String password) {
     setState(() {
@@ -65,7 +53,7 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Color passwordLabelColor = _isPasswordValid ? cGreen : cRed;
+    Color passwordLabelColor = _isPasswordValid ? cGreen : cGrey.shade600;
 
     return FormContainer(
       title: "Edição de usuário",
@@ -96,7 +84,6 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
             label: "Confirmar senha",
             controller: _confirmPasswordController,
             onSubmit: _submitForm,
-            onChanged: (_) {},
           ),
           PasswordRulesContainer(labelColor: passwordLabelColor),
         ],

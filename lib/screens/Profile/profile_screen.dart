@@ -7,8 +7,8 @@ import '../../constants/svgs.dart';
 import '../../models/budget.dart';
 import '../../models/users.dart';
 import '../../utils/show_dialog.dart';
-import '../../widgets/Buttons/dialog_action_button.dart';
-import '../../widgets/Cards/list_card.dart';
+import '../../widgets/Buttons/primary_buttons.dart';
+import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/card_container.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         const SubtitleLabel(label: "Thiago Martins Proença"),
         const ModalTitleLabel(label: "thiagoenca@gmail.com"),
-        DialogActionButton(
+        SmallPrimaryButton(
           onPressed: () {
             Navigator.push(
               context,
@@ -117,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: EdgeInsets.all(8.0),
                       label: "Configurações",
                     ),
-                    ListCard(
+                    ProfileListCard(
                       svgIcon: sBank,
                       label: "Contas",
                       onTap: () {
@@ -130,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     divider,
-                    ListCard(
+                    ProfileListCard(
                       svgIcon: sCards,
                       label: "Cartões de crédito",
                       onTap: () {
@@ -143,7 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     divider,
-                    ListCard(
+                    ProfileListCard(
                       svgIcon: sCategory,
                       label: "Categorias personalizadas",
                       onTap: () {
@@ -156,15 +156,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     divider,
-                    ListCard(
+                    ProfileListCard(
                       svgIcon: sAddBudget,
                       label: "Novo orçamento",
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                BudgetFormScreen(onSubmit: _addBudget),
+                            builder: (context) => BudgetFormScreen(
+                              onSubmit: _addBudget,
+                            ),
                           ),
                         );
                       },
@@ -179,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: EdgeInsets.all(8.0),
                       label: "Outros",
                     ),
-                    ListCard(
+                    ProfileListCard(
                       svgIcon: sLogout,
                       label: "Sair do aplicativo",
                       onTap: () {
@@ -197,9 +198,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     divider,
-                    ListCard(
+                    ProfileListCard(
                       svgIcon: sDelete,
-                      label: "Excluir conta",
+                      label: "Excluir usuário",
                       onTap: () {
                         ShowDialog.deleteDialog(
                           context,

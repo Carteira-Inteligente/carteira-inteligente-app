@@ -9,10 +9,9 @@ import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../data/categories_data.dart';
 import '../../models/category.dart';
-import '../../widgets/Cards/list_category_card.dart';
-import '../../widgets/Containers/card_container.dart';
+import '../../widgets/Cards/list_cards.dart';
+import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
-import '../../widgets/Containers/screen_form_container.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -29,7 +28,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   _buildCategoryCard(BuildContext context, Category category) {
-    return ListCategoryCard(
+    return CategoryListCard(
       description: category.description,
       actionButton: IconButton(
         icon: SvgPicture.asset(

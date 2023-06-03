@@ -42,7 +42,7 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
       children: <Widget>[
         const ModalTitleLabel(label: "Selecione a recorrência"),
         SizedBox(
-          height: 450,
+          height: MediaQuery.of(context).size.height * 0.5,
           child: ListView.builder(
             itemCount: _recurrences.length,
             itemBuilder: (context, index) {

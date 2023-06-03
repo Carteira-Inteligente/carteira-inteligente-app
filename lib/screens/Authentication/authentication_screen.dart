@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/images.dart';
 import '../../main.dart';
-import '../../widgets/Buttons/primary_button.dart';
+import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Inputs/input_email.dart';
 import '../../widgets/Inputs/input_password.dart';
 import '../../widgets/Labels/subtitle2_label.dart';
@@ -51,7 +51,6 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           label: "Senha",
           controller: _passwordController,
           onSubmit: () {},
-          onChanged: (_) {},
         ),
         TextButton(
           onPressed: () {

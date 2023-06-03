@@ -1,15 +1,15 @@
-import 'package:carteira_inteligente/widgets/Labels/title_label.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
+import '../../providers/users.dart';
 import '../../utils/password_rules.dart';
-import '../../utils/toast_message.dart';
-import '../../widgets/Buttons/primary_button.dart';
-import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Buttons/primary_buttons.dart';
+import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/password_rules_container.dart';
 import '../../widgets/Inputs/input_email.dart';
 import '../../widgets/Inputs/input_password.dart';
 import '../../widgets/Inputs/input_text.dart';
+import '../../widgets/Labels/title_label.dart';
 
 class UserFormScreen extends StatefulWidget {
   const UserFormScreen({
@@ -33,35 +33,18 @@ class _UserFormScreenState extends State<UserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  bool _isPasswordValid = false;
-
-  _submitForm() {
-    final name = _nameController.text;
-    final email = _emailController.text;
-    final password = _passwordController.text;
-    final confirmPassword = _confirmPasswordController.text;
-
-    if (name.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        confirmPassword.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
-      return;
-    }
-
-    if (!_isPasswordValid) {
-      ToastMessage.showToast("A senha não atende aos requisitos.");
-      return;
-    }
-
-    if (password != confirmPassword) {
-      ToastMessage.showToast("A confirmação de senha não coincide.");
-      return;
-    }
-
-    widget.onSubmit(name, email, password);
-    ToastMessage.showToast("Usuário cadastrado com sucesso.");
+  _submitForm() async {
+    UsersProvider.createUser(
+      _nameController,
+      _emailController,
+      _passwordController,
+      _confirmPasswordController,
+      _isPasswordValid,
+      widget.onSubmit,
+    );
   }
+
+  bool _isPasswordValid = false;
 
   void _validatePassword(String password) {
     setState(() {
@@ -105,7 +88,6 @@ class _UserFormScreenState extends State<UserFormScreen> {
             label: "Confirmar senha",
             controller: _confirmPasswordController,
             onSubmit: _submitForm,
-            onChanged: (_) {},
           ),
           PasswordRulesContainer(labelColor: passwordLabelColor),
         ],

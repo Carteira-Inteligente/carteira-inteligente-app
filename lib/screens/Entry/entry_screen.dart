@@ -28,7 +28,10 @@ class _EntryScreenState extends State<EntryScreen> {
         const EntryDetailsScreen(),
       ),
       categoryIcon: entry.idCategory == 1 ? sElectricity : sHouse,
-      categoryColor: entry.idCategory == 1 ? cAmber.shade700 : cCyan.shade700,
+      categoryBackgroundColor:
+          entry.idCategory == 1 ? cAmber.shade100 : cCyan.shade100,
+      categoryIconColor:
+          entry.idCategory == 1 ? cAmber.shade700 : cCyan.shade700,
       title: entry.description,
       value: 100.00,
       dueDate: "14/05/2023",

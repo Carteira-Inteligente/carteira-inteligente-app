@@ -8,11 +8,11 @@ import '../../data/entries_data.dart';
 import '../../models/budget.dart';
 import '../../models/entry.dart';
 import '../../utils/show_modal.dart';
-import '../../widgets/Buttons/delete_button.dart';
-import '../../widgets/Buttons/edit_button.dart';
+import '../../widgets/Buttons/delete_buttons.dart';
+import '../../widgets/Buttons/edit_buttons.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/divider_container.dart';
-import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/no_data_container.dart';
 import '../../widgets/Containers/progres_bar_container.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
@@ -61,7 +61,8 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
         const EntryDetailsScreen(),
       ),
       categoryIcon: sElectricity,
-      categoryColor: cAmber.shade700,
+      categoryBackgroundColor: cAmber.shade100,
+      categoryIconColor: cAmber.shade700,
       title: entry.description,
       value: 100.00,
       dueDate: "14/05/2023",
@@ -106,7 +107,8 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                     children: <Widget>[
                       RoundedIconContainer(
                         svgPicture: sElectricity,
-                        backgroundColor: cAmber.shade700,
+                        svgColor: cAmber.shade700,
+                        backgroundColor: cAmber.shade100,
                         radius: 24,
                       ),
                       const Padding(

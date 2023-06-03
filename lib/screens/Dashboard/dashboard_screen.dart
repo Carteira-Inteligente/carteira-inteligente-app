@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../../widgets/Cards/dashboard_large_card.dart';
-import '../../widgets/Cards/dashboard_small_card.dart';
+import '../../widgets/Cards/dashboard_cards.dart';
 import '../../widgets/Labels/dashboard_card_label.dart';
 import '../../widgets/Labels/subtitle_label.dart';
 

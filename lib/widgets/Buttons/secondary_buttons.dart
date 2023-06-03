@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/widgets.dart';
-import '../Containers/button_container.dart';
+import '../Containers/button_containers.dart';
 
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton({
@@ -29,6 +29,31 @@ class SecondaryButton extends StatelessWidget {
         child: Text(
           textButton,
           style: Theme.of(context).textTheme.labelMedium,
+        ),
+      ),
+    );
+  }
+}
+
+class SmallSecondaryButton extends StatelessWidget {
+  const SmallSecondaryButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        shape: wButtonBorderRadius,
+        minimumSize: Size(MediaQuery.of(context).size.width * 0.5, 44),
+        side: BorderSide(color: cBlue.shade800),
+        elevation: 0,
+        backgroundColor: cWhite,
+      ),
+      onPressed: () => Navigator.pop(context),
+      child: Text(
+        "Voltar",
+        style: TextStyle(
+          fontFamily: "OpenSans",
+          color: cBlue.shade800,
         ),
       ),
     );

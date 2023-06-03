@@ -1,6 +1,6 @@
-import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../Containers/rounded_icon_container.dart';
 

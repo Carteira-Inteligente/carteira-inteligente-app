@@ -5,7 +5,7 @@ import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../constants/widgets.dart';
 import '../../utils/show_dialog.dart';
-import '../Containers/button_container.dart';
+import '../Containers/button_containers.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton({
@@ -35,6 +35,37 @@ class DeleteButton extends StatelessWidget {
         label: Text(
           "Excluir",
           style: Theme.of(context).textTheme.labelLarge,
+        ),
+      ),
+    );
+  }
+}
+
+class IconDeleteButton extends StatelessWidget {
+  const IconDeleteButton({
+    super.key,
+    required this.dataLabel,
+    required this.onPressed,
+  });
+
+  final String dataLabel;
+  final void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ButtonContainer(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: wRoundButtonSize,
+          shape: wButtonBorderRadius,
+          side: BorderSide(color: cRed.shade800),
+          backgroundColor: cWhite,
+          elevation: 0,
+        ),
+        onPressed: () => ShowDialog.deleteDialog(context, dataLabel, onPressed),
+        child: SvgPicture.asset(
+          sDelete,
+          color: cRed.shade800,
         ),
       ),
     );

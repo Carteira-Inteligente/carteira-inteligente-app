@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/svgs.dart';
-import '../Containers/inkwell_container.dart';
+import '../Containers/input_containers.dart';
 
 class InputSelect extends StatefulWidget {
   const InputSelect({

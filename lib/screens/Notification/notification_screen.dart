@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/Buttons/secondary_button.dart';
-import '../../widgets/Containers/form_container.dart';
+import '../../widgets/Buttons/secondary_buttons.dart';
+import '../../widgets/Containers/form_containers.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});

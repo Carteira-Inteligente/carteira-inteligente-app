@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
-import '../widgets/Buttons/dialog_action_button.dart';
-import '../widgets/Buttons/dialog_secondary_button.dart';
+import '../widgets/Buttons/primary_buttons.dart';
+import '../widgets/Buttons/secondary_buttons.dart';
 import '../widgets/Containers/dialog_container.dart';
 
 class ShowDialog {
@@ -34,8 +34,8 @@ class ShowDialog {
               ],
             ),
           ),
-          secondaryButton: const DialogSecondaryButton(),
-          actionButton: DialogActionButton(
+          secondaryButton: const SmallSecondaryButton(),
+          actionButton: SmallPrimaryButton(
             onPressed: onPressed,
             backgroundColor: cRed.shade800,
             label: "Excluir $dataLabel",
@@ -56,8 +56,8 @@ class ShowDialog {
             "informe que já realizou o pagamento.",
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          secondaryButton: const DialogSecondaryButton(),
-          actionButton: DialogActionButton(
+          secondaryButton: const SmallSecondaryButton(),
+          actionButton: SmallPrimaryButton(
             onPressed: onPressed,
             backgroundColor: cBlue.shade800,
             label: "Cancelar pagamento",
@@ -78,8 +78,8 @@ class ShowDialog {
             "preenchidas.",
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          secondaryButton: const DialogSecondaryButton(),
-          actionButton: DialogActionButton(
+          secondaryButton: const SmallSecondaryButton(),
+          actionButton: SmallPrimaryButton(
             onPressed: onPressed,
             backgroundColor: cBlue.shade800,
             label: "Cancelar cadastro",
@@ -99,8 +99,8 @@ class ShowDialog {
             "Tem certeza que deseja sair do aplicativo?",
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          secondaryButton: const DialogSecondaryButton(),
-          actionButton: DialogActionButton(
+          secondaryButton: const SmallSecondaryButton(),
+          actionButton: SmallPrimaryButton(
             onPressed: onPressed,
             backgroundColor: cBlue.shade800,
             label: "Sair do aplicativo",
