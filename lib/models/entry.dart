@@ -3,7 +3,7 @@ class Entry {
   final int idUser;
   final int idCategory;
   final String description;
-  final String period;
+  final int period;
   final double paidValue;
   final DateTime paidDate;
   final bool paid;

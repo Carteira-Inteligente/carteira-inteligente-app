@@ -22,18 +22,52 @@ class _EntryScreenState extends State<EntryScreen> {
   final List<Entry> _entries = entryList;
 
   Widget _buildEntryCards(BuildContext context, Entry entry) {
+    String _getCategoryIcon(int idCategory) {
+      if (idCategory == 1) {
+        return sElectricity;
+      } else if (idCategory == 2) {
+        return sHouse;
+      } else if (idCategory == 3) {
+        return sCards;
+      } else {
+        return sMobile;
+      }
+    }
+
+    Color _getCategoryBackgroundColor(int idCategory) {
+      if (idCategory == 1) {
+        return cAmber.shade100;
+      } else if (idCategory == 2) {
+        return cCyan.shade100;
+      } else if (idCategory == 3) {
+        return cBlueGrey.shade100;
+      } else {
+        return cTeal.shade100;
+      }
+    }
+
+    Color _getCategoryIconColor(int idCategory) {
+      if (idCategory == 1) {
+        return cAmber.shade700;
+      } else if (idCategory == 2) {
+        return cCyan.shade700;
+      } else if (idCategory == 3) {
+        return cBlueGrey.shade700;
+      } else {
+        return cTeal.shade700;
+      }
+    }
+
     return EntryCard(
       onTap: () => ShowModal.showModal(
         context,
         const EntryDetailsScreen(),
       ),
-      categoryIcon: entry.idCategory == 1 ? sElectricity : sHouse,
-      categoryBackgroundColor:
-          entry.idCategory == 1 ? cAmber.shade100 : cCyan.shade100,
-      categoryIconColor:
-          entry.idCategory == 1 ? cAmber.shade700 : cCyan.shade700,
+      categoryIcon: _getCategoryIcon(entry.idCategory),
+      categoryBackgroundColor: _getCategoryBackgroundColor(entry.idCategory),
+      categoryIconColor: _getCategoryIconColor(entry.idCategory),
       title: entry.description,
-      value: 100.00,
+      value: entry.paidValue,
       dueDate: "14/05/2023",
       paymentStatus: entry.paid,
       onPressedPayment: entry.paid,

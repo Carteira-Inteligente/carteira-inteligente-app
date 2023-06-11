@@ -18,6 +18,7 @@ class BudgetFormScreen extends StatefulWidget {
     int,
     int,
     double,
+    double,
   ) onSubmit;
 
   @override
@@ -35,13 +36,19 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
     final idUser = _idUsercontroller.text;
     final idCategory = _idCategoryController.text;
     final value = _valueController.text;
+    final availableValue = _valueController.text;
 
     if (idUser.isEmpty || idCategory.isEmpty || value.isEmpty) {
       ToastMessage.showToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
-    widget.onSubmit(idUser as int, idCategory as int, value as double);
+    widget.onSubmit(
+      idUser as int,
+      idCategory as int,
+      value as double,
+      availableValue as double,
+    );
     ToastMessage.showToast("Orçamento cadastrado com sucesso.");
   }
 

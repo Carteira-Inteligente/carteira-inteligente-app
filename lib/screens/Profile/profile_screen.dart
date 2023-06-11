@@ -53,12 +53,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     int idUser,
     int idCategory,
     double value,
+    double availableValue,
   ) {
     final newBudget = Budget(
       id: Random().nextInt(999).toInt(),
       idUser: idUser,
       idCategory: idCategory,
       value: value,
+      availableValue: availableValue,
     );
 
     setState(() {

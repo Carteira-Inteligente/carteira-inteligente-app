@@ -29,7 +29,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
     int idUser,
     int idCategory,
     String description,
-    String period,
+    int period,
     double paidValue,
     DateTime paidDate,
     bool paid,

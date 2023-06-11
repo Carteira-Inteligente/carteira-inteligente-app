@@ -22,6 +22,54 @@ class _BudgetScreenState extends State<BudgetScreen> {
   final List<Budget> _budgets = budgetsList;
 
   Widget _buildBudgetCards(BuildContext context, Budget budget) {
+    String _getCategoryIcon(int idCategory) {
+      if (idCategory == 1) {
+        return sElectricity;
+      } else if (idCategory == 2) {
+        return sHouse;
+      } else if (idCategory == 3) {
+        return sCards;
+      } else {
+        return sMobile;
+      }
+    }
+
+    Color _getCategoryBackgroundColor(int idCategory) {
+      if (idCategory == 1) {
+        return cAmber.shade100;
+      } else if (idCategory == 2) {
+        return cCyan.shade100;
+      } else if (idCategory == 3) {
+        return cBlueGrey.shade100;
+      } else {
+        return cTeal.shade100;
+      }
+    }
+
+    Color _getCategoryIconColor(int idCategory) {
+      if (idCategory == 1) {
+        return cAmber.shade700;
+      } else if (idCategory == 2) {
+        return cCyan.shade700;
+      } else if (idCategory == 3) {
+        return cBlueGrey.shade700;
+      } else {
+        return cTeal.shade700;
+      }
+    }
+
+    String _getCategoryDescription(int idCategory) {
+      if (idCategory == 1) {
+        return "Energia elétrica";
+      } else if (idCategory == 2) {
+        return "Casa";
+      } else if (idCategory == 3) {
+        return "Cartão de crédito";
+      } else {
+        return "Telefonia";
+      }
+    }
+
     return BudgetCard(
       onTap: () {
         Navigator.push(
@@ -31,22 +79,13 @@ class _BudgetScreenState extends State<BudgetScreen> {
           ),
         );
       },
-      pageIcon: budget.idCategory == 1
-          ? RoundedIconContainer(
-              svgPicture: sElectricity,
-              svgColor: cAmber.shade700,
-              backgroundColor: cAmber.shade100,
-              radius: 14,
-            )
-          : RoundedIconContainer(
-              svgPicture: sHouse,
-              svgColor: cCyan.shade700,
-              backgroundColor: cCyan.shade100,
-              radius: 14,
-            ),
-      description: budget.idCategory == 1 ? "Energia elétrica" : "Casa",
+      categoryIcon: _getCategoryIcon(budget.idCategory),
+      categoryBackgroundColor: _getCategoryBackgroundColor(budget.idCategory),
+      categoryIconColor: _getCategoryIconColor(budget.idCategory),
+      description: _getCategoryDescription(budget.idCategory),
       value: budget.value,
-      percentage: budget.value / 880 * 1,
+      availableValue: budget.availableValue,
+      percentage: budget.value / budget.availableValue * 1,
     );
   }
 

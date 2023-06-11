@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../Containers/rounded_icon_container.dart';
 
-class AppBarLeading extends StatelessWidget {
-  const AppBarLeading({super.key});
+class AppBarLeadingReturn extends StatelessWidget {
+  const AppBarLeadingReturn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,23 @@ class AppBarLeading extends StatelessWidget {
         radius: 24,
         svgPicture: sArrowLeft,
         svgColor: cWhite,
+      ),
+    );
+  }
+}
+
+class AppBarLeadingDrawer extends StatelessWidget {
+  const AppBarLeadingDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        Scaffold.of(context).openDrawer();
+      },
+      icon: SvgPicture.asset(
+        sMenu,
+        color: cWhite,
       ),
     );
   }

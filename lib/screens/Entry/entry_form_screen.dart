@@ -23,7 +23,7 @@ class EntryFormScreen extends StatefulWidget {
     int,
     int,
     String,
-    String,
+    int,
     double,
     DateTime,
     bool,
@@ -70,7 +70,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
       idUser as int,
       idCategory as int,
       description,
-      period,
+      period as int,
       paidValue as double,
       _paidDateController,
       paid as bool,
@@ -147,29 +147,9 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
             controller: _paidValueController,
             onSubmit: _submitForm,
           ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 4.0),
-                  child: InputDate(
-                    label: "Data de vencimento",
-                    controller: _paidDateController,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 4.0),
-                  child: InputDate(
-                    label: "Data de pagamento",
-                    controller: _paidDateController,
-                  ),
-                ),
-              ),
-            ],
+          InputDate(
+            label: "Data de vencimento",
+            controller: _paidDateController,
           ),
         ],
       ),

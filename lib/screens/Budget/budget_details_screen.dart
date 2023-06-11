@@ -35,12 +35,14 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     int idUser,
     int idCategory,
     double value,
+    double availableValue,
   ) {
     final editBudget = Budget(
       id: Random().nextInt(999).toInt(),
       idUser: idUser,
       idCategory: idCategory,
       value: value,
+      availableValue: availableValue,
     );
 
     setState(() {
@@ -64,7 +66,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
       categoryBackgroundColor: cAmber.shade100,
       categoryIconColor: cAmber.shade700,
       title: entry.description,
-      value: 100.00,
+      value: 123.45,
       dueDate: "14/05/2023",
       paymentStatus: entry.paid,
       onPressedPayment: entry.paid,
@@ -122,13 +124,13 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                   children: const <Widget>[
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: InputLabel(label: "Disponível"),
+                      child: InputLabel(label: "Utilizado"),
                     ),
                     BudgetValueLabel(
-                      usedValue: 500.00,
-                      availableValue: 880.00,
+                      usedValue: 123.45,
+                      availableValue: 200,
                     ),
-                    ProgresBarContainer(percentage: 0.3),
+                    ProgresBarContainer(percentage: 123.45 / 200 * 1),
                   ],
                 ),
                 const DividerContainer(),

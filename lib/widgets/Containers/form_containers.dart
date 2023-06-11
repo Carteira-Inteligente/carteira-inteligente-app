@@ -23,10 +23,10 @@ class FormContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      leading: const AppBarLeading(),
+      leading: const AppBarLeadingReturn(),
       elevation: 0,
       backgroundColor: cWhite,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       title: Row(
         children: <Widget>[
           Text(
@@ -97,10 +97,10 @@ class ScreenFormContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const AppBarLeading(),
+        leading: const AppBarLeadingReturn(),
         elevation: 0,
         backgroundColor: cWhite,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
         title: Row(
           children: <Widget>[
             Text(

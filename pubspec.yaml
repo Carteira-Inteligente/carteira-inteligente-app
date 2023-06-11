@@ -140,6 +140,7 @@ flutter:
     # Svg
     - assets/svg/budget.svg
     - assets/svg/dashboard.svg
+    - assets/svg/menu.svg
     - assets/svg/user.svg
     - assets/svg/wallet.svg
 

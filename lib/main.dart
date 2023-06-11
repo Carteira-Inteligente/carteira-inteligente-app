@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:carteira_inteligente/constants/widgets.dart';
+import 'package:carteira_inteligente/screens/Drawer/drawer_screen.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,11 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Budget> _budgets = [];
 
   static const List<Widget> _navBarOptions = <Widget>[
-    DashboardScreen(),
     EntryScreen(),
     Placeholder(),
     BudgetScreen(),
-    ProfileScreen(),
   ];
 
   _onItemTapped(int index) {
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     int idUser,
     int idCategory,
     String description,
-    String period,
+    int period,
     double paidValue,
     DateTime paidDate,
     bool paid,
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
       idUser: idUser,
       idCategory: 1,
       description: description,
-      period: "Não repete",
+      period: 1,
       paidValue: paidValue,
       paidDate: DateTime.now(),
       paid: true,
@@ -120,13 +121,14 @@ class _MyHomePageState extends State<MyHomePage> {
     int idUser,
     int idCategory,
     double value,
+    double availableValue,
   ) {
     final newBudget = Budget(
-      id: Random().nextInt(999).toInt(),
-      idUser: idUser,
-      idCategory: idCategory,
-      value: value,
-    );
+        id: Random().nextInt(999).toInt(),
+        idUser: idUser,
+        idCategory: idCategory,
+        value: value,
+        availableValue: availableValue);
 
     setState(() {
       _budgets.add(newBudget);
@@ -139,19 +141,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _selectedIndex == 2 ? _selectedIndex = 1 : null;
+    // _selectedIndex == 2 ? _selectedIndex = 1 : null;
+    _selectedIndex == 1 ? _selectedIndex = 0 : null;
 
     final sliverAppBar = SliverAppBar(
       title: Builder(
         builder: (context) {
           if (_selectedIndex == 0) {
-            return const AppBarTitle(title: "Dashboard");
-          } else if (_selectedIndex == 1) {
             return const AppBarTitle(title: "Lançamentos");
-          } else if (_selectedIndex == 3) {
+          } else if (_selectedIndex == 2) {
             return const AppBarTitle(title: "Orçamentos");
-          } else if (_selectedIndex == 4) {
-            return const AppBarTitle(title: "Perfil");
           } else {
             return Container();
           }
@@ -161,10 +160,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floating: true,
       forceElevated: true,
       backgroundColor: cBlue.shade700,
+      leading: const AppBarLeadingDrawer(),
       actions: <Widget>[
         Builder(
           builder: (context) {
-            if (_selectedIndex == 1) {
+            if (_selectedIndex == 0) {
               return AppBarAddButton(
                 tooltip: "Novo lançamento",
                 onPressed: () {
@@ -177,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
               );
-            } else if (_selectedIndex == 3) {
+            } else if (_selectedIndex == 2) {
               return AppBarAddButton(
                 tooltip: "Novo orçamento",
                 onPressed: () {
@@ -190,8 +190,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
               );
-            } else if (_selectedIndex == 4) {
-              return const AppBarNotificationButton();
             } else {
               return Container();
             }
@@ -207,17 +205,10 @@ class _MyHomePageState extends State<MyHomePage> {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            sDashboard,
+            sWallet,
             color: _selectedIndex == 0 ? cBlue.shade800 : cGrey,
           ),
-          label: _selectedIndex == 0 ? "Dashboard" : null,
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            sWallet,
-            color: _selectedIndex == 1 ? cBlue.shade800 : cGrey,
-          ),
-          label: _selectedIndex == 1 ? "Lançamentos" : null,
+          label: _selectedIndex == 0 ? "Lançamentos" : null,
         ),
         BottomNavigationBarItem(
           icon: FastEntryButton(
@@ -227,22 +218,19 @@ class _MyHomePageState extends State<MyHomePage> {
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             sBudget,
-            color: _selectedIndex == 3 ? cBlue.shade800 : cGrey,
+            color: _selectedIndex == 2 ? cBlue.shade800 : cGrey,
           ),
-          label: _selectedIndex == 3 ? "Orçamentos" : null,
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            sUser,
-            color: _selectedIndex == 4 ? cBlue.shade800 : cGrey,
-          ),
-          label: _selectedIndex == 4 ? "Perfil" : null,
+          label: _selectedIndex == 2 ? "Orçamentos" : null,
         ),
       ],
     );
 
     return Scaffold(
       backgroundColor: cWhite,
+      drawer: const Drawer(
+        backgroundColor: cWhite,
+        child: DrawerScreen(),
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
           sliverAppBar,

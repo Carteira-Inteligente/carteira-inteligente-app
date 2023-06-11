@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Containers/card_container.dart';
 import '../Containers/divider_container.dart';
 import '../Containers/progres_bar_container.dart';
+import '../Containers/rounded_icon_container.dart';
 import '../Labels/budget_value_label.dart';
 import '../Labels/input_label.dart';
 import '../Labels/list_tile_label.dart';
@@ -11,16 +12,22 @@ class BudgetCard extends StatelessWidget {
   const BudgetCard({
     super.key,
     required this.onTap,
-    required this.pageIcon,
+    required this.categoryIcon,
+    required this.categoryIconColor,
+    required this.categoryBackgroundColor,
     required this.description,
     required this.value,
+    required this.availableValue,
     required this.percentage,
   });
 
   final void Function() onTap;
-  final Widget pageIcon;
+  final String categoryIcon;
+  final Color categoryIconColor;
+  final Color categoryBackgroundColor;
   final String description;
   final double value;
+  final double availableValue;
   final double percentage;
 
   @override
@@ -32,7 +39,12 @@ class BudgetCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 6.0),
           child: Row(
             children: <Widget>[
-              pageIcon,
+              RoundedIconContainer(
+                svgPicture: categoryIcon,
+                svgColor: categoryIconColor,
+                backgroundColor: categoryBackgroundColor,
+                radius: 14,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: ListTileLabel(label: description),
@@ -45,11 +57,11 @@ class BudgetCard extends StatelessWidget {
             const DividerContainer(),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: InputLabel(label: "Disponível"),
+              child: InputLabel(label: "Utilizado"),
             ),
             BudgetValueLabel(
               usedValue: value,
-              availableValue: 880.00,
+              availableValue: availableValue,
             ),
             ProgresBarContainer(percentage: percentage),
           ],
