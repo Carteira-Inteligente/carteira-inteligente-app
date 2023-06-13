@@ -20,7 +20,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     final email = _emailController.text;
 
     if (email.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
   }

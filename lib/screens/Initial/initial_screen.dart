@@ -112,16 +112,16 @@ class _InitialScreenState extends State<InitialScreen> {
                       AuthenticationScreen(onSubmit: _authUser),
                     ),
                   ),
-                  SecondaryButton(
-                    textButton: "Ainda não tenho cadastro",
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            UserFormScreen(onSubmit: _addUser),
-                      ),
-                    ),
-                  ),
+                  // SecondaryButton(
+                  //   textButton: "Ainda não tenho cadastro",
+                  //   onPressed: () => Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) =>
+                  //           UserFormScreen(onSubmit: _addUser),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

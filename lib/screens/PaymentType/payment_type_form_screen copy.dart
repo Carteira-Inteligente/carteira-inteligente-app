@@ -34,12 +34,12 @@ class _PaymentTypeFormScreenState extends State<PaymentTypeFormScreen> {
     final description = _descriptionController.text;
 
     if (paymentType.isEmpty || description.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(paymentType, description);
-    ToastMessage.showToast("Tipo de pagamento cadastrado com sucesso.");
+    ToastMessage.successToast("Tipo de pagamento cadastrado com sucesso.");
   }
 
   @override

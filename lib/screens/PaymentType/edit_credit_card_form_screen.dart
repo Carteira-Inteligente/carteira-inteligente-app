@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/models/payment_type.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/toast_message.dart';
@@ -8,9 +9,11 @@ import '../../widgets/Inputs/input_text.dart';
 class EditAccountFormScreen extends StatefulWidget {
   const EditAccountFormScreen({
     super.key,
+    required this.paymentType,
     required this.onSubmit,
   });
 
+  final PaymentType paymentType;
   final void Function(String) onSubmit;
 
   @override
@@ -18,18 +21,30 @@ class EditAccountFormScreen extends StatefulWidget {
 }
 
 class _EditAccountFormScreenState extends State<EditAccountFormScreen> {
-  final _descriptionController = TextEditingController();
+  late TextEditingController _descriptionController;
+
+  @override
+  void initState() {
+    super.initState();
+    _descriptionController =
+        TextEditingController(text: widget.paymentType.description);
+  }
+
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
 
   _submitForm() {
     final description = _descriptionController.text;
 
     if (description.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(description);
-    ToastMessage.showToast("Conta alterada com sucesso.");
   }
 
   @override

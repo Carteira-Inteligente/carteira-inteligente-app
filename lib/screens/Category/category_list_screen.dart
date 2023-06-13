@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:carteira_inteligente/utils/sort_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -28,17 +29,13 @@ class CategoryListScreen extends StatefulWidget {
 class _CategoryListScreenState extends State<CategoryListScreen> {
   final List<Category> _categories = categoryList;
 
-  void _sortCategories() {
-    _categories.sort((a, b) => a.description.compareTo(b.description));
-  }
-
   Widget _buildGridViewCategoryCard(BuildContext context, Category category) {
     return GridViewCategoryCard(
       onTap: () {
         widget.onCategorySelected(category.description);
         Navigator.pop(context);
       },
-      icon: category.icon,
+      icon: category.pathIcon,
       iconColor: category.iconColor,
       backgroundColor: category.backgroundColor,
       description: category.description,
@@ -53,7 +50,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
             widget.onCategorySelected(category.description);
             Navigator.pop(context);
           },
-          icon: category.icon,
+          icon: category.pathIcon,
           iconColor: category.iconColor,
           backgroundColor: category.backgroundColor,
           description: category.description,
@@ -67,7 +64,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
     final newCategory = Category(
       id: Random().nextInt(999).toInt(),
       description: description,
-      icon: sCategory,
+      pathIcon: sCategory,
       iconColor: const Color(0xFF1F70A2),
       backgroundColor: const Color(0xFFBED3E7),
     );
@@ -91,8 +88,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _sortCategories();
-
+    sortDecriptions(_categories);
     Widget gridView = GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,

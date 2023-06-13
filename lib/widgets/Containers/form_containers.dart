@@ -96,6 +96,7 @@ class ScreenFormContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: cWhite,
       appBar: AppBar(
         leading: const AppBarLeadingReturn(),
         elevation: 0,
@@ -128,7 +129,7 @@ class ScreenFormContainer extends StatelessWidget {
             child: SingleChildScrollView(
               child: Container(
                 decoration: const BoxDecoration(color: cWhite),
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height * 0.85,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 10.0,

@@ -94,12 +94,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         const ModalTitleLabel(label: "thiagoenca@gmail.com"),
         SmallPrimaryButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditUserFormScreen(onSubmit: _addUser),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => EditUserFormScreen(onSubmit: _addUser),
+            //   ),
+            // );
           },
           backgroundColor: cBlue.shade800,
           label: "Editar usuário",

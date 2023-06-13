@@ -33,7 +33,7 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
     final paidValue = _paidValueController.text;
 
     if (idUser.isEmpty || description.isEmpty || paidValue.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
@@ -42,7 +42,7 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
       description,
       paidValue as double,
     );
-    ToastMessage.showToast("Lançamento cadastrado com sucesso.");
+    ToastMessage.successToast("Lançamento cadastrado com sucesso.");
   }
 
   @override

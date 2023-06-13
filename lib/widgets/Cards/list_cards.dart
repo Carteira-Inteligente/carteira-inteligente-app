@@ -36,11 +36,11 @@ class CategoryListCard extends StatelessWidget {
   const CategoryListCard({
     super.key,
     required this.description,
-    required this.actionButton,
+    required this.onEdit,
   });
 
   final String description;
-  final Widget actionButton;
+  final VoidCallback onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,13 @@ class CategoryListCard extends StatelessWidget {
             description,
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          trailing: actionButton,
+          trailing: IconButton(
+            icon: SvgPicture.asset(
+              sEdit,
+              color: cGrey.shade600,
+            ),
+            onPressed: onEdit,
+          ),
         ),
       ),
     );
@@ -71,13 +77,13 @@ class PaymentTypeListCard extends StatelessWidget {
     required this.type,
     required this.description,
     required this.svgIcon,
-    required this.actionButton,
+    required this.onEdit,
   });
 
   final String type;
   final String description;
   final String svgIcon;
-  final void Function() actionButton;
+  final VoidCallback onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +107,7 @@ class PaymentTypeListCard extends StatelessWidget {
                     sEdit,
                     color: cGrey.shade600,
                   ),
-                  onPressed: actionButton,
+                  onPressed: onEdit,
                 ),
         ),
       ),

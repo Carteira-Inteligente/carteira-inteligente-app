@@ -62,7 +62,7 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
         period.isEmpty ||
         paidValue.isEmpty ||
         paid.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
@@ -76,7 +76,7 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
       paid as bool,
       _dueDateController,
     );
-    ToastMessage.showToast("Lançamento alterado com sucesso.");
+    ToastMessage.successToast("Lançamento alterado com sucesso.");
   }
 
   @override

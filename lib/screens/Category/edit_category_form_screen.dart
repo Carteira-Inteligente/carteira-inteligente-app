@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/category.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
@@ -8,9 +9,11 @@ import '../../widgets/Inputs/input_text.dart';
 class EditCategoryFormScreen extends StatefulWidget {
   const EditCategoryFormScreen({
     super.key,
+    required this.category,
     required this.onSubmit,
   });
 
+  final Category category;
   final void Function(String) onSubmit;
 
   @override
@@ -18,18 +21,30 @@ class EditCategoryFormScreen extends StatefulWidget {
 }
 
 class _EditCategoryFormScreenState extends State<EditCategoryFormScreen> {
-  final _descriptionController = TextEditingController();
+  late TextEditingController _descriptionController;
+
+  @override
+  void initState() {
+    super.initState();
+    _descriptionController =
+        TextEditingController(text: widget.category.description);
+  }
+
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
 
   _submitForm() {
     final description = _descriptionController.text;
 
     if (description.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(description);
-    ToastMessage.showToast("Categoria alterada com sucesso.");
   }
 
   @override

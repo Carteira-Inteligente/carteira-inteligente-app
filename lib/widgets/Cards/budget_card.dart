@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Containers/card_container.dart';
 import '../Containers/divider_container.dart';
-import '../Containers/progres_bar_container.dart';
+import '../Containers/progress_containers.dart';
 import '../Containers/rounded_icon_container.dart';
 import '../Labels/budget_value_label.dart';
 import '../Labels/input_label.dart';
@@ -63,7 +63,7 @@ class BudgetCard extends StatelessWidget {
               usedValue: value,
               availableValue: availableValue,
             ),
-            ProgresBarContainer(percentage: percentage),
+            ProgressBarContainer(percentage: percentage),
           ],
         ),
       ),

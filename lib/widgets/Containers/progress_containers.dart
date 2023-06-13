@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 
-class ProgresBarContainer extends StatelessWidget {
-  const ProgresBarContainer({
+class ProgressBarContainer extends StatelessWidget {
+  const ProgressBarContainer({
     super.key,
     required this.percentage,
   });
@@ -38,6 +38,23 @@ class ProgresBarContainer extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ProgressIndicatorContainer extends StatelessWidget {
+  const ProgressIndicatorContainer({
+    super.key,
+    required this.visible,
+  });
+
+  final bool visible;
+
+  @override
+  Widget build(BuildContext context) {
+    return Visibility(
+      visible: visible,
+      child: const Center(child: CircularProgressIndicator()),
     );
   }
 }

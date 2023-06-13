@@ -8,4 +8,12 @@ class PaymentType {
     required this.description,
     required this.type,
   });
+
+  factory PaymentType.fromJson(Map<String, dynamic> json) {
+    return PaymentType(
+      id: json['id'],
+      description: json['description'],
+      type: json['type'],
+    );
+  }
 }

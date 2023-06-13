@@ -22,16 +22,21 @@ class CreditCardFormScreen extends StatefulWidget {
 class _CreditCardFormScreenState extends State<CreditCardFormScreen> {
   final _descriptionController = TextEditingController();
 
-  _submitForm() {
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  _submitForm() async {
     final description = _descriptionController.text;
 
     if (description.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(description);
-    ToastMessage.showToast("Cartão de crédito cadastrado com sucesso.");
   }
 
   @override

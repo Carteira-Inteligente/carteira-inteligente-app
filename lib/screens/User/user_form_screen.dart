@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../../providers/users.dart';
 import '../../utils/password_rules.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
@@ -33,16 +32,16 @@ class _UserFormScreenState extends State<UserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  _submitForm() async {
-    UsersProvider.createUser(
-      _nameController,
-      _emailController,
-      _passwordController,
-      _confirmPasswordController,
-      _isPasswordValid,
-      widget.onSubmit,
-    );
-  }
+  // _submitForm() async {
+  //   UsersProvider.createUser(
+  //     _nameController,
+  //     _emailController,
+  //     _passwordController,
+  //     _confirmPasswordController,
+  //     _isPasswordValid,
+  //     widget.onSubmit,
+  //   );
+  // }
 
   bool _isPasswordValid = false;
 
@@ -61,7 +60,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
       height: MediaQuery.of(context).size.height * 0.75,
       bottonButton: PrimaryButton(
         textButton: "Cadastrar",
-        onPressed: _submitForm,
+        onPressed: () {}, //_submitForm,
       ),
       child: Column(
         children: <Widget>[
@@ -71,23 +70,23 @@ class _UserFormScreenState extends State<UserFormScreen> {
           InputText(
             label: "Digite seu nome ou apelido",
             controller: _nameController,
-            onSubmit: _submitForm,
+            onSubmit: () {}, //_submitForm,
           ),
           InputEmail(
             label: "E-mail",
             controller: _emailController,
-            onSubmit: _submitForm,
+            onSubmit: () {}, // _submitForm,
           ),
           InputPassword(
             label: "Senha",
             controller: _passwordController,
-            onSubmit: _submitForm,
+            onSubmit: () {}, // _submitForm,
             onChanged: _validatePassword,
           ),
           InputPassword(
             label: "Confirmar senha",
             controller: _confirmPasswordController,
-            onSubmit: _submitForm,
+            onSubmit: () {}, //_submitForm,
           ),
           PasswordRulesContainer(labelColor: passwordLabelColor),
         ],

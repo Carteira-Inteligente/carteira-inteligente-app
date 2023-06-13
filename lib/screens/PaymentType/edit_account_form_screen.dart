@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/payment_type.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
@@ -8,9 +9,11 @@ import '../../widgets/Inputs/input_text.dart';
 class EditCreditCardFormScreen extends StatefulWidget {
   const EditCreditCardFormScreen({
     super.key,
+    required this.paymentType,
     required this.onSubmit,
   });
 
+  final PaymentType paymentType;
   final void Function(String) onSubmit;
 
   @override
@@ -19,18 +22,30 @@ class EditCreditCardFormScreen extends StatefulWidget {
 }
 
 class _EditCreditCardFormScreenState extends State<EditCreditCardFormScreen> {
-  final _descriptionController = TextEditingController();
+  late TextEditingController _descriptionController;
+
+  @override
+  void initState() {
+    super.initState();
+    _descriptionController =
+        TextEditingController(text: widget.paymentType.description);
+  }
+
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
 
   _submitForm() {
     final description = _descriptionController.text;
 
     if (description.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(description);
-    ToastMessage.showToast("Cartão de crédito alterado com sucesso.");
   }
 
   @override

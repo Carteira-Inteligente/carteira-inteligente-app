@@ -22,16 +22,21 @@ class AccountFormScreen extends StatefulWidget {
 class _AccountFormScreenState extends State<AccountFormScreen> {
   final _descriptionController = TextEditingController();
 
-  _submitForm() {
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  _submitForm() async {
     final description = _descriptionController.text;
 
     if (description.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(description);
-    ToastMessage.showToast("Conta cadastrada com sucesso.");
   }
 
   @override

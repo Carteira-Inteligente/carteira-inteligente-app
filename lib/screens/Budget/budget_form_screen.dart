@@ -39,7 +39,7 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
     final availableValue = _valueController.text;
 
     if (idUser.isEmpty || idCategory.isEmpty || value.isEmpty) {
-      ToastMessage.showToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
@@ -49,7 +49,7 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
       value as double,
       availableValue as double,
     );
-    ToastMessage.showToast("Orçamento cadastrado com sucesso.");
+    ToastMessage.successToast("Orçamento cadastrado com sucesso.");
   }
 
   @override

@@ -66,7 +66,7 @@ class EntryCard extends StatelessWidget {
           onPressed: onPressedPayment == true
               ? () {
                   ShowDialog.cancelPayment(context, () {
-                    ToastMessage.showToast(
+                    ToastMessage.successToast(
                       "Pagamento desfeito com sucesso.",
                     );
 
@@ -74,7 +74,7 @@ class EntryCard extends StatelessWidget {
                   });
                 }
               : () {
-                  ToastMessage.showToast(
+                  ToastMessage.successToast(
                     "Pagamento realizado com sucesso.",
                   );
                   onPressedPayment == true;

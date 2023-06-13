@@ -2,26 +2,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
 import '../../constants/images.dart';
 import '../../constants/svgs.dart';
 import '../../models/budget.dart';
-import '../../models/users.dart';
-import '../../utils/show_dialog.dart';
-import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/list_cards.dart';
-import '../../widgets/Containers/card_container.dart';
 import '../../widgets/Containers/divider_container.dart';
-import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/list_label.dart';
-import '../../widgets/Labels/modal_title_label.dart';
-import '../../widgets/Labels/subtitle_label.dart';
 import '../Budget/budget_form_screen.dart';
 import '../Category/category_screen.dart';
-import '../Initial/initial_screen.dart';
 import '../PaymentType/account_screen.dart';
 import '../PaymentType/credit_card_screen.dart';
-import '../User/edit_user_form_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -75,68 +65,64 @@ class _DrawerScreenState extends State<DrawerScreen> {
           ),
         ),
         const ListLabel(
-          padding: EdgeInsets.only(left: 8.0, top: 30.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 30.0,
+          ),
           label: "Cadastros",
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.7,
-          child: ListView(
-            children: <Widget>[
-              ProfileListCard(
-                svgIcon: sBank,
-                label: "Contas",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AccountScreen(),
-                    ),
-                  );
-                },
+        ProfileListCard(
+          svgIcon: sBank,
+          label: "Contas",
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AccountScreen(),
               ),
-              divider,
-              ProfileListCard(
-                svgIcon: sCards,
-                label: "Cartões de crédito",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreditCardScreen(),
-                    ),
-                  );
-                },
+            );
+          },
+        ),
+        divider,
+        ProfileListCard(
+          svgIcon: sCards,
+          label: "Cartões de crédito",
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CreditCardScreen(),
               ),
-              divider,
-              ProfileListCard(
-                svgIcon: sCategory,
-                label: "Categorias personalizadas",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CategoryScreen(),
-                    ),
-                  );
-                },
+            );
+          },
+        ),
+        divider,
+        ProfileListCard(
+          svgIcon: sCategory,
+          label: "Categorias personalizadas",
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CategoryScreen(),
               ),
-              divider,
-              ProfileListCard(
-                svgIcon: sAddBudget,
-                label: "Novo orçamento",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BudgetFormScreen(
-                        onSubmit: _addBudget,
-                      ),
-                    ),
-                  );
-                },
+            );
+          },
+        ),
+        divider,
+        ProfileListCard(
+          svgIcon: sAddBudget,
+          label: "Novo orçamento",
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BudgetFormScreen(
+                  onSubmit: _addBudget,
+                ),
               ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );

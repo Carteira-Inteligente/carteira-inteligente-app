@@ -14,7 +14,7 @@ import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/no_data_container.dart';
-import '../../widgets/Containers/progres_bar_container.dart';
+import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/budget_value_label.dart';
 import '../../widgets/Labels/input_label.dart';
@@ -130,7 +130,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                       usedValue: 123.45,
                       availableValue: 200,
                     ),
-                    ProgresBarContainer(percentage: 123.45 / 200 * 1),
+                    ProgressBarContainer(percentage: 123.45 / 200 * 1),
                   ],
                 ),
                 const DividerContainer(),
