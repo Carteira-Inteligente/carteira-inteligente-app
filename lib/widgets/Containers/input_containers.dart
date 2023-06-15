@@ -22,9 +22,12 @@ class InputContainer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           InputLabel(label: label),
-          Container(
-            decoration: wBoxDecoration,
-            child: child,
+          Padding(
+            padding: const EdgeInsets.only(top: 2.0),
+            child: Container(
+              decoration: wBoxDecoration,
+              child: child,
+            ),
           ),
         ],
       ),

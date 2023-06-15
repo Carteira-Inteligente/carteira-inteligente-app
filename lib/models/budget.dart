@@ -1,15 +1,22 @@
 class Budget {
   final int id;
-  final int idUser;
   final int idCategory;
+  final String description;
   final double value;
-  final double availableValue;
 
   Budget({
     required this.id,
-    required this.idUser,
     required this.idCategory,
+    required this.description,
     required this.value,
-    required this.availableValue,
   });
+
+  factory Budget.fromJson(Map<String, dynamic> json) {
+    return Budget(
+      id: json['id'],
+      idCategory: json['category.id'] ?? 0,
+      description: json['description'],
+      value: json['value'].toDouble(),
+    );
+  }
 }

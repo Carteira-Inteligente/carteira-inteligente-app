@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
-import '../../data/entries_data.dart';
 import '../../models/budget.dart';
 import '../../models/entry.dart';
 import '../../utils/show_modal.dart';
@@ -31,18 +30,12 @@ class BudgetDetailsScreen extends StatefulWidget {
 
 class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
   final List<Budget> _budgets = [];
-  _editBudget(
-    int idUser,
-    int idCategory,
-    double value,
-    double availableValue,
-  ) {
+  _editBudget(int idCategory, String description, double value) {
     final editBudget = Budget(
       id: Random().nextInt(999).toInt(),
-      idUser: idUser,
       idCategory: idCategory,
+      description: description,
       value: value,
-      availableValue: availableValue,
     );
 
     setState(() {
@@ -54,7 +47,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     });
   }
 
-  final List<Entry> _entries = budgetEntryList;
+  final List<Entry> _entries = [];
 
   Widget _buildEntryCards(BuildContext context, Entry entry) {
     return EntryCard(

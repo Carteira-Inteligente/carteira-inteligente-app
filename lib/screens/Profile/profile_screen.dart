@@ -50,17 +50,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final List<Budget> _budgets = [];
   _addBudget(
-    int idUser,
     int idCategory,
+    String description,
     double value,
-    double availableValue,
   ) {
     final newBudget = Budget(
       id: Random().nextInt(999).toInt(),
-      idUser: idUser,
       idCategory: idCategory,
+      description: description,
       value: value,
-      availableValue: availableValue,
     );
 
     setState(() {

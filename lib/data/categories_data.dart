@@ -180,11 +180,4 @@ List<Category> categoryList = [
     iconColor: cPinkAccent.shade700,
     backgroundColor: cPinkAccent.shade100,
   ),
-  Category(
-    id: 26,
-    description: "Personalizada",
-    pathIcon: sCategory,
-    iconColor: const Color(0xFF1F70A2),
-    backgroundColor: const Color(0xFFBED3E7),
-  ),
 ];

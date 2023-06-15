@@ -9,9 +9,9 @@ import '../../widgets/Inputs/input_date.dart';
 import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_select.dart';
 import '../../widgets/Inputs/input_text.dart';
-import '../Category/category_list_screen.dart';
-import '../PaymentType/payment_type_list_screen.dart';
-import '../Recurrence/recurrence_list_screen.dart';
+import '../Modals/category_modal.dart';
+import '../Modals/payment_method_modal.dart';
+import '../Modals/recurrence_modal.dart';
 
 class EditEntryFormScreen extends StatefulWidget {
   const EditEntryFormScreen({
@@ -19,71 +19,62 @@ class EditEntryFormScreen extends StatefulWidget {
     required this.onSubmit,
   });
 
-  final void Function(
-    int,
-    int,
-    String,
-    int,
-    double,
-    DateTime,
-    bool,
-    DateTime,
-  ) onSubmit;
+  final void Function(bool, String, int, int, int, double, DateTime) onSubmit;
 
   @override
   State<EditEntryFormScreen> createState() => _EditEntryFormScreenState();
 }
 
 class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
-  String _selectedCategory = "";
-  String _selectedRecurrence = "";
-  String _selectedPaymentType = "";
+  int _selectedCategoryId = 0;
+  int _selectedRecurrenceId = 0;
+  int _selectedPaymentTypeId = 0;
+  String _selectedCategoryDescription = "";
+  String _selectedRecurrenceDescription = "";
+  String _selectedPaymentTypeDescription = "";
 
-  final _idUsercontroller = TextEditingController();
-  final _idCategoryController = TextEditingController();
-  final _descriptionController = TextEditingController();
-  final _periodController = TextEditingController();
-  final _paidValueController = TextEditingController();
-  DateTime _paidDateController = DateTime.now();
   final _padController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _idCategoryController = TextEditingController();
+  final _recurrenceController = TextEditingController();
+  final _paymentTypeController = TextEditingController();
+  final _valueController = TextEditingController();
   DateTime _dueDateController = DateTime.now();
 
   _submitForm() {
-    final idUser = _idUsercontroller.text;
-    final idCategory = _idCategoryController.text;
-    final description = _descriptionController.text;
-    final period = _periodController.text;
-    final paidValue = _paidValueController.text;
     final paid = _padController.text;
+    final description = _descriptionController.text;
+    final idCategory = _selectedCategoryId;
+    final idRecurrence = _selectedRecurrenceId;
+    final idPaymentType = _selectedPaymentTypeId;
+    final value = _valueController.text.replaceAll(",", ".");
 
-    if (idUser.isEmpty ||
-        idCategory.isEmpty ||
-        description.isEmpty ||
-        period.isEmpty ||
-        paidValue.isEmpty ||
-        paid.isEmpty) {
+    if (description.isEmpty ||
+        idCategory.isNaN ||
+        idRecurrence.isNaN ||
+        idPaymentType.isNaN ||
+        value.isEmpty) {
       ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(
-      idUser as int,
-      idCategory as int,
-      description,
-      period as int,
-      paidValue as double,
-      _paidDateController,
       paid as bool,
+      description,
+      idCategory,
+      idRecurrence,
+      idPaymentType,
+      double.parse(value),
       _dueDateController,
     );
-    ToastMessage.successToast("Lançamento alterado com sucesso.");
+    ToastMessage.successToast("Lançamento cadastrado com sucesso.");
   }
 
   @override
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Edição de lançamento",
-      height: MediaQuery.of(context).size.height * 0.76,
+      height: MediaQuery.of(context).size.height * 0.78,
       bottonButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
@@ -101,78 +92,61 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
             controller: _idCategoryController,
             onTap: () => ShowModal.showModal(
               context,
-              CategoryListScreen(
-                onCategorySelected: (category) {
+              CategoryModal(
+                onSelected: (category, categoryId) {
                   setState(() {
-                    _selectedCategory = category;
+                    _selectedCategoryDescription = category;
+                    _selectedCategoryId = categoryId;
                   });
                 },
               ),
             ),
-            selectedOption: _selectedCategory,
+            selectedOption: _selectedCategoryDescription,
           ),
           InputSelect(
             label: "Recorrência",
-            controller: _periodController,
+            controller: _recurrenceController,
             onTap: () => ShowModal.showModal(
               context,
-              RecurrenceListScreen(
-                onRecurrenceSelected: (recurrence) {
+              RecurrenceModal(
+                onSelected: (recurrence, recurrenceId) {
                   setState(() {
-                    _selectedRecurrence = recurrence;
+                    _selectedRecurrenceDescription = recurrence;
+                    _selectedRecurrenceId = recurrenceId;
                   });
                 },
               ),
             ),
-            selectedOption: _selectedRecurrence,
+            selectedOption: _selectedRecurrenceDescription,
           ),
           // Ajustar informações
           InputSelect(
             label: "Forma de pagamento",
-            controller: _periodController,
+            controller: _paymentTypeController,
             onTap: () => ShowModal.showModal(
               context,
-              PaymentTypeListScreen(
-                onPaymentTypeSelected: (paymentType) {
+              PaymentMethodModal(
+                onSelected: (paymentType, paymentTypeId) {
                   setState(() {
-                    _selectedPaymentType = paymentType;
+                    _selectedPaymentTypeDescription = paymentType;
+                    _selectedPaymentTypeId = paymentTypeId;
                   });
                 },
               ),
             ),
-            selectedOption: _selectedPaymentType,
+            selectedOption: _selectedPaymentTypeDescription,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 4.0),
             child: InputValue(
               label: "Valor",
-              controller: _paidValueController,
+              controller: _valueController,
               onSubmit: _submitForm,
             ),
           ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 4.0),
-                  child: InputDate(
-                    label: "Data de vencimento",
-                    controller: _paidDateController,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 4.0),
-                  child: InputDate(
-                    label: "Data de pagamento",
-                    controller: _paidDateController,
-                  ),
-                ),
-              ),
-            ],
+          InputDate(
+            label: "Data de vencimento",
+            controller: _dueDateController,
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:carteira_inteligente/screens/Initial/initial_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/images.dart';
@@ -23,17 +24,15 @@ class DrawerScreen extends StatefulWidget {
 class _DrawerScreenState extends State<DrawerScreen> {
   final List<Budget> _budgets = [];
   _addBudget(
-    int idUser,
     int idCategory,
+    String description,
     double value,
-    double availableValue,
   ) {
     final newBudget = Budget(
       id: Random().nextInt(999).toInt(),
-      idUser: idUser,
       idCategory: idCategory,
+      description: description,
       value: value,
-      availableValue: availableValue,
     );
 
     setState(() {

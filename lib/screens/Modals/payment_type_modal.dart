@@ -5,21 +5,20 @@ import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Labels/modal_title_label.dart';
 
-class PaymentTypeListFormScreen extends StatefulWidget {
-  const PaymentTypeListFormScreen({
+class PaymentTypeModal extends StatefulWidget {
+  const PaymentTypeModal({
     super.key,
-    required this.onPaymentTypeSelected,
+    required this.onSelected,
   });
 
-  final void Function(String) onPaymentTypeSelected;
+  final void Function(String, String) onSelected;
 
   @override
-  State<PaymentTypeListFormScreen> createState() =>
-      _PaymentTypeListFormScreenState();
+  State<PaymentTypeModal> createState() => _PaymentTypeModalState();
 }
 
-class _PaymentTypeListFormScreenState extends State<PaymentTypeListFormScreen> {
-  final List<PaymentType> _paymentTypes = [
+class _PaymentTypeModalState extends State<PaymentTypeModal> {
+  final List<PaymentType> _paymentOptions = [
     PaymentType(
       id: 1,
       description: "Conta",
@@ -32,12 +31,12 @@ class _PaymentTypeListFormScreenState extends State<PaymentTypeListFormScreen> {
     ),
   ];
 
-  _buildRecurrenceCard(BuildContext context, PaymentType paymentType) {
+  _buildOptionsCard(BuildContext context, PaymentType paymentType) {
     return Column(
       children: <Widget>[
         RecurrenceCard(
           onTap: () {
-            widget.onPaymentTypeSelected(paymentType.description);
+            widget.onSelected(paymentType.description, paymentType.type);
             Navigator.pop(context);
           },
           description: paymentType.description,
@@ -53,12 +52,12 @@ class _PaymentTypeListFormScreenState extends State<PaymentTypeListFormScreen> {
       children: <Widget>[
         const ModalTitleLabel(label: "Selecione o tipo de pagamento"),
         SizedBox(
-          height: 200,
+          height: MediaQuery.of(context).size.height * 0.2,
           child: ListView.builder(
-            itemCount: _paymentTypes.length,
+            itemCount: _paymentOptions.length,
             itemBuilder: (context, index) {
-              final paymentType = _paymentTypes[index];
-              return _buildRecurrenceCard(context, paymentType);
+              final paymentType = _paymentOptions[index];
+              return _buildOptionsCard(context, paymentType);
             },
           ),
         ),

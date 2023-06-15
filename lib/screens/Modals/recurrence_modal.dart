@@ -6,19 +6,19 @@ import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Labels/modal_title_label.dart';
 
-class RecurrenceListScreen extends StatefulWidget {
-  const RecurrenceListScreen({
+class RecurrenceModal extends StatefulWidget {
+  const RecurrenceModal({
     super.key,
-    required this.onRecurrenceSelected,
+    required this.onSelected,
   });
 
-  final void Function(String) onRecurrenceSelected;
+  final void Function(String, int) onSelected;
 
   @override
-  State<RecurrenceListScreen> createState() => _RecurrenceListScreenState();
+  State<RecurrenceModal> createState() => _RecurrenceModalState();
 }
 
-class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
+class _RecurrenceModalState extends State<RecurrenceModal> {
   final List<Recurrence> _recurrences = recurrencesList;
 
   _buildRecurrenceCard(BuildContext context, Recurrence recurrence) {
@@ -26,7 +26,7 @@ class _RecurrenceListScreenState extends State<RecurrenceListScreen> {
       children: <Widget>[
         RecurrenceCard(
           onTap: () {
-            widget.onRecurrenceSelected(recurrence.description);
+            widget.onSelected(recurrence.description, recurrence.id);
             Navigator.pop(context);
           },
           description: recurrence.description,

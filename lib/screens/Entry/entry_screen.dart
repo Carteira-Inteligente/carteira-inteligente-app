@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
-import '../../data/entries_data.dart';
 import '../../models/entry.dart';
 import '../../utils/format_currency.dart';
 import '../../utils/show_modal.dart';
@@ -19,7 +18,7 @@ class EntryScreen extends StatefulWidget {
 
 class _EntryScreenState extends State<EntryScreen> {
   var formatCurrency = getFormatCurrency();
-  final List<Entry> _entries = entryList;
+  final List<Entry> _entries = [];
 
   Widget _buildEntryCards(BuildContext context, Entry entry) {
     String _getCategoryIcon(int idCategory) {

@@ -1,16 +1,17 @@
 import 'dart:convert';
 
-import 'package:carteira_inteligente/utils/sort_categories.dart';
-import 'package:carteira_inteligente/widgets/Containers/progress_containers.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../constants/svgs.dart';
 import '../../models/payment_type.dart';
 import '../../routes/app_routes.dart';
+import '../../services/payment_type_service.dart';
+import '../../utils/sort_categories.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
+import '../../widgets/Containers/progress_containers.dart';
 import 'account_form_screen.dart';
 import 'edit_credit_card_form_screen.dart';
 
@@ -30,51 +31,26 @@ class _AccountScreenState extends State<AccountScreen> {
       _isLoading = true;
     });
 
-    final response = await http.get(
-      Uri.parse(AppRoutes.paymentTypeRoute),
-    );
+    final paymentTypes = await PaymentTypeService.findAll();
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final paymentTypes = List<PaymentType>.from(
-        jsonData.map((data) => PaymentType.fromJson(data)),
-      );
+    setState(() {
+      _isLoading = false;
+      _paymentTypes = paymentTypes;
+    });
 
-      setState(() {
-        _isLoading = false;
-        _paymentTypes = paymentTypes;
-      });
-
-      return paymentTypes;
-    } else {
-      throw Exception("Falha ao listar as contas.");
-    }
+    return paymentTypes;
   }
 
   _createAccount(String description) async {
-    final response = await http.post(
-      Uri.parse(AppRoutes.paymentTypeRoute),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": description,
-        "type": "ACCOUNT",
-      }),
-      headers: {"Content-Type": "application/json"},
+    final createdAccount = await PaymentTypeService.post(
+      context,
+      description,
+      "ACCOUNT",
     );
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final createdAccount = PaymentType.fromJson(jsonData);
-
-      setState(() {
-        _paymentTypes.add(createdAccount);
-      });
-
-      ToastMessage.successToast("Conta criada com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao criar a conta.");
-    }
+    setState(() {
+      _paymentTypes.add(createdAccount);
+    });
   }
 
   _updateAccount(PaymentType paymentType, String newDescription) async {

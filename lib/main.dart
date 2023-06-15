@@ -1,8 +1,5 @@
 import 'dart:math';
 
-import 'package:carteira_inteligente/constants/widgets.dart';
-import 'package:carteira_inteligente/screens/Drawer/drawer_screen.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_leading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,13 +10,14 @@ import 'models/budget.dart';
 import 'models/entry.dart';
 import 'screens/Budget/budget_form_screen.dart';
 import 'screens/Budget/budget_screen.dart';
-import 'screens/Dashboard/dashboard_screen.dart';
+import 'screens/Drawer/drawer_screen.dart';
 import 'screens/Entry/entry_form_screen.dart';
 import 'screens/Entry/entry_screen.dart';
 import 'screens/Entry/fast_entry_screen.dart';
-import 'screens/Profile/profile_screen.dart';
+import 'services/budget_service.dart';
 import 'themes/light_theme.dart';
 import 'widgets/AppBar/app_bar_buttons.dart';
+import 'widgets/AppBar/app_bar_leading.dart';
 import 'widgets/AppBar/app_bar_title.dart';
 import 'widgets/Buttons/primary_buttons.dart';
 
@@ -45,8 +43,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  final List<Entry> _entries = [];
-  final List<Budget> _budgets = [];
+  bool _isLoading = false;
+  List<Entry> _entries = [];
+  List<Budget> _budgets = [];
 
   static const List<Widget> _navBarOptions = <Widget>[
     EntryScreen(),
@@ -61,23 +60,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _addEntry(
-    int idUser,
-    int idCategory,
-    String description,
-    int period,
-    double paidValue,
-    DateTime paidDate,
     bool paid,
+    String description,
+    int idCategory,
+    int idRecurrence,
+    int idPaymentType,
+    double paidValue,
     DateTime dueDate,
   ) {
     final newEntry = Entry(
       id: Random().nextInt(999).toInt(),
-      idUser: idUser,
       idCategory: idCategory,
       description: description,
-      period: period,
+      idRecurrence: idRecurrence,
+      idPaymentType: idPaymentType,
       paidValue: paidValue,
-      paidDate: paidDate,
       paid: paid,
       dueDate: dueDate,
     );
@@ -98,13 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
   ) {
     final newFastEntry = Entry(
       id: Random().nextInt(999).toInt(),
-      idUser: idUser,
-      idCategory: 1,
-      description: description,
-      period: 1,
-      paidValue: paidValue,
-      paidDate: DateTime.now(),
       paid: true,
+      description: description,
+      idCategory: 1,
+      idRecurrence: 1,
+      idPaymentType: 1,
+      paidValue: paidValue,
       dueDate: DateTime.now(),
     );
 
@@ -117,31 +113,21 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _addBudget(
-    int idUser,
-    int idCategory,
-    double value,
-    double availableValue,
-  ) {
-    final newBudget = Budget(
-        id: Random().nextInt(999).toInt(),
-        idUser: idUser,
-        idCategory: idCategory,
-        value: value,
-        availableValue: availableValue);
+  _createBudget(int categoryId, String description, double value) async {
+    final createdBudget = await BudgetService.post(
+      context,
+      categoryId,
+      description,
+      value,
+    );
 
     setState(() {
-      _budgets.add(newBudget);
-    });
-
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.of(context).pop();
+      _budgets.add(createdBudget);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // _selectedIndex == 2 ? _selectedIndex = 1 : null;
     _selectedIndex == 1 ? _selectedIndex = 0 : null;
 
     final sliverAppBar = SliverAppBar(
@@ -185,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          BudgetFormScreen(onSubmit: _addBudget),
+                          BudgetFormScreen(onSubmit: _createBudget),
                     ),
                   );
                 },

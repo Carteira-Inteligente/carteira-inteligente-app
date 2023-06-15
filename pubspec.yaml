@@ -36,7 +36,6 @@ dependencies:
   fluttertoast: ^8.2.1
   flutter_svg: ^1.1.6
   http: ^0.13.6
-  provider: ^5.0.0
 
 #https://carteira-inteligente-e0367-default-rtdb.firebaseio.com
 

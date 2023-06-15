@@ -26,24 +26,22 @@ class EntryDetailsScreen extends StatefulWidget {
 class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
   final List<Entry> _entries = [];
   _editEntry(
-    int idUser,
-    int idCategory,
-    String description,
-    int period,
-    double paidValue,
-    DateTime paidDate,
     bool paid,
+    String description,
+    int idCategory,
+    int idRecurrence,
+    int idPaymentType,
+    double paidValue,
     DateTime dueDate,
   ) {
     final editEntry = Entry(
       id: Random().nextInt(999).toInt(),
-      idUser: idUser,
-      idCategory: idCategory,
-      description: description,
-      period: period,
-      paidValue: paidValue,
-      paidDate: paidDate,
       paid: paid,
+      description: description,
+      idCategory: idCategory,
+      idRecurrence: idRecurrence,
+      idPaymentType: idPaymentType,
+      paidValue: paidValue,
       dueDate: dueDate,
     );
 

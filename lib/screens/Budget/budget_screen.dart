@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
-import '../../data/budgets_data.dart';
 import '../../models/budget.dart';
+import '../../services/budget_service.dart';
 import '../../utils/format_currency.dart';
 import '../../widgets/Cards/budget_card.dart';
 import '../../widgets/Containers/no_data_container.dart';
-import '../../widgets/Containers/rounded_icon_container.dart';
+import '../../widgets/Containers/progress_containers.dart';
 import 'budget_details_screen.dart';
 
 class BudgetScreen extends StatefulWidget {
@@ -19,7 +19,23 @@ class BudgetScreen extends StatefulWidget {
 
 class _BudgetScreenState extends State<BudgetScreen> {
   var formatCurrency = getFormatCurrency();
-  final List<Budget> _budgets = budgetsList;
+  List<Budget> _budgets = [];
+  bool _isLoading = false;
+
+  Future<List<Budget>> _fetchBudgets() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final budgets = await BudgetService.findAll();
+
+    setState(() {
+      _isLoading = false;
+      _budgets = budgets;
+    });
+
+    return budgets;
+  }
 
   Widget _buildBudgetCards(BuildContext context, Budget budget) {
     String _getCategoryIcon(int idCategory) {
@@ -84,8 +100,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
       categoryIconColor: _getCategoryIconColor(budget.idCategory),
       description: _getCategoryDescription(budget.idCategory),
       value: budget.value,
-      availableValue: budget.availableValue,
-      percentage: budget.value / budget.availableValue * 1,
+      availableValue: 88,
+      percentage: budget.value / 88 * 1,
     );
   }
 
@@ -93,17 +109,24 @@ class _BudgetScreenState extends State<BudgetScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        _budgets.isEmpty
-            ? const NoDataContainer(description: "orçamentos")
-            : SizedBox(
-                height: MediaQuery.of(context).size.height * 0.78,
-                child: ListView.builder(
-                  itemCount: _budgets.length,
-                  itemBuilder: (context, index) {
-                    final budget = _budgets[index];
-                    return _buildBudgetCards(context, budget);
-                  },
-                ),
+        _isLoading
+            ? ProgressIndicatorContainer(
+                visible: _isLoading,
+              )
+            : RefreshIndicator(
+                onRefresh: _fetchBudgets,
+                child: _budgets.isEmpty
+                    ? const NoDataContainer(description: "orçamentos")
+                    : SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.78,
+                        child: ListView.builder(
+                          itemCount: _budgets.length,
+                          itemBuilder: (context, index) {
+                            final budget = _budgets[index];
+                            return _buildBudgetCards(context, budget);
+                          },
+                        ),
+                      ),
               ),
       ],
     );

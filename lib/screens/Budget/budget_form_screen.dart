@@ -6,7 +6,7 @@ import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_select.dart';
-import '../Category/category_list_screen.dart';
+import '../Modals/category_modal.dart';
 
 class BudgetFormScreen extends StatefulWidget {
   const BudgetFormScreen({
@@ -14,42 +14,30 @@ class BudgetFormScreen extends StatefulWidget {
     required this.onSubmit,
   });
 
-  final void Function(
-    int,
-    int,
-    double,
-    double,
-  ) onSubmit;
+  final void Function(int, String, double) onSubmit;
 
   @override
   State<BudgetFormScreen> createState() => _BudgetFormScreenState();
 }
 
 class _BudgetFormScreenState extends State<BudgetFormScreen> {
-  String _selectedCategory = "";
+  String _selectedDescription = "";
+  int _selectedId = 0;
 
-  final _idUsercontroller = TextEditingController();
   final _idCategoryController = TextEditingController();
   final _valueController = TextEditingController();
 
   _submitForm() {
-    final idUser = _idUsercontroller.text;
-    final idCategory = _idCategoryController.text;
-    final value = _valueController.text;
-    final availableValue = _valueController.text;
+    final idCategory = _selectedId;
+    final description = _selectedDescription;
+    final value = _valueController.text.replaceAll(",", ".");
 
-    if (idUser.isEmpty || idCategory.isEmpty || value.isEmpty) {
+    if (idCategory.isNaN || description.isEmpty || value.isEmpty) {
       ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
-    widget.onSubmit(
-      idUser as int,
-      idCategory as int,
-      value as double,
-      availableValue as double,
-    );
-    ToastMessage.successToast("Orçamento cadastrado com sucesso.");
+    widget.onSubmit(idCategory, description, double.parse(value));
   }
 
   @override
@@ -67,15 +55,16 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
             controller: _idCategoryController,
             onTap: () => ShowModal.showModal(
               context,
-              CategoryListScreen(
-                onCategorySelected: (category) {
+              CategoryModal(
+                onSelected: (category, categoryId) {
                   setState(() {
-                    _selectedCategory = category;
+                    _selectedDescription = category;
+                    _selectedId = categoryId;
                   });
                 },
               ),
             ),
-            selectedOption: _selectedCategory,
+            selectedOption: _selectedDescription,
           ),
           InputValue(
             label: "Valor limite",

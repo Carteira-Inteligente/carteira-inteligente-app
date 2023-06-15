@@ -36,10 +36,14 @@ class CategoryListCard extends StatelessWidget {
   const CategoryListCard({
     super.key,
     required this.description,
+    required this.svgColor,
+    required this.backgroundColor,
     required this.onEdit,
   });
 
   final String description;
+  final Color svgColor;
+  final Color backgroundColor;
   final VoidCallback onEdit;
 
   @override
@@ -48,10 +52,10 @@ class CategoryListCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: ListTile(
-          leading: const RoundedIconContainer(
+          leading: RoundedIconContainer(
             svgPicture: sCategory,
-            svgColor: Color(0xFF1F70A2),
-            backgroundColor: Color(0xFFBED3E7),
+            svgColor: svgColor, // Color(0xFF1F70A2),
+            backgroundColor: backgroundColor, // Color(0xFFBED3E7),
             radius: 24,
           ),
           title: Text(

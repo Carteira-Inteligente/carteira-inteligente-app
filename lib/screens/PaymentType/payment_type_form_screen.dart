@@ -6,7 +6,7 @@ import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Inputs/input_select.dart';
 import '../../widgets/Inputs/input_text.dart';
-import 'payment_type_form_list_screen.dart';
+import '../Modals/payment_type_modal.dart';
 
 class PaymentTypeFormScreen extends StatefulWidget {
   const PaymentTypeFormScreen({
@@ -24,22 +24,28 @@ class PaymentTypeFormScreen extends StatefulWidget {
 }
 
 class _PaymentTypeFormScreenState extends State<PaymentTypeFormScreen> {
-  String _selectedCategory = "";
+  String _selectedDescription = "";
+  String _selectedType = "";
 
   final _paymentTypeController = TextEditingController();
   final _descriptionController = TextEditingController();
 
-  _submitForm() {
-    final paymentType = _paymentTypeController.text;
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  _submitForm() async {
+    final type = _selectedType;
     final description = _descriptionController.text;
 
-    if (paymentType.isEmpty || description.isEmpty) {
+    if (type.isEmpty || description.isEmpty) {
       ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
-    widget.onSubmit(paymentType, description);
-    ToastMessage.successToast("Tipo de pagamento cadastrado com sucesso.");
+    widget.onSubmit(description, type);
   }
 
   @override
@@ -57,15 +63,16 @@ class _PaymentTypeFormScreenState extends State<PaymentTypeFormScreen> {
             controller: _paymentTypeController,
             onTap: () => ShowModal.showModal(
               context,
-              PaymentTypeListFormScreen(
-                onPaymentTypeSelected: (category) {
+              PaymentTypeModal(
+                onSelected: (description, type) {
                   setState(() {
-                    _selectedCategory = category;
+                    _selectedDescription = description;
+                    _selectedType = type;
                   });
                 },
               ),
             ),
-            selectedOption: _selectedCategory,
+            selectedOption: _selectedDescription,
           ),
           InputText(
             label: "Descrição",

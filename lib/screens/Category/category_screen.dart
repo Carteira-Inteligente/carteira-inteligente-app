@@ -126,6 +126,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
   _buildCategoryCard(BuildContext context, Category category) {
     return CategoryListCard(
       description: category.description,
+      svgColor: category.iconColor,
+      backgroundColor: category.backgroundColor,
       onEdit: () => Navigator.push(
         context,
         MaterialPageRoute(
