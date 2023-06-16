@@ -21,7 +21,29 @@ class BudgetService {
 
       return budgets;
     } else {
-      throw Exception("Falha ao listar os orçamentos.");
+      ToastMessage.dangerToast("Falha ao listar os orçamentos.");
+      throw Exception(
+        "Falha ao listar os orçamentos."
+        "\nStatus code: ${response.statusCode}"
+        "\nResponse body: ${response.body}",
+      );
+    }
+  }
+
+  static findById(Budget budget, int id) async {
+    final response = await http.get(
+      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
+    );
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      ToastMessage.dangerToast("Falha ao listar orçamento '$id'.");
+      throw Exception(
+        "Falha ao listar orçamento '$id'."
+        "\nStatus code: ${response.statusCode}"
+        "\nResponse body: ${response.body}",
+      );
     }
   }
 
@@ -31,18 +53,20 @@ class BudgetService {
     String description,
     double value,
   ) async {
+    final requestBody = json.encode({
+      "user": {"id": 1},
+      "category": {"id": categoryId},
+      "description": description,
+      "value": value,
+    });
+
     final response = await http.post(
       Uri.parse(AppRoutes.budgetRoute),
-      body: json.encode({
-        "user": {"id": 1},
-        "category": {"id": categoryId},
-        "description": description,
-        "value": value,
-      }),
+      body: requestBody,
       headers: {"Content-Type": "application/json"},
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdBudget = Budget.fromJson(jsonData);
 
@@ -51,6 +75,12 @@ class BudgetService {
       return createdBudget;
     } else {
       ToastMessage.dangerToast("Falha ao criar o orçamento.");
+      throw Exception(
+        "Falha ao criar o orçamento."
+        "\nStatus code: ${response.statusCode}"
+        "\nRequest body: $requestBody"
+        "\nResponse body: ${response.body}",
+      );
     }
   }
 }

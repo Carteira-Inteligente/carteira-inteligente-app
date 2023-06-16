@@ -1,11 +1,9 @@
-import 'dart:math';
-
-import 'package:carteira_inteligente/screens/Initial/initial_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/images.dart';
 import '../../constants/svgs.dart';
 import '../../models/budget.dart';
+import '../../services/budget_service.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Labels/list_label.dart';
@@ -22,25 +20,18 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
-  final List<Budget> _budgets = [];
-  _addBudget(
-    int idCategory,
-    String description,
-    double value,
-  ) {
-    final newBudget = Budget(
-      id: Random().nextInt(999).toInt(),
-      idCategory: idCategory,
-      description: description,
-      value: value,
+  List<Budget> _budgets = [];
+
+  _createBudget(int categoryId, String description, double value) async {
+    final createdBudget = await BudgetService.post(
+      context,
+      categoryId,
+      description,
+      value,
     );
 
     setState(() {
-      _budgets.add(newBudget);
-    });
-
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.of(context).pop();
+      _budgets.add(createdBudget);
     });
   }
 
@@ -117,7 +108,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               context,
               MaterialPageRoute(
                 builder: (context) => BudgetFormScreen(
-                  onSubmit: _addBudget,
+                  onSubmit: _createBudget,
                 ),
               ),
             );

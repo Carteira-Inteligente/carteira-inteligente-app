@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,6 +13,7 @@ import 'screens/Entry/entry_form_screen.dart';
 import 'screens/Entry/entry_screen.dart';
 import 'screens/Entry/fast_entry_screen.dart';
 import 'services/budget_service.dart';
+import 'services/entry_service.dart';
 import 'themes/light_theme.dart';
 import 'widgets/AppBar/app_bar_buttons.dart';
 import 'widgets/AppBar/app_bar_leading.dart';
@@ -43,7 +42,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  bool _isLoading = false;
   List<Entry> _entries = [];
   List<Budget> _budgets = [];
 
@@ -59,32 +57,30 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _addEntry(
+  _createEntry(
     bool paid,
     String description,
     int idCategory,
-    int idRecurrence,
+    String period,
     int idPaymentType,
     double paidValue,
     DateTime dueDate,
-  ) {
-    final newEntry = Entry(
-      id: Random().nextInt(999).toInt(),
-      idCategory: idCategory,
-      description: description,
-      idRecurrence: idRecurrence,
-      idPaymentType: idPaymentType,
-      paidValue: paidValue,
-      paid: paid,
-      dueDate: dueDate,
+    DateTime paidDate,
+  ) async {
+    final createdEntry = await EntryService.post(
+      context,
+      paid,
+      description,
+      idCategory,
+      period,
+      idPaymentType,
+      paidValue,
+      dueDate,
+      paidDate,
     );
 
     setState(() {
-      _entries.add(newEntry);
-    });
-
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.of(context).pop();
+      _entries.add(createdEntry);
     });
   }
 
@@ -93,21 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
     String description,
     double paidValue,
   ) {
-    final newFastEntry = Entry(
-      id: Random().nextInt(999).toInt(),
-      paid: true,
-      description: description,
-      idCategory: 1,
-      idRecurrence: 1,
-      idPaymentType: 1,
-      paidValue: paidValue,
-      dueDate: DateTime.now(),
-    );
-
-    setState(() {
-      _entries.add(newFastEntry);
-    });
-
     Future.delayed(const Duration(milliseconds: 500), () {
       Navigator.of(context).pop();
     });
@@ -130,87 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     _selectedIndex == 1 ? _selectedIndex = 0 : null;
 
-    final sliverAppBar = SliverAppBar(
-      title: Builder(
-        builder: (context) {
-          if (_selectedIndex == 0) {
-            return const AppBarTitle(title: "Lançamentos");
-          } else if (_selectedIndex == 2) {
-            return const AppBarTitle(title: "Orçamentos");
-          } else {
-            return Container();
-          }
-        },
-      ),
-      pinned: true,
-      floating: true,
-      forceElevated: true,
-      backgroundColor: cBlue.shade700,
-      leading: const AppBarLeadingDrawer(),
-      actions: <Widget>[
-        Builder(
-          builder: (context) {
-            if (_selectedIndex == 0) {
-              return AppBarAddButton(
-                tooltip: "Novo lançamento",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          EntryFormScreen(onSubmit: _addEntry),
-                    ),
-                  );
-                },
-              );
-            } else if (_selectedIndex == 2) {
-              return AppBarAddButton(
-                tooltip: "Novo orçamento",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          BudgetFormScreen(onSubmit: _createBudget),
-                    ),
-                  );
-                },
-              );
-            } else {
-              return Container();
-            }
-          },
-        ),
-      ],
-    );
-
-    final bottomNavigationBar = CupertinoTabBar(
-      currentIndex: _selectedIndex,
-      onTap: _onItemTapped,
-      backgroundColor: cWhite,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            sWallet,
-            color: _selectedIndex == 0 ? cBlue.shade800 : cGrey,
-          ),
-          label: _selectedIndex == 0 ? "Lançamentos" : null,
-        ),
-        BottomNavigationBarItem(
-          icon: FastEntryButton(
-            screen: FastEntryScreen(onSubmit: _addFastEntry),
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            sBudget,
-            color: _selectedIndex == 2 ? cBlue.shade800 : cGrey,
-          ),
-          label: _selectedIndex == 2 ? "Orçamentos" : null,
-        ),
-      ],
-    );
-
     return Scaffold(
       backgroundColor: cWhite,
       drawer: const Drawer(
@@ -219,7 +119,59 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: CustomScrollView(
         slivers: <Widget>[
-          sliverAppBar,
+          SliverAppBar(
+            title: Builder(
+              builder: (context) {
+                if (_selectedIndex == 0) {
+                  return const AppBarTitle(title: "Lançamentos");
+                } else if (_selectedIndex == 2) {
+                  return const AppBarTitle(title: "Orçamentos");
+                } else {
+                  return Container();
+                }
+              },
+            ),
+            pinned: true,
+            floating: true,
+            forceElevated: true,
+            backgroundColor: cBlue.shade700,
+            leading: const AppBarLeadingDrawer(),
+            actions: <Widget>[
+              Builder(
+                builder: (context) {
+                  if (_selectedIndex == 0) {
+                    return AppBarAddButton(
+                      tooltip: "Novo lançamento",
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                EntryFormScreen(onSubmit: _createEntry),
+                          ),
+                        );
+                      },
+                    );
+                  } else if (_selectedIndex == 2) {
+                    return AppBarAddButton(
+                      tooltip: "Novo orçamento",
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                BudgetFormScreen(onSubmit: _createBudget),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+            ],
+          ),
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
@@ -229,7 +181,32 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: bottomNavigationBar,
+      bottomNavigationBar: CupertinoTabBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        backgroundColor: cWhite,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              sWallet,
+              color: _selectedIndex == 0 ? cBlue.shade800 : cGrey,
+            ),
+            label: _selectedIndex == 0 ? "Lançamentos" : null,
+          ),
+          BottomNavigationBarItem(
+            icon: FastEntryButton(
+              screen: FastEntryScreen(onSubmit: _addFastEntry),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              sBudget,
+              color: _selectedIndex == 2 ? cBlue.shade800 : cGrey,
+            ),
+            label: _selectedIndex == 2 ? "Orçamentos" : null,
+          ),
+        ],
+      ),
     );
   }
 }

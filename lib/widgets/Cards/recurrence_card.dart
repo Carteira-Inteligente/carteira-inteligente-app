@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RecurrenceCard extends StatelessWidget {
-  const RecurrenceCard({
+class PeriodCard extends StatelessWidget {
+  const PeriodCard({
     super.key,
     required this.onTap,
     required this.description,

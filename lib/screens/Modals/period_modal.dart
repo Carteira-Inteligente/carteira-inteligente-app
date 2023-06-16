@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 
-import '../../data/recurrences_data.dart';
-import '../../models/recurrence.dart';
+import '../../data/period_data.dart';
+import '../../models/period.dart';
 import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Labels/modal_title_label.dart';
 
-class RecurrenceModal extends StatefulWidget {
-  const RecurrenceModal({
+class PeriodModal extends StatefulWidget {
+  const PeriodModal({
     super.key,
     required this.onSelected,
   });
 
-  final void Function(String, int) onSelected;
+  final void Function(String, String) onSelected;
 
   @override
-  State<RecurrenceModal> createState() => _RecurrenceModalState();
+  State<PeriodModal> createState() => _PeriodModalState();
 }
 
-class _RecurrenceModalState extends State<RecurrenceModal> {
-  final List<Recurrence> _recurrences = recurrencesList;
+class _PeriodModalState extends State<PeriodModal> {
+  final List<Period> _periodOptions = periodOptions;
 
-  _buildRecurrenceCard(BuildContext context, Recurrence recurrence) {
+  _buildPeriodCard(BuildContext context, Period period) {
     return Column(
       children: <Widget>[
-        RecurrenceCard(
+        PeriodCard(
           onTap: () {
-            widget.onSelected(recurrence.description, recurrence.id);
+            widget.onSelected(period.description, period.id);
             Navigator.pop(context);
           },
-          description: recurrence.description,
+          description: period.description,
         ),
         const DividerContainer(),
       ],
@@ -44,10 +44,10 @@ class _RecurrenceModalState extends State<RecurrenceModal> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.5,
           child: ListView.builder(
-            itemCount: _recurrences.length,
+            itemCount: _periodOptions.length,
             itemBuilder: (context, index) {
-              final recurrence = _recurrences[index];
-              return _buildRecurrenceCard(context, recurrence);
+              final period = _periodOptions[index];
+              return _buildPeriodCard(context, period);
             },
           ),
         ),

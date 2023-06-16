@@ -1,12 +1,17 @@
-import 'dart:math';
+import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../models/budget.dart';
+import '../../models/category.dart';
 import '../../models/entry.dart';
+import '../../routes/app_routes.dart';
+import '../../services/budget_service.dart';
 import '../../utils/show_modal.dart';
+import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/delete_buttons.dart';
 import '../../widgets/Buttons/edit_buttons.dart';
 import '../../widgets/Cards/entry_card.dart';
@@ -22,32 +27,84 @@ import '../Entry/entry_details_screen.dart';
 import 'edit_budget_form_screen.dart';
 
 class BudgetDetailsScreen extends StatefulWidget {
-  const BudgetDetailsScreen({super.key});
+  const BudgetDetailsScreen({
+    super.key,
+    required this.budget,
+    required this.budgetId,
+  });
+
+  final Budget budget;
+  final int budgetId;
 
   @override
   State<BudgetDetailsScreen> createState() => _BudgetDetailsScreenState();
 }
 
 class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
-  final List<Budget> _budgets = [];
-  _editBudget(int idCategory, String description, double value) {
-    final editBudget = Budget(
-      id: Random().nextInt(999).toInt(),
-      idCategory: idCategory,
-      description: description,
-      value: value,
-    );
+  List<Budget> _budgets = [];
+  List<Entry> _entries = [];
+  bool _isLoading = false;
+
+  Future<Map<String, dynamic>> _fetchItemById(int id) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final budget = await BudgetService.findById(widget.budget, id);
 
     setState(() {
-      _budgets.add(editBudget);
+      _isLoading = false;
     });
 
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.of(context).pop();
-    });
+    return budget;
   }
 
-  final List<Entry> _entries = [];
+  _updateBudget(
+    Budget budget,
+    int categoryId,
+    String description,
+    double value,
+  ) async {
+    final response = await http.put(
+      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
+      body: json.encode({
+        "user": {"id": 1},
+        "category": {"id": categoryId},
+        "description": description,
+        "value": value,
+      }),
+      headers: {"Content-Type": "application/json"},
+    );
+
+    if (response.statusCode == 200) {
+      final updatedBudget = Budget(
+        id: budget.id,
+        category: budget.category,
+        description: description,
+        value: value,
+      );
+
+      setState(() {
+        _budgets = _budgets.map((budget) {
+          if (budget.id == updatedBudget.id) {
+            return updatedBudget;
+          }
+          return budget;
+        }).toList();
+      });
+
+      ToastMessage.successToast("Orçamento atualizado com sucesso.");
+      Navigator.pop(context);
+    } else {
+      ToastMessage.dangerToast("Falha ao atualizar o orçamento.");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchItemById(widget.budgetId);
+  }
 
   Widget _buildEntryCards(BuildContext context, Entry entry) {
     return EntryCard(
@@ -78,8 +135,11 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      EditBudgetFormScreen(onSubmit: _editBudget),
+                  builder: (context) => EditBudgetFormScreen(
+                    budget: widget.budget,
+                    onSubmit: (budget, categoryId, description, value) =>
+                        _updateBudget(budget, categoryId, description, value),
+                  ),
                 ),
               );
             },
@@ -90,79 +150,90 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
           ),
         ],
       ),
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6.0),
-                  child: Row(
+      child: _isLoading
+          ? ProgressIndicatorContainer(visible: _isLoading)
+          : RefreshIndicator(
+              onRefresh: () => _fetchItemById(widget.budget.id),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6.0),
+                          child: Row(
+                            children: <Widget>[
+                              RoundedIconContainer(
+                                svgPicture: widget.budget.category.pathIcon,
+                                svgColor: widget.budget.category.iconColor,
+                                backgroundColor:
+                                    widget.budget.category.backgroundColor,
+                                radius: 24,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: SubtitleLabel(
+                                    label: widget.budget.description),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          children: <Widget>[
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: InputLabel(label: "Utilizado"),
+                            ),
+                            BudgetValueLabel(
+                              usedValue: 0,
+                              availableValue: widget.budget.value,
+                            ),
+                            ProgressBarContainer(
+                              percentage: 0 / widget.budget.value * 1,
+                            ),
+                          ],
+                        ),
+                        const DividerContainer(),
+                      ],
+                    ),
+                  ),
+                  Column(
                     children: <Widget>[
-                      RoundedIconContainer(
-                        svgPicture: sElectricity,
-                        svgColor: cAmber.shade700,
-                        backgroundColor: cAmber.shade100,
-                        radius: 24,
+                      Row(
+                        children: const <Widget>[
+                          SubtitleLabel(label: "Lançamentos do mês"),
+                        ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 8.0),
-                        child: SubtitleLabel(label: "Energia elétrica"),
+                      SingleChildScrollView(
+                        child: _entries.isEmpty
+                            ? const NoDataContainer(description: "lançamento")
+                            : SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.67,
+                                child: ListView.builder(
+                                  itemCount: _entries.length,
+                                  itemBuilder: (context, index) {
+                                    final entry = _entries[index];
+
+                                    if (index == _entries.length - 1) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            bottom: 120.0),
+                                        child: _buildEntryCards(context, entry),
+                                      );
+                                    } else {
+                                      return _buildEntryCards(context, entry);
+                                    }
+                                  },
+                                ),
+                              ),
                       ),
                     ],
-                  ),
-                ),
-                Column(
-                  children: const <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: InputLabel(label: "Utilizado"),
-                    ),
-                    BudgetValueLabel(
-                      usedValue: 123.45,
-                      availableValue: 200,
-                    ),
-                    ProgressBarContainer(percentage: 123.45 / 200 * 1),
-                  ],
-                ),
-                const DividerContainer(),
-              ],
-            ),
-          ),
-          Column(
-            children: <Widget>[
-              Row(
-                children: const <Widget>[
-                  SubtitleLabel(label: "Lançamentos do mês"),
+                  )
                 ],
               ),
-              SingleChildScrollView(
-                child: _entries.isEmpty
-                    ? const NoDataContainer(description: "lançamento")
-                    : SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.67,
-                        child: ListView.builder(
-                          itemCount: _entries.length,
-                          itemBuilder: (context, index) {
-                            final entry = _entries[index];
-
-                            if (index == _entries.length - 1) {
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 120.0),
-                                child: _buildEntryCards(context, entry),
-                              );
-                            } else {
-                              return _buildEntryCards(context, entry);
-                            }
-                          },
-                        ),
-                      ),
-              ),
-            ],
-          )
-        ],
-      ),
+            ),
     );
   }
 }

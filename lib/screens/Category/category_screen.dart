@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../constants/svgs.dart';
 import '../../models/category.dart';
 import '../../routes/app_routes.dart';
+import '../../services/category_service.dart';
 import '../../utils/sort_categories.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Cards/list_cards.dart';
@@ -30,53 +31,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
       _isLoading = true;
     });
 
-    final response = await http.get(
-      Uri.parse(AppRoutes.categoryRoute),
-    );
+    final categories = await CategoryService.findAll();
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final categories = List<Category>.from(
-        jsonData.map((data) => Category.fromJson(data)),
-      );
+    setState(() {
+      _isLoading = false;
+      _categories = categories;
+    });
 
-      setState(() {
-        _isLoading = false;
-        _categories = categories;
-      });
-
-      return categories;
-    } else {
-      throw Exception("Falha ao listar as categorias.");
-    }
+    return categories;
   }
 
   _createCategory(String description) async {
-    final response = await http.post(
-      Uri.parse(AppRoutes.categoryRoute),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": description,
-        "pathIcon": sCategory,
-        "iconColor": 0xFF1F70A2,
-        "backgroundColor": 0xFFBED3E7,
-      }),
-      headers: {"Content-Type": "application/json"},
-    );
+    final createdCategory = await CategoryService.post(context, description);
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final createdCategory = Category.fromJson(jsonData);
-
-      setState(() {
-        _categories.add(createdCategory);
-      });
-
-      ToastMessage.successToast("Categoria criada com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao criar a categoria.");
-    }
+    setState(() {
+      _categories.add(createdCategory);
+    });
   }
 
   _updateCategory(Category category, String newDescription) async {
@@ -166,7 +136,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   itemCount: _categories.length,
                   itemBuilder: (context, index) {
                     final category = _categories[index];
-                    return _buildCategoryCard(context, category);
+                    if (category.pathIcon == sCategory) {
+                      return _buildCategoryCard(context, category);
+                    }
+                    return Container();
                   },
                 ),
               ),

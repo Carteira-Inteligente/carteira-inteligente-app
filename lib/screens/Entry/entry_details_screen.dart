@@ -6,7 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../constants/widgets.dart';
+import '../../models/category.dart';
 import '../../models/entry.dart';
+import '../../models/payment_type.dart';
 import '../../widgets/Buttons/delete_buttons.dart';
 import '../../widgets/Buttons/edit_buttons.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -28,21 +30,23 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
   _editEntry(
     bool paid,
     String description,
-    int idCategory,
-    int idRecurrence,
-    int idPaymentType,
+    Category category,
+    String period,
+    PaymentType paymentType,
     double paidValue,
     DateTime dueDate,
+    DateTime paidDate,
   ) {
     final editEntry = Entry(
       id: Random().nextInt(999).toInt(),
       paid: paid,
       description: description,
-      idCategory: idCategory,
-      idRecurrence: idRecurrence,
-      idPaymentType: idPaymentType,
+      category: category,
+      period: period,
+      paymentType: paymentType,
       paidValue: paidValue,
       dueDate: dueDate,
+      paidDate: paidDate,
     );
 
     setState(() {
@@ -72,13 +76,13 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                 children: <Widget>[
                   IconEditButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              EditEntryFormScreen(onSubmit: _editEntry),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) =>
+                      //         EditEntryFormScreen(onSubmit: _editEntry),
+                      //   ),
+                      // );
                     },
                   ),
                   Container(

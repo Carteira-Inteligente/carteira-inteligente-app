@@ -3,27 +3,28 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/payment_type.dart';
+import '../constants/svgs.dart';
+import '../models/category.dart';
 import '../routes/app_routes.dart';
 import '../utils/toast_message.dart';
 
-class PaymentTypeService {
+class CategoryService {
   static findAll() async {
     final response = await http.get(
-      Uri.parse(AppRoutes.paymentTypeRoute),
+      Uri.parse(AppRoutes.categoryRoute),
     );
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
-      final paymentTypes = List<PaymentType>.from(
-        jsonData.map((data) => PaymentType.fromJson(data)),
+      final categories = List<Category>.from(
+        jsonData.map((data) => Category.fromJson(data)),
       );
 
-      return paymentTypes;
+      return categories;
     } else {
-      ToastMessage.dangerToast("Falha ao listar as contas.");
+      ToastMessage.dangerToast("Falha ao listar as categorias.");
       throw Exception(
-        "Falha ao listar as contas."
+        "Falha ao listar as categorias."
         "\nStatus code: ${response.statusCode}"
         "\nResponse body: ${response.body}",
       );
@@ -33,31 +34,32 @@ class PaymentTypeService {
   static post(
     BuildContext context,
     String description,
-    String type,
   ) async {
     final requestBody = json.encode({
       "user": {"id": 1},
       "description": description,
-      "type": type,
+      "pathIcon": sCategory,
+      "iconColor": 0xFF1F70A2,
+      "backgroundColor": 0xFFBED3E7,
     });
 
     final response = await http.post(
-      Uri.parse(AppRoutes.paymentTypeRoute),
+      Uri.parse(AppRoutes.categoryRoute),
       body: requestBody,
       headers: {"Content-Type": "application/json"},
     );
 
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
-      final createdPaymentType = PaymentType.fromJson(jsonData);
+      final createdCategory = Category.fromJson(jsonData);
 
-      ToastMessage.successToast("Conta criada com sucesso.");
+      ToastMessage.successToast("Categoria criada com sucesso.");
       Navigator.pop(context);
-      return createdPaymentType;
+      return createdCategory;
     } else {
-      ToastMessage.dangerToast("Falha ao criar a conta.");
+      ToastMessage.dangerToast("Falha ao criar a categoria.");
       throw Exception(
-        "Falha ao criar a conta."
+        "Falha ao criar a categoria."
         "\nStatus code: ${response.statusCode}"
         "\nRequest body: $requestBody"
         "\nResponse body: ${response.body}",

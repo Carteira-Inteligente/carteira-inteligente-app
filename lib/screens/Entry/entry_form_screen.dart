@@ -11,7 +11,7 @@ import '../../widgets/Inputs/input_select.dart';
 import '../../widgets/Inputs/input_text.dart';
 import '../Modals/category_modal.dart';
 import '../Modals/payment_method_modal.dart';
-import '../Modals/recurrence_modal.dart';
+import '../Modals/period_modal.dart';
 
 class EntryFormScreen extends StatefulWidget {
   const EntryFormScreen({
@@ -19,7 +19,16 @@ class EntryFormScreen extends StatefulWidget {
     required this.onSubmit,
   });
 
-  final void Function(bool, String, int, int, int, double, DateTime) onSubmit;
+  final void Function(
+    bool,
+    String,
+    int,
+    String,
+    int,
+    double,
+    DateTime,
+    DateTime,
+  ) onSubmit;
 
   @override
   State<EntryFormScreen> createState() => _EntryFormScreenState();
@@ -27,31 +36,32 @@ class EntryFormScreen extends StatefulWidget {
 
 class _EntryFormScreenState extends State<EntryFormScreen> {
   int _selectedCategoryId = 0;
-  int _selectedRecurrenceId = 0;
+  String _selectedPeriodId = "";
   int _selectedPaymentTypeId = 0;
   String _selectedCategoryDescription = "";
-  String _selectedRecurrenceDescription = "";
+  String _selectedPeriodDescription = "";
   String _selectedPaymentTypeDescription = "";
 
   final _padController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _idCategoryController = TextEditingController();
-  final _recurrenceController = TextEditingController();
+  final _periodController = TextEditingController();
   final _paymentTypeController = TextEditingController();
   final _valueController = TextEditingController();
   DateTime _dueDateController = DateTime.now();
+  DateTime _paidDateController = DateTime.now();
 
   _submitForm() {
     final paid = _padController.text;
     final description = _descriptionController.text;
     final idCategory = _selectedCategoryId;
-    final idRecurrence = _selectedRecurrenceId;
+    final period = _selectedPeriodId;
     final idPaymentType = _selectedPaymentTypeId;
     final value = _valueController.text.replaceAll(",", ".");
 
     if (description.isEmpty ||
         idCategory.isNaN ||
-        idRecurrence.isNaN ||
+        period.isEmpty ||
         idPaymentType.isNaN ||
         value.isEmpty) {
       ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
@@ -62,10 +72,11 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
       paid as bool,
       description,
       idCategory,
-      idRecurrence,
+      period,
       idPaymentType,
       double.parse(value),
       _dueDateController,
+      _paidDateController,
     );
     ToastMessage.successToast("Lançamento cadastrado com sucesso.");
   }
@@ -105,24 +116,24 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
           ),
           InputSelect(
             label: "Recorrência",
-            controller: _recurrenceController,
+            controller: _periodController,
             onTap: () => ShowModal.showModal(
               context,
-              RecurrenceModal(
-                onSelected: (recurrence, recurrenceId) {
+              PeriodModal(
+                onSelected: (period, periodId) {
                   setState(() {
-                    _selectedRecurrenceDescription = recurrence;
-                    _selectedRecurrenceId = recurrenceId;
+                    _selectedPeriodDescription = period;
+                    _selectedPeriodId = periodId;
                   });
                 },
               ),
             ),
-            selectedOption: _selectedRecurrenceDescription,
+            selectedOption: _selectedPeriodDescription,
           ),
           // Ajustar informações
           InputSelect(
             label: "Forma de pagamento",
-            controller: _recurrenceController,
+            controller: _periodController,
             onTap: () => ShowModal.showModal(
               context,
               PaymentMethodModal(

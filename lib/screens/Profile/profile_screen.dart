@@ -49,26 +49,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   final List<Budget> _budgets = [];
-  _addBudget(
-    int idCategory,
-    String description,
-    double value,
-  ) {
-    final newBudget = Budget(
-      id: Random().nextInt(999).toInt(),
-      idCategory: idCategory,
-      description: description,
-      value: value,
-    );
+  // _addBudget(
+  //   int idCategory,
+  //   String description,
+  //   double value,
+  // ) {
+  //   final newBudget = Budget(
+  //     id: Random().nextInt(999).toInt(),
+  //     category: idCategory,
+  //     description: description,
+  //     value: value,
+  //   );
 
-    setState(() {
-      _budgets.add(newBudget);
-    });
+  //   setState(() {
+  //     _budgets.add(newBudget);
+  //   });
 
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.of(context).pop();
-    });
-  }
+  //   Future.delayed(const Duration(milliseconds: 500), () {
+  //     Navigator.of(context).pop();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -160,14 +160,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       svgIcon: sAddBudget,
                       label: "Novo orçamento",
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BudgetFormScreen(
-                              onSubmit: _addBudget,
-                            ),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => BudgetFormScreen(
+                        //       onSubmit: _addBudget,
+                        //     ),
+                        //   ),
+                        // );
                       },
                     ),
                   ],

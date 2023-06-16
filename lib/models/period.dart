@@ -1,8 +1,8 @@
-class Recurrence {
-  final int id;
+class Period {
+  final String id;
   final String description;
 
-  Recurrence({
+  Period({
     required this.id,
     required this.description,
   });

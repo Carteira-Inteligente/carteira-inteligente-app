@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../data/payment_type_data.dart';
 import '../../models/payment_type.dart';
 import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -18,23 +19,12 @@ class PaymentTypeModal extends StatefulWidget {
 }
 
 class _PaymentTypeModalState extends State<PaymentTypeModal> {
-  final List<PaymentType> _paymentOptions = [
-    PaymentType(
-      id: 1,
-      description: "Conta",
-      type: "ACCOUNT",
-    ),
-    PaymentType(
-      id: 2,
-      description: "Cartão de crédito",
-      type: "CREDIT_CARD",
-    ),
-  ];
+  final List<PaymentType> _paymentOptions = paymentOptions;
 
   _buildOptionsCard(BuildContext context, PaymentType paymentType) {
     return Column(
       children: <Widget>[
-        RecurrenceCard(
+        PeriodCard(
           onTap: () {
             widget.onSelected(paymentType.description, paymentType.type);
             Navigator.pop(context);

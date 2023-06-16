@@ -54,7 +54,7 @@ class ProgressIndicatorContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: visible,
-      child: const Center(child: CircularProgressIndicator()),
+      child: const Center(child: CircularProgressIndicator.adaptive()),
     );
   }
 }

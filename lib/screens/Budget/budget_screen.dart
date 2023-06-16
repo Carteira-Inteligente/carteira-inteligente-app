@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/svgs.dart';
 import '../../models/budget.dart';
 import '../../services/budget_service.dart';
-import '../../utils/format_currency.dart';
 import '../../widgets/Cards/budget_card.dart';
 import '../../widgets/Containers/no_data_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -18,7 +15,6 @@ class BudgetScreen extends StatefulWidget {
 }
 
 class _BudgetScreenState extends State<BudgetScreen> {
-  var formatCurrency = getFormatCurrency();
   List<Budget> _budgets = [];
   bool _isLoading = false;
 
@@ -37,71 +33,32 @@ class _BudgetScreenState extends State<BudgetScreen> {
     return budgets;
   }
 
-  Widget _buildBudgetCards(BuildContext context, Budget budget) {
-    String _getCategoryIcon(int idCategory) {
-      if (idCategory == 1) {
-        return sElectricity;
-      } else if (idCategory == 2) {
-        return sHouse;
-      } else if (idCategory == 3) {
-        return sCards;
-      } else {
-        return sMobile;
-      }
-    }
+  @override
+  void initState() {
+    super.initState();
+    _fetchBudgets();
+  }
 
-    Color _getCategoryBackgroundColor(int idCategory) {
-      if (idCategory == 1) {
-        return cAmber.shade100;
-      } else if (idCategory == 2) {
-        return cCyan.shade100;
-      } else if (idCategory == 3) {
-        return cBlueGrey.shade100;
-      } else {
-        return cTeal.shade100;
-      }
-    }
-
-    Color _getCategoryIconColor(int idCategory) {
-      if (idCategory == 1) {
-        return cAmber.shade700;
-      } else if (idCategory == 2) {
-        return cCyan.shade700;
-      } else if (idCategory == 3) {
-        return cBlueGrey.shade700;
-      } else {
-        return cTeal.shade700;
-      }
-    }
-
-    String _getCategoryDescription(int idCategory) {
-      if (idCategory == 1) {
-        return "Energia elétrica";
-      } else if (idCategory == 2) {
-        return "Casa";
-      } else if (idCategory == 3) {
-        return "Cartão de crédito";
-      } else {
-        return "Telefonia";
-      }
-    }
-
+  Widget _buildBudgetCards(BuildContext context, Budget budget, int index) {
     return BudgetCard(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const BudgetDetailsScreen(),
+            builder: (context) => BudgetDetailsScreen(
+              budget: budget,
+              budgetId: budget.id,
+            ),
           ),
         );
       },
-      categoryIcon: _getCategoryIcon(budget.idCategory),
-      categoryBackgroundColor: _getCategoryBackgroundColor(budget.idCategory),
-      categoryIconColor: _getCategoryIconColor(budget.idCategory),
-      description: _getCategoryDescription(budget.idCategory),
-      value: budget.value,
-      availableValue: 88,
-      percentage: budget.value / 88 * 1,
+      categoryIcon: budget.category.pathIcon,
+      categoryBackgroundColor: budget.category.backgroundColor,
+      categoryIconColor: budget.category.iconColor,
+      description: budget.description,
+      value: 0,
+      availableValue: budget.value,
+      percentage: 0 / budget.value * 1,
     );
   }
 
@@ -123,7 +80,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                           itemCount: _budgets.length,
                           itemBuilder: (context, index) {
                             final budget = _budgets[index];
-                            return _buildBudgetCards(context, budget);
+                            return _buildBudgetCards(context, budget, index);
                           },
                         ),
                       ),

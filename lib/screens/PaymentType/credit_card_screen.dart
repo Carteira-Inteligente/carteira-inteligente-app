@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../constants/svgs.dart';
 import '../../models/payment_type.dart';
 import '../../routes/app_routes.dart';
+import '../../services/payment_type_service.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
@@ -29,51 +30,26 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       _isLoading = true;
     });
 
-    final response = await http.get(
-      Uri.parse(AppRoutes.paymentTypeRoute),
-    );
+    final paymentTypes = await PaymentTypeService.findAll();
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final paymentTypes = List<PaymentType>.from(
-        jsonData.map((data) => PaymentType.fromJson(data)),
-      );
+    setState(() {
+      _isLoading = false;
+      _paymentTypes = paymentTypes;
+    });
 
-      setState(() {
-        _isLoading = false;
-        _paymentTypes = paymentTypes;
-      });
-
-      return paymentTypes;
-    } else {
-      throw Exception("Falha ao listar os cartões de crédito.");
-    }
+    return paymentTypes;
   }
 
   _createCreditCard(String description) async {
-    final response = await http.post(
-      Uri.parse(AppRoutes.paymentTypeRoute),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": description,
-        "type": "CREDIT_CARD",
-      }),
-      headers: {"Content-Type": "application/json"},
+    final createdCreditCard = await PaymentTypeService.post(
+      context,
+      description,
+      "CREDIT_CARD",
     );
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final createdCreditCard = PaymentType.fromJson(jsonData);
-
-      setState(() {
-        _paymentTypes.add(createdCreditCard);
-      });
-
-      ToastMessage.successToast("Cartão de crédito criado com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao criar o cartão de crédito.");
-    }
+    setState(() {
+      _paymentTypes.add(createdCreditCard);
+    });
   }
 
   _updateCreditCard(PaymentType paymentType, String newDescription) async {
