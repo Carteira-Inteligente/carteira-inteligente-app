@@ -1,13 +1,9 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../constants/svgs.dart';
 import '../../models/payment_type.dart';
-import '../../routes/app_routes.dart';
-import '../../utils/sort_categories.dart';
-import '../../utils/toast_message.dart';
+import '../../services/payment_type_service.dart';
+import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/payment_type_card.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -39,64 +35,44 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
       _isLoading = true;
     });
 
-    final response = await http.get(
-      Uri.parse(AppRoutes.paymentTypeRoute),
+    final paymentTypes = await PaymentTypeService.findAll(
+      "Formas de pagamento",
     );
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final paymentTypes = List<PaymentType>.from(
-        jsonData.map((data) => PaymentType.fromJson(data)),
-      );
+    _accounts.addAll(
+      paymentTypes.where(
+        (paymentType) =>
+            paymentType.type == "ACCOUNT" || paymentType.type == "WALLET",
+      ),
+    );
 
-      _accounts.addAll(
-        paymentTypes.where(
-          (paymentType) =>
-              paymentType.type == "ACCOUNT" || paymentType.type == "WALLET",
-        ),
-      );
+    _creditCards.addAll(
+      paymentTypes.where(
+        (paymentType) => paymentType.type == "CREDIT_CARD",
+      ),
+    );
 
-      _creditCards.addAll(
-        paymentTypes.where(
-          (paymentType) => paymentType.type == "CREDIT_CARD",
-        ),
-      );
+    setState(() {
+      _isLoading = false;
+      _paymentTypes = paymentTypes;
+    });
 
-      setState(() {
-        _isLoading = false;
-        _paymentTypes = paymentTypes;
-      });
-
-      return paymentTypes;
-    } else {
-      throw Exception("Falha ao listar os tipos de pagamento.");
-    }
+    return paymentTypes;
   }
 
   _createPaymentType(String description, String type) async {
-    final response = await http.post(
-      Uri.parse(AppRoutes.paymentTypeRoute),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": description,
-        "type": type,
-      }),
-      headers: {"Content-Type": "application/json"},
+    String message = "Forma de pagamento";
+    final createdPaymentType = await PaymentTypeService.post(
+      context,
+      description,
+      type,
+      "$message criada",
+      message,
     );
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final createdPaymentType = PaymentType.fromJson(jsonData);
-
-      setState(() {
-        _paymentTypes.add(createdPaymentType);
-      });
-
-      ToastMessage.successToast("Tipo de pagamento criado com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao criar o tipo de pagamento.");
-    }
+    setState(() {
+      _paymentTypes.add(createdPaymentType);
+    });
   }
 
   @override
@@ -137,7 +113,7 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
                     if (index == 0 && _accounts.isNotEmpty) {
                       sortAccounts(_accounts);
                       return Column(
-                        children: [
+                        children: <Widget>[
                           const PaymentTypeTitleLabel(label: "Contas"),
                           ..._accounts.map(
                             (paymentType) => _buildPaymentMethodCard(
@@ -151,7 +127,7 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
                         index == _accounts.length + 1) {
                       sortDecriptions(_creditCards);
                       return Column(
-                        children: [
+                        children: <Widget>[
                           const PaymentTypeTitleLabel(
                             label: "Cartões de crédito",
                           ),
@@ -170,16 +146,14 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
         ),
         PrimaryButton(
           textButton: "Nova forma de pagamento",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PaymentTypeFormScreen(
-                  onSubmit: _createPaymentType,
-                ),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PaymentTypeFormScreen(
+                onSubmit: _createPaymentType,
               ),
-            );
-          },
+            ),
+          ),
         ),
       ],
     );

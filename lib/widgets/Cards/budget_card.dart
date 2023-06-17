@@ -16,8 +16,8 @@ class BudgetCard extends StatelessWidget {
     required this.categoryIconColor,
     required this.categoryBackgroundColor,
     required this.description,
-    required this.value,
-    required this.availableValue,
+    required this.usedValue,
+    required this.budgetValue,
     required this.percentage,
   });
 
@@ -26,8 +26,8 @@ class BudgetCard extends StatelessWidget {
   final Color categoryIconColor;
   final Color categoryBackgroundColor;
   final String description;
-  final double value;
-  final double availableValue;
+  final double usedValue;
+  final double budgetValue;
   final double percentage;
 
   @override
@@ -60,8 +60,8 @@ class BudgetCard extends StatelessWidget {
               child: InputLabel(label: "Utilizado"),
             ),
             BudgetValueLabel(
-              usedValue: value,
-              availableValue: availableValue,
+              usedValue: usedValue,
+              budgetValue: budgetValue,
             ),
             ProgressBarContainer(percentage: percentage),
           ],

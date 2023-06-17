@@ -8,11 +8,11 @@ class BudgetValueLabel extends StatelessWidget {
   const BudgetValueLabel({
     super.key,
     required this.usedValue,
-    required this.availableValue,
+    required this.budgetValue,
   });
 
   final double usedValue;
-  final double availableValue;
+  final double budgetValue;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class BudgetValueLabel extends StatelessWidget {
           ),
         ),
         InputLabel(
-          label: " de R\$ ${formatCurrency.format(availableValue)}",
+          label: " de ${formatCurrency.format(budgetValue)}",
         ),
       ],
     );

@@ -7,7 +7,7 @@ import '../../constants/widgets.dart';
 import '../../utils/show_modal.dart';
 import '../Containers/button_containers.dart';
 
-class PrimaryButton extends StatelessWidget {
+class PrimaryButton extends StatefulWidget {
   const PrimaryButton({
     super.key,
     required this.textButton,
@@ -16,6 +16,28 @@ class PrimaryButton extends StatelessWidget {
 
   final String textButton;
   final void Function() onPressed;
+
+  @override
+  State<PrimaryButton> createState() => _PrimaryButtonState();
+}
+
+class _PrimaryButtonState extends State<PrimaryButton> {
+  bool _isLoading = false;
+
+  void _handleButtonPress() {
+    widget.onPressed();
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    // Simulando uma chamada para o backend
+    Future.delayed(const Duration(seconds: 8000), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +49,13 @@ class PrimaryButton extends StatelessWidget {
           backgroundColor: cBlue.shade800,
           elevation: 0,
         ),
-        onPressed: onPressed,
-        child: Text(
-          textButton,
-          style: Theme.of(context).textTheme.labelLarge,
-        ),
+        onPressed: _isLoading ? null : _handleButtonPress,
+        child: _isLoading
+            ? const CircularProgressIndicator.adaptive(strokeWidth: 2.0)
+            : Text(
+                widget.textButton,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
       ),
     );
   }
@@ -85,10 +109,7 @@ class FastEntryButton extends StatelessWidget {
     return Tooltip(
       message: "Novo lançamento rápido",
       child: ElevatedButton(
-        onPressed: () => ShowModal.showModal(
-          context,
-          screen,
-        ),
+        onPressed: () => ShowModal.showModal(context, screen),
         style: ElevatedButton.styleFrom(
           shape: wButtonBorderRadius,
           backgroundColor: cBlue.shade800,

@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/widgets/Labels/list_tile_label.dart';
 import 'package:flutter/material.dart';
+
+import 'list_tile_label.dart';
 
 class PaymentTypeTitleLabel extends StatelessWidget {
   const PaymentTypeTitleLabel({

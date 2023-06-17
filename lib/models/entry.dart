@@ -32,9 +32,9 @@ class Entry {
       category: Category.fromJson(json["category"]),
       period: json["period"],
       paymentType: PaymentType.fromJson(json["paymentType"]),
-      paidValue: json["paidValue"],
-      dueDate: json["dueDate"],
-      paidDate: json["paidDate"],
+      paidValue: json["paidValue"].toDouble(),
+      dueDate: DateTime.parse(json["dueDate"]),
+      paidDate: DateTime.parse(json["paidDate"]),
     );
   }
 }

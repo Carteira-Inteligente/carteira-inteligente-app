@@ -60,9 +60,7 @@ class _InputDateState extends State<InputDate> {
                     child: const Text('Cancelar'),
                   ),
                   CupertinoButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: () => Navigator.of(context).pop(),
                     child: const Text('OK'),
                   ),
                 ],

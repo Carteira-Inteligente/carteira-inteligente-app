@@ -83,4 +83,26 @@ class BudgetService {
       );
     }
   }
+
+  static delete(
+    BuildContext context,
+    Budget budget,
+    int id,
+  ) async {
+    final response = await http.delete(
+      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
+    );
+
+    if (response.statusCode == 200) {
+      ToastMessage.successToast("Orçamento excluído com sucesso.");
+      Navigator.pop(context);
+    } else {
+      ToastMessage.dangerToast("Falha ao excluir o orçamento '$id'.");
+      throw Exception(
+        "Falha ao excluir o orçamento '$id'."
+        "\nStatus code: ${response.statusCode}"
+        "\nResponse body: ${response.body}",
+      );
+    }
+  }
 }

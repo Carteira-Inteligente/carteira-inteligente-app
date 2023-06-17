@@ -28,9 +28,7 @@ class AppBarLeadingDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        Scaffold.of(context).openDrawer();
-      },
+      onPressed: () => Scaffold.of(context).openDrawer(),
       icon: SvgPicture.asset(
         sMenu,
         color: cWhite,

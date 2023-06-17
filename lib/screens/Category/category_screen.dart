@@ -1,14 +1,9 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../constants/svgs.dart';
 import '../../models/category.dart';
-import '../../routes/app_routes.dart';
 import '../../services/category_service.dart';
-import '../../utils/sort_categories.dart';
-import '../../utils/toast_message.dart';
+import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -49,41 +44,20 @@ class _CategoryScreenState extends State<CategoryScreen> {
     });
   }
 
-  _updateCategory(Category category, String newDescription) async {
-    final updatedCategory = Category(
-      id: category.id,
-      description: newDescription,
-      backgroundColor: const Color(0xFFBED3E7),
-      iconColor: const Color(0xFF1F70A2),
-      pathIcon: sCategory,
+  _updateCategory(Category category, String description) async {
+    final updatedCategory = await CategoryService.put(
+      context,
+      category,
+      description,
     );
 
-    final response = await http.put(
-      Uri.parse("${AppRoutes.categoryRoute}/${category.id}"),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": newDescription,
-        "pathIcon": sCategory,
-        "iconColor": 0xFF1F70A2,
-        "backgroundColor": 0xFFBED3E7,
-      }),
-      headers: {"Content-Type": "application/json"},
+    final index = _categories.indexWhere(
+      (category) => category.id == updatedCategory.id,
     );
-
-    if (response.statusCode == 200) {
+    if (index != -1) {
       setState(() {
-        _categories = _categories.map((category) {
-          if (category.id == updatedCategory.id) {
-            return updatedCategory;
-          }
-          return category;
-        }).toList();
+        _categories[index] = updatedCategory;
       });
-
-      ToastMessage.successToast("Categoria atualizada com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao atualizar a categoria.");
     }
   }
 
@@ -103,9 +77,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         MaterialPageRoute(
           builder: (context) => EditCategoryFormScreen(
             category: category,
-            onSubmit: (description) {
-              _updateCategory(category, description);
-            },
+            onSubmit: (description) => _updateCategory(category, description),
           ),
         ),
       ),
@@ -118,14 +90,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return ScreenFormContainer(
       title: "Categorias personalizadas",
       tooltip: "Nova categoria",
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CategoryFormScreen(onSubmit: _createCategory),
-          ),
-        );
-      },
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CategoryFormScreen(onSubmit: _createCategory),
+        ),
+      ),
       child: _isLoading
           ? ProgressIndicatorContainer(visible: _isLoading)
           : RefreshIndicator(

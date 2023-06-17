@@ -1,15 +1,11 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../models/category.dart';
-import '../../routes/app_routes.dart';
-import '../../utils/sort_categories.dart';
-import '../../utils/toast_message.dart';
+import '../../services/category_service.dart';
+import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/category_card.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -39,53 +35,22 @@ class _CategoryModalState extends State<CategoryModal> {
       _isLoading = true;
     });
 
-    final response = await http.get(
-      Uri.parse(AppRoutes.categoryRoute),
-    );
+    final categories = await CategoryService.findAll();
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final categories = List<Category>.from(
-        jsonData.map((data) => Category.fromJson(data)),
-      );
+    setState(() {
+      _isLoading = false;
+      _categories = categories;
+    });
 
-      setState(() {
-        _isLoading = false;
-        _categories = categories;
-      });
-
-      return categories;
-    } else {
-      throw Exception("Falha ao listar as categorias.");
-    }
+    return categories;
   }
 
   _createCategory(String description) async {
-    final response = await http.post(
-      Uri.parse(AppRoutes.categoryRoute),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": description,
-        "pathIcon": sCategory,
-        "iconColor": 0xFF1F70A2,
-        "backgroundColor": 0xFFBED3E7,
-      }),
-      headers: {"Content-Type": "application/json"},
-    );
+    final createdCategory = await CategoryService.post(context, description);
 
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      final createdCategory = Category.fromJson(jsonData);
-
-      setState(() {
-        _categories.add(createdCategory);
-      });
-
-      ToastMessage.successToast("Categoria criada com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao criar a categoria.");
-    }
+    setState(() {
+      _categories.add(createdCategory);
+    });
   }
 
   @override
@@ -192,15 +157,14 @@ class _CategoryModalState extends State<CategoryModal> {
         ),
         PrimaryButton(
           textButton: "Nova categoria",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    CategoryFormScreen(onSubmit: _createCategory),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CategoryFormScreen(
+                onSubmit: _createCategory,
               ),
-            );
-          },
+            ),
+          ),
         ),
       ],
     );

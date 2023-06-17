@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../utils/password_rules.dart';
+import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/password_rules_container.dart';
@@ -32,16 +33,22 @@ class _UserFormScreenState extends State<UserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  // _submitForm() async {
-  //   UsersProvider.createUser(
-  //     _nameController,
-  //     _emailController,
-  //     _passwordController,
-  //     _confirmPasswordController,
-  //     _isPasswordValid,
-  //     widget.onSubmit,
-  //   );
-  // }
+  _submitForm() async {
+    final name = _nameController.text;
+    final email = _emailController.text;
+    final password = _passwordController.text;
+    final confirmPassword = _confirmPasswordController.text;
+
+    if (name.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    widget.onSubmit(name, email, password);
+  }
 
   bool _isPasswordValid = false;
 
@@ -60,7 +67,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
       height: MediaQuery.of(context).size.height * 0.75,
       bottonButton: PrimaryButton(
         textButton: "Cadastrar",
-        onPressed: () {}, //_submitForm,
+        onPressed: _submitForm, //_submitForm,
       ),
       child: Column(
         children: <Widget>[
@@ -70,23 +77,23 @@ class _UserFormScreenState extends State<UserFormScreen> {
           InputText(
             label: "Digite seu nome ou apelido",
             controller: _nameController,
-            onSubmit: () {}, //_submitForm,
+            onSubmit: _submitForm, //_submitForm,
           ),
           InputEmail(
             label: "E-mail",
             controller: _emailController,
-            onSubmit: () {}, // _submitForm,
+            onSubmit: _submitForm, // _submitForm,
           ),
           InputPassword(
             label: "Senha",
             controller: _passwordController,
-            onSubmit: () {}, // _submitForm,
+            onSubmit: _submitForm, // _submitForm,
             onChanged: _validatePassword,
           ),
           InputPassword(
             label: "Confirmar senha",
             controller: _confirmPasswordController,
-            onSubmit: () {}, //_submitForm,
+            onSubmit: _submitForm, //_submitForm,
           ),
           PasswordRulesContainer(labelColor: passwordLabelColor),
         ],

@@ -37,13 +37,14 @@ class _EditBudgetFormScreenState extends State<EditBudgetFormScreen> {
   void initState() {
     super.initState();
     _selectedCategory = widget.budget.category;
-    _selectedDescription = widget.budget.description;
+    _selectedDescription = widget.budget.category.description;
     _selectedValue = widget.budget.value;
     _valueController.text = _selectedValue.toString().replaceAll(".", ",");
   }
 
   @override
   void dispose() {
+    _idCategoryController.dispose();
     _valueController.dispose();
     super.dispose();
   }

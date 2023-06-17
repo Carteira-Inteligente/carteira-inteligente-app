@@ -42,8 +42,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Entry> _entries = [];
-  List<Budget> _budgets = [];
+  final List<Entry> _entries = [];
+  final List<Budget> _budgets = [];
 
   static const List<Widget> _navBarOptions = <Widget>[
     EntryScreen(),

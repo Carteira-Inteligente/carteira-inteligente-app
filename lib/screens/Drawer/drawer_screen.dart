@@ -20,7 +20,7 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
-  List<Budget> _budgets = [];
+  final List<Budget> _budgets = [];
 
   _createBudget(int categoryId, String description, double value) async {
     final createdBudget = await BudgetService.post(
@@ -107,9 +107,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => BudgetFormScreen(
-                  onSubmit: _createBudget,
-                ),
+                builder: (context) => BudgetFormScreen(onSubmit: _createBudget),
               ),
             );
           },

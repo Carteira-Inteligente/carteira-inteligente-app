@@ -3,10 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/svgs.dart';
 import '../../models/budget.dart';
-import '../../models/category.dart';
 import '../../models/entry.dart';
 import '../../routes/app_routes.dart';
 import '../../services/budget_service.dart';
@@ -17,7 +14,7 @@ import '../../widgets/Buttons/edit_buttons.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/form_containers.dart';
-import '../../widgets/Containers/no_data_container.dart';
+import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/budget_value_label.dart';
@@ -100,6 +97,10 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     }
   }
 
+  _deleteBudget(int id) async {
+    await BudgetService.delete(context, widget.budget, id);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -110,14 +111,17 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     return EntryCard(
       onTap: () => ShowModal.showModal(
         context,
-        const EntryDetailsScreen(),
+        EntryDetailsScreen(
+          entry: entry,
+          entryId: entry.id,
+        ),
       ),
-      categoryIcon: sElectricity,
-      categoryBackgroundColor: cAmber.shade100,
-      categoryIconColor: cAmber.shade700,
+      categoryIcon: entry.category.pathIcon,
+      categoryBackgroundColor: entry.category.backgroundColor,
+      categoryIconColor: entry.category.iconColor,
       title: entry.description,
-      value: 123.45,
-      dueDate: "14/05/2023",
+      value: entry.paidValue,
+      dueDate: "Tem que arrumar aqui",
       paymentStatus: entry.paid,
       onPressedPayment: entry.paid,
     );
@@ -129,24 +133,25 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
       title: "Detalhes do orçamento",
       bottonButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           EditButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EditBudgetFormScreen(
-                    budget: widget.budget,
-                    onSubmit: (budget, categoryId, description, value) =>
-                        _updateBudget(budget, categoryId, description, value),
-                  ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditBudgetFormScreen(
+                  budget: widget.budget,
+                  onSubmit: (budget, categoryId, description, value) =>
+                      _updateBudget(budget, categoryId, description, value),
                 ),
-              );
-            },
+              ),
+            ),
           ),
           DeleteButton(
             dataLabel: "orçamento",
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              _deleteBudget(widget.budget.id);
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
@@ -159,7 +164,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
-                      children: [
+                      children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 6.0),
                           child: Row(
@@ -174,7 +179,8 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: SubtitleLabel(
-                                    label: widget.budget.description),
+                                  label: widget.budget.category.description,
+                                ),
                               ),
                             ],
                           ),
@@ -187,7 +193,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                             ),
                             BudgetValueLabel(
                               usedValue: 0,
-                              availableValue: widget.budget.value,
+                              budgetValue: widget.budget.value,
                             ),
                             ProgressBarContainer(
                               percentage: 0 / widget.budget.value * 1,
@@ -207,7 +213,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                       ),
                       SingleChildScrollView(
                         child: _entries.isEmpty
-                            ? const NoDataContainer(description: "lançamento")
+                            ? const NoEntryBudgetContainer()
                             : SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.67,
@@ -215,11 +221,11 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                                   itemCount: _entries.length,
                                   itemBuilder: (context, index) {
                                     final entry = _entries[index];
-
                                     if (index == _entries.length - 1) {
                                       return Padding(
                                         padding: const EdgeInsets.only(
-                                            bottom: 120.0),
+                                          bottom: 120.0,
+                                        ),
                                         child: _buildEntryCards(context, entry),
                                       );
                                     } else {

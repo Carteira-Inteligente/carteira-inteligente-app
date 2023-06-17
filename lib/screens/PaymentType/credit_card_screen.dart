@@ -1,13 +1,8 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../constants/svgs.dart';
 import '../../models/payment_type.dart';
-import '../../routes/app_routes.dart';
 import '../../services/payment_type_service.dart';
-import '../../utils/toast_message.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -24,13 +19,14 @@ class CreditCardScreen extends StatefulWidget {
 class _CreditCardScreenState extends State<CreditCardScreen> {
   List<PaymentType> _paymentTypes = [];
   bool _isLoading = false;
+  String message = "Cartão de crédito";
 
   Future<List<PaymentType>> _fetchCreditCard() async {
     setState(() {
       _isLoading = true;
     });
 
-    final paymentTypes = await PaymentTypeService.findAll();
+    final paymentTypes = await PaymentTypeService.findAll("Cartões de crédito");
 
     setState(() {
       _isLoading = false;
@@ -42,47 +38,29 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
 
   _createCreditCard(String description) async {
     final createdCreditCard = await PaymentTypeService.post(
-      context,
-      description,
-      "CREDIT_CARD",
-    );
+        context, description, "CREDIT_CARD", "$message criado", message);
 
     setState(() {
       _paymentTypes.add(createdCreditCard);
     });
   }
 
-  _updateCreditCard(PaymentType paymentType, String newDescription) async {
-    final updatedCreditCard = PaymentType(
-      id: paymentType.id,
-      description: newDescription,
-      type: "ACCOUNT",
+  _updateCreditCard(PaymentType paymentType, String description) async {
+    final updatedCreditCard = await PaymentTypeService.put(
+      context,
+      paymentType,
+      description,
+      "CREDIT_CARD",
+      message,
     );
 
-    final response = await http.put(
-      Uri.parse("${AppRoutes.paymentTypeRoute}/${paymentType.id}"),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": newDescription,
-        "type": "CREDIT_CARD",
-      }),
-      headers: {"Content-Type": "application/json"},
+    final index = _paymentTypes.indexWhere(
+      (creditCard) => creditCard.id == updatedCreditCard.id,
     );
-
-    if (response.statusCode == 200) {
+    if (index != -1) {
       setState(() {
-        _paymentTypes = _paymentTypes.map((creditCard) {
-          if (creditCard.id == updatedCreditCard.id) {
-            return updatedCreditCard;
-          }
-          return paymentType;
-        }).toList();
+        _paymentTypes[index] = updatedCreditCard;
       });
-
-      ToastMessage.successToast("Cartão de crédito atualizado com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao atualizar o cartão de crédito.");
     }
   }
 
@@ -102,9 +80,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         MaterialPageRoute(
           builder: (context) => EditCreditCardFormScreen(
             paymentType: paymentType,
-            onSubmit: (description) {
-              _updateCreditCard(paymentType, description);
-            },
+            onSubmit: (description) => _updateCreditCard(
+              paymentType,
+              description,
+            ),
           ),
         ),
       ),
@@ -116,16 +95,14 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     return ScreenFormContainer(
       title: "Cartões de crédito",
       tooltip: "Novo cartão de crédito",
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CreditCardFormScreen(
-              onSubmit: _createCreditCard,
-            ),
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CreditCardFormScreen(
+            onSubmit: _createCreditCard,
           ),
-        );
-      },
+        ),
+      ),
       child: _isLoading
           ? ProgressIndicatorContainer(visible: _isLoading)
           : RefreshIndicator(

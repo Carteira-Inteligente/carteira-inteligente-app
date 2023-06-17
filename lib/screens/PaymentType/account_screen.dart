@@ -1,14 +1,9 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../constants/svgs.dart';
 import '../../models/payment_type.dart';
-import '../../routes/app_routes.dart';
 import '../../services/payment_type_service.dart';
-import '../../utils/sort_categories.dart';
-import '../../utils/toast_message.dart';
+import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -25,13 +20,14 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   List<PaymentType> _paymentTypes = [];
   bool _isLoading = false;
+  String message = "Conta";
 
   Future<List<PaymentType>> _fetchAccounts() async {
     setState(() {
       _isLoading = true;
     });
 
-    final paymentTypes = await PaymentTypeService.findAll();
+    final paymentTypes = await PaymentTypeService.findAll("Contas");
 
     setState(() {
       _isLoading = false;
@@ -46,6 +42,8 @@ class _AccountScreenState extends State<AccountScreen> {
       context,
       description,
       "ACCOUNT",
+      "$message criada",
+      message,
     );
 
     setState(() {
@@ -53,37 +51,22 @@ class _AccountScreenState extends State<AccountScreen> {
     });
   }
 
-  _updateAccount(PaymentType paymentType, String newDescription) async {
-    final updatedAccount = PaymentType(
-      id: paymentType.id,
-      description: newDescription,
-      type: "ACCOUNT",
+  _updateAccount(PaymentType paymentType, String description) async {
+    final updatedAccount = await PaymentTypeService.put(
+      context,
+      paymentType,
+      description,
+      "ACCOUNT",
+      message,
     );
 
-    final response = await http.put(
-      Uri.parse("${AppRoutes.paymentTypeRoute}/${paymentType.id}"),
-      body: json.encode({
-        "user": {"id": 1},
-        "description": newDescription,
-        "type": "ACCOUNT",
-      }),
-      headers: {"Content-Type": "application/json"},
+    final index = _paymentTypes.indexWhere(
+      (account) => account.id == updatedAccount.id,
     );
-
-    if (response.statusCode == 200) {
+    if (index != -1) {
       setState(() {
-        _paymentTypes = _paymentTypes.map((account) {
-          if (account.id == updatedAccount.id) {
-            return updatedAccount;
-          }
-          return paymentType;
-        }).toList();
+        _paymentTypes[index] = updatedAccount;
       });
-
-      ToastMessage.successToast("Conta atualizada com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao atualizar a conta.");
     }
   }
 
@@ -103,9 +86,7 @@ class _AccountScreenState extends State<AccountScreen> {
         MaterialPageRoute(
           builder: (context) => EditAccountFormScreen(
             paymentType: paymentType,
-            onSubmit: (description) {
-              _updateAccount(paymentType, description);
-            },
+            onSubmit: (description) => _updateAccount(paymentType, description),
           ),
         ),
       ),
@@ -118,14 +99,12 @@ class _AccountScreenState extends State<AccountScreen> {
     return ScreenFormContainer(
       title: "Contas",
       tooltip: "Nova conta",
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AccountFormScreen(onSubmit: _createAccount),
-          ),
-        );
-      },
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AccountFormScreen(onSubmit: _createAccount),
+        ),
+      ),
       child: _isLoading
           ? ProgressIndicatorContainer(visible: _isLoading)
           : RefreshIndicator(

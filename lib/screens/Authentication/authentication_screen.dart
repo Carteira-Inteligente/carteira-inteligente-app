@@ -53,14 +53,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           onSubmit: () {},
         ),
         TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ForgotPasswordScreen(),
-              ),
-            );
-          },
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ForgotPasswordScreen(),
+            ),
+          ),
           child: Text(
             "Esqueci minha senha",
             style: Theme.of(context).textTheme.labelMedium,
@@ -68,14 +66,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         ),
         PrimaryButton(
           textButton: "Entrar",
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CarteiraInteligenteApp(),
-              ),
-            );
-          },
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CarteiraInteligenteApp(),
+            ),
+          ),
         ),
       ],
     );

@@ -64,15 +64,12 @@ class EntryCard extends StatelessWidget {
                   color: cOrange,
                 ),
           onPressed: onPressedPayment == true
-              ? () {
-                  ShowDialog.cancelPayment(context, () {
+              ? () => ShowDialog.cancelPayment(context, () {
                     ToastMessage.successToast(
                       "Pagamento desfeito com sucesso.",
                     );
-
                     onPressedPayment == false;
-                  });
-                }
+                  })
               : () {
                   ToastMessage.successToast(
                     "Pagamento realizado com sucesso.",

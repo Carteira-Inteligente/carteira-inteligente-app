@@ -63,7 +63,7 @@ class FormContainer extends StatelessWidget {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
+                      children: <Widget>[
                         child,
                       ],
                     ),

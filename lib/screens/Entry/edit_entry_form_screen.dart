@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../models/category.dart';
+import '../../models/entry.dart';
+import '../../models/payment_type.dart';
 import '../../utils/show_modal.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
@@ -16,10 +19,13 @@ import '../Modals/period_modal.dart';
 class EditEntryFormScreen extends StatefulWidget {
   const EditEntryFormScreen({
     super.key,
+    required this.entry,
     required this.onSubmit,
   });
 
+  final Entry entry;
   final void Function(
+    Entry,
     bool,
     String,
     int,
@@ -35,6 +41,14 @@ class EditEntryFormScreen extends StatefulWidget {
 }
 
 class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
+  late bool _selectedPaid;
+  late String _selectedDescription;
+  late Category _selectedCategory;
+  late String _selectedPeriod;
+  late PaymentType _selectedPaymentType;
+  late double _selectedValue;
+  late DateTime _selectedDueDate;
+  late DateTime _selectedPaidDate;
   int _selectedCategoryId = 0;
   String _selectedPeriodId = "";
   int _selectedPaymentTypeId = 0;
@@ -42,38 +56,68 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
   String _selectedPeriodDescription = "";
   String _selectedPaymentTypeDescription = "";
 
-  final _padController = TextEditingController();
+  final _paidController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _idCategoryController = TextEditingController();
   final _periodController = TextEditingController();
-  final _paymentTypeController = TextEditingController();
+  final _idPaymentTypeController = TextEditingController();
   final _valueController = TextEditingController();
   DateTime _dueDateController = DateTime.now();
   DateTime _paidDateController = DateTime.now();
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedPaid = widget.entry.paid;
+    _selectedDescription = widget.entry.description;
+    _selectedCategory = widget.entry.category;
+    _selectedPeriod = widget.entry.period;
+    _selectedPaymentType = widget.entry.paymentType;
+    _selectedValue = widget.entry.paidValue;
+    _valueController.text = _selectedValue.toString().replaceAll(".", ",");
+    _selectedDueDate = widget.entry.dueDate;
+    _selectedPaidDate = widget.entry.paidDate;
+  }
+
+  @override
+  void dispose() {
+    _paidController.dispose();
+    _descriptionController.dispose();
+    _idCategoryController.dispose();
+    _periodController.dispose();
+    _idPaymentTypeController.dispose();
+    _valueController.dispose();
+    super.dispose();
+  }
+
   _submitForm() {
-    final paid = _padController.text;
-    final description = _descriptionController.text;
-    final idCategory = _selectedCategoryId;
-    final idRecurrence = _selectedPeriodId;
-    final idPaymentType = _selectedPaymentTypeId;
+    final paid = _selectedPaid;
+    final description = _selectedDescription;
+    final idCategory = _selectedCategory;
+    final period = _selectedPeriod;
+    final idPaymentType = _selectedPaymentType;
     final value = _valueController.text.replaceAll(",", ".");
+    final dueDate = _selectedDueDate;
+    final paidDate = _selectedPaidDate;
 
     if (description.isEmpty ||
-        idCategory.isNaN ||
-        idRecurrence.isEmpty ||
-        idPaymentType.isNaN ||
-        value.isEmpty) {
+        idCategory == null ||
+        period.isEmpty ||
+        idPaymentType == null ||
+        value.isEmpty ||
+        dueDate == null ||
+        paidDate == null) {
       ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
       return;
     }
 
     widget.onSubmit(
-      paid as bool,
+      widget.entry,
+      paid,
       description,
-      idCategory,
-      idRecurrence,
-      idPaymentType,
+      _selectedCategoryId,
+      _selectedPeriodId,
+      _selectedPaymentTypeId,
       double.parse(value),
       _dueDateController,
       _dueDateController,
@@ -133,7 +177,7 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
           // Ajustar informações
           InputSelect(
             label: "Forma de pagamento",
-            controller: _paymentTypeController,
+            controller: _idPaymentTypeController,
             onTap: () => ShowModal.showModal(
               context,
               PaymentMethodModal(

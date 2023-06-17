@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/budget.dart';
 import '../../services/budget_service.dart';
 import '../../widgets/Cards/budget_card.dart';
-import '../../widgets/Containers/no_data_container.dart';
+import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import 'budget_details_screen.dart';
 
@@ -41,23 +41,21 @@ class _BudgetScreenState extends State<BudgetScreen> {
 
   Widget _buildBudgetCards(BuildContext context, Budget budget, int index) {
     return BudgetCard(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BudgetDetailsScreen(
-              budget: budget,
-              budgetId: budget.id,
-            ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BudgetDetailsScreen(
+            budget: budget,
+            budgetId: budget.id,
           ),
-        );
-      },
+        ),
+      ),
       categoryIcon: budget.category.pathIcon,
       categoryBackgroundColor: budget.category.backgroundColor,
       categoryIconColor: budget.category.iconColor,
-      description: budget.description,
-      value: 0,
-      availableValue: budget.value,
+      description: budget.category.description,
+      usedValue: 0,
+      budgetValue: budget.value,
       percentage: 0 / budget.value * 1,
     );
   }

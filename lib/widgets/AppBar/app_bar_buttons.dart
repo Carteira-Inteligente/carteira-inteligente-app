@@ -48,14 +48,12 @@ class _AppBarFilterButtonState extends State<AppBarFilterButton> {
   Widget build(BuildContext context) {
     return IconButton(
       tooltip: "Filtrar",
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const InitialScreen(),
-          ),
-        );
-      },
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const InitialScreen(),
+        ),
+      ),
       icon: SvgPicture.asset(
         sFilter,
         color: cWhite,
@@ -77,14 +75,12 @@ class _AppBarNotificationButtonState extends State<AppBarNotificationButton> {
   Widget build(BuildContext context) {
     return IconButton(
       tooltip: "Notificações",
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const NotificationScreen(),
-          ),
-        );
-      },
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const NotificationScreen(),
+        ),
+      ),
       icon: SvgPicture.asset(
         sNotification,
         color: cWhite,

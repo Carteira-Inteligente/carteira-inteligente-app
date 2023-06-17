@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:carteira_inteligente/models/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/budget.dart';
+import '../models/entry.dart';
 import '../routes/app_routes.dart';
 import '../utils/toast_message.dart';
-import '../widgets/Containers/no_data_container.dart';
 
 class EntryService {
   static findAll() async {
@@ -25,9 +24,26 @@ class EntryService {
     } else if (response.statusCode == 404) {
       ToastMessage.dangerToast("Não há nenhum lançamento cadastrado.");
     } else {
-      ToastMessage.dangerToast("Falha ao listar os lançamentos.");
+      ToastMessage.dangerToast("Falha ao listar lançamentos.");
       throw Exception(
-        "Falha ao listar os lançamentos."
+        "Falha ao listar lançamentos."
+        "\nStatus code: ${response.statusCode}"
+        "\nResponse body: ${response.body}",
+      );
+    }
+  }
+
+  static findById(Entry entry, int id) async {
+    final response = await http.get(
+      Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
+    );
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      ToastMessage.dangerToast("Falha ao listar lançamento '$id'.");
+      throw Exception(
+        "Falha ao listar lançamento '$id'."
         "\nStatus code: ${response.statusCode}"
         "\nResponse body: ${response.body}",
       );
@@ -53,8 +69,8 @@ class EntryService {
       "period": period,
       "paymentType": {"id": idPaymentType},
       "paidValue": paidValue,
-      "dueDate": dueDate,
-      "paidDate": paidDate,
+      "dueDate": dueDate.toIso8601String(),
+      "paidDate": paidDate.toIso8601String(),
     });
 
     final response = await http.post(
@@ -62,6 +78,8 @@ class EntryService {
       body: requestBody,
       headers: {"Content-Type": "application/json"},
     );
+
+    print(requestBody);
 
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
@@ -71,11 +89,33 @@ class EntryService {
       Navigator.pop(context);
       return createdEntry;
     } else {
-      ToastMessage.dangerToast("Falha ao criar o lançamento.");
+      ToastMessage.dangerToast("Falha ao criar lançamento.");
       throw Exception(
-        "Falha ao criar o lançamento."
+        "Falha ao criar lançamento."
         "\nStatus code: ${response.statusCode}"
         "\nRequest body: $requestBody"
+        "\nResponse body: ${response.body}",
+      );
+    }
+  }
+
+  static delete(
+    BuildContext context,
+    Entry entry,
+    int id,
+  ) async {
+    final response = await http.delete(
+      Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
+    );
+
+    if (response.statusCode == 200) {
+      ToastMessage.successToast("Lançamento excluído com sucesso.");
+      Navigator.pop(context);
+    } else {
+      ToastMessage.dangerToast("Falha ao excluir lançamento '$id'.");
+      throw Exception(
+        "Falha ao excluir lançamento '$id'."
+        "\nStatus code: ${response.statusCode}"
         "\nResponse body: ${response.body}",
       );
     }

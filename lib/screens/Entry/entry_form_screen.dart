@@ -42,7 +42,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
   String _selectedPeriodDescription = "";
   String _selectedPaymentTypeDescription = "";
 
-  final _padController = TextEditingController();
+  final _paidController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _idCategoryController = TextEditingController();
   final _periodController = TextEditingController();
@@ -52,7 +52,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
   DateTime _paidDateController = DateTime.now();
 
   _submitForm() {
-    final paid = _padController.text;
+    final paid = _paidController.text.isNotEmpty;
     final description = _descriptionController.text;
     final idCategory = _selectedCategoryId;
     final period = _selectedPeriodId;
@@ -69,7 +69,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
     }
 
     widget.onSubmit(
-      paid as bool,
+      paid,
       description,
       idCategory,
       period,

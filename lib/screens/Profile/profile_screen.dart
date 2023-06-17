@@ -6,6 +6,7 @@ import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../models/budget.dart';
 import '../../models/users.dart';
+import '../../services/budget_service.dart';
 import '../../utils/show_dialog.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/list_cards.dart';
@@ -30,7 +31,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final List<Budget> _budgets = [];
   final List<Users> _users = [];
+
   _addUser(String name, String email, String password) {
     final newUser = Users(
       id: Random().nextInt(999).toInt(),
@@ -48,27 +51,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  final List<Budget> _budgets = [];
-  // _addBudget(
-  //   int idCategory,
-  //   String description,
-  //   double value,
-  // ) {
-  //   final newBudget = Budget(
-  //     id: Random().nextInt(999).toInt(),
-  //     category: idCategory,
-  //     description: description,
-  //     value: value,
-  //   );
+  _createBudget(int categoryId, String description, double value) async {
+    final createdBudget = await BudgetService.post(
+      context,
+      categoryId,
+      description,
+      value,
+    );
 
-  //   setState(() {
-  //     _budgets.add(newBudget);
-  //   });
-
-  //   Future.delayed(const Duration(milliseconds: 500), () {
-  //     Navigator.of(context).pop();
-  //   });
-  // }
+    setState(() {
+      _budgets.add(createdBudget);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,14 +85,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         const SubtitleLabel(label: "Thiago Martins Proença"),
         const ModalTitleLabel(label: "thiagoenca@gmail.com"),
         SmallPrimaryButton(
-          onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => EditUserFormScreen(onSubmit: _addUser),
-            //   ),
-            // );
-          },
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditUserFormScreen(onSubmit: _addUser),
+            ),
+          ),
           backgroundColor: cBlue.shade800,
           label: "Editar usuário",
         ),
@@ -120,55 +112,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ProfileListCard(
                       svgIcon: sBank,
                       label: "Contas",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AccountScreen(),
-                          ),
-                        );
-                      },
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AccountScreen(),
+                        ),
+                      ),
                     ),
                     divider,
                     ProfileListCard(
                       svgIcon: sCards,
                       label: "Cartões de crédito",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CreditCardScreen(),
-                          ),
-                        );
-                      },
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CreditCardScreen(),
+                        ),
+                      ),
                     ),
                     divider,
                     ProfileListCard(
                       svgIcon: sCategory,
                       label: "Categorias personalizadas",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CategoryScreen(),
-                          ),
-                        );
-                      },
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CategoryScreen(),
+                        ),
+                      ),
                     ),
                     divider,
                     ProfileListCard(
                       svgIcon: sAddBudget,
                       label: "Novo orçamento",
-                      onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => BudgetFormScreen(
-                        //       onSubmit: _addBudget,
-                        //     ),
-                        //   ),
-                        // );
-                      },
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BudgetFormScreen(
+                            onSubmit: _createBudget,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -183,38 +167,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ProfileListCard(
                       svgIcon: sLogout,
                       label: "Sair do aplicativo",
-                      onTap: () {
-                        ShowDialog.logoutDialog(
-                          context,
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const InitialScreen(),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                      onTap: () => ShowDialog.logoutDialog(
+                        context,
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const InitialScreen(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     divider,
                     ProfileListCard(
                       svgIcon: sDelete,
                       label: "Excluir usuário",
-                      onTap: () {
-                        ShowDialog.deleteDialog(
-                          context,
-                          "usuário",
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const InitialScreen(),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                      onTap: () => ShowDialog.deleteDialog(
+                        context,
+                        "usuário",
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const InitialScreen(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
