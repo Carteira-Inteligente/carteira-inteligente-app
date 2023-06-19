@@ -17,3 +17,7 @@ void sortAccounts(List<PaymentType> paymentType) {
     }
   });
 }
+
+void sortByDate(List descriptions) {
+  descriptions.sort((a, b) => a.dueDate.compareTo(b.dueDate));
+}

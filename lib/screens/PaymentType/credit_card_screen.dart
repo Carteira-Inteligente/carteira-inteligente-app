@@ -19,7 +19,6 @@ class CreditCardScreen extends StatefulWidget {
 class _CreditCardScreenState extends State<CreditCardScreen> {
   List<PaymentType> _paymentTypes = [];
   bool _isLoading = false;
-  String message = "Cartão de crédito";
 
   Future<List<PaymentType>> _fetchCreditCard() async {
     setState(() {
@@ -38,7 +37,11 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
 
   _createCreditCard(String description) async {
     final createdCreditCard = await PaymentTypeService.post(
-        context, description, "CREDIT_CARD", "$message criado", message);
+      context,
+      description,
+      "CREDIT_CARD",
+      "Cartão de crédito",
+    );
 
     setState(() {
       _paymentTypes.add(createdCreditCard);
@@ -51,12 +54,13 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       paymentType,
       description,
       "CREDIT_CARD",
-      message,
+      "Cartão de crédito",
     );
 
     final index = _paymentTypes.indexWhere(
       (creditCard) => creditCard.id == updatedCreditCard.id,
     );
+
     if (index != -1) {
       setState(() {
         _paymentTypes[index] = updatedCreditCard;

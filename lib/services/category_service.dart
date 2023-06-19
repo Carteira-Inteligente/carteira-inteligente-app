@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import '../constants/svgs.dart';
 import '../models/category.dart';
 import '../routes/app_routes.dart';
+import '../utils/messages.dart';
 import '../utils/toast_message.dart';
 
 class CategoryService {
@@ -22,12 +23,11 @@ class CategoryService {
 
       return categories;
     } else {
-      ToastMessage.dangerToast("Falha ao listar Categorias.");
-      throw Exception(
-        "Falha ao listar Categorias."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.findAllError("Categorias"));
+      throw Exception(Messages.noRequestBodyExceptionError(
+        Messages.findAllError("Categorias"),
+        response,
+      ));
     }
   }
 
@@ -53,17 +53,16 @@ class CategoryService {
       final jsonData = json.decode(response.body);
       final createdCategory = Category.fromJson(jsonData);
 
-      ToastMessage.successToast("Categoria criada com sucesso.");
+      ToastMessage.successToast(Messages.postSuccess("Categoria"));
       Navigator.pop(context);
       return createdCategory;
     } else {
-      ToastMessage.dangerToast("Falha ao criar Categoria.");
-      throw Exception(
-        "Falha ao criar Categoria."
-        "\nStatus code: ${response.statusCode}"
-        "\nRequest body: $requestBody"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.postError("Categoria"));
+      throw Exception(Messages.requestBodyExceptionError(
+        Messages.postError("Categoria"),
+        response,
+        requestBody,
+      ));
     }
   }
 
@@ -95,18 +94,16 @@ class CategoryService {
         pathIcon: sCategory,
       );
 
-      ToastMessage.successToast("Categoria atualizada com sucesso.");
+      ToastMessage.successToast(Messages.putSuccess("Categoria"));
       Navigator.pop(context);
       return updatedCategory;
     } else {
-      ToastMessage.dangerToast("Falha ao atualizar Categoria.");
-
-      throw Exception(
-        "Falha ao atualizar Categoria."
-        "\nStatus code: ${response.statusCode}"
-        "\nRequest body: $requestBody"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.putError("Categoria"));
+      throw Exception(Messages.requestBodyExceptionError(
+        Messages.putError("Categoria"),
+        response,
+        requestBody,
+      ));
     }
   }
 }

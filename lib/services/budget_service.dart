@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/budget.dart';
 import '../routes/app_routes.dart';
+import '../utils/messages.dart';
 import '../utils/toast_message.dart';
 
 class BudgetService {
@@ -21,7 +22,7 @@ class BudgetService {
 
       return budgets;
     } else {
-      ToastMessage.dangerToast("Falha ao listar os orçamentos.");
+      ToastMessage.dangerToast(Messages.findAllError("Orçamentos"));
       throw Exception(
         "Falha ao listar os orçamentos."
         "\nStatus code: ${response.statusCode}"
@@ -38,12 +39,11 @@ class BudgetService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      ToastMessage.dangerToast("Falha ao listar orçamento '$id'.");
-      throw Exception(
-        "Falha ao listar orçamento '$id'."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.findByIdError("Orçamento", id));
+      throw Exception(Messages.noRequestBodyExceptionError(
+        Messages.findByIdError("Orçamento", id),
+        response,
+      ));
     }
   }
 
@@ -70,17 +70,60 @@ class BudgetService {
       final jsonData = json.decode(response.body);
       final createdBudget = Budget.fromJson(jsonData);
 
-      ToastMessage.successToast("Orçamento criado com sucesso.");
+      ToastMessage.successToast(Messages.postSuccess("Orçamento"));
       Navigator.pop(context);
       return createdBudget;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(Messages.notEmptyFields());
     } else {
-      ToastMessage.dangerToast("Falha ao criar o orçamento.");
-      throw Exception(
-        "Falha ao criar o orçamento."
-        "\nStatus code: ${response.statusCode}"
-        "\nRequest body: $requestBody"
-        "\nResponse body: ${response.body}",
+      ToastMessage.dangerToast(Messages.postError("Orçamento"));
+      throw Exception(Messages.requestBodyExceptionError(
+        Messages.postError("Orçamento"),
+        response,
+        requestBody,
+      ));
+    }
+  }
+
+  static put(
+    BuildContext context,
+    Budget budget,
+    int categoryId,
+    String description,
+    double value,
+  ) async {
+    final requestBody = json.encode({
+      "user": {"id": 1},
+      "category": {"id": categoryId},
+      "description": description,
+      "value": value,
+    });
+
+    final response = await http.put(
+      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
+      body: requestBody,
+      headers: {"Content-Type": "application/json"},
+    );
+
+    if (response.statusCode == 200) {
+      final updatedBudget = Budget(
+        id: budget.id,
+        category: budget.category,
+        value: value,
+        description: description,
       );
+
+      ToastMessage.successToast(Messages.putSuccess("Orçamento"));
+      Navigator.pop(context);
+      return updatedBudget;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(Messages.notEmptyFields());
+    } else {
+      ToastMessage.dangerToast(Messages.requestBodyExceptionError(
+        Messages.putError("Orçamento"),
+        response,
+        requestBody,
+      ));
     }
   }
 
@@ -94,15 +137,14 @@ class BudgetService {
     );
 
     if (response.statusCode == 200) {
-      ToastMessage.successToast("Orçamento excluído com sucesso.");
+      ToastMessage.successToast(Messages.deleteSuccess("Orçamento"));
       Navigator.pop(context);
     } else {
-      ToastMessage.dangerToast("Falha ao excluir o orçamento '$id'.");
-      throw Exception(
-        "Falha ao excluir o orçamento '$id'."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.deleteError("Orçamento"));
+      throw Exception(Messages.noRequestBodyExceptionError(
+        Messages.deleteError("Orçamento"),
+        response,
+      ));
     }
   }
 }

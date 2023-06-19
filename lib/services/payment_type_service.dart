@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/payment_type.dart';
 import '../routes/app_routes.dart';
+import '../utils/messages.dart';
 import '../utils/toast_message.dart';
 
 class PaymentTypeService {
@@ -21,12 +22,11 @@ class PaymentTypeService {
 
       return paymentTypes;
     } else {
-      ToastMessage.dangerToast("Falha ao listar $message.");
-      throw Exception(
-        "Falha ao listar $message."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.findAllError(message));
+      throw Exception(Messages.noRequestBodyExceptionError(
+        Messages.findAllError(message),
+        response,
+      ));
     }
   }
 
@@ -35,7 +35,6 @@ class PaymentTypeService {
     String description,
     String type,
     String message,
-    String message2,
   ) async {
     final requestBody = json.encode({
       "user": {"id": 1},
@@ -53,17 +52,16 @@ class PaymentTypeService {
       final jsonData = json.decode(response.body);
       final createdPaymentType = PaymentType.fromJson(jsonData);
 
-      ToastMessage.successToast("$message com sucesso.");
+      ToastMessage.successToast(Messages.postSuccess(message));
       Navigator.pop(context);
       return createdPaymentType;
     } else {
-      ToastMessage.dangerToast("Falha ao criar $message2.");
-      throw Exception(
-        "Falha ao criar $message2."
-        "\nStatus code: ${response.statusCode}"
-        "\nRequest body: $requestBody"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.postError(message));
+      throw Exception(Messages.requestBodyExceptionError(
+        Messages.postError(message),
+        response,
+        requestBody,
+      ));
     }
   }
 
@@ -93,17 +91,16 @@ class PaymentTypeService {
         type: type,
       );
 
-      ToastMessage.successToast("$message atualizada com sucesso.");
+      ToastMessage.successToast(Messages.putSuccess(message));
       Navigator.pop(context);
       return updatedAccount;
     } else {
-      ToastMessage.dangerToast("Falha ao atualizar $message.");
-      throw Exception(
-        "Falha ao atualizar $message."
-        "\nStatus code: ${response.statusCode}"
-        "\nRequest body: $requestBody"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.putError(message));
+      throw Exception(Messages.requestBodyExceptionError(
+        Messages.putError(message),
+        response,
+        requestBody,
+      ));
     }
   }
 }

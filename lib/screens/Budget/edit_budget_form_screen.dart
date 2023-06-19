@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../models/budget.dart';
 import '../../models/category.dart';
 import '../../utils/show_modal.dart';
-import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Inputs/input_value.dart';
@@ -25,7 +24,6 @@ class EditBudgetFormScreen extends StatefulWidget {
 }
 
 class _EditBudgetFormScreenState extends State<EditBudgetFormScreen> {
-  late Category _selectedCategory;
   late String _selectedDescription;
   late double _selectedValue;
   int _selectedId = 0;
@@ -36,10 +34,11 @@ class _EditBudgetFormScreenState extends State<EditBudgetFormScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedCategory = widget.budget.category;
+    _selectedId = widget.budget.category.id;
     _selectedDescription = widget.budget.category.description;
     _selectedValue = widget.budget.value;
-    _valueController.text = _selectedValue.toString().replaceAll(".", ",");
+    _valueController.text =
+        _selectedValue.toStringAsFixed(2).replaceAll(".", ",");
   }
 
   @override
@@ -50,14 +49,8 @@ class _EditBudgetFormScreenState extends State<EditBudgetFormScreen> {
   }
 
   _submitForm() {
-    final idCategory = _selectedCategory;
     final description = _selectedDescription;
     final value = _valueController.text.replaceAll(",", ".");
-
-    if (description.isEmpty || value.isEmpty) {
-      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
-      return;
-    }
 
     widget.onSubmit(
       widget.budget,

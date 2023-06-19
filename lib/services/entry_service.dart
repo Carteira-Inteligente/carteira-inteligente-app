@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/budget.dart';
 import '../models/entry.dart';
 import '../routes/app_routes.dart';
+import '../utils/messages.dart';
 import '../utils/toast_message.dart';
 
 class EntryService {
@@ -21,15 +21,12 @@ class EntryService {
       );
 
       return entries;
-    } else if (response.statusCode == 404) {
-      ToastMessage.dangerToast("Não há nenhum lançamento cadastrado.");
     } else {
-      ToastMessage.dangerToast("Falha ao listar lançamentos.");
-      throw Exception(
-        "Falha ao listar lançamentos."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.findAllError("Lançamentos"));
+      throw Exception(Messages.noRequestBodyExceptionError(
+        Messages.findAllError("Lançamentos"),
+        response,
+      ));
     }
   }
 
@@ -41,12 +38,11 @@ class EntryService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      ToastMessage.dangerToast("Falha ao listar lançamento '$id'.");
-      throw Exception(
-        "Falha ao listar lançamento '$id'."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.findByIdError("Lançamento", id));
+      throw Exception(Messages.noRequestBodyExceptionError(
+        Messages.findByIdError("Lançamento", id),
+        response,
+      ));
     }
   }
 
@@ -54,9 +50,9 @@ class EntryService {
     BuildContext context,
     bool paid,
     String description,
-    int idCategory,
+    int categoryId,
     String period,
-    int idPaymentType,
+    int paymentTypeId,
     double paidValue,
     DateTime dueDate,
     DateTime paidDate,
@@ -65,9 +61,9 @@ class EntryService {
       "user": {"id": 1},
       "paid": paid,
       "description": description,
-      "category": {"id": idCategory},
+      "category": {"id": categoryId},
       "period": period,
-      "paymentType": {"id": idPaymentType},
+      "paymentType": {"id": paymentTypeId},
       "paidValue": paidValue,
       "dueDate": dueDate.toIso8601String(),
       "paidDate": paidDate.toIso8601String(),
@@ -79,23 +75,80 @@ class EntryService {
       headers: {"Content-Type": "application/json"},
     );
 
-    print(requestBody);
-
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
-      final createdEntry = Budget.fromJson(jsonData);
+      final createdEntry = Entry.fromJson(jsonData);
 
-      ToastMessage.successToast("Lançamento criado com sucesso.");
+      ToastMessage.successToast(Messages.postSuccess("Lançamento"));
       Navigator.pop(context);
       return createdEntry;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(Messages.notEmptyFields());
     } else {
-      ToastMessage.dangerToast("Falha ao criar lançamento.");
-      throw Exception(
-        "Falha ao criar lançamento."
-        "\nStatus code: ${response.statusCode}"
-        "\nRequest body: $requestBody"
-        "\nResponse body: ${response.body}",
+      ToastMessage.dangerToast(Messages.postError("Lançamento"));
+      throw Exception(Messages.requestBodyExceptionError(
+        Messages.postError("Lançamento"),
+        response,
+        requestBody,
+      ));
+    }
+  }
+
+  static put(
+    BuildContext context,
+    Entry entry,
+    int categoryId,
+    int paymentTypeId,
+    String description,
+    String period,
+    double paidValue,
+    DateTime paidDate,
+    bool paid,
+    DateTime dueDate,
+  ) async {
+    final requestBody = json.encode({
+      "user": {"id": 1},
+      "category": {"id": categoryId},
+      "paymentType": {"id": paymentTypeId},
+      "description": description,
+      "period": period,
+      "paidValue": paidValue,
+      "paidDate": paidDate.toIso8601String(),
+      "paid": paid,
+      "dueDate": dueDate.toIso8601String()
+    });
+
+    final response = await http.put(
+      Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
+      body: requestBody,
+      headers: {"Content-Type": "application/json"},
+    );
+
+    if (response.statusCode == 200) {
+      final updatedEntry = Entry(
+        id: entry.id,
+        paid: paid,
+        description: description,
+        category: entry.category,
+        period: period,
+        paymentType: entry.paymentType,
+        paidValue: paidValue,
+        dueDate: dueDate,
+        paidDate: paidDate,
       );
+
+      ToastMessage.successToast(Messages.putSuccess("Lançamento"));
+      Navigator.pop(context);
+      return updatedEntry;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(Messages.notEmptyFields());
+    } else {
+      ToastMessage.dangerToast(Messages.putError("Lançamento"));
+      throw Exception(Messages.requestBodyExceptionError(
+        Messages.putError("Lançamento"),
+        response,
+        requestBody,
+      ));
     }
   }
 
@@ -109,15 +162,14 @@ class EntryService {
     );
 
     if (response.statusCode == 200) {
-      ToastMessage.successToast("Lançamento excluído com sucesso.");
+      ToastMessage.successToast(Messages.deleteSuccess("Lançamento"));
       Navigator.pop(context);
     } else {
-      ToastMessage.dangerToast("Falha ao excluir lançamento '$id'.");
-      throw Exception(
-        "Falha ao excluir lançamento '$id'."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(Messages.deleteError("Lançamento"));
+      throw Exception(Messages.noRequestBodyExceptionError(
+        Messages.deleteError("Lançamento"),
+        response,
+      ));
     }
   }
 }

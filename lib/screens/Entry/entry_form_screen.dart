@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+import '../../utils/messages.dart';
 import '../../utils/show_modal.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
@@ -36,35 +38,48 @@ class EntryFormScreen extends StatefulWidget {
 
 class _EntryFormScreenState extends State<EntryFormScreen> {
   int _selectedCategoryId = 0;
-  String _selectedPeriodId = "";
-  int _selectedPaymentTypeId = 0;
   String _selectedCategoryDescription = "";
+  String _selectedPeriodId = "";
   String _selectedPeriodDescription = "";
+  int _selectedPaymentTypeId = 0;
   String _selectedPaymentTypeDescription = "";
 
-  final _paidController = TextEditingController();
+  bool _showPaidDate = false;
+  bool _showOnlyDueDate = true;
+
+  bool _isPaid = false;
   final _descriptionController = TextEditingController();
   final _idCategoryController = TextEditingController();
   final _periodController = TextEditingController();
   final _paymentTypeController = TextEditingController();
   final _valueController = TextEditingController();
-  DateTime _dueDateController = DateTime.now();
-  DateTime _paidDateController = DateTime.now();
+  final _dueDateController = TextEditingController();
+  final _paidDateController = TextEditingController();
 
   _submitForm() {
-    final paid = _paidController.text.isNotEmpty;
+    final paid = _isPaid;
     final description = _descriptionController.text;
     final idCategory = _selectedCategoryId;
     final period = _selectedPeriodId;
     final idPaymentType = _selectedPaymentTypeId;
     final value = _valueController.text.replaceAll(",", ".");
+    DateTime? dueDate;
+    DateTime? paidDate;
+
+    if (_dueDateController.text.isNotEmpty) {
+      dueDate = DateFormat("dd/MM/yyy").parse(_dueDateController.text);
+    }
+
+    if (_paidDateController.text.isNotEmpty) {
+      paidDate = DateFormat("dd/MM/yyy").parse(_paidDateController.text);
+    }
 
     if (description.isEmpty ||
         idCategory.isNaN ||
         period.isEmpty ||
         idPaymentType.isNaN ||
         value.isEmpty) {
-      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast(Messages.notEmptyFields());
       return;
     }
 
@@ -75,10 +90,9 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
       period,
       idPaymentType,
       double.parse(value),
-      _dueDateController,
-      _paidDateController,
+      dueDate ?? DateTime.now(),
+      paidDate ?? DateTime.now(),
     );
-    ToastMessage.successToast("Lançamento cadastrado com sucesso.");
   }
 
   @override
@@ -92,7 +106,22 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
       ),
       child: Column(
         children: <Widget>[
-          const ToggleButton(label: "Pagamento realizado"),
+          ToggleButton(
+            label: "Pagamento realizado",
+            isPaid: _isPaid,
+            onChanged: (value) {
+              setState(() {
+                _isPaid = value;
+                if (_isPaid) {
+                  _showOnlyDueDate = false;
+                  _showPaidDate = true;
+                } else {
+                  _showOnlyDueDate = true;
+                  _showPaidDate = false;
+                }
+              });
+            },
+          ),
           InputText(
             label: "Descrição",
             controller: _descriptionController,
@@ -133,7 +162,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
           // Ajustar informações
           InputSelect(
             label: "Forma de pagamento",
-            controller: _periodController,
+            controller: _paymentTypeController,
             onTap: () => ShowModal.showModal(
               context,
               PaymentMethodModal(
@@ -152,10 +181,40 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
             controller: _valueController,
             onSubmit: _submitForm,
           ),
-          InputDate(
-            label: "Data de vencimento",
-            controller: _dueDateController,
+          Visibility(
+            visible: _showOnlyDueDate,
+            child: InputDate(
+              label: "Data de vencimento",
+              controller: _dueDateController,
+            ),
           ),
+          Visibility(
+            visible: _showPaidDate,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: InputDate(
+                      label: "Data de vencimento",
+                      controller: _dueDateController,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 4.0),
+                    child: InputDate(
+                      label: "Data de pagamento",
+                      controller: _paidDateController,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

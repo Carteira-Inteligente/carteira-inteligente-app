@@ -31,12 +31,16 @@ class _PrimaryButtonState extends State<PrimaryButton> {
       _isLoading = true;
     });
 
-    // Simulando uma chamada para o backend
-    Future.delayed(const Duration(seconds: 8000), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         _isLoading = false;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -49,9 +53,12 @@ class _PrimaryButtonState extends State<PrimaryButton> {
           backgroundColor: cBlue.shade800,
           elevation: 0,
         ),
-        onPressed: _isLoading ? null : _handleButtonPress,
+        onPressed: _isLoading ? _handleButtonPress : _handleButtonPress,
         child: _isLoading
-            ? const CircularProgressIndicator.adaptive(strokeWidth: 2.0)
+            ? const CircularProgressIndicator.adaptive(
+                backgroundColor: cWhite,
+                strokeWidth: 2.0,
+              )
             : Text(
                 widget.textButton,
                 style: Theme.of(context).textTheme.labelLarge,

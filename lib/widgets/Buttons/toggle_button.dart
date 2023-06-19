@@ -7,17 +7,19 @@ class ToggleButton extends StatefulWidget {
   const ToggleButton({
     super.key,
     required this.label,
+    required this.isPaid,
+    required this.onChanged,
   });
 
   final String label;
+  final bool isPaid;
+  final ValueChanged<bool> onChanged;
 
   @override
   State<ToggleButton> createState() => _ToggleButtonState();
 }
 
 class _ToggleButtonState extends State<ToggleButton> {
-  bool isPaid = false;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,10 +34,8 @@ class _ToggleButtonState extends State<ToggleButton> {
               height: 30,
               child: Switch.adaptive(
                 activeColor: cBlue.shade800,
-                value: isPaid,
-                onChanged: (value) => setState(() {
-                  isPaid = !isPaid;
-                }),
+                value: widget.isPaid,
+                onChanged: widget.onChanged,
               ),
             ),
           ),

@@ -20,7 +20,6 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   List<PaymentType> _paymentTypes = [];
   bool _isLoading = false;
-  String message = "Conta";
 
   Future<List<PaymentType>> _fetchAccounts() async {
     setState(() {
@@ -38,13 +37,8 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   _createAccount(String description) async {
-    final createdAccount = await PaymentTypeService.post(
-      context,
-      description,
-      "ACCOUNT",
-      "$message criada",
-      message,
-    );
+    final createdAccount =
+        await PaymentTypeService.post(context, description, "ACCOUNT", "Conta");
 
     setState(() {
       _paymentTypes.add(createdAccount);
@@ -57,12 +51,13 @@ class _AccountScreenState extends State<AccountScreen> {
       paymentType,
       description,
       "ACCOUNT",
-      message,
+      "Conta",
     );
 
     final index = _paymentTypes.indexWhere(
       (account) => account.id == updatedAccount.id,
     );
+
     if (index != -1) {
       setState(() {
         _paymentTypes[index] = updatedAccount;

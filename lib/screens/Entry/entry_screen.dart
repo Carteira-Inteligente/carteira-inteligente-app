@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../models/entry.dart';
 import '../../services/entry_service.dart';
 import '../../utils/show_modal.dart';
+import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
+import '../../widgets/Labels/payment_type_title_label.dart';
 import 'entry_details_screen.dart';
 
 class EntryScreen extends StatefulWidget {
@@ -17,6 +20,8 @@ class EntryScreen extends StatefulWidget {
 
 class _EntryScreenState extends State<EntryScreen> {
   List<Entry> _entries = [];
+  final List<Entry> _paidEntries = [];
+  final List<Entry> _noPaidEntries = [];
   bool _isLoading = false;
 
   Future<List<Entry>> _fetchEntries() async {
@@ -24,7 +29,18 @@ class _EntryScreenState extends State<EntryScreen> {
       _isLoading = true;
     });
 
+    _paidEntries.clear();
+    _noPaidEntries.clear();
+
     final entries = await EntryService.findAll();
+
+    _paidEntries.addAll(
+      entries.where((entry) => entry.paid == true),
+    );
+
+    _noPaidEntries.addAll(
+      entries.where((entry) => entry.paid == false),
+    );
 
     setState(() {
       _isLoading = false;
@@ -54,7 +70,7 @@ class _EntryScreenState extends State<EntryScreen> {
       categoryIconColor: entry.category.iconColor,
       title: entry.description,
       value: entry.paidValue,
-      dueDate: "Tem que arrumar aqui",
+      dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
       paymentStatus: entry.paid,
       onPressedPayment: entry.paid,
     );
@@ -77,8 +93,34 @@ class _EntryScreenState extends State<EntryScreen> {
                         child: ListView.builder(
                           itemCount: _entries.length,
                           itemBuilder: (context, index) {
-                            final entry = _entries[index];
-                            return _buildEntryCards(context, entry);
+                            sortByDate(_entries);
+                            if (index == 0 && _noPaidEntries.isNotEmpty) {
+                              return Column(
+                                children: <Widget>[
+                                  const PaymentTypeTitleLabel(
+                                    label: "Aguardando pagamento",
+                                  ),
+                                  ..._noPaidEntries.map(
+                                    (entry) => _buildEntryCards(context, entry),
+                                  ),
+                                ],
+                              );
+                              // final entry = _entries[index];
+                              // return _buildEntryCards(context, entry);
+                            } else if (_paidEntries.isNotEmpty &&
+                                index == _noPaidEntries.length + 1) {
+                              return Column(
+                                children: <Widget>[
+                                  const PaymentTypeTitleLabel(
+                                    label: "Pagos",
+                                  ),
+                                  ..._paidEntries.map(
+                                    (entry) => _buildEntryCards(context, entry),
+                                  ),
+                                ],
+                              );
+                            }
+                            return Container();
                           },
                         ),
                       ),

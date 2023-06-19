@@ -1,14 +1,13 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../models/budget.dart';
 import '../../models/entry.dart';
-import '../../routes/app_routes.dart';
 import '../../services/budget_service.dart';
+import '../../services/entry_service.dart';
+import '../../utils/calculate_value.dart';
 import '../../utils/show_modal.dart';
-import '../../utils/toast_message.dart';
+import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/delete_buttons.dart';
 import '../../widgets/Buttons/edit_buttons.dart';
 import '../../widgets/Cards/entry_card.dart';
@@ -38,7 +37,7 @@ class BudgetDetailsScreen extends StatefulWidget {
 }
 
 class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
-  List<Budget> _budgets = [];
+  final List<Budget> _budgets = [];
   List<Entry> _entries = [];
   bool _isLoading = false;
 
@@ -48,9 +47,11 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     });
 
     final budget = await BudgetService.findById(widget.budget, id);
+    final entries = await EntryService.findAll();
 
     setState(() {
       _isLoading = false;
+      _entries = entries;
     });
 
     return budget;
@@ -62,38 +63,22 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     String description,
     double value,
   ) async {
-    final response = await http.put(
-      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
-      body: json.encode({
-        "user": {"id": 1},
-        "category": {"id": categoryId},
-        "description": description,
-        "value": value,
-      }),
-      headers: {"Content-Type": "application/json"},
+    final updatedBudget = await BudgetService.put(
+      context,
+      budget,
+      categoryId,
+      description,
+      value,
     );
 
-    if (response.statusCode == 200) {
-      final updatedBudget = Budget(
-        id: budget.id,
-        category: budget.category,
-        description: description,
-        value: value,
-      );
+    final index = _budgets.indexWhere(
+      (budget) => budget.id == updatedBudget.id,
+    );
 
+    if (index != -1) {
       setState(() {
-        _budgets = _budgets.map((budget) {
-          if (budget.id == updatedBudget.id) {
-            return updatedBudget;
-          }
-          return budget;
-        }).toList();
+        _budgets[index] = updatedBudget;
       });
-
-      ToastMessage.successToast("Orçamento atualizado com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao atualizar o orçamento.");
     }
   }
 
@@ -121,7 +106,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
       categoryIconColor: entry.category.iconColor,
       title: entry.description,
       value: entry.paidValue,
-      dueDate: "Tem que arrumar aqui",
+      dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
       paymentStatus: entry.paid,
       onPressedPayment: entry.paid,
     );
@@ -192,11 +177,15 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                               child: InputLabel(label: "Utilizado"),
                             ),
                             BudgetValueLabel(
-                              usedValue: 0,
+                              usedValue:
+                                  calculateTotalValue(_entries, widget.budget),
                               budgetValue: widget.budget.value,
                             ),
                             ProgressBarContainer(
-                              percentage: 0 / widget.budget.value * 1,
+                              percentage:
+                                  calculateTotalValue(_entries, widget.budget) /
+                                      widget.budget.value *
+                                      1,
                             ),
                           ],
                         ),
@@ -221,16 +210,22 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                                   itemCount: _entries.length,
                                   itemBuilder: (context, index) {
                                     final entry = _entries[index];
-                                    if (index == _entries.length - 1) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                          bottom: 120.0,
-                                        ),
-                                        child: _buildEntryCards(context, entry),
-                                      );
-                                    } else {
-                                      return _buildEntryCards(context, entry);
+                                    sortByDate(_entries);
+                                    if (entry.category.id ==
+                                        widget.budget.category.id) {
+                                      if (index == _entries.length - 1) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 120.0,
+                                          ),
+                                          child:
+                                              _buildEntryCards(context, entry),
+                                        );
+                                      } else {
+                                        return _buildEntryCards(context, entry);
+                                      }
                                     }
+                                    return Container();
                                   },
                                 ),
                               ),

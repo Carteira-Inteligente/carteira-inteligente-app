@@ -12,8 +12,8 @@ class PaymentType {
   factory PaymentType.fromJson(Map<String, dynamic> json) {
     return PaymentType(
       id: json['id'] ?? 0,
-      description: json['description'],
-      type: json['type'],
+      description: json['description'] ?? "",
+      type: json['type'] ?? "",
     );
   }
 }

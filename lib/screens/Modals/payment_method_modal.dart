@@ -35,6 +35,9 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
       _isLoading = true;
     });
 
+    _accounts.clear();
+    _creditCards.clear();
+
     final paymentTypes = await PaymentTypeService.findAll(
       "Formas de pagamento",
     );
@@ -61,13 +64,11 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
   }
 
   _createPaymentType(String description, String type) async {
-    String message = "Forma de pagamento";
     final createdPaymentType = await PaymentTypeService.post(
       context,
       description,
       type,
-      "$message criada",
-      message,
+      "Forma de pagamento",
     );
 
     setState(() {

@@ -54,6 +54,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final index = _categories.indexWhere(
       (category) => category.id == updatedCategory.id,
     );
+
     if (index != -1) {
       setState(() {
         _categories[index] = updatedCategory;

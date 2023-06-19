@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../models/budget.dart';
+import '../../models/entry.dart';
 import '../../services/budget_service.dart';
+import '../../services/entry_service.dart';
+import '../../utils/calculate_value.dart';
+import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/budget_card.dart';
 import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -16,6 +20,7 @@ class BudgetScreen extends StatefulWidget {
 
 class _BudgetScreenState extends State<BudgetScreen> {
   List<Budget> _budgets = [];
+  List<Entry> _entries = [];
   bool _isLoading = false;
 
   Future<List<Budget>> _fetchBudgets() async {
@@ -24,6 +29,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
     });
 
     final budgets = await BudgetService.findAll();
+    _entries = await EntryService.findAll();
 
     setState(() {
       _isLoading = false;
@@ -54,9 +60,9 @@ class _BudgetScreenState extends State<BudgetScreen> {
       categoryBackgroundColor: budget.category.backgroundColor,
       categoryIconColor: budget.category.iconColor,
       description: budget.category.description,
-      usedValue: 0,
+      usedValue: calculateTotalValue(_entries, budget),
       budgetValue: budget.value,
-      percentage: 0 / budget.value * 1,
+      percentage: calculateTotalValue(_entries, budget) / budget.value * 1,
     );
   }
 
@@ -78,6 +84,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                           itemCount: _budgets.length,
                           itemBuilder: (context, index) {
                             final budget = _budgets[index];
+                            sortDecriptions(_budgets);
                             return _buildBudgetCards(context, budget, index);
                           },
                         ),

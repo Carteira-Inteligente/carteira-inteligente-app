@@ -1,15 +1,12 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/widgets.dart';
+import '../../data/period_data.dart';
 import '../../models/entry.dart';
-import '../../routes/app_routes.dart';
 import '../../services/entry_service.dart';
 import '../../utils/format_currency.dart';
-import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/delete_buttons.dart';
 import '../../widgets/Buttons/edit_buttons.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -35,7 +32,7 @@ class EntryDetailsScreen extends StatefulWidget {
 }
 
 class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
-  List<Entry> _entries = [];
+  final List<Entry> _entries = [];
 
   Future<Map<String, dynamic>> _fetchItemById(int id) async {
     final entry = await EntryService.findById(widget.entry, id);
@@ -44,57 +41,36 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
 
   _updateEntry(
     Entry entry,
-    bool paid,
-    String description,
     int categoryId,
-    String period,
     int paymentTypeId,
+    String description,
+    String period,
     double paidValue,
-    DateTime dueDate,
     DateTime paidDate,
+    bool paid,
+    DateTime dueDate,
   ) async {
-    final response = await http.put(
-      Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
-      body: json.encode({
-        "user": {"id": 1},
-        "paid": paid,
-        "description": description,
-        "category": {"id": categoryId},
-        "period": period,
-        "paymentType": {"id": paymentTypeId},
-        "paidValue": paidValue,
-        "dueDate": dueDate.toIso8601String(),
-        "paidDate": paidDate.toIso8601String(),
-      }),
-      headers: {"Content-Type": "application/json"},
+    final updatedEntry = await EntryService.put(
+      context,
+      entry,
+      categoryId,
+      paymentTypeId,
+      description,
+      period,
+      paidValue,
+      paidDate,
+      paid,
+      dueDate,
     );
 
-    if (response.statusCode == 200) {
-      final updatedEntry = Entry(
-        id: entry.id,
-        paid: paid,
-        description: description,
-        category: entry.category,
-        period: period,
-        paymentType: entry.paymentType,
-        paidValue: paidValue,
-        dueDate: dueDate,
-        paidDate: paidDate,
-      );
+    final index = _entries.indexWhere(
+      (entry) => entry.id == updatedEntry.id,
+    );
 
+    if (index != -1) {
       setState(() {
-        _entries = _entries.map((entry) {
-          if (entry.id == updatedEntry.id) {
-            return updatedEntry;
-          }
-          return entry;
-        }).toList();
+        _entries[index] = updatedEntry;
       });
-
-      ToastMessage.successToast("Lançamento atualizado com sucesso.");
-      Navigator.pop(context);
-    } else {
-      ToastMessage.dangerToast("Falha ao atualizar lançamento.");
     }
   }
 
@@ -134,24 +110,24 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                             entry: widget.entry,
                             onSubmit: (
                               entry,
-                              paid,
-                              description,
                               categoryId,
-                              period,
                               paymentTypeId,
+                              description,
+                              period,
                               paidValue,
-                              dueDate,
                               paidDate,
+                              paid,
+                              dueDate,
                             ) =>
                                 _updateEntry(
                               entry,
-                              paid,
-                              description,
                               categoryId,
-                              period,
                               paymentTypeId,
+                              description,
+                              period,
                               paidValue,
                               dueDate,
+                              paid,
                               paidDate,
                             ),
                           ),
@@ -187,6 +163,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
           padding: const EdgeInsets.only(bottom: 30.0),
           child: Column(
             children: <Widget>[
+              ModalTitleLabel(label: widget.entry.category.description),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 decoration: BoxDecoration(
@@ -203,15 +180,21 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                   Expanded(
                     flex: 1,
                     child: EntryDetailsLabel(
-                      label: "Status de pagamento",
-                      details: widget.entry.paid == true ? "Pago" : "Em aberto",
+                      label: "Data de vencimento",
+                      details: DateFormat("dd/MM/yyyy").format(
+                        widget.entry.dueDate,
+                      ),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
                     child: EntryDetailsLabel(
-                      label: "Data de vencimento",
-                      details: "Tem que arrumar aqui",
+                      label: "Status de pagamento",
+                      details: widget.entry.paid == true
+                          ? "Pago em: ${DateFormat("dd/MM/yyyy").format(
+                              widget.entry.paidDate,
+                            )}"
+                          : "Em aberto",
                     ),
                   ),
                 ],
@@ -222,14 +205,14 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                     flex: 1,
                     child: EntryDetailsLabel(
                       label: "Recorrência",
-                      details: widget.entry.period,
+                      details: buildPeriodDescription(widget.entry.period),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
                     child: EntryDetailsLabel(
-                      label: "Data de pagamento",
-                      details: "Tem que arrumar aqui",
+                      label: "Forma de pagamento",
+                      details: widget.entry.paymentType.description,
                     ),
                   ),
                 ],

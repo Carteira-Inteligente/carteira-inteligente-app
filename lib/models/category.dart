@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/constants/svgs.dart';
 import 'package:flutter/material.dart';
 
 class Category {
@@ -18,8 +19,8 @@ class Category {
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
       id: json['id'] ?? 0,
-      description: json['description'],
-      pathIcon: json['pathIcon'],
+      description: json['description'] ?? "",
+      pathIcon: json['pathIcon'] ?? sCategory,
       iconColor: json['iconColor'] != null
           ? Color(json['iconColor'])
           : const Color(0xFF1F70A2),

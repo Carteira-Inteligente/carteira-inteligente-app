@@ -34,7 +34,9 @@ class Entry {
       paymentType: PaymentType.fromJson(json["paymentType"]),
       paidValue: json["paidValue"].toDouble(),
       dueDate: DateTime.parse(json["dueDate"]),
-      paidDate: DateTime.parse(json["paidDate"]),
+      paidDate: json["paidDate"] != null
+          ? DateTime.parse(json["paidDate"])
+          : DateTime.now(),
     );
   }
 }
