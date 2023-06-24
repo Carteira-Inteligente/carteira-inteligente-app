@@ -3,48 +3,48 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/budget.dart';
+import '../main.dart';
+import '../models/users.dart';
 import '../routes/app_routes.dart';
 import '../utils/messages_utils.dart';
 import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
 
-class BudgetService {
-  static findAll() async {
+class UsersService {
+  static findAll(String message) async {
     final response = await http.get(
-      Uri.parse(AppRoutes.budgetRoute),
+      Uri.parse(AppRoutes.userRoute),
     );
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(
         const Utf8Decoder().convert(response.bodyBytes),
       );
-      final budgets = List<Budget>.from(
-        jsonData.map((data) => Budget.fromJson(data)),
+      final users = List<Users>.from(
+        jsonData.map((data) => Users.fromJson(data)),
       );
 
-      return budgets;
+      return users;
     } else {
-      ToastMessage.dangerToast(MessagesUtils.findAllError("Orçamentos"));
-      throw Exception(
-        "Falha ao listar os orçamentos."
-        "\nStatus code: ${response.statusCode}"
-        "\nResponse body: ${response.body}",
-      );
+      ToastMessage.dangerToast(MessagesUtils.findAllError("Usuários"));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.findAllError("Usuários"),
+        response,
+      ));
     }
   }
 
-  static findById(Budget budget, int id) async {
+  static findById(Users user, int id) async {
     final response = await http.get(
-      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
+      Uri.parse("${AppRoutes.userRoute}/${user.id}"),
     );
 
     if (response.statusCode == 200) {
       return jsonDecode(const Utf8Decoder().convert(response.bodyBytes));
     } else {
-      ToastMessage.dangerToast(MessagesUtils.findByIdError("Orçamento", id));
+      ToastMessage.dangerToast(MessagesUtils.findByIdError("Usuário", id));
       throw Exception(MessagesUtils.noRequestBodyExceptionError(
-        MessagesUtils.findByIdError("Orçamento", id),
+        MessagesUtils.findByIdError("Usuário", id),
         response,
       ));
     }
@@ -52,36 +52,40 @@ class BudgetService {
 
   static post(
     BuildContext context,
-    int categoryId,
-    String description,
-    double value,
+    String name,
+    String email,
+    String password,
   ) async {
     final requestBody = json.encode({
-      "user": {"id": 1},
-      "category": {"id": categoryId},
-      "description": description,
-      "value": value,
+      "name": name,
+      "email": email,
+      "password": password,
     });
 
     final response = await http.post(
-      Uri.parse(AppRoutes.budgetRoute),
+      Uri.parse(AppRoutes.userRoute),
       body: requestBody,
       headers: requestHeader,
     );
 
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
-      final createdBudget = Budget.fromJson(jsonData);
+      final createdUser = Users.fromJson(jsonData);
 
-      ToastMessage.successToast(MessagesUtils.postSuccess("Orçamento"));
-      Navigator.pop(context);
-      return createdBudget;
+      ToastMessage.successToast(MessagesUtils.postSuccess("Usuário"));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CarteiraInteligenteApp(),
+        ),
+      );
+      return createdUser;
     } else if (response.statusCode == 400) {
       ToastMessage.warningToast(MessagesUtils.notEmptyFields());
     } else {
-      ToastMessage.dangerToast(MessagesUtils.postError("Orçamento"));
+      ToastMessage.dangerToast(MessagesUtils.postError("Usuário"));
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.postError("Orçamento"),
+        MessagesUtils.postError("Usuário"),
         response,
         requestBody,
       ));
@@ -90,40 +94,39 @@ class BudgetService {
 
   static put(
     BuildContext context,
-    Budget budget,
-    int categoryId,
-    String description,
-    double value,
+    Users user,
+    String name,
+    String email,
+    String password,
   ) async {
     final requestBody = json.encode({
-      "user": {"id": 1},
-      "category": {"id": categoryId},
-      "description": description,
-      "value": value,
+      "name": name,
+      "email": email,
+      "password": password,
     });
 
     final response = await http.put(
-      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
+      Uri.parse("${AppRoutes.userRoute}/${user.id}"),
       body: requestBody,
       headers: requestHeader,
     );
 
     if (response.statusCode == 200) {
-      final updatedBudget = Budget(
-        id: budget.id,
-        category: budget.category,
-        value: value,
-        description: description,
+      final updatedUsers = Users(
+        id: user.id,
+        name: name,
+        email: email,
+        password: password,
       );
 
-      ToastMessage.successToast(MessagesUtils.putSuccess("Orçamento"));
+      ToastMessage.successToast(MessagesUtils.putSuccess("Usuário"));
       Navigator.pop(context);
-      return updatedBudget;
+      return updatedUsers;
     } else if (response.statusCode == 400) {
       ToastMessage.warningToast(MessagesUtils.notEmptyFields());
     } else {
       ToastMessage.dangerToast(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.putError("Orçamento"),
+        MessagesUtils.putError("Usuário"),
         response,
         requestBody,
       ));
@@ -132,20 +135,20 @@ class BudgetService {
 
   static delete(
     BuildContext context,
-    Budget budget,
+    Users user,
     int id,
   ) async {
     final response = await http.delete(
-      Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
+      Uri.parse("${AppRoutes.userRoute}/${user.id}"),
     );
 
     if (response.statusCode == 200) {
-      ToastMessage.successToast(MessagesUtils.deleteSuccess("Orçamento"));
+      ToastMessage.successToast(MessagesUtils.deleteSuccess("Usuário"));
       Navigator.pop(context);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.deleteError("Orçamento"));
+      ToastMessage.dangerToast(MessagesUtils.deleteError("Usuário"));
       throw Exception(MessagesUtils.noRequestBodyExceptionError(
-        MessagesUtils.deleteError("Orçamento"),
+        MessagesUtils.deleteError("Usuário"),
         response,
       ));
     }

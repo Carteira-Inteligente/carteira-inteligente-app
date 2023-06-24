@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/payment_type.dart';
 import '../routes/app_routes.dart';
-import 'utils/messages_utils.dart';
+import '../utils/messages_utils.dart';
 import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
 

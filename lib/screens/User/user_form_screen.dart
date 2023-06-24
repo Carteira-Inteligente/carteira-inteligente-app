@@ -39,12 +39,8 @@ class _UserFormScreenState extends State<UserFormScreen> {
     final password = _passwordController.text;
     final confirmPassword = _confirmPasswordController.text;
 
-    if (name.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        confirmPassword.isEmpty) {
-      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
-      return;
+    if (password != confirmPassword) {
+      ToastMessage.warningToast("As senhas não coincidem.");
     }
 
     widget.onSubmit(name, email, password);

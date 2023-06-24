@@ -1,4 +1,3 @@
-import 'dart:convert' show utf8;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -74,8 +73,6 @@ class _CategoryModalState extends State<CategoryModal> {
   }
 
   Widget _buildListViewCard(BuildContext context, Category category) {
-    var encoded = utf8.encode(category.description);
-    var decoded = utf8.decode(encoded);
     return Column(
       children: <Widget>[
         ListViewCategoryCard(
@@ -86,7 +83,7 @@ class _CategoryModalState extends State<CategoryModal> {
           icon: category.pathIcon,
           iconColor: category.iconColor,
           backgroundColor: category.backgroundColor,
-          description: decoded,
+          description: category.description,
         ),
         const DividerContainer(),
       ],

@@ -1,11 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/images.dart';
 import '../../models/authentication.dart';
 import '../../models/users.dart';
+import '../../services/user_service.dart';
 import '../../utils/show_modal.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Buttons/secondary_buttons.dart';
@@ -22,20 +21,11 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   final List<Users> _users = [];
 
-  _addUser(String name, String email, String password) {
-    final newUser = Users(
-      id: Random().nextInt(999).toInt(),
-      name: name,
-      email: email,
-      password: password,
-    );
+  _createUser(String name, String email, String password) async {
+    final createdUser = await UsersService.post(context, name, email, password);
 
     setState(() {
-      _users.add(newUser);
-    });
-
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.of(context).pop();
+      _users.add(createdUser);
     });
   }
 
@@ -118,7 +108,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            UserFormScreen(onSubmit: _addUser),
+                            UserFormScreen(onSubmit: _createUser),
                       ),
                     ),
                   ),

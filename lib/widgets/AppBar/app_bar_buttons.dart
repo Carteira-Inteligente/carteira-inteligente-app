@@ -63,7 +63,12 @@ class _AppBarFilterButtonState extends State<AppBarFilterButton> {
 }
 
 class AppBarNotificationButton extends StatefulWidget {
-  const AppBarNotificationButton({super.key});
+  const AppBarNotificationButton({
+    super.key,
+    required this.tooltip,
+  });
+
+  final String tooltip;
 
   @override
   State<AppBarNotificationButton> createState() =>

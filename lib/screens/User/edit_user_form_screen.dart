@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
+import '../../models/users.dart';
 import '../../utils/password_rules.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
@@ -13,9 +14,11 @@ import '../../widgets/Inputs/input_text.dart';
 class EditUserFormScreen extends StatefulWidget {
   const EditUserFormScreen({
     super.key,
+    required this.user,
     required this.onSubmit,
   });
 
+  final Users user;
   final void Function(
     String,
     String,
@@ -27,10 +30,28 @@ class EditUserFormScreen extends StatefulWidget {
 }
 
 class _EditUserFormScreenState extends State<EditUserFormScreen> {
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
+  late TextEditingController _nameController;
+  late TextEditingController _emailController;
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(
+      text: widget.user.name,
+    );
+    _emailController = TextEditingController(
+      text: widget.user.email,
+    );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
 
   _submitForm() async {
     final name = _nameController.text;
@@ -38,12 +59,8 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
     final password = _passwordController.text;
     final confirmPassword = _confirmPasswordController.text;
 
-    if (name.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        confirmPassword.isEmpty) {
-      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
-      return;
+    if (password != confirmPassword) {
+      ToastMessage.warningToast("As senhas não coincidem.");
     }
 
     widget.onSubmit(name, email, password);

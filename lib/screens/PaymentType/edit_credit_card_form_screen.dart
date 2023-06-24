@@ -26,8 +26,9 @@ class _EditAccountFormScreenState extends State<EditAccountFormScreen> {
   @override
   void initState() {
     super.initState();
-    _descriptionController =
-        TextEditingController(text: widget.paymentType.description);
+    _descriptionController = TextEditingController(
+      text: widget.paymentType.description,
+    );
   }
 
   @override

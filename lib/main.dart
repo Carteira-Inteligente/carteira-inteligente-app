@@ -1,3 +1,6 @@
+import 'package:carteira_inteligente/screens/Dashboard/dashboard_screen.dart';
+import 'package:carteira_inteligente/screens/More/more_screen.dart';
+import 'package:carteira_inteligente/widgets/AppBar/app_bar_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,9 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Budget> _budgets = [];
 
   static const List<Widget> _navBarOptions = <Widget>[
+    DashboardScreen(),
     EntryScreen(),
     Placeholder(),
     BudgetScreen(),
+    MoreScreen(),
   ];
 
   _onItemTapped(int index) {
@@ -109,23 +114,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _selectedIndex == 1 ? _selectedIndex = 0 : null;
+    _selectedIndex == 2 ? _selectedIndex = 1 : null;
 
     return Scaffold(
       backgroundColor: cWhite,
-      drawer: const Drawer(
-        backgroundColor: cWhite,
-        child: DrawerScreen(),
-      ),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             title: Builder(
               builder: (context) {
                 if (_selectedIndex == 0) {
+                  return const AppBarTitle(title: "Dashboard");
+                } else if (_selectedIndex == 1) {
                   return const AppBarTitle(title: "Lançamentos");
-                } else if (_selectedIndex == 2) {
+                } else if (_selectedIndex == 3) {
                   return const AppBarTitle(title: "Orçamentos");
+                } else if (_selectedIndex == 4) {
+                  return const AppBarImage();
                 } else {
                   return Container();
                 }
@@ -135,35 +140,48 @@ class _MyHomePageState extends State<MyHomePage> {
             floating: true,
             forceElevated: true,
             backgroundColor: cBlue.shade700,
-            leading: const AppBarLeadingDrawer(),
             actions: <Widget>[
               Builder(
                 builder: (context) {
-                  if (_selectedIndex == 0) {
-                    return AppBarAddButton(
-                      tooltip: "Novo lançamento",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                EntryFormScreen(onSubmit: _createEntry),
-                          ),
-                        );
-                      },
+                  if (_selectedIndex == 1) {
+                    return Row(
+                      children: <Widget>[
+                        const AppBarFilterButton(),
+                        AppBarAddButton(
+                          tooltip: "Novo lançamento",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    EntryFormScreen(onSubmit: _createEntry),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     );
-                  } else if (_selectedIndex == 2) {
-                    return AppBarAddButton(
-                      tooltip: "Novo orçamento",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                BudgetFormScreen(onSubmit: _createBudget),
-                          ),
-                        );
-                      },
+                  } else if (_selectedIndex == 3) {
+                    return Row(
+                      children: <Widget>[
+                        const AppBarFilterButton(),
+                        AppBarAddButton(
+                          tooltip: "Novo orçamento",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    BudgetFormScreen(onSubmit: _createBudget),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  } else if (_selectedIndex == 4) {
+                    return const AppBarNotificationButton(
+                      tooltip: "Notificações",
                     );
                   } else {
                     return Container();
@@ -188,23 +206,36 @@ class _MyHomePageState extends State<MyHomePage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              sWallet,
+              sDashboard,
               color: _selectedIndex == 0 ? cBlue.shade800 : cGrey,
             ),
-            label: _selectedIndex == 0 ? "Lançamentos" : null,
+            label: _selectedIndex == 0 ? "Dashboard" : null,
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              sWallet,
+              color: _selectedIndex == 1 ? cBlue.shade800 : cGrey,
+            ),
+            label: _selectedIndex == 1 ? "Lançamentos" : null,
           ),
           BottomNavigationBarItem(
             icon: FastEntryButton(
               screen: FastEntryScreen(onSubmit: _addFastEntry),
             ),
-            backgroundColor: cBlue.shade800,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               sBudget,
-              color: _selectedIndex == 2 ? cBlue.shade800 : cGrey,
+              color: _selectedIndex == 3 ? cBlue.shade800 : cGrey,
             ),
-            label: _selectedIndex == 2 ? "Orçamentos" : null,
+            label: _selectedIndex == 3 ? "Orçamentos" : null,
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              sMore,
+              color: _selectedIndex == 4 ? cBlue.shade800 : cGrey,
+            ),
+            label: _selectedIndex == 4 ? "Mais" : null,
           ),
         ],
       ),

@@ -7,8 +7,52 @@ import '../Containers/card_container.dart';
 import '../Containers/rounded_icon_container.dart';
 import '../Labels/input_label.dart';
 
-class ProfileListCard extends StatelessWidget {
-  const ProfileListCard({
+class MoreListCard extends StatelessWidget {
+  const MoreListCard({
+    super.key,
+    required this.svgIcon,
+    required this.label,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  final String svgIcon;
+  final String label;
+  final String subtitle;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: SvgPicture.asset(
+        svgIcon,
+        color: cGrey.shade600,
+      ),
+      title: Column(
+        children: <Widget>[
+          InputLabel(label: label),
+          Row(
+            children: <Widget>[
+              Text(
+                subtitle,
+                style: const TextStyle(
+                  fontFamily: "OpenSans",
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                  color: cGrey,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      onTap: onTap,
+    );
+  }
+}
+
+class OtherListCard extends StatelessWidget {
+  const OtherListCard({
     super.key,
     required this.svgIcon,
     required this.label,

@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import '../../models/entry.dart';
 import '../../services/entry_service.dart';
 import '../../utils/show_modal.dart';
-import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
