@@ -84,7 +84,6 @@ class _BudgetScreenState extends State<BudgetScreen> {
                           itemCount: _budgets.length,
                           itemBuilder: (context, index) {
                             final budget = _budgets[index];
-                            sortDecriptions(_budgets);
                             return _buildBudgetCards(context, budget, index);
                           },
                         ),

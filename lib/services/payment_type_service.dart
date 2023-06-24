@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 
 import '../models/payment_type.dart';
 import '../routes/app_routes.dart';
-import '../utils/messages.dart';
+import 'utils/messages_utils.dart';
 import '../utils/toast_message.dart';
+import 'utils/request_utils.dart';
 
 class PaymentTypeService {
   static findAll(String message) async {
@@ -15,16 +16,18 @@ class PaymentTypeService {
     );
 
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
+      final jsonData = jsonDecode(
+        const Utf8Decoder().convert(response.bodyBytes),
+      );
       final paymentTypes = List<PaymentType>.from(
         jsonData.map((data) => PaymentType.fromJson(data)),
       );
 
       return paymentTypes;
     } else {
-      ToastMessage.dangerToast(Messages.findAllError(message));
-      throw Exception(Messages.noRequestBodyExceptionError(
-        Messages.findAllError(message),
+      ToastMessage.dangerToast(MessagesUtils.findAllError(message));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.findAllError(message),
         response,
       ));
     }
@@ -45,20 +48,20 @@ class PaymentTypeService {
     final response = await http.post(
       Uri.parse(AppRoutes.paymentTypeRoute),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdPaymentType = PaymentType.fromJson(jsonData);
 
-      ToastMessage.successToast(Messages.postSuccess(message));
+      ToastMessage.successToast(MessagesUtils.postSuccess(message));
       Navigator.pop(context);
       return createdPaymentType;
     } else {
-      ToastMessage.dangerToast(Messages.postError(message));
-      throw Exception(Messages.requestBodyExceptionError(
-        Messages.postError(message),
+      ToastMessage.dangerToast(MessagesUtils.postError(message));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.postError(message),
         response,
         requestBody,
       ));
@@ -81,7 +84,7 @@ class PaymentTypeService {
     final response = await http.put(
       Uri.parse("${AppRoutes.paymentTypeRoute}/${paymentType.id}"),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 200) {
@@ -91,13 +94,13 @@ class PaymentTypeService {
         type: type,
       );
 
-      ToastMessage.successToast(Messages.putSuccess(message));
+      ToastMessage.successToast(MessagesUtils.putSuccess(message));
       Navigator.pop(context);
       return updatedAccount;
     } else {
-      ToastMessage.dangerToast(Messages.putError(message));
-      throw Exception(Messages.requestBodyExceptionError(
-        Messages.putError(message),
+      ToastMessage.dangerToast(MessagesUtils.putError(message));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.putError(message),
         response,
         requestBody,
       ));

@@ -1,9 +1,18 @@
-import 'package:carteira_inteligente/models/payment_type.dart';
+import '../models/budget.dart';
+import '../models/entry.dart';
+import '../models/payment_type.dart';
 
 void sortDecriptions(List descriptions) {
   descriptions.sort((a, b) => a.description.toLowerCase().compareTo(
         b.description.toLowerCase(),
       ));
+}
+
+void sortBudgetDescriptions(List<Budget> budgets) {
+  budgets.sort(
+    (a, b) =>
+        a.description.toLowerCase().compareTo(b.description.toLowerCase()),
+  );
 }
 
 void sortAccounts(List<PaymentType> paymentType) {
@@ -18,6 +27,6 @@ void sortAccounts(List<PaymentType> paymentType) {
   });
 }
 
-void sortByDate(List descriptions) {
-  descriptions.sort((a, b) => a.dueDate.compareTo(b.dueDate));
+void sortByDate(List<Entry> dueDate) {
+  dueDate.sort((a, b) => a.dueDate.compareTo(b.dueDate));
 }

@@ -12,6 +12,18 @@ class ProgressBarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final clampedPercentage = percentage.clamp(0.0, 1.0);
+
+    Color percentageColor() {
+      if (percentage < 0.80) {
+        return cGreen;
+      } else if (percentage >= 0.80 && percentage <= 0.99) {
+        return cYellow.shade700;
+      } else {
+        return cRed;
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: SizedBox(
@@ -27,10 +39,10 @@ class ProgressBarContainer extends StatelessWidget {
               ),
             ),
             FractionallySizedBox(
-              widthFactor: percentage,
+              widthFactor: clampedPercentage,
               child: Container(
                 decoration: BoxDecoration(
-                  color: cGreen,
+                  color: percentageColor(),
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),

@@ -78,9 +78,6 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
         _selectedValue.toStringAsFixed(2).replaceAll(".", ",");
     _selectedDueDate = widget.entry.dueDate;
     _selectedPaidDate = widget.entry.paidDate;
-    _dueDateController.text = DateFormat("dd/MM/yyy").format(_selectedDueDate);
-    _paidDateController.text =
-        DateFormat("dd/MM/yyy").format(_selectedPaidDate);
 
     if (_selectedPaid) {
       _showPaidDate = true;
@@ -100,20 +97,24 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
     super.dispose();
   }
 
+  void _updateDueDate(DateTime dueDate) {
+    setState(() {
+      _selectedDueDate = dueDate;
+    });
+  }
+
+  void _updatePaidDate(DateTime paidDate) {
+    setState(() {
+      _selectedPaidDate = paidDate;
+    });
+  }
+
   _submitForm() {
     final paid = _selectedPaid;
     final description = _descriptionController.text;
     final value = _valueController.text.replaceAll(",", ".");
-    DateTime? dueDate;
-    DateTime? paidDate;
-
-    if (_dueDateController.text.isNotEmpty) {
-      dueDate = DateFormat("dd/MM/yyy").parse(_dueDateController.text);
-    }
-
-    if (_paidDateController.text.isNotEmpty) {
-      paidDate = DateFormat("dd/MM/yyy").parse(_paidDateController.text);
-    }
+    final dueDate = _selectedDueDate;
+    final paidDate = _selectedPaidDate;
 
     widget.onSubmit(
       widget.entry,
@@ -122,9 +123,9 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
       description,
       _selectedPeriodId,
       double.parse(value),
-      dueDate ?? DateTime.now(),
+      dueDate,
       paid,
-      paidDate ?? DateTime.now(),
+      paidDate,
     );
   }
 
@@ -217,7 +218,11 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
             visible: _showOnlyDueDate,
             child: InputDate(
               label: "Data de vencimento",
-              controller: _dueDateController,
+              controller: TextEditingController(
+                text: DateFormat("dd/MM/yyy").format(_selectedDueDate),
+              ),
+              selectedDate: _selectedDueDate,
+              onDateSelected: _updateDueDate,
             ),
           ),
           Visibility(
@@ -230,7 +235,11 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
                     padding: const EdgeInsets.only(right: 4.0),
                     child: InputDate(
                       label: "Data de vencimento",
-                      controller: _dueDateController,
+                      controller: TextEditingController(
+                        text: DateFormat("dd/MM/yyy").format(_selectedDueDate),
+                      ),
+                      selectedDate: _selectedDueDate,
+                      onDateSelected: _updateDueDate,
                     ),
                   ),
                 ),
@@ -240,7 +249,11 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
                     padding: const EdgeInsets.only(left: 4.0),
                     child: InputDate(
                       label: "Data de pagamento",
-                      controller: _paidDateController,
+                      controller: TextEditingController(
+                        text: DateFormat("dd/MM/yyy").format(_selectedPaidDate),
+                      ),
+                      selectedDate: _selectedPaidDate,
+                      onDateSelected: _updatePaidDate,
                     ),
                   ),
                 ),

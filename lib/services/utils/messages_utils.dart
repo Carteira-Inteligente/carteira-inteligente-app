@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
 
-class Messages {
+class MessagesUtils {
   static requestBodyExceptionError(
     String message,
     Response response,
@@ -20,6 +20,10 @@ class Messages {
 
   static notEmptyFields() {
     return "Preencha todos os campos obrigatórios.";
+  }
+
+  static duplicatedBudget() {
+    return "Já existe um orçamento cadastrado para a categoria selecinoada.";
   }
 
   static findAllError(String description) {

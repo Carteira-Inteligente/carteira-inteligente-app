@@ -7,7 +7,6 @@ import '../../services/budget_service.dart';
 import '../../services/entry_service.dart';
 import '../../utils/calculate_value.dart';
 import '../../utils/show_modal.dart';
-import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/delete_buttons.dart';
 import '../../widgets/Buttons/edit_buttons.dart';
 import '../../widgets/Cards/entry_card.dart';
@@ -39,7 +38,35 @@ class BudgetDetailsScreen extends StatefulWidget {
 class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
   final List<Budget> _budgets = [];
   List<Entry> _entries = [];
+  final List<Entry> _paidEntries = [];
+  final List<Entry> _noPaidEntries = [];
   bool _isLoading = false;
+
+  Future<List<Entry>> _fetchEntries() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    _paidEntries.clear();
+    _noPaidEntries.clear();
+
+    final entries = await EntryService.findAll();
+
+    _paidEntries.addAll(
+      entries.where((entry) => entry.paid == true),
+    );
+
+    _noPaidEntries.addAll(
+      entries.where((entry) => entry.paid == false),
+    );
+
+    setState(() {
+      _isLoading = false;
+      _entries = entries;
+    });
+
+    return entries;
+  }
 
   Future<Map<String, dynamic>> _fetchItemById(int id) async {
     setState(() {
@@ -47,11 +74,10 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     });
 
     final budget = await BudgetService.findById(widget.budget, id);
-    final entries = await EntryService.findAll();
+    await _fetchEntries();
 
     setState(() {
       _isLoading = false;
-      _entries = entries;
     });
 
     return budget;
@@ -86,9 +112,29 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
     await BudgetService.delete(context, widget.budget, id);
   }
 
+  void _updatePaymentStatus(Entry entry, bool paid) async {
+    final updatedPaymentStatus = await EntryService.patch(
+      context,
+      entry,
+      DateTime.now(),
+      paid,
+    );
+
+    final index = _entries.indexWhere(
+      (entry) => entry.id == updatedPaymentStatus.id,
+    );
+
+    if (index != -1) {
+      setState(() {
+        _entries[index] = updatedPaymentStatus;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    _fetchEntries();
     _fetchItemById(widget.budgetId);
   }
 
@@ -108,7 +154,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
       value: entry.paidValue,
       dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
       paymentStatus: entry.paid,
-      onPressedPayment: entry.paid,
+      onPressedPayment: (paid) => _updatePaymentStatus(entry, paid),
     );
   }
 
@@ -210,7 +256,6 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                                   itemCount: _entries.length,
                                   itemBuilder: (context, index) {
                                     final entry = _entries[index];
-                                    sortByDate(_entries);
                                     if (entry.category.id ==
                                         widget.budget.category.id) {
                                       if (index == _entries.length - 1) {

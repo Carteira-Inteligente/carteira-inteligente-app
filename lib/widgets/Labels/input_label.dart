@@ -1,3 +1,4 @@
+import 'dart:convert' show utf8;
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -12,11 +13,13 @@ class InputLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var encoded = utf8.encode(label);
+    var decoded = utf8.decode(encoded);
     return Row(
       children: <Widget>[
         Text(
-          label,
-          style: label == "Excluir usuário"
+          decoded,
+          style: decoded == "Excluir usuário"
               ? const TextStyle(
                   fontFamily: "OpenSans",
                   fontSize: 16,

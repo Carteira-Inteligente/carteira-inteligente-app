@@ -50,6 +50,25 @@ class _EntryScreenState extends State<EntryScreen> {
     return entries;
   }
 
+  void _updatePaymentStatus(Entry entry, bool paid) async {
+    final updatedPaymentStatus = await EntryService.patch(
+      context,
+      entry,
+      DateTime.now(),
+      paid,
+    );
+
+    final index = _entries.indexWhere(
+      (entry) => entry.id == updatedPaymentStatus.id,
+    );
+
+    if (index != -1) {
+      setState(() {
+        _entries[index] = updatedPaymentStatus;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -72,7 +91,7 @@ class _EntryScreenState extends State<EntryScreen> {
       value: entry.paidValue,
       dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
       paymentStatus: entry.paid,
-      onPressedPayment: entry.paid,
+      onPressedPayment: (paid) => _updatePaymentStatus(entry, paid),
     );
   }
 
@@ -93,7 +112,7 @@ class _EntryScreenState extends State<EntryScreen> {
                         child: ListView.builder(
                           itemCount: _entries.length,
                           itemBuilder: (context, index) {
-                            sortByDate(_entries);
+                            // sortByDate(_entries);
                             if (index == 0 && _noPaidEntries.isNotEmpty) {
                               return Column(
                                 children: <Widget>[
@@ -105,10 +124,8 @@ class _EntryScreenState extends State<EntryScreen> {
                                   ),
                                 ],
                               );
-                              // final entry = _entries[index];
-                              // return _buildEntryCards(context, entry);
                             } else if (_paidEntries.isNotEmpty &&
-                                index == _noPaidEntries.length + 1) {
+                                index == _noPaidEntries.length) {
                               return Column(
                                 children: <Widget>[
                                   const PaymentTypeTitleLabel(

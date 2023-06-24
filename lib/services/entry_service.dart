@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 
 import '../models/entry.dart';
 import '../routes/app_routes.dart';
-import '../utils/messages.dart';
+import 'utils/messages_utils.dart';
 import '../utils/toast_message.dart';
+import 'utils/request_utils.dart';
 
 class EntryService {
   static findAll() async {
@@ -15,16 +16,18 @@ class EntryService {
     );
 
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
+      final jsonData = jsonDecode(
+        const Utf8Decoder().convert(response.bodyBytes),
+      );
       final entries = List<Entry>.from(
         jsonData.map((data) => Entry.fromJson(data)),
       );
 
       return entries;
     } else {
-      ToastMessage.dangerToast(Messages.findAllError("Lançamentos"));
-      throw Exception(Messages.noRequestBodyExceptionError(
-        Messages.findAllError("Lançamentos"),
+      ToastMessage.dangerToast(MessagesUtils.findAllError("Lançamentos"));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.findAllError("Lançamentos"),
         response,
       ));
     }
@@ -36,11 +39,11 @@ class EntryService {
     );
 
     if (response.statusCode == 200) {
-      return json.decode(response.body);
+      return jsonDecode(const Utf8Decoder().convert(response.bodyBytes));
     } else {
-      ToastMessage.dangerToast(Messages.findByIdError("Lançamento", id));
-      throw Exception(Messages.noRequestBodyExceptionError(
-        Messages.findByIdError("Lançamento", id),
+      ToastMessage.dangerToast(MessagesUtils.findByIdError("Lançamento", id));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.findByIdError("Lançamento", id),
         response,
       ));
     }
@@ -72,22 +75,22 @@ class EntryService {
     final response = await http.post(
       Uri.parse(AppRoutes.entryRoute),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdEntry = Entry.fromJson(jsonData);
 
-      ToastMessage.successToast(Messages.postSuccess("Lançamento"));
+      ToastMessage.successToast(MessagesUtils.postSuccess("Lançamento"));
       Navigator.pop(context);
       return createdEntry;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(Messages.notEmptyFields());
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
     } else {
-      ToastMessage.dangerToast(Messages.postError("Lançamento"));
-      throw Exception(Messages.requestBodyExceptionError(
-        Messages.postError("Lançamento"),
+      ToastMessage.dangerToast(MessagesUtils.postError("Lançamento"));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.postError("Lançamento"),
         response,
         requestBody,
       ));
@@ -121,7 +124,7 @@ class EntryService {
     final response = await http.put(
       Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 200) {
@@ -137,15 +140,60 @@ class EntryService {
         paidDate: paidDate,
       );
 
-      ToastMessage.successToast(Messages.putSuccess("Lançamento"));
+      ToastMessage.successToast(MessagesUtils.putSuccess("Lançamento"));
       Navigator.pop(context);
       return updatedEntry;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(Messages.notEmptyFields());
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
     } else {
-      ToastMessage.dangerToast(Messages.putError("Lançamento"));
-      throw Exception(Messages.requestBodyExceptionError(
-        Messages.putError("Lançamento"),
+      ToastMessage.dangerToast(MessagesUtils.putError("Lançamento"));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.putError("Lançamento"),
+        response,
+        requestBody,
+      ));
+    }
+  }
+
+  static patch(
+    BuildContext context,
+    Entry entry,
+    DateTime paidDate,
+    bool paid,
+  ) async {
+    final requestBody = json.encode({
+      "paidDate": paidDate.toIso8601String(),
+      "paid": paid,
+    });
+
+    final response = await http.put(
+      Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
+      body: requestBody,
+      headers: requestHeader,
+    );
+
+    if (response.statusCode == 200) {
+      final updatedEntry = Entry(
+        id: entry.id,
+        paid: paid,
+        description: entry.description,
+        category: entry.category,
+        period: entry.period,
+        paymentType: entry.paymentType,
+        paidValue: entry.paidValue,
+        dueDate: entry.dueDate,
+        paidDate: paidDate,
+      );
+
+      ToastMessage.successToast(MessagesUtils.putSuccess("Lançamento"));
+      Navigator.pop(context);
+      return updatedEntry;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+    } else {
+      ToastMessage.dangerToast(MessagesUtils.putError("Lançamento"));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.putError("Lançamento"),
         response,
         requestBody,
       ));
@@ -162,12 +210,12 @@ class EntryService {
     );
 
     if (response.statusCode == 200) {
-      ToastMessage.successToast(Messages.deleteSuccess("Lançamento"));
+      ToastMessage.successToast(MessagesUtils.deleteSuccess("Lançamento"));
       Navigator.pop(context);
     } else {
-      ToastMessage.dangerToast(Messages.deleteError("Lançamento"));
-      throw Exception(Messages.noRequestBodyExceptionError(
-        Messages.deleteError("Lançamento"),
+      ToastMessage.dangerToast(MessagesUtils.deleteError("Lançamento"));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.deleteError("Lançamento"),
         response,
       ));
     }

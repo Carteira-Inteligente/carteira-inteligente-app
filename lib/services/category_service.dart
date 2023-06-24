@@ -6,8 +6,9 @@ import 'package:http/http.dart' as http;
 import '../constants/svgs.dart';
 import '../models/category.dart';
 import '../routes/app_routes.dart';
-import '../utils/messages.dart';
+import 'utils/messages_utils.dart';
 import '../utils/toast_message.dart';
+import 'utils/request_utils.dart';
 
 class CategoryService {
   static findAll() async {
@@ -16,16 +17,18 @@ class CategoryService {
     );
 
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
+      final jsonData = jsonDecode(
+        const Utf8Decoder().convert(response.bodyBytes),
+      );
       final categories = List<Category>.from(
         jsonData.map((data) => Category.fromJson(data)),
       );
 
       return categories;
     } else {
-      ToastMessage.dangerToast(Messages.findAllError("Categorias"));
-      throw Exception(Messages.noRequestBodyExceptionError(
-        Messages.findAllError("Categorias"),
+      ToastMessage.dangerToast(MessagesUtils.findAllError("Categorias"));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.findAllError("Categorias"),
         response,
       ));
     }
@@ -46,20 +49,20 @@ class CategoryService {
     final response = await http.post(
       Uri.parse(AppRoutes.categoryRoute),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdCategory = Category.fromJson(jsonData);
 
-      ToastMessage.successToast(Messages.postSuccess("Categoria"));
+      ToastMessage.successToast(MessagesUtils.postSuccess("Categoria"));
       Navigator.pop(context);
       return createdCategory;
     } else {
-      ToastMessage.dangerToast(Messages.postError("Categoria"));
-      throw Exception(Messages.requestBodyExceptionError(
-        Messages.postError("Categoria"),
+      ToastMessage.dangerToast(MessagesUtils.postError("Categoria"));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.postError("Categoria"),
         response,
         requestBody,
       ));
@@ -82,7 +85,7 @@ class CategoryService {
     final response = await http.put(
       Uri.parse("${AppRoutes.categoryRoute}/${category.id}"),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 200) {
@@ -94,13 +97,13 @@ class CategoryService {
         pathIcon: sCategory,
       );
 
-      ToastMessage.successToast(Messages.putSuccess("Categoria"));
+      ToastMessage.successToast(MessagesUtils.putSuccess("Categoria"));
       Navigator.pop(context);
       return updatedCategory;
     } else {
-      ToastMessage.dangerToast(Messages.putError("Categoria"));
-      throw Exception(Messages.requestBodyExceptionError(
-        Messages.putError("Categoria"),
+      ToastMessage.dangerToast(MessagesUtils.putError("Categoria"));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.putError("Categoria"),
         response,
         requestBody,
       ));

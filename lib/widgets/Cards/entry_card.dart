@@ -32,7 +32,7 @@ class EntryCard extends StatelessWidget {
   final double value;
   final String dueDate;
   final bool paymentStatus;
-  final bool onPressedPayment;
+  final void Function(bool paid) onPressedPayment;
 
   @override
   Widget build(BuildContext context) {
@@ -63,19 +63,9 @@ class EntryCard extends StatelessWidget {
                   sPaymentWaiting,
                   color: cOrange,
                 ),
-          onPressed: onPressedPayment == true
-              ? () => ShowDialog.cancelPayment(context, () {
-                    ToastMessage.successToast(
-                      "Pagamento desfeito com sucesso.",
-                    );
-                    onPressedPayment == false;
-                  })
-              : () {
-                  ToastMessage.successToast(
-                    "Pagamento realizado com sucesso.",
-                  );
-                  onPressedPayment == true;
-                },
+          onPressed: () {
+            onPressedPayment(!paymentStatus);
+          },
         ),
       ),
     );

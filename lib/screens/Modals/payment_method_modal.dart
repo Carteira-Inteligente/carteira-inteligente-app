@@ -125,7 +125,7 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
                         ],
                       );
                     } else if (_creditCards.isNotEmpty &&
-                        index == _accounts.length + 1) {
+                        index == _accounts.length) {
                       sortDecriptions(_creditCards);
                       return Column(
                         children: <Widget>[

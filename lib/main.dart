@@ -197,6 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: FastEntryButton(
               screen: FastEntryScreen(onSubmit: _addFastEntry),
             ),
+            backgroundColor: cBlue.shade800,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(

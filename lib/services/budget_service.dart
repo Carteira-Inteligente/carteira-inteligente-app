@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 
 import '../models/budget.dart';
 import '../routes/app_routes.dart';
-import '../utils/messages.dart';
+import 'utils/messages_utils.dart';
 import '../utils/toast_message.dart';
+import 'utils/request_utils.dart';
 
 class BudgetService {
   static findAll() async {
@@ -15,14 +16,16 @@ class BudgetService {
     );
 
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
+      final jsonData = jsonDecode(
+        const Utf8Decoder().convert(response.bodyBytes),
+      );
       final budgets = List<Budget>.from(
         jsonData.map((data) => Budget.fromJson(data)),
       );
 
       return budgets;
     } else {
-      ToastMessage.dangerToast(Messages.findAllError("Orçamentos"));
+      ToastMessage.dangerToast(MessagesUtils.findAllError("Orçamentos"));
       throw Exception(
         "Falha ao listar os orçamentos."
         "\nStatus code: ${response.statusCode}"
@@ -37,11 +40,11 @@ class BudgetService {
     );
 
     if (response.statusCode == 200) {
-      return json.decode(response.body);
+      return jsonDecode(const Utf8Decoder().convert(response.bodyBytes));
     } else {
-      ToastMessage.dangerToast(Messages.findByIdError("Orçamento", id));
-      throw Exception(Messages.noRequestBodyExceptionError(
-        Messages.findByIdError("Orçamento", id),
+      ToastMessage.dangerToast(MessagesUtils.findByIdError("Orçamento", id));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.findByIdError("Orçamento", id),
         response,
       ));
     }
@@ -63,22 +66,22 @@ class BudgetService {
     final response = await http.post(
       Uri.parse(AppRoutes.budgetRoute),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdBudget = Budget.fromJson(jsonData);
 
-      ToastMessage.successToast(Messages.postSuccess("Orçamento"));
+      ToastMessage.successToast(MessagesUtils.postSuccess("Orçamento"));
       Navigator.pop(context);
       return createdBudget;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(Messages.notEmptyFields());
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
     } else {
-      ToastMessage.dangerToast(Messages.postError("Orçamento"));
-      throw Exception(Messages.requestBodyExceptionError(
-        Messages.postError("Orçamento"),
+      ToastMessage.dangerToast(MessagesUtils.postError("Orçamento"));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.postError("Orçamento"),
         response,
         requestBody,
       ));
@@ -102,7 +105,7 @@ class BudgetService {
     final response = await http.put(
       Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),
       body: requestBody,
-      headers: {"Content-Type": "application/json"},
+      headers: requestHeader,
     );
 
     if (response.statusCode == 200) {
@@ -113,14 +116,14 @@ class BudgetService {
         description: description,
       );
 
-      ToastMessage.successToast(Messages.putSuccess("Orçamento"));
+      ToastMessage.successToast(MessagesUtils.putSuccess("Orçamento"));
       Navigator.pop(context);
       return updatedBudget;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(Messages.notEmptyFields());
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
     } else {
-      ToastMessage.dangerToast(Messages.requestBodyExceptionError(
-        Messages.putError("Orçamento"),
+      ToastMessage.dangerToast(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.putError("Orçamento"),
         response,
         requestBody,
       ));
@@ -137,12 +140,12 @@ class BudgetService {
     );
 
     if (response.statusCode == 200) {
-      ToastMessage.successToast(Messages.deleteSuccess("Orçamento"));
+      ToastMessage.successToast(MessagesUtils.deleteSuccess("Orçamento"));
       Navigator.pop(context);
     } else {
-      ToastMessage.dangerToast(Messages.deleteError("Orçamento"));
-      throw Exception(Messages.noRequestBodyExceptionError(
-        Messages.deleteError("Orçamento"),
+      ToastMessage.dangerToast(MessagesUtils.deleteError("Orçamento"));
+      throw Exception(MessagesUtils.noRequestBodyExceptionError(
+        MessagesUtils.deleteError("Orçamento"),
         response,
       ));
     }
