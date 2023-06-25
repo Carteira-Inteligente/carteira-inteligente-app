@@ -3,8 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
-import '../Labels/subtitle2_label.dart';
-import '../Labels/subtitle_label.dart';
+import '../Labels/subtitle_labels.dart';
 
 class NoEntryContainer extends StatelessWidget {
   const NoEntryContainer({super.key});
@@ -15,18 +14,20 @@ class NoEntryContainer extends StatelessWidget {
       padding: const EdgeInsets.only(top: 50.0),
       child: Column(
         children: <Widget>[
-          const SubtitleLabel(label: "Não existem lançamentos cadastrados."),
+          const BoldSubtitleLabel(
+            label: "Não existem lançamentos cadastrados.",
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Subtitle2Label(label: "Toque em "),
+                const SubtitleLabel(label: "Toque em "),
                 SvgPicture.asset(
                   sAddCircle,
                   color: cGrey,
                 ),
-                const Subtitle2Label(label: " ou em "),
+                const SubtitleLabel(label: " ou em "),
                 ElevatedButton(
                   onPressed: null,
                   style: ElevatedButton.styleFrom(
@@ -46,7 +47,7 @@ class NoEntryContainer extends StatelessWidget {
               ],
             ),
           ),
-          const Subtitle2Label(label: "para cadastrar um lançamento rápido."),
+          const SubtitleLabel(label: "para cadastrar um lançamento rápido."),
         ],
       ),
     );
@@ -67,13 +68,13 @@ class NoDataContainer extends StatelessWidget {
       padding: const EdgeInsets.only(top: 50.0),
       child: Column(
         children: <Widget>[
-          SubtitleLabel(label: "Não existem $description cadastrados."),
+          BoldSubtitleLabel(label: "Não existem $description cadastrados."),
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Subtitle2Label(label: "Toque em "),
+                const SubtitleLabel(label: "Toque em "),
                 SvgPicture.asset(
                   sAddCircle,
                   color: cGrey,
@@ -81,7 +82,7 @@ class NoDataContainer extends StatelessWidget {
               ],
             ),
           ),
-          const Subtitle2Label(label: "para realizar o cadastro."),
+          const SubtitleLabel(label: "para realizar o cadastro."),
         ],
       ),
     );

@@ -11,10 +11,9 @@ import '../../widgets/Buttons/delete_button.dart';
 import '../../widgets/Buttons/edit_button.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
-import '../../widgets/Labels/entry_details_label.dart';
-import '../../widgets/Labels/modal_title_label.dart';
-import '../../widgets/Labels/subtitle2_label.dart';
-import '../../widgets/Labels/subtitle_label.dart';
+import '../../widgets/Labels/details_label.dart';
+import '../../widgets/Labels/subtitle_labels.dart';
+import '../../widgets/Labels/title_labels.dart';
 import 'edit_entry_form_screen.dart';
 
 class EntryDetailsScreen extends StatefulWidget {
@@ -158,7 +157,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
-                child: SubtitleLabel(label: widget.entry.description),
+                child: BoldSubtitleLabel(label: widget.entry.description),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -166,7 +165,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                   borderRadius: wBorderRadius50,
                   border: Border.all(color: cGrey.shade600),
                 ),
-                child: Subtitle2Label(
+                child: SubtitleLabel(
                   label: formatCurrency.format(widget.entry.paidValue),
                 ),
               ),
@@ -175,7 +174,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: EntryDetailsLabel(
+                    child: DetailsLabel(
                       label: "Data de vencimento",
                       details: DateFormat("dd/MM/yyyy").format(
                         widget.entry.dueDate,
@@ -184,7 +183,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                   ),
                   Expanded(
                     flex: 1,
-                    child: EntryDetailsLabel(
+                    child: DetailsLabel(
                       label: "Status de pagamento",
                       details: widget.entry.paid == true
                           ? "Pago em: ${DateFormat("dd/MM/yyyy").format(
@@ -199,14 +198,14 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: EntryDetailsLabel(
+                    child: DetailsLabel(
                       label: "Recorrência",
                       details: buildPeriodDescription(widget.entry.period),
                     ),
                   ),
                   Expanded(
                     flex: 1,
-                    child: EntryDetailsLabel(
+                    child: DetailsLabel(
                       label: "Forma de pagamento",
                       details: widget.entry.paymentType.description,
                     ),

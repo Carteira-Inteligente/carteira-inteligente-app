@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../Labels/subtitle_label.dart';
+import '../Labels/subtitle_labels.dart';
 import 'divider_container.dart';
 
 class DialogContainer extends StatelessWidget {
@@ -24,7 +24,7 @@ class DialogContainer extends StatelessWidget {
       title: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SubtitleLabel(label: dialogTitle),
+          BoldSubtitleLabel(label: dialogTitle),
         ],
       ),
       content: contentText,

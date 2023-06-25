@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Labels/password_pattern_label.dart';
-import '../Labels/subtitle2_label.dart';
+import '../Labels/subtitle_labels.dart';
 
 class PasswordRulesContainer extends StatelessWidget {
   const PasswordRulesContainer({
@@ -17,7 +17,7 @@ class PasswordRulesContainer extends StatelessWidget {
       children: <Widget>[
         Row(
           children: const <Widget>[
-            Subtitle2Label(
+            SubtitleLabel(
               padding: EdgeInsets.only(top: 8.0),
               label: "Sua senha deve conter pelo menos:",
             ),

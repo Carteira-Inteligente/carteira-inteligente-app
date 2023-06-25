@@ -17,7 +17,7 @@ import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/budget_value_label.dart';
 import '../../widgets/Labels/input_label.dart';
-import '../../widgets/Labels/subtitle_label.dart';
+import '../../widgets/Labels/subtitle_labels.dart';
 import '../Entry/entry_details_screen.dart';
 import 'edit_budget_form_screen.dart';
 
@@ -223,7 +223,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          child: SubtitleLabel(
+                          child: BoldSubtitleLabel(
                             label: widget.budget.category.description,
                           ),
                         ),
@@ -254,7 +254,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                     children: <Widget>[
                       Row(
                         children: const <Widget>[
-                          SubtitleLabel(label: "Lançamentos do mês"),
+                          BoldSubtitleLabel(label: "Lançamentos do mês"),
                         ],
                       ),
                       SingleChildScrollView(

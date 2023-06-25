@@ -10,7 +10,7 @@ import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/category_cards.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
-import '../../widgets/Labels/modal_title_label.dart';
+import '../../widgets/Labels/title_labels.dart';
 import '../Category/category_form_screen.dart';
 
 class CategoryModal extends StatefulWidget {

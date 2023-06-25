@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_text.dart';
-import '../../widgets/Labels/modal_title_label.dart';
+import '../../widgets/Labels/title_labels.dart';
 
 class FastEntryScreen extends StatefulWidget {
   const FastEntryScreen({

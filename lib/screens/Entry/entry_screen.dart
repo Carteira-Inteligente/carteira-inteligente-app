@@ -7,7 +7,7 @@ import '../../utils/show_modal.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
-import '../../widgets/Labels/payment_type_title_label.dart';
+import '../../widgets/Labels/subtitle_labels.dart';
 import 'entry_details_screen.dart';
 
 class EntryScreen extends StatefulWidget {
@@ -117,7 +117,7 @@ class _EntryScreenState extends State<EntryScreen> {
                             if (index == 0 && _noPaidEntries.isNotEmpty) {
                               return Column(
                                 children: <Widget>[
-                                  const PaymentTypeTitleLabel(
+                                  const SubtitleListLabel(
                                     label: "Aguardando pagamento",
                                   ),
                                   ..._noPaidEntries.map(
@@ -129,7 +129,7 @@ class _EntryScreenState extends State<EntryScreen> {
                                 index == _noPaidEntries.length) {
                               return Column(
                                 children: <Widget>[
-                                  const PaymentTypeTitleLabel(
+                                  const SubtitleListLabel(
                                     label: "Pagos",
                                   ),
                                   ..._paidEntries.map(

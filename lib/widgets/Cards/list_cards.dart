@@ -98,8 +98,8 @@ class CategoryListCard extends StatelessWidget {
         child: ListTile(
           leading: RoundedIconContainer(
             pathIcon: sCategory,
-            iconColor: svgColor, // Color(0xFF1F70A2),
-            backgroundColor: backgroundColor, // Color(0xFFBED3E7),
+            iconColor: svgColor,
+            backgroundColor: backgroundColor,
             radius: 24,
           ),
           title: Text(

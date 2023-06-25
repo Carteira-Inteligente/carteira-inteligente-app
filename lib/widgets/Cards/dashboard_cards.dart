@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Containers/card_container.dart';
-import '../Labels/subtitle2_label.dart';
+import '../Labels/subtitle_labels.dart';
 
 class DashboardLargeCard extends StatefulWidget {
   const DashboardLargeCard({
@@ -26,7 +26,7 @@ class _DashboardLargeCardState extends State<DashboardLargeCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Subtitle2Label(label: widget.cardTitle),
+            SubtitleLabel(label: widget.cardTitle),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
@@ -61,7 +61,7 @@ class DashboardSmallCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Subtitle2Label(label: cardTitle),
+            SubtitleLabel(label: cardTitle),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: child,

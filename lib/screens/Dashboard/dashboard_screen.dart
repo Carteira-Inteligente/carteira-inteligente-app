@@ -8,7 +8,7 @@ import '../../utils/calculate_value.dart';
 import '../../widgets/Cards/dashboard_cards.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Labels/dashboard_card_label.dart';
-import '../../widgets/Labels/subtitle_label.dart';
+import '../../widgets/Labels/subtitle_labels.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -58,7 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   children: <Widget>[
                     Row(
                       children: const <Widget>[
-                        SubtitleLabel(
+                        BoldSubtitleLabel(
                           padding: EdgeInsets.all(8.0),
                           label: "Resumo",
                         ),
@@ -95,7 +95,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     Row(
                       children: const <Widget>[
-                        SubtitleLabel(
+                        BoldSubtitleLabel(
                           padding: EdgeInsets.all(8.0),
                           label: "Anual",
                         ),

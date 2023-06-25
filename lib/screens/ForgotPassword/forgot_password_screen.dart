@@ -4,7 +4,7 @@ import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Inputs/input_email.dart';
-import '../../widgets/Labels/title_label.dart';
+import '../../widgets/Labels/title_labels.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});

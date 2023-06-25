@@ -4,7 +4,7 @@ import '../../data/payment_type_data.dart';
 import '../../models/payment_type.dart';
 import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
-import '../../widgets/Labels/modal_title_label.dart';
+import '../../widgets/Labels/title_labels.dart';
 
 class PaymentTypeModal extends StatefulWidget {
   const PaymentTypeModal({

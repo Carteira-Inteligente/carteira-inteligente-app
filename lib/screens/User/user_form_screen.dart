@@ -10,7 +10,7 @@ import '../../widgets/Containers/password_rules_container.dart';
 import '../../widgets/Inputs/input_email.dart';
 import '../../widgets/Inputs/input_password.dart';
 import '../../widgets/Inputs/input_text.dart';
-import '../../widgets/Labels/title_label.dart';
+import '../../widgets/Labels/title_labels.dart';
 
 class UserFormScreen extends StatefulWidget {
   const UserFormScreen({

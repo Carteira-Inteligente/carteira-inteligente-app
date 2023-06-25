@@ -4,7 +4,7 @@ import '../../data/period_data.dart';
 import '../../models/period.dart';
 import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
-import '../../widgets/Labels/modal_title_label.dart';
+import '../../widgets/Labels/title_labels.dart';
 
 class PeriodModal extends StatefulWidget {
   const PeriodModal({

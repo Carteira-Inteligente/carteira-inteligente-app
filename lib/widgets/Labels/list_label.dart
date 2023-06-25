@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'subtitle_label.dart';
+import 'subtitle_labels.dart';
 
 class ListLabel extends StatelessWidget {
   const ListLabel({
@@ -18,7 +18,7 @@ class ListLabel extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 5.0),
-          child: SubtitleLabel(
+          child: BoldSubtitleLabel(
             padding: padding,
             label: label,
           ),

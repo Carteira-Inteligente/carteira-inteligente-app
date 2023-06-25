@@ -14,8 +14,8 @@ import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/list_label.dart';
-import '../../widgets/Labels/modal_title_label.dart';
-import '../../widgets/Labels/subtitle_label.dart';
+import '../../widgets/Labels/subtitle_labels.dart';
+import '../../widgets/Labels/title_labels.dart';
 import '../Budget/budget_form_screen.dart';
 import '../Category/category_screen.dart';
 import '../Initial/initial_screen.dart';
@@ -117,7 +117,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         heigth: 45,
                       ),
                     ),
-                    SubtitleLabel(label: _users.last.name),
+                    BoldSubtitleLabel(label: _users.last.name),
                     ModalTitleLabel(label: _users.last.email),
                     SmallPrimaryButton(
                       onPressed: () => Navigator.push(
