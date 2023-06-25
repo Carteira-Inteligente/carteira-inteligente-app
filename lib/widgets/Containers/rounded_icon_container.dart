@@ -22,8 +22,7 @@ class RoundedIconContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(borderRadius: wBorderRadius50),
+    return SizedBox(
       child: CircleAvatar(
         backgroundColor: backgroundColor,
         radius: radius,

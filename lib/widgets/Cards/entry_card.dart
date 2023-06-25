@@ -20,6 +20,7 @@ class EntryCard extends StatelessWidget {
     required this.description,
     required this.paidValue,
     required this.dueDate,
+    required this.paidDate,
     required this.paid,
     required this.onPay,
   });
@@ -31,6 +32,7 @@ class EntryCard extends StatelessWidget {
   final String description;
   final double paidValue;
   final String dueDate;
+  final String paidDate;
   final bool paid;
   final void Function(bool paid) onPay;
 
@@ -49,8 +51,11 @@ class EntryCard extends StatelessWidget {
         ),
         title: ListTileLabel(label: description),
         subtitle: Text(
-          "Valor: ${formatCurrency.format(paidValue)}\n"
-          "Vencimento: $dueDate",
+          paid == true
+              ? "Valor: ${formatCurrency.format(paidValue)}\n"
+                  "Pagamento: $paidDate"
+              : "Valor: ${formatCurrency.format(paidValue)}\n"
+                  "Vencimento: $dueDate",
           style: Theme.of(context).textTheme.displaySmall,
         ),
         trailing: IconButton(

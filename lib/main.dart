@@ -1,6 +1,3 @@
-import 'package:carteira_inteligente/screens/Dashboard/dashboard_screen.dart';
-import 'package:carteira_inteligente/screens/More/more_screen.dart';
-import 'package:carteira_inteligente/widgets/AppBar/app_bar_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,15 +8,16 @@ import 'models/budget.dart';
 import 'models/entry.dart';
 import 'screens/Budget/budget_form_screen.dart';
 import 'screens/Budget/budget_screen.dart';
-import 'screens/Drawer/drawer_screen.dart';
+import 'screens/Dashboard/dashboard_screen.dart';
 import 'screens/Entry/entry_form_screen.dart';
 import 'screens/Entry/entry_screen.dart';
 import 'screens/Entry/fast_entry_screen.dart';
+import 'screens/More/more_screen.dart';
 import 'services/budget_service.dart';
 import 'services/entry_service.dart';
 import 'themes/light_theme.dart';
 import 'widgets/AppBar/app_bar_buttons.dart';
-import 'widgets/AppBar/app_bar_leading.dart';
+import 'widgets/AppBar/app_bar_image.dart';
 import 'widgets/AppBar/app_bar_title.dart';
 import 'widgets/Buttons/primary_buttons.dart';
 
@@ -89,13 +87,24 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _addFastEntry(
-    int idUser,
+  _createFastEntry(
     String description,
     double paidValue,
-  ) {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.of(context).pop();
+  ) async {
+    final createdEntry = await EntryService.post(
+      context,
+      true,
+      description,
+      1,
+      "NOT_REPEAT",
+      1,
+      paidValue,
+      DateTime.now(),
+      DateTime.now(),
+    );
+
+    setState(() {
+      _entries.add(createdEntry);
     });
   }
 
@@ -220,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: FastEntryButton(
-              screen: FastEntryScreen(onSubmit: _addFastEntry),
+              screen: FastEntryScreen(onSubmit: _createFastEntry),
             ),
           ),
           BottomNavigationBarItem(

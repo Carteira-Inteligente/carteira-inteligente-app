@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_text.dart';
@@ -13,7 +12,6 @@ class FastEntryScreen extends StatefulWidget {
   });
 
   final void Function(
-    int,
     String,
     double,
   ) onSubmit;
@@ -23,26 +21,14 @@ class FastEntryScreen extends StatefulWidget {
 }
 
 class _FastEntryScreenState extends State<FastEntryScreen> {
-  final _idUsercontroller = TextEditingController();
   final _descriptionController = TextEditingController();
   final _paidValueController = TextEditingController();
 
   _submitForm() {
-    final idUser = _idUsercontroller.text;
     final description = _descriptionController.text;
-    final paidValue = _paidValueController.text;
+    final paidValue = _paidValueController.text.replaceAll(",", ".");
 
-    if (idUser.isEmpty || description.isEmpty || paidValue.isEmpty) {
-      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
-      return;
-    }
-
-    widget.onSubmit(
-      idUser as int,
-      description,
-      paidValue as double,
-    );
-    ToastMessage.successToast("Lançamento cadastrado com sucesso.");
+    widget.onSubmit(description, double.parse(paidValue));
   }
 
   @override

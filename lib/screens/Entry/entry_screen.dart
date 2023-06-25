@@ -90,6 +90,7 @@ class _EntryScreenState extends State<EntryScreen> {
       description: entry.description,
       paidValue: entry.paidValue,
       dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
+      paidDate: DateFormat("dd/MM/yyyy").format(entry.paidDate),
       paid: entry.paid,
       onPay: (paid) => _updatePaymentStatus(entry, paid),
     );

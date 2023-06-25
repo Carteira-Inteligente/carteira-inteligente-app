@@ -43,10 +43,11 @@ class BudgetCard extends StatelessWidget {
                 pathIcon: pathIcon,
                 iconColor: iconColor,
                 backgroundColor: backgroundColor,
-                radius: 14,
+                radius: 18,
+                heigth: 18,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.only(left: 15.0),
                 child: ListTileLabel(label: description),
               ),
             ],

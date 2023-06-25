@@ -152,6 +152,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
       description: entry.description,
       paidValue: entry.paidValue,
       dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
+      paidDate: DateFormat("dd/MM/yyyy").format(entry.paidDate),
       paid: entry.paid,
       onPay: (paid) => _updatePaymentStatus(entry, paid),
     );
@@ -161,30 +162,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Detalhes do orçamento",
-      bottonButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          EditButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditBudgetFormScreen(
-                  budget: widget.budget,
-                  onSubmit: (budget, categoryId, description, value) =>
-                      _updateBudget(budget, categoryId, description, value),
-                ),
-              ),
-            ),
-          ),
-          DeleteButton(
-            dataLabel: "orçamento",
-            onPressed: () {
-              _deleteBudget(widget.budget.id);
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
+      bottonButton: Container(),
       child: _isLoading
           ? ProgressIndicatorContainer(visible: _isLoading)
           : RefreshIndicator(
@@ -198,21 +176,55 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 6.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
+                              IconEditButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          EditBudgetFormScreen(
+                                        budget: widget.budget,
+                                        onSubmit: (
+                                          budget,
+                                          categoryId,
+                                          description,
+                                          value,
+                                        ) =>
+                                            _updateBudget(
+                                          budget,
+                                          categoryId,
+                                          description,
+                                          value,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                               RoundedIconContainer(
                                 pathIcon: widget.budget.category.pathIcon,
                                 iconColor: widget.budget.category.iconColor,
                                 backgroundColor:
                                     widget.budget.category.backgroundColor,
-                                radius: 24,
+                                radius: 44,
+                                heigth: 34,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: SubtitleLabel(
-                                  label: widget.budget.category.description,
-                                ),
+                              IconDeleteButton(
+                                dataLabel: "orçamento",
+                                onPressed: () {
+                                  _deleteBudget(widget.budget.id);
+                                  Navigator.pop(context);
+                                },
                               ),
                             ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: SubtitleLabel(
+                            label: widget.budget.category.description,
                           ),
                         ),
                         Column(
