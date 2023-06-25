@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../constants/colors.dart';
@@ -101,23 +102,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ],
                     ),
-                    Row(
-                      children: <Widget>[
-                        DashboardLargeCard(
-                          cardTitle: "Gráfico de evolução",
-                          chart: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(),
-                            series: <LineSeries<Entry, num>>[
-                              LineSeries<Entry, num>(
-                                dataSource: _entries,
-                                xValueMapper: (Entry entry, _) => 2023,
-                                yValueMapper: (Entry entry, _) =>
-                                    entry.paidValue,
-                              ),
-                            ],
+                    DashboardLargeCard(
+                      cardTitle: "Gráfico de evolução mensal",
+                      chart: SfCartesianChart(
+                        primaryXAxis: CategoryAxis(),
+                        series: <ColumnSeries<Entry, String>>[
+                          ColumnSeries<Entry, String>(
+                            color: cBlue.shade800,
+                            dataSource: _entries,
+                            xValueMapper: (Entry entry, _) =>
+                                DateFormat("MM/yyyy").format(entry.paidDate),
+                            yValueMapper: (Entry entry, _) => entry.paidValue,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

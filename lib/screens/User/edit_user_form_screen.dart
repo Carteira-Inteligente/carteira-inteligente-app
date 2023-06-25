@@ -81,7 +81,7 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Color passwordLabelColor = _isPasswordValid ? cGreen : cGrey.shade600;
+    Color passwordLabelColor = _isPasswordValid ? cGreen : cRed;
 
     return FormContainer(
       title: "Edição de usuário",
