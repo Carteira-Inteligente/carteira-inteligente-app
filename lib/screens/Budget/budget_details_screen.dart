@@ -114,7 +114,6 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
 
   void _updatePaymentStatus(Entry entry, bool paid) async {
     final updatedPaymentStatus = await EntryService.patch(
-      context,
       entry,
       DateTime.now(),
       paid,
@@ -147,14 +146,14 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
           entryId: entry.id,
         ),
       ),
-      categoryIcon: entry.category.pathIcon,
-      categoryBackgroundColor: entry.category.backgroundColor,
-      categoryIconColor: entry.category.iconColor,
-      title: entry.description,
-      value: entry.paidValue,
+      pathIcon: entry.category.pathIcon,
+      backgroundColor: entry.category.backgroundColor,
+      iconColor: entry.category.iconColor,
+      description: entry.description,
+      paidValue: entry.paidValue,
       dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
-      paymentStatus: entry.paid,
-      onPressedPayment: (paid) => _updatePaymentStatus(entry, paid),
+      paid: entry.paid,
+      onPay: (paid) => _updatePaymentStatus(entry, paid),
     );
   }
 
@@ -201,8 +200,8 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                           child: Row(
                             children: <Widget>[
                               RoundedIconContainer(
-                                svgPicture: widget.budget.category.pathIcon,
-                                svgColor: widget.budget.category.iconColor,
+                                pathIcon: widget.budget.category.pathIcon,
+                                iconColor: widget.budget.category.iconColor,
                                 backgroundColor:
                                     widget.budget.category.backgroundColor,
                                 radius: 24,

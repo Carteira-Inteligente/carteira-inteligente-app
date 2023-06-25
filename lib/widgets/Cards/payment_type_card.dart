@@ -23,7 +23,7 @@ class PaymentTypeCard extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: RoundedIconContainer(
-        svgPicture: type == "WALLET" ? sWallet : svgIcon,
+        pathIcon: type == "WALLET" ? sWallet : svgIcon,
         backgroundColor: cGrey.shade200,
         radius: 24,
       ),

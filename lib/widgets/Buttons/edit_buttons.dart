@@ -66,3 +66,49 @@ class IconEditButton extends StatelessWidget {
     );
   }
 }
+
+class IconEditPaymentButton extends StatelessWidget {
+  const IconEditPaymentButton({
+    super.key,
+    required this.paid,
+    required this.onPressed,
+  });
+
+  final bool paid;
+  final void Function(bool) onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ButtonContainer(
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(MediaQuery.of(context).size.width * 0.4, 60),
+          shape: wButtonBorderRadius,
+          side: BorderSide(
+            color: paid == true ? cGreen.shade50 : cOrange.shade50,
+          ),
+          backgroundColor: paid == true ? cGreen.shade50 : cOrange.shade50,
+          elevation: 0,
+        ),
+        icon: paid == true
+            ? SvgPicture.asset(
+                sPaymentTick,
+                color: cGreen.shade800,
+              )
+            : SvgPicture.asset(
+                sPaymentWaiting,
+                color: cOrange.shade800,
+              ),
+        onPressed: () => onPressed,
+        label: Text(
+          paid == true ? "Pago" : "Pagar",
+          style: TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 16,
+            color: paid == true ? cGreen.shade800 : cOrange.shade800,
+          ),
+        ),
+      ),
+    );
+  }
+}

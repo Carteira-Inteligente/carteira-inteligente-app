@@ -5,7 +5,6 @@ import '../../models/entry.dart';
 import '../../services/budget_service.dart';
 import '../../services/entry_service.dart';
 import '../../utils/calculate_value.dart';
-import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/budget_card.dart';
 import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -56,12 +55,12 @@ class _BudgetScreenState extends State<BudgetScreen> {
           ),
         ),
       ),
-      categoryIcon: budget.category.pathIcon,
-      categoryBackgroundColor: budget.category.backgroundColor,
-      categoryIconColor: budget.category.iconColor,
+      pathIcon: budget.category.pathIcon,
+      backgroundColor: budget.category.backgroundColor,
+      iconColor: budget.category.iconColor,
       description: budget.category.description,
       usedValue: calculateTotalValue(_entries, budget),
-      budgetValue: budget.value,
+      value: budget.value,
       percentage: calculateTotalValue(_entries, budget) / budget.value * 1,
     );
   }

@@ -111,7 +111,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0),
                       child: RoundedIconContainer(
-                        svgPicture: sUser,
+                        pathIcon: sUser,
                         backgroundColor: cGrey.shade200,
                         radius: 45,
                         heigth: 45,

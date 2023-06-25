@@ -28,8 +28,8 @@ class GridViewCategoryCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           RoundedIconContainer(
-            svgPicture: icon,
-            svgColor: iconColor,
+            pathIcon: icon,
+            iconColor: iconColor,
             backgroundColor: backgroundColor,
             radius: 30,
           ),
@@ -73,8 +73,8 @@ class ListViewCategoryCard extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: RoundedIconContainer(
-        svgPicture: icon,
-        svgColor: iconColor,
+        pathIcon: icon,
+        iconColor: iconColor,
         backgroundColor: backgroundColor,
         radius: 24,
       ),

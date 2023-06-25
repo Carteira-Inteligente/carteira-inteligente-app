@@ -50,6 +50,18 @@ class MessagesUtils {
     return "Não foi possível alterar $description.";
   }
 
+  static patchSuccess(bool paid) {
+    return paid == true
+        ? "Pagamento realizado com sucesso."
+        : "Pagamento cancelado com sucesso.";
+  }
+
+  static patchError(bool paid) {
+    return paid == true
+        ? "Não foi possível realizar o pagamento."
+        : "Não foi possível cancelar o pagamento.";
+  }
+
   static deleteSuccess(String description) {
     return "Exclusão de $description realizada com sucesso.";
   }

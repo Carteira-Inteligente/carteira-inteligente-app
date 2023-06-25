@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
+import '../../constants/widgets.dart';
 import '../../utils/format_currency.dart';
-import '../../utils/show_dialog.dart';
-import '../../utils/toast_message.dart';
+import '../Containers/button_containers.dart';
 import '../Containers/card_container.dart';
 import '../Containers/rounded_icon_container.dart';
 import '../Labels/list_tile_label.dart';
@@ -14,25 +14,25 @@ class EntryCard extends StatelessWidget {
   const EntryCard({
     super.key,
     required this.onTap,
-    required this.categoryIcon,
-    required this.categoryBackgroundColor,
-    required this.categoryIconColor,
-    required this.title,
-    required this.value,
+    required this.pathIcon,
+    required this.backgroundColor,
+    required this.iconColor,
+    required this.description,
+    required this.paidValue,
     required this.dueDate,
-    required this.paymentStatus,
-    required this.onPressedPayment,
+    required this.paid,
+    required this.onPay,
   });
 
   final void Function() onTap;
-  final String categoryIcon;
-  final Color categoryIconColor;
-  final Color categoryBackgroundColor;
-  final String title;
-  final double value;
+  final String pathIcon;
+  final Color iconColor;
+  final Color backgroundColor;
+  final String description;
+  final double paidValue;
   final String dueDate;
-  final bool paymentStatus;
-  final void Function(bool paid) onPressedPayment;
+  final bool paid;
+  final void Function(bool paid) onPay;
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +42,19 @@ class EntryCard extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         leading: RoundedIconContainer(
-          svgPicture: categoryIcon,
-          svgColor: categoryIconColor,
-          backgroundColor: categoryBackgroundColor,
+          pathIcon: pathIcon,
+          iconColor: iconColor,
+          backgroundColor: backgroundColor,
           radius: 24,
         ),
-        title: ListTileLabel(label: title),
+        title: ListTileLabel(label: description),
         subtitle: Text(
-          "Valor: ${formatCurrency.format(value)}\n"
+          "Valor: ${formatCurrency.format(paidValue)}\n"
           "Vencimento: $dueDate",
           style: Theme.of(context).textTheme.displaySmall,
         ),
         trailing: IconButton(
-          icon: paymentStatus == true
+          icon: paid == true
               ? SvgPicture.asset(
                   sPaymentTick,
                   color: cGreen,
@@ -63,9 +63,7 @@ class EntryCard extends StatelessWidget {
                   sPaymentWaiting,
                   color: cOrange,
                 ),
-          onPressed: () {
-            onPressedPayment(!paymentStatus);
-          },
+          onPressed: () => onPay(!paid),
         ),
       ),
     );

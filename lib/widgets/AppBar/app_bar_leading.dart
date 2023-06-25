@@ -15,8 +15,8 @@ class AppBarLeadingReturn extends StatelessWidget {
       icon: RoundedIconContainer(
         backgroundColor: cBlue.shade800,
         radius: 24,
-        svgPicture: sArrowLeft,
-        svgColor: cWhite,
+        pathIcon: sArrowLeft,
+        iconColor: cWhite,
       ),
     );
   }

@@ -94,10 +94,6 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: SubtitleLabel(label: widget.entry.description),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -135,15 +131,12 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                       );
                     },
                   ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: wBorderRadius50,
-                    ),
+                  SizedBox(
                     child: RoundedIconContainer(
-                      svgPicture: widget.entry.category.pathIcon,
-                      svgColor: widget.entry.category.iconColor,
+                      pathIcon: widget.entry.category.pathIcon,
+                      iconColor: widget.entry.category.iconColor,
                       backgroundColor: widget.entry.category.backgroundColor,
-                      radius: 34,
+                      radius: 44,
                       heigth: 34,
                     ),
                   ),
@@ -163,7 +156,10 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
           padding: const EdgeInsets.only(bottom: 30.0),
           child: Column(
             children: <Widget>[
-              ModalTitleLabel(label: widget.entry.category.description),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: SubtitleLabel(label: widget.entry.description),
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 decoration: BoxDecoration(

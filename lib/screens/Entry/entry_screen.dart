@@ -51,11 +51,12 @@ class _EntryScreenState extends State<EntryScreen> {
 
   void _updatePaymentStatus(Entry entry, bool paid) async {
     final updatedPaymentStatus = await EntryService.patch(
-      context,
       entry,
       DateTime.now(),
       paid,
     );
+
+    _fetchEntries();
 
     final index = _entries.indexWhere(
       (entry) => entry.id == updatedPaymentStatus.id,
@@ -83,14 +84,14 @@ class _EntryScreenState extends State<EntryScreen> {
           entryId: entry.id,
         ),
       ),
-      categoryIcon: entry.category.pathIcon,
-      categoryBackgroundColor: entry.category.backgroundColor,
-      categoryIconColor: entry.category.iconColor,
-      title: entry.description,
-      value: entry.paidValue,
+      pathIcon: entry.category.pathIcon,
+      backgroundColor: entry.category.backgroundColor,
+      iconColor: entry.category.iconColor,
+      description: entry.description,
+      paidValue: entry.paidValue,
       dueDate: DateFormat("dd/MM/yyyy").format(entry.dueDate),
-      paymentStatus: entry.paid,
-      onPressedPayment: (paid) => _updatePaymentStatus(entry, paid),
+      paid: entry.paid,
+      onPay: (paid) => _updatePaymentStatus(entry, paid),
     );
   }
 

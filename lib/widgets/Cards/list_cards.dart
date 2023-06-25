@@ -97,8 +97,8 @@ class CategoryListCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: ListTile(
           leading: RoundedIconContainer(
-            svgPicture: sCategory,
-            svgColor: svgColor, // Color(0xFF1F70A2),
+            pathIcon: sCategory,
+            iconColor: svgColor, // Color(0xFF1F70A2),
             backgroundColor: backgroundColor, // Color(0xFFBED3E7),
             radius: 24,
           ),
@@ -140,7 +140,7 @@ class PaymentTypeListCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: ListTile(
           leading: RoundedIconContainer(
-            svgPicture: type == "WALLET" ? sWallet : svgIcon,
+            pathIcon: type == "WALLET" ? sWallet : svgIcon,
             backgroundColor: cGrey.shade200,
             radius: 24,
           ),

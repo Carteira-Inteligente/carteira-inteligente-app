@@ -156,7 +156,6 @@ class EntryService {
   }
 
   static patch(
-    BuildContext context,
     Entry entry,
     DateTime paidDate,
     bool paid,
@@ -166,7 +165,7 @@ class EntryService {
       "paid": paid,
     });
 
-    final response = await http.put(
+    final response = await http.patch(
       Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
       body: requestBody,
       headers: requestHeader,
@@ -185,15 +184,12 @@ class EntryService {
         paidDate: paidDate,
       );
 
-      ToastMessage.successToast(MessagesUtils.putSuccess("Lançamento"));
-      Navigator.pop(context);
+      ToastMessage.successToast(MessagesUtils.patchSuccess(paid));
       return updatedEntry;
-    } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
     } else {
-      ToastMessage.dangerToast(MessagesUtils.putError("Lançamento"));
+      ToastMessage.dangerToast(MessagesUtils.patchError(paid));
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.putError("Lançamento"),
+        MessagesUtils.patchError(paid),
         response,
         requestBody,
       ));

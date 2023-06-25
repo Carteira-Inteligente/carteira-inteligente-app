@@ -7,15 +7,15 @@ import '../../constants/widgets.dart';
 class RoundedIconContainer extends StatelessWidget {
   const RoundedIconContainer({
     super.key,
-    required this.svgPicture,
-    this.svgColor,
+    required this.pathIcon,
+    this.iconColor,
     required this.backgroundColor,
     required this.radius,
     this.heigth,
   });
 
-  final String svgPicture;
-  final Color? svgColor;
+  final String pathIcon;
+  final Color? iconColor;
   final Color backgroundColor;
   final double radius;
   final double? heigth;
@@ -30,8 +30,8 @@ class RoundedIconContainer extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(6.0),
           child: SvgPicture.asset(
-            svgPicture,
-            color: backgroundColor == cGrey.shade200 ? cBlack : svgColor,
+            pathIcon,
+            color: backgroundColor == cGrey.shade200 ? cBlack : iconColor,
             height: heigth,
           ),
         ),

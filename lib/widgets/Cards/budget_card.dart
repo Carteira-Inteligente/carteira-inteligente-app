@@ -12,22 +12,22 @@ class BudgetCard extends StatelessWidget {
   const BudgetCard({
     super.key,
     required this.onTap,
-    required this.categoryIcon,
-    required this.categoryIconColor,
-    required this.categoryBackgroundColor,
+    required this.pathIcon,
+    required this.iconColor,
+    required this.backgroundColor,
     required this.description,
     required this.usedValue,
-    required this.budgetValue,
+    required this.value,
     required this.percentage,
   });
 
   final void Function() onTap;
-  final String categoryIcon;
-  final Color categoryIconColor;
-  final Color categoryBackgroundColor;
+  final String pathIcon;
+  final Color iconColor;
+  final Color backgroundColor;
   final String description;
   final double usedValue;
-  final double budgetValue;
+  final double value;
   final double percentage;
 
   @override
@@ -40,9 +40,9 @@ class BudgetCard extends StatelessWidget {
           child: Row(
             children: <Widget>[
               RoundedIconContainer(
-                svgPicture: categoryIcon,
-                svgColor: categoryIconColor,
-                backgroundColor: categoryBackgroundColor,
+                pathIcon: pathIcon,
+                iconColor: iconColor,
+                backgroundColor: backgroundColor,
                 radius: 14,
               ),
               Padding(
@@ -61,7 +61,7 @@ class BudgetCard extends StatelessWidget {
             ),
             BudgetValueLabel(
               usedValue: usedValue,
-              budgetValue: budgetValue,
+              budgetValue: value,
             ),
             ProgressBarContainer(percentage: percentage),
           ],
