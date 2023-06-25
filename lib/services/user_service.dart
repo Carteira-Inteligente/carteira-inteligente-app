@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import '../main.dart';
 import '../models/users.dart';
 import '../routes/app_routes.dart';
+import '../screens/Initial/initial_screen.dart';
 import '../utils/messages_utils.dart';
 import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
@@ -144,7 +145,12 @@ class UsersService {
 
     if (response.statusCode == 200) {
       ToastMessage.successToast(MessagesUtils.deleteSuccess("Usuário"));
-      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const InitialScreen(),
+        ),
+      );
     } else {
       ToastMessage.dangerToast(MessagesUtils.deleteError("Usuário"));
       throw Exception(MessagesUtils.noRequestBodyExceptionError(

@@ -69,4 +69,12 @@ class MessagesUtils {
   static deleteError(String description) {
     return "Não foi possível excluir $description.";
   }
+
+  static notMatchPassword() {
+    return "As senhas não conferem.";
+  }
+
+  static noSecurePassword() {
+    return "A senha informada não atinge os critérios de segurança desejados.";
+  }
 }

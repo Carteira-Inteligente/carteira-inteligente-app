@@ -221,15 +221,13 @@ class _MoreScreenState extends State<MoreScreen> {
                                   label: "Sair do aplicativo",
                                   onTap: () => ShowDialog.logoutDialog(
                                     context,
-                                    () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const InitialScreen(),
-                                        ),
-                                      );
-                                    },
+                                    () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const InitialScreen(),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 divider,
@@ -239,15 +237,7 @@ class _MoreScreenState extends State<MoreScreen> {
                                   onTap: () => ShowDialog.deleteDialog(
                                     context,
                                     "usuário",
-                                    () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const InitialScreen(),
-                                        ),
-                                      );
-                                    },
+                                    () => _deleteUser(_users.last.id),
                                   ),
                                 ),
                               ],

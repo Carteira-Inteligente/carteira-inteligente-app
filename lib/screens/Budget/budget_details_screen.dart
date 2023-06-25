@@ -7,8 +7,8 @@ import '../../services/budget_service.dart';
 import '../../services/entry_service.dart';
 import '../../utils/calculate_value.dart';
 import '../../utils/show_modal.dart';
-import '../../widgets/Buttons/delete_buttons.dart';
-import '../../widgets/Buttons/edit_buttons.dart';
+import '../../widgets/Buttons/delete_button.dart';
+import '../../widgets/Buttons/edit_button.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/form_containers.dart';
@@ -178,7 +178,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              IconEditButton(
+                              EditButton(
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -211,7 +211,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                                 radius: 44,
                                 heigth: 34,
                               ),
-                              IconDeleteButton(
+                              DeleteButton(
                                 dataLabel: "orçamento",
                                 onPressed: () {
                                   _deleteBudget(widget.budget.id);

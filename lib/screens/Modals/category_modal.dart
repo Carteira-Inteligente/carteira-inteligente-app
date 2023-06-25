@@ -7,7 +7,7 @@ import '../../models/category.dart';
 import '../../services/category_service.dart';
 import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
-import '../../widgets/Cards/category_card.dart';
+import '../../widgets/Cards/category_cards.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Labels/modal_title_label.dart';

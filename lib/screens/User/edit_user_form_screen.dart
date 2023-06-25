@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../models/users.dart';
+import '../../utils/messages_utils.dart';
 import '../../utils/password_rules.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
@@ -34,6 +35,13 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
   late TextEditingController _emailController;
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  bool _isPasswordValid = false;
+
+  void _validatePassword(String password) {
+    setState(() {
+      _isPasswordValid = PasswordRules().passwordMustHave(password);
+    });
+  }
 
   @override
   void initState() {
@@ -60,18 +68,15 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
     final confirmPassword = _confirmPasswordController.text;
 
     if (password != confirmPassword) {
-      ToastMessage.warningToast("As senhas não coincidem.");
+      ToastMessage.warningToast(MessagesUtils.notMatchPassword());
+    }
+
+    if (_isPasswordValid == false) {
+      ToastMessage.warningToast(MessagesUtils.noSecurePassword());
+      return;
     }
 
     widget.onSubmit(name, email, password);
-  }
-
-  bool _isPasswordValid = false;
-
-  void _validatePassword(String password) {
-    setState(() {
-      _isPasswordValid = PasswordRules().passwordMustHave(password);
-    });
   }
 
   @override

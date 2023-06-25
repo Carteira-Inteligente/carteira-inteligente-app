@@ -48,12 +48,7 @@ class _AppBarFilterButtonState extends State<AppBarFilterButton> {
   Widget build(BuildContext context) {
     return IconButton(
       tooltip: "Filtrar",
-      onPressed: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const InitialScreen(),
-        ),
-      ),
+      onPressed: () {},
       icon: SvgPicture.asset(
         sFilter,
         color: cWhite,

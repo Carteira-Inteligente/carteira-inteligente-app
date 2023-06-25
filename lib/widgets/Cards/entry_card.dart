@@ -3,9 +3,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
-import '../../constants/widgets.dart';
 import '../../utils/format_currency.dart';
-import '../Containers/button_containers.dart';
+import '../../utils/show_dialog.dart';
 import '../Containers/card_container.dart';
 import '../Containers/rounded_icon_container.dart';
 import '../Labels/list_tile_label.dart';
@@ -68,7 +67,15 @@ class EntryCard extends StatelessWidget {
                   sPaymentWaiting,
                   color: cOrange,
                 ),
-          onPressed: () => onPay(!paid),
+          onPressed: paid == false
+              ? () => onPay(!paid)
+              : () => ShowDialog.cancelPayment(
+                    context,
+                    () {
+                      Navigator.pop(context);
+                      onPay(!paid);
+                    },
+                  ),
         ),
       ),
     );

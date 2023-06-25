@@ -1,6 +1,6 @@
-import 'package:carteira_inteligente/models/payment_type.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/payment_type.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';

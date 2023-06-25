@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../constants/colors.dart';
 import '../../models/entry.dart';
@@ -59,7 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: const <Widget>[
                         SubtitleLabel(
                           padding: EdgeInsets.all(8.0),
-                          label: "Mensal",
+                          label: "Resumo",
                         ),
                       ],
                     ),
@@ -101,8 +102,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ],
                     ),
                     Row(
-                      children: const <Widget>[
-                        DashboardLargeCard(cardTitle: "Gráfico de evolução"),
+                      children: <Widget>[
+                        DashboardLargeCard(
+                          cardTitle: "Gráfico de evolução",
+                          chart: SfCartesianChart(
+                            primaryXAxis: CategoryAxis(),
+                            series: <LineSeries<Entry, num>>[
+                              LineSeries<Entry, num>(
+                                dataSource: _entries,
+                                xValueMapper: (Entry entry, _) => 2023,
+                                yValueMapper: (Entry entry, _) =>
+                                    entry.paidValue,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ],

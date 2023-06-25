@@ -36,6 +36,7 @@ dependencies:
   fluttertoast: ^8.2.1
   flutter_svg: ^1.1.6
   http: ^0.13.6
+  syncfusion_flutter_charts: ^21.2.4
 
 #https://carteira-inteligente-e0367-default-rtdb.firebaseio.com
 
@@ -139,7 +140,6 @@ flutter:
     # Svg
     - assets/svg/budget.svg
     - assets/svg/dashboard.svg
-    - assets/svg/menu.svg
     - assets/svg/more.svg
     - assets/svg/user.svg
     - assets/svg/wallet.svg

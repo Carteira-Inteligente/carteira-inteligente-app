@@ -1,6 +1,4 @@
-import 'package:carteira_inteligente/constants/svgs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../constants/colors.dart';

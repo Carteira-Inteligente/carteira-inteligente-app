@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../models/budget.dart';
-import '../../models/category.dart';
 import '../../utils/show_modal.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';

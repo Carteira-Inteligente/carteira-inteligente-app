@@ -1,5 +1,3 @@
-import 'package:carteira_inteligente/models/entry.dart';
-
 import '../models/period.dart';
 
 List<Period> periodOptions = [

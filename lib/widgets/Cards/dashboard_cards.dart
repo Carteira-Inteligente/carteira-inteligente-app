@@ -7,9 +7,11 @@ class DashboardLargeCard extends StatefulWidget {
   const DashboardLargeCard({
     super.key,
     required this.cardTitle,
+    required this.chart,
   });
 
   final String cardTitle;
+  final Widget chart;
 
   @override
   State<DashboardLargeCard> createState() => _DashboardLargeCardState();
@@ -25,12 +27,12 @@ class _DashboardLargeCardState extends State<DashboardLargeCard> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Subtitle2Label(label: widget.cardTitle),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                 width: double.infinity,
                 height: 300,
-                child: Placeholder(),
+                child: widget.chart,
               ),
             ),
           ],

@@ -7,8 +7,8 @@ import '../../data/period_data.dart';
 import '../../models/entry.dart';
 import '../../services/entry_service.dart';
 import '../../utils/format_currency.dart';
-import '../../widgets/Buttons/delete_buttons.dart';
-import '../../widgets/Buttons/edit_buttons.dart';
+import '../../widgets/Buttons/delete_button.dart';
+import '../../widgets/Buttons/edit_button.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/entry_details_label.dart';
@@ -97,7 +97,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  IconEditButton(
+                  EditButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -140,7 +140,7 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
                       heigth: 34,
                     ),
                   ),
-                  IconDeleteButton(
+                  DeleteButton(
                     dataLabel: "lançamento",
                     onPressed: () {
                       _deleteEntry(widget.entry.id);
