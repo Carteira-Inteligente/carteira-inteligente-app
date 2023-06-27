@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -262,7 +263,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                             ? const NoEntryBudgetContainer()
                             : SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.67,
+                                    MediaQuery.of(context).size.height * 0.53,
                                 child: ListView.builder(
                                   itemCount: _entries.length,
                                   itemBuilder: (context, index) {

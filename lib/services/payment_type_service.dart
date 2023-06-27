@@ -10,6 +10,14 @@ import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
 
 class PaymentTypeService {
+  static _requestBody(String description, String type) {
+    return {
+      "user": {"id": 1},
+      "description": description,
+      "type": type,
+    };
+  }
+
   static findAll(String message) async {
     final response = await http.get(
       Uri.parse(AppRoutes.paymentTypeRoute),
@@ -39,11 +47,7 @@ class PaymentTypeService {
     String type,
     String message,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "description": description,
-      "type": type,
-    });
+    final requestBody = json.encode(_requestBody(description, type));
 
     final response = await http.post(
       Uri.parse(AppRoutes.paymentTypeRoute),
@@ -75,11 +79,7 @@ class PaymentTypeService {
     String type,
     String message,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "description": description,
-      "type": type,
-    });
+    final requestBody = json.encode(_requestBody(description, type));
 
     final response = await http.put(
       Uri.parse("${AppRoutes.paymentTypeRoute}/${paymentType.id}"),

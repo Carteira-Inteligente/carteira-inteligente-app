@@ -10,6 +10,15 @@ import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
 
 class BudgetService {
+  static _requestBody(int categoryId, String description, double value) {
+    return {
+      "user": {"id": 1},
+      "category": {"id": categoryId},
+      "description": description,
+      "value": value,
+    };
+  }
+
   static findAll() async {
     final response = await http.get(
       Uri.parse(AppRoutes.budgetRoute),
@@ -56,12 +65,11 @@ class BudgetService {
     String description,
     double value,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "category": {"id": categoryId},
-      "description": description,
-      "value": value,
-    });
+    final requestBody = json.encode(_requestBody(
+      categoryId,
+      description,
+      value,
+    ));
 
     final response = await http.post(
       Uri.parse(AppRoutes.budgetRoute),
@@ -95,12 +103,11 @@ class BudgetService {
     String description,
     double value,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "category": {"id": categoryId},
-      "description": description,
-      "value": value,
-    });
+    final requestBody = json.encode(_requestBody(
+      categoryId,
+      description,
+      value,
+    ));
 
     final response = await http.put(
       Uri.parse("${AppRoutes.budgetRoute}/${budget.id}"),

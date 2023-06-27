@@ -10,6 +10,29 @@ import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
 
 class EntryService {
+  static _requestBody(
+    bool paid,
+    String description,
+    int categoryId,
+    String period,
+    int paymentTypeId,
+    double paidValue,
+    DateTime dueDate,
+    DateTime paidDate,
+  ) {
+    return {
+      "user": {"id": 1},
+      "paid": paid,
+      "description": description,
+      "category": {"id": categoryId},
+      "period": period,
+      "paymentType": {"id": paymentTypeId},
+      "paidValue": paidValue,
+      "dueDate": dueDate.toIso8601String(),
+      "paidDate": paidDate.toIso8601String(),
+    };
+  }
+
   static findAll() async {
     final response = await http.get(
       Uri.parse(AppRoutes.entryRoute),
@@ -60,17 +83,16 @@ class EntryService {
     DateTime dueDate,
     DateTime paidDate,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "paid": paid,
-      "description": description,
-      "category": {"id": categoryId},
-      "period": period,
-      "paymentType": {"id": paymentTypeId},
-      "paidValue": paidValue,
-      "dueDate": dueDate.toIso8601String(),
-      "paidDate": paidDate.toIso8601String(),
-    });
+    final requestBody = json.encode(_requestBody(
+      paid,
+      description,
+      categoryId,
+      period,
+      paymentTypeId,
+      paidValue,
+      dueDate,
+      paidDate,
+    ));
 
     final response = await http.post(
       Uri.parse(AppRoutes.entryRoute),
@@ -109,17 +131,16 @@ class EntryService {
     bool paid,
     DateTime dueDate,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "category": {"id": categoryId},
-      "paymentType": {"id": paymentTypeId},
-      "description": description,
-      "period": period,
-      "paidValue": paidValue,
-      "paidDate": paidDate.toIso8601String(),
-      "paid": paid,
-      "dueDate": dueDate.toIso8601String()
-    });
+    final requestBody = json.encode(_requestBody(
+      paid,
+      description,
+      categoryId,
+      period,
+      paymentTypeId,
+      paidValue,
+      dueDate,
+      paidDate,
+    ));
 
     final response = await http.put(
       Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),

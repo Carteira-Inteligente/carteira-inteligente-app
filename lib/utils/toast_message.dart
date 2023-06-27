@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../constants/colors.dart';
 
 class ToastMessage {
-  static void showToast(
+  static void _showToast(
     String message,
     Color backgroundColor,
     Color textColor,
@@ -21,14 +21,26 @@ class ToastMessage {
   }
 
   static void successToast(String message) {
-    showToast(message, cGreen.shade200, cGreen.shade900);
+    _showToast(
+      message,
+      cGreen.shade200.withOpacity(0.9),
+      cGreen.shade900,
+    );
   }
 
   static void dangerToast(String message) {
-    showToast(message, cRed.shade200, cRed.shade900);
+    _showToast(
+      message,
+      cRed.shade200.withOpacity(0.9),
+      cRed.shade900,
+    );
   }
 
   static void warningToast(String message) {
-    showToast(message, cYellow.shade200, cYellow.shade900);
+    _showToast(
+      message,
+      cYellow.shade200.withOpacity(0.9),
+      cYellow.shade900,
+    );
   }
 }

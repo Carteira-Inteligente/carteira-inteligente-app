@@ -4,6 +4,7 @@ const sAddCircle = "assets/svg/buttons/add-circle.svg";
 const sAdd = "assets/svg/buttons/add.svg";
 const sArrowDown = "assets/svg/buttons/arrow-down.svg";
 const sArrowLeft = "assets/svg/buttons/arrow-left.svg";
+const sArrowRight = "assets/svg/buttons/arrow-right.svg";
 const sDelete = "assets/svg/buttons/delete.svg";
 const sEdit = "assets/svg/buttons/edit.svg";
 const sFilter = "assets/svg/buttons/filter.svg";

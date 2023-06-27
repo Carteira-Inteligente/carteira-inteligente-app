@@ -1,6 +1,6 @@
+import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
 import '../../models/users.dart';
 import '../../utils/messages_utils.dart';
 import '../../utils/password_rules.dart';
@@ -36,10 +36,20 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isPasswordValid = false;
+  bool _hasLowerCase = false;
+  bool _hasUpperCase = false;
+  bool _hasSpecialCharacters = false;
+  bool _hasNumber = false;
+  bool _hasLength = false;
 
   void _validatePassword(String password) {
     setState(() {
       _isPasswordValid = PasswordRules().passwordMustHave(password);
+      _hasLowerCase = PasswordRules().checkLowerCase(password);
+      _hasUpperCase = PasswordRules().checkUpperCase(password);
+      _hasSpecialCharacters = PasswordRules().checkSpecialCharacters(password);
+      _hasNumber = PasswordRules().checkNumber(password);
+      _hasLength = PasswordRules().checkLength(password);
     });
   }
 
@@ -81,8 +91,6 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Color passwordLabelColor = _isPasswordValid ? cGreen : cRed;
-
     return FormContainer(
       title: "Edição de usuário",
       height: MediaQuery.of(context).size.height * 0.69,
@@ -113,7 +121,13 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
             controller: _confirmPasswordController,
             onSubmit: _submitForm,
           ),
-          PasswordRulesContainer(labelColor: passwordLabelColor),
+          PasswordRulesContainer(
+            hasLowerCase: _hasLowerCase,
+            hasUpperCase: _hasUpperCase,
+            hasSpecialCharacters: _hasSpecialCharacters,
+            hasNumber: _hasNumber,
+            hasLength: _hasLength,
+          ),
         ],
       ),
     );

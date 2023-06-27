@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
 import '../Labels/password_pattern_label.dart';
 import '../Labels/subtitle_labels.dart';
 
 class PasswordRulesContainer extends StatelessWidget {
   const PasswordRulesContainer({
     super.key,
-    required this.labelColor,
+    required this.hasLowerCase,
+    required this.hasUpperCase,
+    required this.hasSpecialCharacters,
+    required this.hasNumber,
+    required this.hasLength,
   });
 
-  final Color labelColor;
+  final bool hasLowerCase;
+  final bool hasUpperCase;
+  final bool hasSpecialCharacters;
+  final bool hasNumber;
+  final bool hasLength;
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +38,19 @@ class PasswordRulesContainer extends StatelessWidget {
             children: <Widget>[
               PasswordPatternLabel(
                 label: " Uma letra maiúscula e uma minúscula;",
-                labelColor: labelColor,
+                labelColor: hasLowerCase && hasUpperCase ? cGreen : cRed,
               ),
               PasswordPatternLabel(
                 label: " Um número;",
-                labelColor: labelColor,
+                labelColor: hasNumber ? cGreen : cRed,
               ),
               PasswordPatternLabel(
                 label: " Um caracter especial;",
-                labelColor: labelColor,
+                labelColor: hasSpecialCharacters ? cGreen : cRed,
               ),
               PasswordPatternLabel(
                 label: " Mínimo 8 caracteres.",
-                labelColor: labelColor,
+                labelColor: hasLength ? cGreen : cRed,
               ),
             ],
           ),

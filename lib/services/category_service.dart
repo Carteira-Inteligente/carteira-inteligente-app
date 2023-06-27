@@ -11,6 +11,16 @@ import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
 
 class CategoryService {
+  static _requestBody(String description) {
+    return {
+      "user": {"id": 1},
+      "description": description,
+      "pathIcon": sCategory,
+      "iconColor": 0xFF146AA0,
+      "backgroundColor": 0xFFD9E8F6,
+    };
+  }
+
   static findAll() async {
     final response = await http.get(
       Uri.parse(AppRoutes.categoryRoute),
@@ -38,13 +48,7 @@ class CategoryService {
     BuildContext context,
     String description,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "description": description,
-      "pathIcon": sCategory,
-      "iconColor": 0xFF1F70A2,
-      "backgroundColor": 0xFFBED3E7,
-    });
+    final requestBody = json.encode(_requestBody(description));
 
     final response = await http.post(
       Uri.parse(AppRoutes.categoryRoute),
@@ -74,13 +78,7 @@ class CategoryService {
     Category category,
     String description,
   ) async {
-    final requestBody = json.encode({
-      "user": {"id": 1},
-      "description": description,
-      "pathIcon": sCategory,
-      "iconColor": 0xFF1F70A2,
-      "backgroundColor": 0xFFBED3E7,
-    });
+    final requestBody = json.encode(_requestBody(description));
 
     final response = await http.put(
       Uri.parse("${AppRoutes.categoryRoute}/${category.id}"),
@@ -92,8 +90,8 @@ class CategoryService {
       final updatedCategory = Category(
         id: category.id,
         description: description,
-        backgroundColor: const Color(0xFFBED3E7),
-        iconColor: const Color(0xFF1F70A2),
+        backgroundColor: const Color(0xFFD9E8F6),
+        iconColor: const Color(0xFF146AA0),
         pathIcon: sCategory,
       );
 

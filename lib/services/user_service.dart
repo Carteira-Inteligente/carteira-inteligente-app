@@ -12,6 +12,14 @@ import '../utils/toast_message.dart';
 import 'utils/request_utils.dart';
 
 class UsersService {
+  static _requestBody(String name, String email, String password) {
+    return {
+      "name": name,
+      "email": email,
+      "password": password,
+    };
+  }
+
   static findAll(String message) async {
     final response = await http.get(
       Uri.parse(AppRoutes.userRoute),
@@ -57,11 +65,7 @@ class UsersService {
     String email,
     String password,
   ) async {
-    final requestBody = json.encode({
-      "name": name,
-      "email": email,
-      "password": password,
-    });
+    final requestBody = json.encode(_requestBody(name, email, password));
 
     final response = await http.post(
       Uri.parse(AppRoutes.userRoute),
@@ -100,11 +104,7 @@ class UsersService {
     String email,
     String password,
   ) async {
-    final requestBody = json.encode({
-      "name": name,
-      "email": email,
-      "password": password,
-    });
+    final requestBody = json.encode(_requestBody(name, email, password));
 
     final response = await http.put(
       Uri.parse("${AppRoutes.userRoute}/${user.id}"),

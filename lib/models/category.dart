@@ -1,5 +1,6 @@
-import 'package:carteira_inteligente/constants/svgs.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/svgs.dart';
 
 class Category {
   final int id;
@@ -23,10 +24,10 @@ class Category {
       pathIcon: json['pathIcon'] ?? sCategory,
       iconColor: json['iconColor'] != null
           ? Color(json['iconColor'])
-          : const Color(0xFF1F70A2),
+          : const Color(0xFF146AA0),
       backgroundColor: json['backgroundColor'] != null
           ? Color(json['backgroundColor'])
-          : const Color(0xFFBED3E7),
+          : const Color(0xFFD9E8F6),
     );
   }
 }

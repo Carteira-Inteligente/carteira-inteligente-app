@@ -94,6 +94,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ],
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                    ),
                     Row(
                       children: const <Widget>[
                         BoldSubtitleLabel(
@@ -111,7 +114,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             color: cBlue.shade800,
                             dataSource: _entries,
                             xValueMapper: (Entry entry, _) =>
-                                DateFormat("MM/yyyy").format(entry.paidDate),
+                                DateFormat("MM/yyyy").format(entry.dueDate),
                             yValueMapper: (Entry entry, _) => entry.paidValue,
                           ),
                         ],

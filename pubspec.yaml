@@ -86,6 +86,7 @@ flutter:
     - assets/svg/buttons/add.svg
     - assets/svg/buttons/arrow-down.svg
     - assets/svg/buttons/arrow-left.svg
+    - assets/svg/buttons/arrow-right.svg
     - assets/svg/buttons/delete.svg
     - assets/svg/buttons/edit.svg
     - assets/svg/buttons/filter.svg

@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/widgets/Navigation/month_tab_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -18,10 +19,23 @@ class EntryScreen extends StatefulWidget {
 }
 
 class _EntryScreenState extends State<EntryScreen> {
+  DateTime _selectedMonth = DateTime.now();
+  DateTime _previousMonth = DateTime.now();
+  DateTime _nextMonth = DateTime.now();
   List<Entry> _entries = [];
   final List<Entry> _paidEntries = [];
   final List<Entry> _noPaidEntries = [];
   bool _isLoading = false;
+
+  List<Entry> _filterEntriesByMonth(List<Entry> entries) {
+    return _entries
+        .where(
+          (entry) =>
+              entry.dueDate.month == _selectedMonth.month &&
+              entry.dueDate.year == _selectedMonth.year,
+        )
+        .toList();
+  }
 
   Future<List<Entry>> _fetchEntries() async {
     setState(() {
@@ -32,13 +46,14 @@ class _EntryScreenState extends State<EntryScreen> {
     _noPaidEntries.clear();
 
     final entries = await EntryService.findAll();
+    final filteredEntries = _filterEntriesByMonth(entries);
 
     _paidEntries.addAll(
-      entries.where((entry) => entry.paid == true),
+      filteredEntries.where((entry) => entry.paid == true),
     );
 
     _noPaidEntries.addAll(
-      entries.where((entry) => entry.paid == false),
+      filteredEntries.where((entry) => entry.paid == false),
     );
 
     setState(() {
@@ -98,6 +113,7 @@ class _EntryScreenState extends State<EntryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _filterEntriesByMonth(_entries);
     return Column(
       children: <Widget>[
         _isLoading
@@ -108,39 +124,83 @@ class _EntryScreenState extends State<EntryScreen> {
                 onRefresh: _fetchEntries,
                 child: _entries.isEmpty
                     ? const NoEntryContainer()
-                    : SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.78,
-                        child: ListView.builder(
-                          itemCount: _entries.length,
-                          itemBuilder: (context, index) {
-                            // sortByDate(_entries);
-                            if (index == 0 && _noPaidEntries.isNotEmpty) {
-                              return Column(
-                                children: <Widget>[
-                                  const SubtitleListLabel(
-                                    label: "Aguardando pagamento",
-                                  ),
-                                  ..._noPaidEntries.map(
-                                    (entry) => _buildEntryCards(context, entry),
-                                  ),
-                                ],
-                              );
-                            } else if (_paidEntries.isNotEmpty &&
-                                index == _noPaidEntries.length) {
-                              return Column(
-                                children: <Widget>[
-                                  const SubtitleListLabel(
-                                    label: "Pagos",
-                                  ),
-                                  ..._paidEntries.map(
-                                    (entry) => _buildEntryCards(context, entry),
-                                  ),
-                                ],
-                              );
-                            }
-                            return Container();
-                          },
-                        ),
+                    : Column(
+                        children: <Widget>[
+                          MonthTabNavigation(
+                            onPressedPrevious: () {
+                              setState(() {
+                                _selectedMonth = DateTime(
+                                  _selectedMonth.year,
+                                  _selectedMonth.month - 1,
+                                  _selectedMonth.day,
+                                );
+                              });
+                              _fetchEntries();
+                            },
+                            onPressedNext: () {
+                              setState(() {
+                                _selectedMonth = DateTime(
+                                  _selectedMonth.year,
+                                  _selectedMonth.month + 1,
+                                  _selectedMonth.day,
+                                );
+                              });
+                              _fetchEntries();
+                            },
+                            previousMonth: _previousMonth = DateTime(
+                              _selectedMonth.year,
+                              _selectedMonth.month - 1,
+                              _selectedMonth.day,
+                            ),
+                            selectedMonth: _selectedMonth,
+                            onPressedMonth: () {
+                              setState(() {
+                                _selectedMonth = DateTime.now();
+                              });
+                              _fetchEntries();
+                            },
+                            nextMonth: _nextMonth = DateTime(
+                              _selectedMonth.year,
+                              _selectedMonth.month + 1,
+                              _selectedMonth.day,
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.78,
+                            child: ListView.builder(
+                              itemCount: _entries.length,
+                              itemBuilder: (context, index) {
+                                if (index == 0 && _noPaidEntries.isNotEmpty) {
+                                  return Column(
+                                    children: <Widget>[
+                                      const SubtitleListLabel(
+                                        label: "Aguardando pagamento",
+                                      ),
+                                      ..._noPaidEntries.map(
+                                        (entry) =>
+                                            _buildEntryCards(context, entry),
+                                      ),
+                                    ],
+                                  );
+                                } else if (_paidEntries.isNotEmpty &&
+                                    index == _noPaidEntries.length) {
+                                  return Column(
+                                    children: <Widget>[
+                                      const SubtitleListLabel(
+                                        label: "Pagos",
+                                      ),
+                                      ..._paidEntries.map(
+                                        (entry) =>
+                                            _buildEntryCards(context, entry),
+                                      ),
+                                    ],
+                                  );
+                                }
+                                return Container();
+                              },
+                            ),
+                          ),
+                        ],
                       ),
               ),
       ],

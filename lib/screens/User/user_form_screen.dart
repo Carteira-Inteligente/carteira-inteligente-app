@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
 import '../../utils/messages_utils.dart';
 import '../../utils/password_rules.dart';
 import '../../utils/toast_message.dart';
@@ -34,10 +33,20 @@ class _UserFormScreenState extends State<UserFormScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isPasswordValid = false;
+  bool _hasLowerCase = false;
+  bool _hasUpperCase = false;
+  bool _hasSpecialCharacters = false;
+  bool _hasNumber = false;
+  bool _hasLength = false;
 
   void _validatePassword(String password) {
     setState(() {
       _isPasswordValid = PasswordRules().passwordMustHave(password);
+      _hasLowerCase = PasswordRules().checkLowerCase(password);
+      _hasUpperCase = PasswordRules().checkUpperCase(password);
+      _hasSpecialCharacters = PasswordRules().checkSpecialCharacters(password);
+      _hasNumber = PasswordRules().checkNumber(password);
+      _hasLength = PasswordRules().checkLength(password);
     });
   }
 
@@ -62,8 +71,6 @@ class _UserFormScreenState extends State<UserFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Color passwordLabelColor = _isPasswordValid ? cGreen : cRed;
-
     return FormContainer(
       title: "Vamos começar!",
       height: MediaQuery.of(context).size.height * 0.75,
@@ -97,7 +104,13 @@ class _UserFormScreenState extends State<UserFormScreen> {
             controller: _confirmPasswordController,
             onSubmit: _submitForm,
           ),
-          PasswordRulesContainer(labelColor: passwordLabelColor),
+          PasswordRulesContainer(
+            hasLowerCase: _hasLowerCase,
+            hasUpperCase: _hasUpperCase,
+            hasSpecialCharacters: _hasSpecialCharacters,
+            hasNumber: _hasNumber,
+            hasLength: _hasLength,
+          ),
         ],
       ),
     );
