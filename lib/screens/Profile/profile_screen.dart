@@ -102,145 +102,149 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Column(
       children: <Widget>[
-        _isLoading
-            ? ProgressIndicatorContainer(visible: _isLoading)
-            : RefreshIndicator(
-                onRefresh: _fetchUsers,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: RoundedIconContainer(
-                        pathIcon: sUser,
-                        backgroundColor: cGrey.shade200,
-                        radius: 45,
-                        heigth: 45,
-                      ),
-                    ),
-                    BoldSubtitleLabel(label: _users.last.name),
-                    ModalTitleLabel(label: _users.last.email),
-                    SmallPrimaryButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditUserFormScreen(
-                            user: _users.last,
-                            onSubmit: (name, email, password) => _updateUser(
-                              _users.last,
-                              name,
-                              email,
-                              password,
+        RefreshIndicator(
+          onRefresh: _fetchUsers,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: RoundedIconContainer(
+                  pathIcon: sUser,
+                  backgroundColor: cGrey.shade200,
+                  radius: 45,
+                  heigth: 45,
+                ),
+              ),
+              _isLoading
+                  ? Padding(
+                      padding: const EdgeInsets.all(42.0),
+                      child: ProgressIndicatorContainer(visible: _isLoading),
+                    )
+                  : Column(
+                      children: [
+                        BoldSubtitleLabel(label: _users.last.name),
+                        ModalTitleLabel(label: _users.last.email),
+                        SmallPrimaryButton(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => _isLoading
+                                  ? ProgressIndicatorContainer(
+                                      visible: _isLoading)
+                                  : EditUserFormScreen(
+                                      user: _users.last,
+                                      onSubmit: (name, email, password) =>
+                                          _updateUser(
+                                        _users.last,
+                                        name,
+                                        email,
+                                        password,
+                                      ),
+                                    ),
                             ),
                           ),
+                          backgroundColor: cBlue.shade800,
+                          label: "Editar usuário",
                         ),
-                      ),
-                      backgroundColor: cBlue.shade800,
-                      label: "Editar usuário",
+                      ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: DividerContainer(),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.54,
-                      child: ListView(
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: DividerContainer(),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.54,
+                child: ListView(
+                  children: <Widget>[
+                    CardContainer(
+                      child: Column(
                         children: <Widget>[
-                          CardContainer(
-                            child: Column(
-                              children: <Widget>[
-                                const ListLabel(
-                                  padding: EdgeInsets.all(8.0),
-                                  label: "Configurações",
-                                ),
-                                MoreListCard(
-                                  svgIcon: sBank,
-                                  label: "Contas",
-                                  subtitle: "Gerencie suas contas bancárias",
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AccountScreen(),
-                                    ),
-                                  ),
-                                ),
-                                divider,
-                                MoreListCard(
-                                  svgIcon: sCards,
-                                  label: "Cartões de crédito",
-                                  subtitle: "Gerencie seus cartões de crédito",
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const CreditCardScreen(),
-                                    ),
-                                  ),
-                                ),
-                                divider,
-                                MoreListCard(
-                                  svgIcon: sCategory,
-                                  label: "Categorias personalizadas",
-                                  subtitle:
-                                      "Crie e edite suas categorias personalizadas",
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const CategoryScreen(),
-                                    ),
-                                  ),
-                                ),
-                                divider,
-                                MoreListCard(
-                                  svgIcon: sAddBudget,
-                                  label: "Novo orçamento",
-                                  subtitle:
-                                      "Crie orçamentos para organizar suas despesas",
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => BudgetFormScreen(
-                                        onSubmit: _createBudget,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          const ListLabel(
+                            padding: EdgeInsets.all(8.0),
+                            label: "Configurações",
+                          ),
+                          MoreListCard(
+                            svgIcon: sBank,
+                            label: "Contas",
+                            subtitle: "Gerencie suas contas bancárias",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AccountScreen(),
+                              ),
                             ),
                           ),
-                          CardContainer(
-                            child: Column(
-                              children: <Widget>[
-                                const ListLabel(
-                                  padding: EdgeInsets.all(8.0),
-                                  label: "Outros",
+                          divider,
+                          MoreListCard(
+                            svgIcon: sCards,
+                            label: "Cartões de crédito",
+                            subtitle: "Gerencie seus cartões de crédito",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CreditCardScreen(),
+                              ),
+                            ),
+                          ),
+                          divider,
+                          MoreListCard(
+                            svgIcon: sCategory,
+                            label: "Categorias personalizadas",
+                            subtitle:
+                                "Crie e edite suas categorias personalizadas",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CategoryScreen(),
+                              ),
+                            ),
+                          ),
+                          divider,
+                          MoreListCard(
+                            svgIcon: sAddBudget,
+                            label: "Novo orçamento",
+                            subtitle:
+                                "Crie orçamentos para organizar suas despesas",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BudgetFormScreen(
+                                  onSubmit: _createBudget,
                                 ),
-                                OtherListCard(
-                                  svgIcon: sLogout,
-                                  label: "Sair do aplicativo",
-                                  onTap: () => ShowDialog.logoutDialog(
-                                    context,
-                                    () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const InitialScreen(),
-                                      ),
-                                    ),
-                                  ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    CardContainer(
+                      child: Column(
+                        children: <Widget>[
+                          const ListLabel(
+                            padding: EdgeInsets.all(8.0),
+                            label: "Outros",
+                          ),
+                          OtherListCard(
+                            svgIcon: sLogout,
+                            label: "Sair do aplicativo",
+                            onTap: () => ShowDialog.logoutDialog(
+                              context,
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const InitialScreen(),
                                 ),
-                                divider,
-                                OtherListCard(
-                                  svgIcon: sDelete,
-                                  label: "Excluir usuário",
-                                  onTap: () => ShowDialog.deleteDialog(
-                                    context,
-                                    "usuário",
-                                    () => _deleteUser(_users.last.id),
-                                  ),
-                                ),
-                              ],
+                              ),
+                            ),
+                          ),
+                          divider,
+                          OtherListCard(
+                            svgIcon: sDelete,
+                            label: "Excluir usuário",
+                            onTap: () => ShowDialog.deleteDialog(
+                              context,
+                              "usuário",
+                              () => _deleteUser(_users.last.id),
                             ),
                           ),
                         ],
@@ -249,6 +253,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
+            ],
+          ),
+        ),
       ],
     );
   }

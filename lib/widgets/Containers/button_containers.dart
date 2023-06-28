@@ -27,10 +27,10 @@ class ButtonContainer extends StatelessWidget {
 class BottomButtonContainer extends StatelessWidget {
   const BottomButtonContainer({
     super.key,
-    required this.bottonButton,
+    required this.bottomButton,
   });
 
-  final Widget bottonButton;
+  final Widget bottomButton;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class BottomButtonContainer extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(color: cWhite),
         padding: const EdgeInsets.only(bottom: 15.0),
-        child: bottonButton,
+        child: bottomButton,
       ),
     );
   }

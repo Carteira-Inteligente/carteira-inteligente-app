@@ -29,7 +29,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Esqueceu sua senha?",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Enviar e-mail",
         onPressed: _submitForm,
       ),

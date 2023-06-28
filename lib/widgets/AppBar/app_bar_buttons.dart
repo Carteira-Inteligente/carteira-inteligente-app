@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
-import '../../screens/Initial/initial_screen.dart';
 import '../../screens/Notification/notification_screen.dart';
 
 class AppBarAddButton extends StatefulWidget {
@@ -81,9 +80,16 @@ class _AppBarNotificationButtonState extends State<AppBarNotificationButton> {
           builder: (context) => const NotificationScreen(),
         ),
       ),
-      icon: SvgPicture.asset(
-        sNotification,
-        color: cWhite,
+      icon: Container(
+        padding: const EdgeInsets.all(4.0),
+        decoration: BoxDecoration(
+          color: cRed.shade800,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: SvgPicture.asset(
+          sNotificationBing,
+          color: cWhite,
+        ),
       ),
     );
   }

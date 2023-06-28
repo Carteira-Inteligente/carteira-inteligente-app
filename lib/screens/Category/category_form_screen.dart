@@ -41,7 +41,7 @@ class _CategoryFormScreenState extends State<CategoryFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Nova categoria",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

@@ -163,7 +163,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Detalhes do orçamento",
-      bottonButton: Container(),
+      bottomButton: Container(),
       child: _isLoading
           ? ProgressIndicatorContainer(visible: _isLoading)
           : RefreshIndicator(

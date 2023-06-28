@@ -49,80 +49,97 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        _isLoading
-            ? ProgressIndicatorContainer(
-                visible: _isLoading,
-              )
-            : RefreshIndicator(
-                onRefresh: _fetchEntries,
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      children: const <Widget>[
-                        BoldSubtitleLabel(
-                          padding: EdgeInsets.all(8.0),
-                          label: "Resumo",
-                        ),
-                      ],
-                    ),
-                    Row(
+        Row(
+          children: const <Widget>[
+            BoldSubtitleLabel(
+              padding: EdgeInsets.all(8.0),
+              label: "Resumo mensal",
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            DashboardSmallCard(
+              cardTitle: "A pagar",
+              child: _isLoading
+                  ? ProgressIndicatorContainer(visible: _isLoading)
+                  : Column(
                       children: <Widget>[
-                        DashboardSmallCard(
-                          cardTitle: "A pagar",
-                          child: Column(
-                            children: <Widget>[
-                              DashboardCardLabel(
-                                cardSubtitle: "Total previsto",
-                                value: calculateToPayValue(_entries),
-                                valueColor: cBlue,
-                              ),
-                              DashboardCardLabel(
-                                cardSubtitle: "Total em atraso",
-                                value: calculateOverdueValue(_entries),
-                                valueColor: cRed,
-                              ),
-                            ],
-                          ),
+                        DashboardCardLabel(
+                          cardSubtitle: "Total previsto",
+                          value: calculateToPayValue(_entries),
+                          valueColor: cBlue,
                         ),
-                        DashboardSmallCard(
-                          cardTitle: "Pagos",
-                          child: DashboardCardLabel(
-                            cardSubtitle: "Total pago",
-                            value: calculatePaidValue(_entries),
-                            valueColor: cGreen,
-                          ),
+                        DashboardCardLabel(
+                          cardSubtitle: "Total em atraso",
+                          value: calculateOverdueValue(_entries),
+                          valueColor: cRed,
                         ),
                       ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+            ),
+            DashboardSmallCard(
+              cardTitle: "Pagos",
+              child: _isLoading
+                  ? ProgressIndicatorContainer(visible: _isLoading)
+                  : DashboardCardLabel(
+                      cardSubtitle: "Total pago",
+                      value: calculatePaidValue(_entries),
+                      valueColor: cGreen,
                     ),
-                    Row(
-                      children: const <Widget>[
-                        BoldSubtitleLabel(
-                          padding: EdgeInsets.all(8.0),
-                          label: "Anual",
-                        ),
-                      ],
-                    ),
-                    DashboardLargeCard(
-                      cardTitle: "Gráfico de evolução mensal",
-                      chart: SfCartesianChart(
-                        primaryXAxis: CategoryAxis(),
-                        series: <ColumnSeries<Entry, String>>[
-                          ColumnSeries<Entry, String>(
-                            color: cBlue.shade800,
-                            dataSource: _entries,
-                            xValueMapper: (Entry entry, _) =>
-                                DateFormat("MM/yyyy").format(entry.dueDate),
-                            yValueMapper: (Entry entry, _) => entry.paidValue,
-                          ),
-                        ],
-                      ),
+            ),
+          ],
+        ),
+        DashboardLargeCard(
+          cardTitle: "Gráfico por categorias",
+          chart: _isLoading
+              ? ProgressIndicatorContainer(visible: _isLoading)
+              : SfCircularChart(
+                  legend: Legend(
+                    isVisible: true,
+                    position: LegendPosition.bottom,
+                    overflowMode: LegendItemOverflowMode.wrap,
+                  ),
+                  series: <DoughnutSeries<Entry, String>>[
+                    DoughnutSeries<Entry, String>(
+                      dataSource: _entries,
+                      xValueMapper: (Entry entry, _) =>
+                          entry.category.description,
+                      yValueMapper: (Entry entry, _) => entry.paidValue,
+                      dataLabelMapper: (Entry entry, _) =>
+                          entry.paidDate.toString(),
                     ),
                   ],
                 ),
-              ),
+        ),
+        const Padding(
+          padding: EdgeInsets.only(top: 10.0),
+        ),
+        Row(
+          children: const <Widget>[
+            BoldSubtitleLabel(
+              padding: EdgeInsets.all(8.0),
+              label: "Resumo anual",
+            ),
+          ],
+        ),
+        DashboardLargeCard(
+          cardTitle: "Gráfico de evolução mensal",
+          chart: _isLoading
+              ? ProgressIndicatorContainer(visible: _isLoading)
+              : SfCartesianChart(
+                  primaryXAxis: CategoryAxis(),
+                  series: <ColumnSeries<Entry, String>>[
+                    ColumnSeries<Entry, String>(
+                      color: cBlue.shade800,
+                      dataSource: _entries,
+                      xValueMapper: (Entry entry, _) =>
+                          DateFormat("MM/yyyy").format(entry.dueDate),
+                      yValueMapper: (Entry entry, _) => entry.paidValue,
+                    ),
+                  ],
+                ),
+        ),
       ],
     );
   }

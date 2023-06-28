@@ -82,7 +82,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
     return FormContainer(
       title: "Vamos começar!",
       height: MediaQuery.of(context).size.height * 0.75,
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Cadastrar",
         onPressed: _submitForm,
       ),

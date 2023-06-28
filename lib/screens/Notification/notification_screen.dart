@@ -1,16 +1,11 @@
-import 'package:carteira_inteligente/constants/colors.dart';
-import 'package:carteira_inteligente/data/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../constants/colors.dart';
+import '../../data/notifications.dart';
 import '../../models/notifications.dart';
-import '../../models/payment_type.dart';
-import '../../services/payment_type_service.dart';
-import '../../widgets/Buttons/secondary_buttons.dart';
 import '../../widgets/Cards/notification_card.dart';
 import '../../widgets/Containers/form_containers.dart';
-import '../../widgets/Containers/progress_containers.dart';
-import '../../widgets/Labels/title_labels.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -35,9 +30,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FormContainer(
+    return ListFormContainer(
       title: "Notificações",
-      bottonButton: Padding(
+      bottomChild: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
         child: Text(
           "Seu histórico de notificações fica disponível durante 30 "

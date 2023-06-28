@@ -89,7 +89,7 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
     return FormContainer(
       title: "Novo lançamento",
       height: MediaQuery.of(context).size.height * 0.78,
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

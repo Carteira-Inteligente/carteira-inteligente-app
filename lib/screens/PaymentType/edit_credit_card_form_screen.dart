@@ -52,7 +52,7 @@ class _EditAccountFormScreenState extends State<EditAccountFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Edição de conta",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

@@ -53,7 +53,7 @@ class _EditCreditCardFormScreenState extends State<EditCreditCardFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Edição de cartão de crédito",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

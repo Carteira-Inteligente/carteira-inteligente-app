@@ -16,7 +16,7 @@ class ToastMessage {
       timeInSecForIosWeb: 5,
       backgroundColor: backgroundColor,
       textColor: textColor,
-      fontSize: 12,
+      fontSize: 13,
     );
   }
 

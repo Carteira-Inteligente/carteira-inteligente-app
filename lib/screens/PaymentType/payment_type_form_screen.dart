@@ -52,7 +52,7 @@ class _PaymentTypeFormScreenState extends State<PaymentTypeFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Nova forma de pagamento",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

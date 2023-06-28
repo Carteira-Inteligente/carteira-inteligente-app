@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
@@ -56,6 +57,13 @@ class NotificationListCard extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          trailing: IconButton(
+            icon: SvgPicture.asset(
+              sDelete,
+              color: cGrey.shade600,
+            ),
+            onPressed: onDelete,
           ),
         ),
       ),

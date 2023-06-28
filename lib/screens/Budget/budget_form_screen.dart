@@ -44,7 +44,7 @@ class _BudgetFormScreenState extends State<BudgetFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Novo orçamento",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

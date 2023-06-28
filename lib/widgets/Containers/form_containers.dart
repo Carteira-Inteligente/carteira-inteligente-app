@@ -11,43 +11,38 @@ class FormContainer extends StatelessWidget {
     super.key,
     required this.title,
     this.height,
-    required this.bottonButton,
+    required this.bottomButton,
     required this.child,
   });
 
   final String title;
-  final Widget bottonButton;
+  final Widget bottomButton;
   final Widget child;
   final double? height;
 
   @override
   Widget build(BuildContext context) {
-    final appBar = AppBar(
-      leading: const AppBarLeadingReturn(),
-      elevation: 0,
-      backgroundColor: cWhite,
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
-      title: Row(
-        children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(
-              fontFamily: "OpenSans",
-              fontSize: 16,
-              color: cBlue.shade800,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-        ],
-      ),
-    );
-    final positionedContainer = BottomButtonContainer(
-      bottonButton: bottonButton,
-    );
-
     return Scaffold(
       backgroundColor: cWhite,
-      appBar: appBar,
+      appBar: AppBar(
+        leading: const AppBarLeadingReturn(),
+        elevation: 0,
+        backgroundColor: cWhite,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        title: Row(
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(
+                fontFamily: "OpenSans",
+                fontSize: 16,
+                color: cBlue.shade800,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: <Widget>[
           Column(
@@ -72,7 +67,9 @@ class FormContainer extends StatelessWidget {
               ),
             ],
           ),
-          positionedContainer,
+          BottomButtonContainer(
+            bottomButton: bottomButton,
+          ),
         ],
       ),
     );
@@ -131,13 +128,72 @@ class ScreenFormContainer extends StatelessWidget {
                 decoration: const BoxDecoration(color: cWhite),
                 height: MediaQuery.of(context).size.height * 0.85,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: child,
                 ),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ListFormContainer extends StatelessWidget {
+  const ListFormContainer({
+    super.key,
+    required this.title,
+    required this.bottomChild,
+    required this.child,
+  });
+
+  final String title;
+  final Widget bottomChild;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: cWhite,
+      appBar: AppBar(
+        leading: const AppBarLeadingReturn(),
+        elevation: 0,
+        backgroundColor: cWhite,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        title: Row(
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(
+                fontFamily: "OpenSans",
+                fontSize: 16,
+                color: cBlue.shade800,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    decoration: const BoxDecoration(color: cWhite),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: child,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          BottomButtonContainer(
+            bottomButton: bottomChild,
           ),
         ],
       ),

@@ -65,6 +65,9 @@ class CategoryService {
       ToastMessage.successToast(MessagesUtils.postSuccess("Categoria"));
       Navigator.pop(context);
       return createdCategory;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(
+          "Já existe uma categoria cadastrada com esta descrição.");
     } else {
       ToastMessage.dangerToast(MessagesUtils.postError("Categoria"));
       throw Exception(MessagesUtils.requestBodyExceptionError(

@@ -51,7 +51,7 @@ class _EditCategoryFormScreenState extends State<EditCategoryFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Edição de categoria",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

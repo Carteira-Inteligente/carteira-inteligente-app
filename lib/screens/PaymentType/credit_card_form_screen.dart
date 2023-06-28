@@ -43,7 +43,7 @@ class _CreditCardFormScreenState extends State<CreditCardFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Novo cartão de crédito",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

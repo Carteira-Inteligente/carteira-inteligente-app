@@ -43,7 +43,7 @@ class _AccountFormScreenState extends State<AccountFormScreen> {
   Widget build(BuildContext context) {
     return FormContainer(
       title: "Nova conta",
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),

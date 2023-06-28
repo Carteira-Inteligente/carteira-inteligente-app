@@ -134,7 +134,7 @@ class _EditEntryFormScreenState extends State<EditEntryFormScreen> {
     return FormContainer(
       title: "Edição de lançamento",
       height: MediaQuery.of(context).size.height * 0.78,
-      bottonButton: PrimaryButton(
+      bottomButton: PrimaryButton(
         textButton: "Salvar",
         onPressed: _submitForm,
       ),
