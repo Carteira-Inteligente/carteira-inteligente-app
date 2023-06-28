@@ -8,6 +8,7 @@ import '../../utils/calculate_value.dart';
 import '../../widgets/Cards/budget_card.dart';
 import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
+import '../../widgets/Navigation/month_navigation.dart';
 import 'budget_details_screen.dart';
 
 class BudgetScreen extends StatefulWidget {
@@ -70,23 +71,21 @@ class _BudgetScreenState extends State<BudgetScreen> {
     return Column(
       children: <Widget>[
         _isLoading
-            ? ProgressIndicatorContainer(
-                visible: _isLoading,
-              )
+            ? ProgressIndicatorContainer(visible: _isLoading)
             : RefreshIndicator(
                 onRefresh: _fetchBudgets,
-                child: _budgets.isEmpty
-                    ? const NoDataContainer(description: "orçamentos")
-                    : SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.78,
-                        child: ListView.builder(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.78,
+                  child: _budgets.isEmpty
+                      ? const NoDataContainer(description: "orçamentos")
+                      : ListView.builder(
                           itemCount: _budgets.length,
                           itemBuilder: (context, index) {
                             final budget = _budgets[index];
                             return _buildBudgetCards(context, budget, index);
                           },
                         ),
-                      ),
+                ),
               ),
       ],
     );

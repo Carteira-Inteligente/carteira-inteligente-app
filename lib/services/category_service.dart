@@ -35,6 +35,8 @@ class CategoryService {
       );
 
       return categories;
+    } else if (response.statusCode == 404) {
+      return [];
     } else {
       ToastMessage.dangerToast(MessagesUtils.findAllError("Categorias"));
       throw Exception(MessagesUtils.noRequestBodyExceptionError(

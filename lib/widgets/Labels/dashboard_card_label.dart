@@ -17,7 +17,6 @@ class DashboardCardLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatCurrency = getFormatCurrency();
-
     return Column(
       children: <Widget>[
         Text(

@@ -12,7 +12,7 @@ import 'screens/Dashboard/dashboard_screen.dart';
 import 'screens/Entry/entry_form_screen.dart';
 import 'screens/Entry/entry_screen.dart';
 import 'screens/Entry/fast_entry_screen.dart';
-import 'screens/More/more_screen.dart';
+import 'screens/Profile/profile_screen.dart';
 import 'services/budget_service.dart';
 import 'services/entry_service.dart';
 import 'themes/light_theme.dart';
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     EntryScreen(),
     Placeholder(),
     BudgetScreen(),
-    MoreScreen(),
+    ProfileScreen(),
   ];
 
   _onItemTapped(int index) {
@@ -148,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
             pinned: true,
             floating: true,
             forceElevated: true,
-            backgroundColor: cBlue.shade700,
+            backgroundColor: cBlue.shade800,
             actions: <Widget>[
               Builder(
                 builder: (context) {
@@ -241,10 +241,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              sMore,
+              sUser,
               color: _selectedIndex == 4 ? cBlue.shade800 : cGrey,
             ),
-            label: _selectedIndex == 4 ? "Mais" : null,
+            label: _selectedIndex == 4 ? "Perfil" : null,
           ),
         ],
       ),

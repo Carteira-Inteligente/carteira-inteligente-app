@@ -33,6 +33,8 @@ class BudgetService {
       );
 
       return budgets;
+    } else if (response.statusCode == 404) {
+      return [];
     } else {
       ToastMessage.dangerToast(MessagesUtils.findAllError("Orçamentos"));
       throw Exception(

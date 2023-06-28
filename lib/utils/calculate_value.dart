@@ -41,7 +41,10 @@ double calculateOverdueValue(List<Entry> entries) {
   double overdueValue = 0;
 
   for (final entry in entries) {
-    if (entry.paid == false && entry.dueDate.isBefore(DateTime.now())) {
+    if (entry.paid == false &&
+        entry.dueDate.isBefore(DateTime.now().subtract(
+          const Duration(days: 1),
+        ))) {
       overdueValue += entry.paidValue;
     }
   }

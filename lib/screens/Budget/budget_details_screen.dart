@@ -259,33 +259,20 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                         ],
                       ),
                       SingleChildScrollView(
-                        child: _entries.isEmpty
-                            ? const NoEntryBudgetContainer()
-                            : SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.53,
-                                child: ListView.builder(
-                                  itemCount: _entries.length,
-                                  itemBuilder: (context, index) {
-                                    final entry = _entries[index];
-                                    if (entry.category.id ==
-                                        widget.budget.category.id) {
-                                      if (index == _entries.length - 1) {
-                                        return Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 120.0,
-                                          ),
-                                          child:
-                                              _buildEntryCards(context, entry),
-                                        );
-                                      } else {
-                                        return _buildEntryCards(context, entry);
-                                      }
-                                    }
-                                    return Container();
-                                  },
-                                ),
-                              ),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.53,
+                          child: ListView.builder(
+                            itemCount: _entries.length,
+                            itemBuilder: (context, index) {
+                              final entry = _entries[index];
+                              if (entry.category.id ==
+                                  widget.budget.category.id) {
+                                return _buildEntryCards(context, entry);
+                              }
+                              return Container();
+                            },
+                          ),
+                        ),
                       ),
                     ],
                   )

@@ -41,6 +41,7 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
   bool _hasSpecialCharacters = false;
   bool _hasNumber = false;
   bool _hasLength = false;
+  bool _passwordsMatch = true;
 
   void _validatePassword(String password) {
     setState(() {
@@ -79,7 +80,15 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
 
     if (password != confirmPassword) {
       ToastMessage.warningToast(MessagesUtils.notMatchPassword());
+      setState(() {
+        _passwordsMatch = false;
+      });
+      return;
     }
+
+    setState(() {
+      _passwordsMatch = true;
+    });
 
     if (_isPasswordValid == false) {
       ToastMessage.warningToast(MessagesUtils.noSecurePassword());
@@ -120,6 +129,7 @@ class _EditUserFormScreenState extends State<EditUserFormScreen> {
             label: "Confirmar senha",
             controller: _confirmPasswordController,
             onSubmit: _submitForm,
+            passwordsMatch: _passwordsMatch,
           ),
           PasswordRulesContainer(
             hasLowerCase: _hasLowerCase,

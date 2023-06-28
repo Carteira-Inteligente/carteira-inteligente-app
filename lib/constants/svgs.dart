@@ -64,6 +64,5 @@ const sPaymentWaiting = "assets/svg/payment/payment-waiting.svg";
 // Svg
 const sBudget = "assets/svg/budget.svg";
 const sDashboard = "assets/svg/dashboard.svg";
-const sMore = "assets/svg/more.svg";
 const sUser = "assets/svg/user.svg";
 const sWallet = "assets/svg/wallet.svg";

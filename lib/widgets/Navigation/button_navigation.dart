@@ -20,12 +20,12 @@ class ButtonNavigation extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(5.0),
         decoration: BoxDecoration(
-          color: cBlue.shade50,
+          color: cBlue.shade800,
           borderRadius: BorderRadius.circular(50),
         ),
         child: SvgPicture.asset(
           svgIcon,
-          color: cGrey.shade600,
+          color: cWhite,
         ),
       ),
     );

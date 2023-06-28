@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../Labels/password_pattern_label.dart';
-import '../Labels/subtitle_labels.dart';
+import '../Labels/title_labels.dart';
 
 class PasswordRulesContainer extends StatelessWidget {
   const PasswordRulesContainer({
@@ -26,9 +26,11 @@ class PasswordRulesContainer extends StatelessWidget {
       children: <Widget>[
         Row(
           children: const <Widget>[
-            SubtitleLabel(
-              padding: EdgeInsets.only(top: 8.0),
-              label: "Sua senha deve conter pelo menos:",
+            Padding(
+              padding: EdgeInsets.only(top: 16.0, bottom: 8.0),
+              child: TitleLabel(
+                label: "Sua senha deve conter pelo menos:",
+              ),
             ),
           ],
         ),
@@ -37,19 +39,19 @@ class PasswordRulesContainer extends StatelessWidget {
           child: Column(
             children: <Widget>[
               PasswordPatternLabel(
-                label: " Uma letra maiúscula e uma minúscula;",
+                label: " Uma letra maiúscula e uma minúscula",
                 labelColor: hasLowerCase && hasUpperCase ? cGreen : cRed,
               ),
               PasswordPatternLabel(
-                label: " Um número;",
+                label: " Um número",
                 labelColor: hasNumber ? cGreen : cRed,
               ),
               PasswordPatternLabel(
-                label: " Um caracter especial;",
+                label: " Um caracter especial",
                 labelColor: hasSpecialCharacters ? cGreen : cRed,
               ),
               PasswordPatternLabel(
-                label: " Mínimo 8 caracteres.",
+                label: " Mínimo 8 caracteres",
                 labelColor: hasLength ? cGreen : cRed,
               ),
             ],

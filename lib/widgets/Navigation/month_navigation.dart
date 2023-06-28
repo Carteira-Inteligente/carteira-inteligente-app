@@ -1,63 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../constants/colors.dart';
-import '../../constants/widgets.dart';
-import '../Labels/input_label.dart';
+import '../../constants/svgs.dart';
+import 'button_navigation.dart';
+import 'label_navigation.dart';
 
 class MonthNavigation extends StatelessWidget {
   const MonthNavigation({
     super.key,
-    required this.onPressed,
-    required this.month,
+    required this.onPressedPrevious,
+    required this.onPressedNext,
+    required this.onPressedMonth,
+    required this.previousMonth,
+    required this.selectedMonth,
+    required this.nextMonth,
   });
 
-  final void Function() onPressed;
-  final DateTime month;
+  final void Function() onPressedPrevious;
+  final void Function() onPressedNext;
+  final void Function() onPressedMonth;
+  final DateTime selectedMonth;
+  final DateTime previousMonth;
+  final DateTime nextMonth;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: InputLabel(
-        label: month.year == DateTime.now().year
-            ? DateFormat("MMM", "pt-BR").format(month).toUpperCase()
-            : DateFormat("MMM yy", "pt-BR").format(month).toUpperCase(),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: cGrey.shade200),
+        ),
       ),
-    );
-  }
-}
-
-class ActualMonthNavigation extends StatelessWidget {
-  const ActualMonthNavigation({
-    super.key,
-    required this.onPressed,
-    required this.month,
-  });
-
-  final void Function() onPressed;
-  final DateTime month;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
-        decoration: BoxDecoration(
-          borderRadius: wBorderRadius50,
-          color: cBlue.shade50,
-        ),
-        child: Text(
-          month.year == DateTime.now().year
-              ? DateFormat("MMM", "pt-BR").format(month).toUpperCase()
-              : DateFormat("MMM yy", "pt-BR").format(month).toUpperCase(),
-          style: const TextStyle(
-            fontSize: 16,
-            color: cBlack,
-            fontWeight: FontWeight.normal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          ButtonNavigation(
+            onPressed: onPressedPrevious,
+            svgIcon: sArrowLeft,
           ),
-        ),
+          LabelNavigation(
+            onPressed: onPressedPrevious,
+            month: previousMonth,
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: cBlue.shade800,
+                  width: 1.5,
+                ),
+              ),
+            ),
+            child: LabelNavigation(
+              onPressed: onPressedMonth,
+              month: selectedMonth,
+            ),
+          ),
+          LabelNavigation(
+            onPressed: onPressedNext,
+            month: nextMonth,
+          ),
+          ButtonNavigation(
+            onPressed: onPressedNext,
+            svgIcon: sArrowRight,
+          ),
+        ],
       ),
     );
   }

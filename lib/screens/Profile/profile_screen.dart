@@ -23,14 +23,14 @@ import '../PaymentType/account_screen.dart';
 import '../PaymentType/credit_card_screen.dart';
 import '../User/edit_user_form_screen.dart';
 
-class MoreScreen extends StatefulWidget {
-  const MoreScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<MoreScreen> createState() => _MoreScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _MoreScreenState extends State<MoreScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   final List<Budget> _budgets = [];
   List<Users> _users = [];
   bool _isLoading = false;

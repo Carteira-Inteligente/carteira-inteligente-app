@@ -34,7 +34,7 @@ class FormContainer extends StatelessWidget {
             style: TextStyle(
               fontFamily: "OpenSans",
               fontSize: 16,
-              color: cGrey.shade600,
+              color: cBlue.shade800,
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -109,7 +109,7 @@ class ScreenFormContainer extends StatelessWidget {
               style: TextStyle(
                 fontFamily: "OpenSans",
                 fontSize: 16,
-                color: cGrey.shade600,
+                color: cBlue.shade800,
                 fontWeight: FontWeight.normal,
               ),
             ),
