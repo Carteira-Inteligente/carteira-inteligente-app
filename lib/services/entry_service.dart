@@ -119,6 +119,44 @@ class EntryService {
     }
   }
 
+  static postFast(
+    BuildContext context,
+    String description,
+    double paidValue,
+  ) async {
+    final requestBody = json.encode({
+      "user": {"id": 1},
+      "description": description,
+      "paidValue": paidValue,
+      "dueDate": DateTime.now().toIso8601String(),
+      "paidDate": DateTime.now().toIso8601String(),
+    });
+
+    final response = await http.post(
+      Uri.parse("${AppRoutes.entryRoute}/fast"),
+      body: requestBody,
+      headers: requestHeader,
+    );
+
+    if (response.statusCode == 201) {
+      final jsonData = json.decode(response.body);
+      final createdEntry = Entry.fromJson(jsonData);
+
+      ToastMessage.successToast(MessagesUtils.postSuccess("Lançamento"));
+      Navigator.pop(context);
+      return createdEntry;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+    } else {
+      ToastMessage.dangerToast(MessagesUtils.postError("Lançamento"));
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        MessagesUtils.postError("Lançamento"),
+        response,
+        requestBody,
+      ));
+    }
+  }
+
   static put(
     BuildContext context,
     Entry entry,

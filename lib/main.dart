@@ -87,20 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _createFastEntry(
-    String description,
-    double paidValue,
-  ) async {
-    final createdEntry = await EntryService.post(
+  _createFastEntry(String description, double paidValue) async {
+    final createdEntry = await EntryService.postFast(
       context,
-      true,
       description,
-      1,
-      "NOT_REPEAT",
-      1,
       paidValue,
-      DateTime.now(),
-      DateTime.now(),
     );
 
     setState(() {

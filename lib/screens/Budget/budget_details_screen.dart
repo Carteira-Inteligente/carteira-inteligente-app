@@ -1,4 +1,3 @@
-import 'package:carteira_inteligente/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -13,7 +12,6 @@ import '../../widgets/Buttons/edit_button.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/form_containers.dart';
-import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
 import '../../widgets/Labels/budget_value_label.dart';
