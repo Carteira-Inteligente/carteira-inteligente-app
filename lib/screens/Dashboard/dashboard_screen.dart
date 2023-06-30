@@ -124,7 +124,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         DashboardLargeCard(
-          cardTitle: "Gráfico de evolução mensal",
+          cardTitle: "Gráfico de evolução",
           chart: _isLoading
               ? ProgressIndicatorContainer(visible: _isLoading)
               : SfCartesianChart(

@@ -73,6 +73,10 @@ class UsersService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdUser = Users.fromJson(jsonData);
@@ -86,11 +90,11 @@ class UsersService {
       );
       return createdUser;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.postError("Usuário"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.postError("Usuário"),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -112,6 +116,10 @@ class UsersService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       final updatedUsers = Users(
         id: user.id,
@@ -124,10 +132,11 @@ class UsersService {
       Navigator.pop(context);
       return updatedUsers;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.putError("Usuário"),
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -143,6 +152,10 @@ class UsersService {
       Uri.parse("${AppRoutes.userRoute}/${user.id}"),
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       ToastMessage.successToast(MessagesUtils.deleteSuccess("Usuário"));
       Navigator.push(
@@ -151,10 +164,12 @@ class UsersService {
           builder: (context) => const InitialScreen(),
         ),
       );
+    } else if (response.statusCode == 400) {
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.deleteError("Usuário"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.noRequestBodyExceptionError(
-        MessagesUtils.deleteError("Usuário"),
+        jsonData[0]["defaultMessage"],
         response,
       ));
     }

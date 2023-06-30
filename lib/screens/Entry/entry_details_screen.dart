@@ -88,7 +88,25 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen> {
     final formatCurrency = getFormatCurrency();
     return Column(
       children: <Widget>[
-        const ModalTitleLabel(label: "Detalhes do lançamento"),
+        Stack(
+          children: <Widget>[
+            const Align(
+              alignment: Alignment.center,
+              child: ModalTitleLabel(label: "Detalhes do lançamento"),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                padding: const EdgeInsets.only(bottom: 24.0),
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(
+                  Icons.close,
+                  color: cGrey.shade600,
+                ),
+              ),
+            ),
+          ],
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

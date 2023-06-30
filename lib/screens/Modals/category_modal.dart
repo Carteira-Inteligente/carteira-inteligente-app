@@ -9,8 +9,8 @@ import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/category_cards.dart';
 import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Containers/header_modal_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
-import '../../widgets/Labels/title_labels.dart';
 import '../Category/category_form_screen.dart';
 
 class CategoryModal extends StatefulWidget {
@@ -123,12 +123,11 @@ class _CategoryModalState extends State<CategoryModal> {
       children: <Widget>[
         Stack(
           children: <Widget>[
-            const Align(
-              alignment: Alignment.center,
-              child: ModalTitleLabel(label: "Selecione a categoria"),
+            const HeaderModalContainer(
+              label: "Selecione a categoria",
             ),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.centerLeft,
               child: IconButton(
                 padding: const EdgeInsets.only(bottom: 24.0),
                 tooltip:

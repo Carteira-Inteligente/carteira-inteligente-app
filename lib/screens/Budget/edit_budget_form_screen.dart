@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/budget.dart';
 import '../../utils/show_modal.dart';
+import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Inputs/input_value.dart';
@@ -50,6 +51,11 @@ class _EditBudgetFormScreenState extends State<EditBudgetFormScreen> {
   _submitForm() {
     final description = _selectedDescription;
     final value = _valueController.text.replaceAll(",", ".");
+
+    if (_selectedId.isNaN || description.isEmpty || value.isEmpty) {
+      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
+      return;
+    }
 
     widget.onSubmit(
       widget.budget,

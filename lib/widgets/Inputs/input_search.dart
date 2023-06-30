@@ -6,23 +6,38 @@ import '../../constants/widgets.dart';
 import '../Containers/input_containers.dart';
 
 class InputSearch extends StatefulWidget {
-  const InputSearch({super.key});
+  const InputSearch({
+    super.key,
+    required this.onChanged,
+  });
+
+  final void Function(String) onChanged;
 
   @override
   State<InputSearch> createState() => _InputSearchState();
 }
 
 class _InputSearchState extends State<InputSearch> {
+  TextEditingController _textEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: const BoxDecoration(
           color: cWhite,
           borderRadius: wInputBorderRadius,
         ),
         child: TextField(
+          controller: _textEditingController,
+          onChanged: widget.onChanged,
           style: Theme.of(context).textTheme.displaySmall,
           decoration: InputDecoration(
             border: const OutlineInputBorder(
@@ -31,7 +46,15 @@ class _InputSearchState extends State<InputSearch> {
             ),
             hintText: "Pesquisar",
             hintStyle: Theme.of(context).textTheme.displaySmall,
-            suffixIcon: const InputIconContainer(svgIcon: sSearch),
+            suffixIcon: _textEditingController.text.isEmpty
+                ? const InputIconContainer(svgIcon: sSearch)
+                : IconButton(
+                    icon: const Icon(Icons.clear),
+                    onPressed: () {
+                      _textEditingController.clear();
+                      widget.onChanged("");
+                    },
+                  ),
           ),
         ),
       ),

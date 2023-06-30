@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../constants/widgets.dart';
-import '../../utils/show_dialog.dart';
+import '../../screens/Modals/delete_modal.dart';
+import '../../utils/show_modal.dart';
 import '../Containers/button_containers.dart';
 
 class DeleteButton extends StatelessWidget {
@@ -28,7 +29,13 @@ class DeleteButton extends StatelessWidget {
           backgroundColor: cWhite,
           elevation: 0,
         ),
-        onPressed: () => ShowDialog.deleteDialog(context, dataLabel, onPressed),
+        onPressed: () => ShowModal.showModal(
+          context,
+          DeleteModal(
+            dataLabel: dataLabel,
+            onPressed: onPressed,
+          ),
+        ),
         child: SvgPicture.asset(
           sDelete,
           color: cRed.shade800,

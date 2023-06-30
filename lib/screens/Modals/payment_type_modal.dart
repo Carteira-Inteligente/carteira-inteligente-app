@@ -4,7 +4,7 @@ import '../../data/payment_type_data.dart';
 import '../../models/payment_type.dart';
 import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
-import '../../widgets/Labels/title_labels.dart';
+import '../../widgets/Containers/header_modal_container.dart';
 
 class PaymentTypeModal extends StatefulWidget {
   const PaymentTypeModal({
@@ -40,7 +40,9 @@ class _PaymentTypeModalState extends State<PaymentTypeModal> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel(label: "Selecione o tipo de pagamento"),
+        const HeaderModalContainer(
+          label: "Selecione o tipo de pagamento",
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
           child: ListView.builder(

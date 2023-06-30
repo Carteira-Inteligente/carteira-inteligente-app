@@ -5,7 +5,7 @@ import '../../main.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Inputs/input_email.dart';
 import '../../widgets/Inputs/input_password.dart';
-import '../../widgets/Labels/subtitle_labels.dart';
+import '../../widgets/Labels/title_labels.dart';
 import '../ForgotPassword/forgot_password_screen.dart';
 
 class AuthenticationScreen extends StatefulWidget {
@@ -40,7 +40,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         ),
         const Padding(
           padding: EdgeInsets.only(top: 8.0),
-          child: SubtitleLabel(label: "Que bom que você voltou!"),
+          child: TitleLabel(label: "Que bom que você voltou!"),
         ),
         InputEmail(
           label: "E-mail",

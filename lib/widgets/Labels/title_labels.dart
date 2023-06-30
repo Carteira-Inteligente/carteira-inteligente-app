@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+
 class TitleLabel extends StatelessWidget {
   const TitleLabel({
     super.key,
@@ -31,7 +33,12 @@ class ModalTitleLabel extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.displaySmall,
+        style: TextStyle(
+          fontFamily: "OpenSans",
+          fontSize: 16,
+          color: cBlue.shade800,
+          fontWeight: FontWeight.normal,
+        ),
       ),
     );
   }

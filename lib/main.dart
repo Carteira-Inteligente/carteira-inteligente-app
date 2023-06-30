@@ -20,6 +20,7 @@ import 'widgets/AppBar/app_bar_buttons.dart';
 import 'widgets/AppBar/app_bar_image.dart';
 import 'widgets/AppBar/app_bar_title.dart';
 import 'widgets/Buttons/primary_buttons.dart';
+import 'widgets/Containers/rounded_icon_container.dart';
 
 void main() {
   runApp(const CarteiraInteligenteApp());
@@ -209,14 +210,14 @@ class _MyHomePageState extends State<MyHomePage> {
               sDashboard,
               color: _selectedIndex == 0 ? cBlue.shade800 : cGrey,
             ),
-            label: _selectedIndex == 0 ? "Dashboard" : null,
+            label: "Dashboard",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               sWallet,
               color: _selectedIndex == 1 ? cBlue.shade800 : cGrey,
             ),
-            label: _selectedIndex == 1 ? "Lançamentos" : null,
+            label: "Lançamentos",
           ),
           BottomNavigationBarItem(
             icon: FastEntryButton(
@@ -228,14 +229,25 @@ class _MyHomePageState extends State<MyHomePage> {
               sBudget,
               color: _selectedIndex == 3 ? cBlue.shade800 : cGrey,
             ),
-            label: _selectedIndex == 3 ? "Orçamentos" : null,
+            label: "Orçamentos",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              sUser,
-              color: _selectedIndex == 4 ? cBlue.shade800 : cGrey,
+            icon: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  width: _selectedIndex == 4 ? 1.5 : 0,
+                  color: _selectedIndex == 4 ? cBlue.shade800 : cGrey.shade200,
+                ),
+              ),
+              child: RoundedIconContainer(
+                pathIcon: sUser,
+                backgroundColor: cGrey.shade200,
+                radius: 12,
+                heigth: 12,
+              ),
             ),
-            label: _selectedIndex == 4 ? "Perfil" : null,
+            label: "Perfil",
           ),
         ],
       ),

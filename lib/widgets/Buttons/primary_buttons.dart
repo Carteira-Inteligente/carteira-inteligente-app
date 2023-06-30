@@ -12,10 +12,12 @@ class PrimaryButton extends StatefulWidget {
     super.key,
     required this.textButton,
     required this.onPressed,
+    this.deleteButton,
   });
 
   final String textButton;
   final void Function() onPressed;
+  final bool? deleteButton;
 
   @override
   State<PrimaryButton> createState() => _PrimaryButtonState();
@@ -50,7 +52,8 @@ class _PrimaryButtonState extends State<PrimaryButton> {
         style: ElevatedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
           shape: wButtonBorderRadius,
-          backgroundColor: cBlue.shade800,
+          backgroundColor:
+              widget.deleteButton == true ? cRed.shade800 : cBlue.shade800,
           elevation: 0,
         ),
         onPressed: _isLoading ? _handleButtonPress : _handleButtonPress,

@@ -1,3 +1,5 @@
+import 'package:carteira_inteligente/widgets/Containers/no_data_containers.dart';
+import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -25,6 +27,7 @@ class _EntryScreenState extends State<EntryScreen> {
   final List<Entry> _paidEntries = [];
   final List<Entry> _noPaidEntries = [];
   bool _isLoading = false;
+  String _searchQuery = "";
 
   List<Entry> _filterEntriesByMonth(List<Entry> entries) {
     return _entries
@@ -154,6 +157,13 @@ class _EntryScreenState extends State<EntryScreen> {
             _selectedMonth.day,
           ),
         ),
+        InputSearch(
+          onChanged: (value) {
+            setState(() {
+              _searchQuery = value;
+            });
+          },
+        ),
         _isLoading
             ? ProgressIndicatorContainer(visible: _isLoading)
             : RefreshIndicator(
@@ -169,9 +179,17 @@ class _EntryScreenState extends State<EntryScreen> {
                             const SubtitleListLabel(
                               label: "Aguardando pagamento",
                             ),
-                            ..._noPaidEntries.map(
-                              (entry) => _buildEntryCards(context, entry),
-                            ),
+                            ..._noPaidEntries
+                                .where((entry) =>
+                                    entry.description
+                                        .toUpperCase()
+                                        .contains(_searchQuery.toUpperCase()) ||
+                                    entry.category.description
+                                        .toUpperCase()
+                                        .contains(_searchQuery.toUpperCase()))
+                                .map(
+                                    (entry) => _buildEntryCards(context, entry))
+                                .toList(),
                           ],
                         );
                       } else if (_paidEntries.isNotEmpty &&
@@ -181,9 +199,17 @@ class _EntryScreenState extends State<EntryScreen> {
                             const SubtitleListLabel(
                               label: "Pagos",
                             ),
-                            ..._paidEntries.map(
-                              (entry) => _buildEntryCards(context, entry),
-                            ),
+                            ..._paidEntries
+                                .where((entry) =>
+                                    entry.description
+                                        .toUpperCase()
+                                        .contains(_searchQuery.toUpperCase()) ||
+                                    entry.category.description
+                                        .toUpperCase()
+                                        .contains(_searchQuery.toUpperCase()))
+                                .map(
+                                    (entry) => _buildEntryCards(context, entry))
+                                .toList(),
                           ],
                         );
                       }

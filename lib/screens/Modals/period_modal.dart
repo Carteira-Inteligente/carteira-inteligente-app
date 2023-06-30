@@ -4,7 +4,7 @@ import '../../data/period_data.dart';
 import '../../models/period.dart';
 import '../../widgets/Cards/recurrence_card.dart';
 import '../../widgets/Containers/divider_container.dart';
-import '../../widgets/Labels/title_labels.dart';
+import '../../widgets/Containers/header_modal_container.dart';
 
 class PeriodModal extends StatefulWidget {
   const PeriodModal({
@@ -40,7 +40,9 @@ class _PeriodModalState extends State<PeriodModal> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel(label: "Selecione a recorrência"),
+        const HeaderModalContainer(
+          label: "Selecione a recorrência",
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.5,
           child: ListView.builder(

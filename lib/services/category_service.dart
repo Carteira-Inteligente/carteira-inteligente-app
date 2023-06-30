@@ -18,6 +18,7 @@ class CategoryService {
       "pathIcon": sCategory,
       "iconColor": 0xFF146AA0,
       "backgroundColor": 0xFFD9E8F6,
+      "isDefault": false,
     };
   }
 
@@ -58,6 +59,10 @@ class CategoryService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdCategory = Category.fromJson(jsonData);
@@ -66,12 +71,11 @@ class CategoryService {
       Navigator.pop(context);
       return createdCategory;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(
-          "Já existe uma categoria cadastrada com esta descrição.");
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.postError("Categoria"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.postError("Categoria"),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -91,6 +95,10 @@ class CategoryService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       final updatedCategory = Category(
         id: category.id,
@@ -98,15 +106,18 @@ class CategoryService {
         backgroundColor: const Color(0xFFD9E8F6),
         iconColor: const Color(0xFF146AA0),
         pathIcon: sCategory,
+        isDefault: false,
       );
 
       ToastMessage.successToast(MessagesUtils.putSuccess("Categoria"));
       Navigator.pop(context);
       return updatedCategory;
+    } else if (response.statusCode == 400) {
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.putError("Categoria"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.putError("Categoria"),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));

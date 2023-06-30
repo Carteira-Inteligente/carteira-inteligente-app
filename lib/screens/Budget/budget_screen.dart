@@ -8,7 +8,7 @@ import '../../utils/calculate_value.dart';
 import '../../widgets/Cards/budget_card.dart';
 import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
-import '../../widgets/Navigation/month_navigation.dart';
+import '../../widgets/Inputs/input_search.dart';
 import 'budget_details_screen.dart';
 
 class BudgetScreen extends StatefulWidget {
@@ -22,6 +22,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
   List<Budget> _budgets = [];
   List<Entry> _entries = [];
   bool _isLoading = false;
+  String _searchQuery = "";
 
   Future<List<Budget>> _fetchBudgets() async {
     setState(() {
@@ -70,6 +71,13 @@ class _BudgetScreenState extends State<BudgetScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        InputSearch(
+          onChanged: (value) {
+            setState(() {
+              _searchQuery = value;
+            });
+          },
+        ),
         _isLoading
             ? ProgressIndicatorContainer(visible: _isLoading)
             : RefreshIndicator(
@@ -82,6 +90,14 @@ class _BudgetScreenState extends State<BudgetScreen> {
                           itemCount: _budgets.length,
                           itemBuilder: (context, index) {
                             final budget = _budgets[index];
+                            final isMatch = budget.description
+                                .toUpperCase()
+                                .contains(_searchQuery.toUpperCase());
+
+                            if (!isMatch) {
+                              return Container();
+                            }
+
                             return _buildBudgetCards(context, budget, index);
                           },
                         ),

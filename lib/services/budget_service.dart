@@ -79,6 +79,10 @@ class BudgetService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdBudget = Budget.fromJson(jsonData);
@@ -87,11 +91,11 @@ class BudgetService {
       Navigator.pop(context);
       return createdBudget;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.postError("Orçamento"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.postError("Orçamento"),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -117,6 +121,10 @@ class BudgetService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       final updatedBudget = Budget(
         id: budget.id,
@@ -129,10 +137,11 @@ class BudgetService {
       Navigator.pop(context);
       return updatedBudget;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.putError("Orçamento"),
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
+      throw Exception(MessagesUtils.requestBodyExceptionError(
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));

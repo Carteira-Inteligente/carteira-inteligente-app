@@ -100,6 +100,10 @@ class EntryService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdEntry = Entry.fromJson(jsonData);
@@ -108,11 +112,11 @@ class EntryService {
       Navigator.pop(context);
       return createdEntry;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.postError("Lançamento"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.postError("Lançamento"),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -138,6 +142,10 @@ class EntryService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdEntry = Entry.fromJson(jsonData);
@@ -146,11 +154,11 @@ class EntryService {
       Navigator.pop(context);
       return createdEntry;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.postError("Lançamento"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.postError("Lançamento"),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -186,6 +194,10 @@ class EntryService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       final updatedEntry = Entry(
         id: entry.id,
@@ -203,11 +215,11 @@ class EntryService {
       Navigator.pop(context);
       return updatedEntry;
     } else if (response.statusCode == 400) {
-      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.putError("Lançamento"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.putError("Lançamento"),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -230,6 +242,10 @@ class EntryService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       final updatedEntry = Entry(
         id: entry.id,
@@ -245,10 +261,12 @@ class EntryService {
 
       ToastMessage.successToast(MessagesUtils.patchSuccess(paid));
       return updatedEntry;
+    } else if (response.statusCode == 400) {
+      ToastMessage.warningToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.patchError(paid));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.patchError(paid),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -264,13 +282,17 @@ class EntryService {
       Uri.parse("${AppRoutes.entryRoute}/${entry.id}"),
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       ToastMessage.successToast(MessagesUtils.deleteSuccess("Lançamento"));
       Navigator.pop(context);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.deleteError("Lançamento"));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.noRequestBodyExceptionError(
-        MessagesUtils.deleteError("Lançamento"),
+        jsonData[0]["defaultMessage"],
         response,
       ));
     }

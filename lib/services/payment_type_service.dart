@@ -55,6 +55,10 @@ class PaymentTypeService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 201) {
       final jsonData = json.decode(response.body);
       final createdPaymentType = PaymentType.fromJson(jsonData);
@@ -62,10 +66,12 @@ class PaymentTypeService {
       ToastMessage.successToast(MessagesUtils.postSuccess(message));
       Navigator.pop(context);
       return createdPaymentType;
+    } else if (response.statusCode == 400) {
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.postError(message));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.postError(message),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));
@@ -87,6 +93,10 @@ class PaymentTypeService {
       headers: requestHeader,
     );
 
+    final jsonData = jsonDecode(
+      const Utf8Decoder().convert(response.bodyBytes),
+    );
+
     if (response.statusCode == 200) {
       final updatedAccount = PaymentType(
         id: paymentType.id,
@@ -97,10 +107,12 @@ class PaymentTypeService {
       ToastMessage.successToast(MessagesUtils.putSuccess(message));
       Navigator.pop(context);
       return updatedAccount;
+    } else if (response.statusCode == 400) {
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
     } else {
-      ToastMessage.dangerToast(MessagesUtils.putError(message));
+      ToastMessage.dangerToast(jsonData[0]["defaultMessage"]);
       throw Exception(MessagesUtils.requestBodyExceptionError(
-        MessagesUtils.putError(message),
+        jsonData[0]["defaultMessage"],
         response,
         requestBody,
       ));

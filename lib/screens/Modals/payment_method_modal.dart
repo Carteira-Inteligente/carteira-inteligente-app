@@ -7,9 +7,9 @@ import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/payment_type_card.dart';
 import '../../widgets/Containers/divider_container.dart';
+import '../../widgets/Containers/header_modal_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Labels/subtitle_labels.dart';
-import '../../widgets/Labels/title_labels.dart';
 import '../PaymentType/payment_type_form_screen.dart';
 
 class PaymentMethodModal extends StatefulWidget {
@@ -103,7 +103,9 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const ModalTitleLabel(label: "Selecione a forma de pagamento"),
+        const HeaderModalContainer(
+          label: "Selecione a forma de pagamento",
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.5,
           child: _isLoading

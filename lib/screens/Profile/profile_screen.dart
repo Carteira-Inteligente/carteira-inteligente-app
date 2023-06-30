@@ -1,3 +1,6 @@
+import 'package:carteira_inteligente/screens/Modals/delete_modal.dart';
+import 'package:carteira_inteligente/screens/Modals/logout_modal.dart';
+import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -6,13 +9,13 @@ import '../../models/budget.dart';
 import '../../models/users.dart';
 import '../../services/budget_service.dart';
 import '../../services/user_service.dart';
-import '../../utils/show_dialog.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/card_container.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
+import '../../widgets/Labels/input_label.dart';
 import '../../widgets/Labels/list_label.dart';
 import '../../widgets/Labels/subtitle_labels.dart';
 import '../../widgets/Labels/title_labels.dart';
@@ -117,20 +120,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               _isLoading
                   ? Padding(
-                      padding: const EdgeInsets.all(42.0),
+                      padding: const EdgeInsets.all(37.5),
                       child: ProgressIndicatorContainer(visible: _isLoading),
                     )
                   : Column(
                       children: [
                         BoldSubtitleLabel(label: _users.last.name),
-                        ModalTitleLabel(label: _users.last.email),
+                        Text(
+                          _users.last.email,
+                          style: TextStyle(
+                            fontFamily: "OpenSans",
+                            fontSize: 16,
+                            color: cGrey.shade600,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                         SmallPrimaryButton(
                           onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => _isLoading
                                   ? ProgressIndicatorContainer(
-                                      visible: _isLoading)
+                                      visible: _isLoading,
+                                    )
                                   : EditUserFormScreen(
                                       user: _users.last,
                                       onSubmit: (name, email, password) =>
@@ -227,12 +239,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           OtherListCard(
                             svgIcon: sLogout,
                             label: "Sair do aplicativo",
-                            onTap: () => ShowDialog.logoutDialog(
+                            onTap: () => ShowModal.showModal(
                               context,
-                              () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const InitialScreen(),
+                              LogoutModal(
+                                onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const InitialScreen(),
+                                  ),
                                 ),
                               ),
                             ),
@@ -241,10 +255,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           OtherListCard(
                             svgIcon: sDelete,
                             label: "Excluir usuário",
-                            onTap: () => ShowDialog.deleteDialog(
+                            onTap: () => ShowModal.showModal(
                               context,
-                              "usuário",
-                              () => _deleteUser(_users.last.id),
+                              DeleteModal(
+                                dataLabel: "usuário",
+                                onPressed: () => _deleteUser(_users.last.id),
+                              ),
                             ),
                           ),
                         ],
