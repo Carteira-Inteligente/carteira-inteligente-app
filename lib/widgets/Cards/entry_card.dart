@@ -1,9 +1,9 @@
-import 'package:carteira_inteligente/screens/Modals/cancel_payment_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
+import '../../screens/Modals/cancel_payment_modal.dart';
 import '../../utils/format_currency.dart';
 import '../../utils/show_modal.dart';
 import '../Containers/card_container.dart';

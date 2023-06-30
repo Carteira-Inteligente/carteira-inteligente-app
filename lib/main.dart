@@ -145,40 +145,30 @@ class _MyHomePageState extends State<MyHomePage> {
               Builder(
                 builder: (context) {
                   if (_selectedIndex == 1) {
-                    return Row(
-                      children: <Widget>[
-                        const AppBarFilterButton(),
-                        AppBarAddButton(
-                          tooltip: "Novo lançamento",
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    EntryFormScreen(onSubmit: _createEntry),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                    return AppBarAddButton(
+                      tooltip: "Novo lançamento",
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                EntryFormScreen(onSubmit: _createEntry),
+                          ),
+                        );
+                      },
                     );
                   } else if (_selectedIndex == 3) {
-                    return Row(
-                      children: <Widget>[
-                        const AppBarFilterButton(),
-                        AppBarAddButton(
-                          tooltip: "Novo orçamento",
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    BudgetFormScreen(onSubmit: _createBudget),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                    return AppBarAddButton(
+                      tooltip: "Novo orçamento",
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                BudgetFormScreen(onSubmit: _createBudget),
+                          ),
+                        );
+                      },
                     );
                   } else if (_selectedIndex == 4) {
                     return const AppBarNotificationButton(

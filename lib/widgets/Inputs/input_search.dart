@@ -18,7 +18,7 @@ class InputSearch extends StatefulWidget {
 }
 
 class _InputSearchState extends State<InputSearch> {
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   void dispose() {
@@ -46,10 +46,14 @@ class _InputSearchState extends State<InputSearch> {
             ),
             hintText: "Pesquisar",
             hintStyle: Theme.of(context).textTheme.displaySmall,
+            prefixIcon: const InputIconContainer(svgIcon: sSearch),
             suffixIcon: _textEditingController.text.isEmpty
-                ? const InputIconContainer(svgIcon: sSearch)
+                ? null
                 : IconButton(
-                    icon: const Icon(Icons.clear),
+                    icon: Icon(
+                      Icons.clear,
+                      color: cGrey.shade600,
+                    ),
                     onPressed: () {
                       _textEditingController.clear();
                       widget.onChanged("");

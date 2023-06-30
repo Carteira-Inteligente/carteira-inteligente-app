@@ -1,6 +1,3 @@
-import 'package:carteira_inteligente/screens/Modals/delete_modal.dart';
-import 'package:carteira_inteligente/screens/Modals/logout_modal.dart';
-import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -9,19 +6,20 @@ import '../../models/budget.dart';
 import '../../models/users.dart';
 import '../../services/budget_service.dart';
 import '../../services/user_service.dart';
+import '../../utils/show_modal.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/card_container.dart';
 import '../../widgets/Containers/divider_container.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Containers/rounded_icon_container.dart';
-import '../../widgets/Labels/input_label.dart';
 import '../../widgets/Labels/list_label.dart';
 import '../../widgets/Labels/subtitle_labels.dart';
-import '../../widgets/Labels/title_labels.dart';
 import '../Budget/budget_form_screen.dart';
 import '../Category/category_screen.dart';
 import '../Initial/initial_screen.dart';
+import '../Modals/delete_modal.dart';
+import '../Modals/logout_modal.dart';
 import '../PaymentType/account_screen.dart';
 import '../PaymentType/credit_card_screen.dart';
 import '../User/edit_user_form_screen.dart';
@@ -43,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _isLoading = true;
     });
 
-    final users = await UsersService.findAll("Contas");
+    final users = await UsersService.findAll("Usuário");
 
     setState(() {
       _isLoading = false;

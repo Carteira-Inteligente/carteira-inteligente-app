@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../utils/messages_utils.dart';
 import '../../utils/show_modal.dart';
+import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Buttons/toggle_button.dart';
 import '../../widgets/Containers/form_containers.dart';
@@ -70,6 +72,11 @@ class _EntryFormScreenState extends State<EntryFormScreen> {
 
     if (_paidDateController.text.isNotEmpty) {
       paidDate = DateFormat("dd/MM/yyy").parse(_paidDateController.text);
+    }
+
+    if (description.isEmpty || value.isEmpty) {
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      return;
     }
 
     widget.onSubmit(

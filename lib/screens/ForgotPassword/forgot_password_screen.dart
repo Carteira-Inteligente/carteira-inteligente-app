@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/messages_utils.dart';
 import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
@@ -20,7 +21,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     final email = _emailController.text;
 
     if (email.isEmpty) {
-      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
       return;
     }
   }

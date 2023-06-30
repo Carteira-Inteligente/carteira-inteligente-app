@@ -83,7 +83,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
             : RefreshIndicator(
                 onRefresh: _fetchBudgets,
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.78,
+                  height: MediaQuery.of(context).size.height * 0.7,
                   child: _budgets.isEmpty
                       ? const NoDataContainer(description: "orçamentos")
                       : ListView.builder(

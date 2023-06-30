@@ -1,4 +1,3 @@
-import 'package:carteira_inteligente/utils/show_modal.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/users.dart';

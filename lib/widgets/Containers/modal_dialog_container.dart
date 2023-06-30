@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/Buttons/primary_buttons.dart';
+import '../Buttons/secondary_buttons.dart';
 import 'header_modal_container.dart';
 
 class ModalDialogContainer extends StatelessWidget {
@@ -27,16 +28,17 @@ class ModalDialogContainer extends StatelessWidget {
           label: title,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 40.0,
-            horizontal: 8.0,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 8.0),
           child: child,
         ),
         PrimaryButton(
           onPressed: onPressed,
           textButton: textButton,
           deleteButton: deleteButton,
+        ),
+        SecondaryButton(
+          onPressed: () => Navigator.pop(context),
+          textButton: "Voltar",
         ),
       ],
     );

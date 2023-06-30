@@ -30,7 +30,7 @@ class ShowModal {
                     height: 4.0,
                     width: 100.0,
                     decoration: BoxDecoration(
-                      color: cGrey.shade100,
+                      color: cGrey.shade300,
                       borderRadius: BorderRadius.circular(2.0),
                     ),
                   ),

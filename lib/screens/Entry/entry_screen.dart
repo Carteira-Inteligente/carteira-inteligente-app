@@ -1,5 +1,3 @@
-import 'package:carteira_inteligente/widgets/Containers/no_data_containers.dart';
-import 'package:carteira_inteligente/widgets/Inputs/input_search.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,6 +6,7 @@ import '../../services/entry_service.dart';
 import '../../utils/show_modal.dart';
 import '../../widgets/Cards/entry_card.dart';
 import '../../widgets/Containers/progress_containers.dart';
+import '../../widgets/Inputs/input_search.dart';
 import '../../widgets/Labels/subtitle_labels.dart';
 import '../../widgets/Navigation/month_navigation.dart';
 import 'entry_details_screen.dart';
@@ -169,7 +168,7 @@ class _EntryScreenState extends State<EntryScreen> {
             : RefreshIndicator(
                 onRefresh: _fetchEntries,
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.727,
+                  height: MediaQuery.of(context).size.height * 0.645,
                   child: ListView.builder(
                     itemCount: _entries.length,
                     itemBuilder: (context, index) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/show_modal.dart';
-import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Inputs/input_select.dart';
@@ -39,11 +38,6 @@ class _PaymentTypeFormScreenState extends State<PaymentTypeFormScreen> {
   _submitForm() async {
     final type = _selectedType;
     final description = _descriptionController.text;
-
-    if (type.isEmpty || description.isEmpty) {
-      ToastMessage.warningToast("Preencha todos os campos obrigatórios.");
-      return;
-    }
 
     widget.onSubmit(description, type);
   }

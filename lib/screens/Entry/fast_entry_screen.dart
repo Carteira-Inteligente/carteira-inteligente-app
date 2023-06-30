@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
+import '../../utils/messages_utils.dart';
+import '../../utils/toast_message.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Inputs/input_value.dart';
 import '../../widgets/Inputs/input_text.dart';
@@ -28,6 +30,11 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
   _submitForm() {
     final description = _descriptionController.text;
     final paidValue = _paidValueController.text.replaceAll(",", ".");
+
+    if (description.isEmpty || paidValue.isEmpty) {
+      ToastMessage.warningToast(MessagesUtils.notEmptyFields());
+      return;
+    }
 
     widget.onSubmit(description, double.parse(paidValue));
   }
