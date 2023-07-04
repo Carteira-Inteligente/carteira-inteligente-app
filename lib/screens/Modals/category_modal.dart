@@ -100,6 +100,7 @@ class _CategoryModalState extends State<CategoryModal> {
   Widget build(BuildContext context) {
     sortDecriptions(_categories);
     Widget gridView = GridView.builder(
+      padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: 20,
@@ -112,6 +113,7 @@ class _CategoryModalState extends State<CategoryModal> {
     );
 
     Widget listView = ListView.builder(
+      padding: EdgeInsets.zero,
       itemCount: _categories.length,
       itemBuilder: (context, index) {
         final category = _categories[index];

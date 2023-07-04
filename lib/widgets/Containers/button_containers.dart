@@ -6,14 +6,21 @@ class ButtonContainer extends StatelessWidget {
   const ButtonContainer({
     super.key,
     required this.child,
+    this.paddingTop,
   });
 
   final Widget child;
+  final bool? paddingTop;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(
+        bottom: 8.0,
+        top: paddingTop == false ? 0.0 : 8.0,
+        left: 8.0,
+        right: 8.0,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

@@ -6,7 +6,6 @@ import '../../services/budget_service.dart';
 import '../../services/entry_service.dart';
 import '../../utils/calculate_value.dart';
 import '../../widgets/Cards/budget_card.dart';
-import '../../widgets/Containers/no_data_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
 import '../../widgets/Inputs/input_search.dart';
 import 'budget_details_screen.dart';
@@ -84,23 +83,22 @@ class _BudgetScreenState extends State<BudgetScreen> {
                 onRefresh: _fetchBudgets,
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
-                  child: _budgets.isEmpty
-                      ? const NoDataContainer(description: "orçamentos")
-                      : ListView.builder(
-                          itemCount: _budgets.length,
-                          itemBuilder: (context, index) {
-                            final budget = _budgets[index];
-                            final isMatch = budget.description
-                                .toUpperCase()
-                                .contains(_searchQuery.toUpperCase());
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: _budgets.length,
+                    itemBuilder: (context, index) {
+                      final budget = _budgets[index];
+                      final isMatch = budget.description
+                          .toUpperCase()
+                          .contains(_searchQuery.toUpperCase());
 
-                            if (!isMatch) {
-                              return Container();
-                            }
+                      if (!isMatch) {
+                        return Container();
+                      }
 
-                            return _buildBudgetCards(context, budget, index);
-                          },
-                        ),
+                      return _buildBudgetCards(context, budget, index);
+                    },
+                  ),
                 ),
               ),
       ],

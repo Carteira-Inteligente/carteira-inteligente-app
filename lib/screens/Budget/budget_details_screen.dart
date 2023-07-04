@@ -37,8 +37,6 @@ class BudgetDetailsScreen extends StatefulWidget {
 class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
   final List<Budget> _budgets = [];
   List<Entry> _entries = [];
-  final List<Entry> _paidEntries = [];
-  final List<Entry> _noPaidEntries = [];
   bool _isLoading = false;
 
   Future<List<Entry>> _fetchEntries() async {
@@ -46,18 +44,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
       _isLoading = true;
     });
 
-    _paidEntries.clear();
-    _noPaidEntries.clear();
-
     final entries = await EntryService.findAll();
-
-    _paidEntries.addAll(
-      entries.where((entry) => entry.paid == true),
-    );
-
-    _noPaidEntries.addAll(
-      entries.where((entry) => entry.paid == false),
-    );
 
     setState(() {
       _isLoading = false;
@@ -260,6 +247,7 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                         child: SizedBox(
                           height: MediaQuery.of(context).size.height * 0.53,
                           child: ListView.builder(
+                            padding: EdgeInsets.zero,
                             itemCount: _entries.length,
                             itemBuilder: (context, index) {
                               final entry = _entries[index];

@@ -107,6 +107,7 @@ class _AccountScreenState extends State<AccountScreen> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: _paymentTypes.length,
                   itemBuilder: (context, index) {
                     final paymentType = _paymentTypes[index];

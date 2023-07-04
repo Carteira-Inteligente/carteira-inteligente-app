@@ -111,6 +111,7 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
           child: _isLoading
               ? ProgressIndicatorContainer(visible: _isLoading)
               : ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: _paymentTypes.length,
                   itemBuilder: (context, index) {
                     if (index == 0 && _accounts.isNotEmpty) {

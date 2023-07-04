@@ -46,6 +46,7 @@ class _PaymentTypeModalState extends State<PaymentTypeModal> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             itemCount: _paymentOptions.length,
             itemBuilder: (context, index) {
               final paymentType = _paymentOptions[index];

@@ -114,6 +114,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: _paymentTypes.length,
                   itemBuilder: (context, index) {
                     final paymentType = _paymentTypes[index];

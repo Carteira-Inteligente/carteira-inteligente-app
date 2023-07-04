@@ -49,6 +49,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.78,
         child: ListView.builder(
+          padding: EdgeInsets.zero,
           itemCount: _notifications.length,
           itemBuilder: (context, index) {
             final notification = _notifications[index];

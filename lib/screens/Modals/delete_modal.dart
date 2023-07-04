@@ -32,7 +32,6 @@ class DeleteModal extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: "OpenSans",
                 color: cRed,
-                // fontWeight: FontWeight.bold,
               ),
             ),
           ],

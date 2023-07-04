@@ -104,6 +104,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: _categories.length,
                   itemBuilder: (context, index) {
                     final category = _categories[index];

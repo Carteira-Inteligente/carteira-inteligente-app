@@ -46,6 +46,7 @@ class _PeriodModalState extends State<PeriodModal> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.5,
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             itemCount: _periodOptions.length,
             itemBuilder: (context, index) {
               final period = _periodOptions[index];

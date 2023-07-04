@@ -23,13 +23,42 @@ class _EntryScreenState extends State<EntryScreen> {
   DateTime _previousMonth = DateTime.now();
   DateTime _nextMonth = DateTime.now();
   List<Entry> _entries = [];
-  final List<Entry> _paidEntries = [];
-  final List<Entry> _noPaidEntries = [];
+  List<Entry> _filteredEntries = [];
+  List<Entry> _paidEntries = [];
+  List<Entry> _unpaidEntries = [];
   bool _isLoading = false;
   String _searchQuery = "";
 
+  void update(List<Entry> filteredEntries) {
+    final paidEntries =
+        filteredEntries.where((entry) => entry.paid == true).toList();
+    final unpaidEntries =
+        filteredEntries.where((entry) => entry.paid == false).toList();
+
+    setState(() {
+      _paidEntries = paidEntries;
+      _unpaidEntries = unpaidEntries;
+    });
+  }
+
+  List<Entry> _filterEntriesByQuery(List<Entry> entries) {
+    if (_searchQuery.isEmpty) return entries;
+
+    return entries
+        .where(
+          (entry) =>
+              entry.description.toUpperCase().contains(
+                    _searchQuery.toUpperCase(),
+                  ) ||
+              entry.category.description.toUpperCase().contains(
+                    _searchQuery.toUpperCase(),
+                  ),
+        )
+        .toList();
+  }
+
   List<Entry> _filterEntriesByMonth(List<Entry> entries) {
-    return _entries
+    return entries
         .where(
           (entry) =>
               entry.dueDate.month == _selectedMonth.month &&
@@ -43,23 +72,21 @@ class _EntryScreenState extends State<EntryScreen> {
       _isLoading = true;
     });
 
-    _paidEntries.clear();
-    _noPaidEntries.clear();
-
     final entries = await EntryService.findAll();
-    final filteredEntries = _filterEntriesByMonth(entries);
+    final filteredEntries =
+        _filterEntriesByQuery(_filterEntriesByMonth(entries));
 
-    _paidEntries.addAll(
-      filteredEntries.where((entry) => entry.paid == true),
-    );
-
-    _noPaidEntries.addAll(
-      filteredEntries.where((entry) => entry.paid == false),
-    );
+    final paidEntries =
+        filteredEntries.where((entry) => entry.paid == true).toList();
+    final unpaidEntries =
+        filteredEntries.where((entry) => entry.paid == false).toList();
 
     setState(() {
       _isLoading = false;
       _entries = entries;
+      _filteredEntries = filteredEntries;
+      _paidEntries = paidEntries;
+      _unpaidEntries = unpaidEntries;
     });
 
     return entries;
@@ -72,7 +99,7 @@ class _EntryScreenState extends State<EntryScreen> {
       paid,
     );
 
-    _fetchEntries();
+    await _fetchEntries();
 
     final index = _entries.indexWhere(
       (entry) => entry.id == updatedPaymentStatus.id,
@@ -114,7 +141,6 @@ class _EntryScreenState extends State<EntryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _filterEntriesByMonth(_entries);
     return Column(
       children: <Widget>[
         MonthNavigation(
@@ -160,6 +186,9 @@ class _EntryScreenState extends State<EntryScreen> {
           onChanged: (value) {
             setState(() {
               _searchQuery = value;
+              _filteredEntries =
+                  _filterEntriesByQuery(_filterEntriesByMonth(_entries));
+              update(_filteredEntries);
             });
           },
         ),
@@ -170,48 +199,38 @@ class _EntryScreenState extends State<EntryScreen> {
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.645,
                   child: ListView.builder(
-                    itemCount: _entries.length,
+                    padding: EdgeInsets.zero,
+                    itemCount: _filteredEntries.length + 2,
                     itemBuilder: (context, index) {
-                      if (index == 0 && _noPaidEntries.isNotEmpty) {
-                        return Column(
-                          children: <Widget>[
-                            const SubtitleListLabel(
-                              label: "Aguardando pagamento",
-                            ),
-                            ..._noPaidEntries
-                                .where((entry) =>
-                                    entry.description
-                                        .toUpperCase()
-                                        .contains(_searchQuery.toUpperCase()) ||
-                                    entry.category.description
-                                        .toUpperCase()
-                                        .contains(_searchQuery.toUpperCase()))
-                                .map(
-                                    (entry) => _buildEntryCards(context, entry))
-                                .toList(),
-                          ],
-                        );
-                      } else if (_paidEntries.isNotEmpty &&
-                          index == _noPaidEntries.length) {
-                        return Column(
-                          children: <Widget>[
-                            const SubtitleListLabel(
-                              label: "Pagos",
-                            ),
-                            ..._paidEntries
-                                .where((entry) =>
-                                    entry.description
-                                        .toUpperCase()
-                                        .contains(_searchQuery.toUpperCase()) ||
-                                    entry.category.description
-                                        .toUpperCase()
-                                        .contains(_searchQuery.toUpperCase()))
-                                .map(
-                                    (entry) => _buildEntryCards(context, entry))
-                                .toList(),
-                          ],
-                        );
+                      if (_unpaidEntries.isNotEmpty) {
+                        if (index == 0) {
+                          return const SubtitleListLabel(
+                            label: "Aguardando pagamento",
+                          );
+                        } else if (index - 1 < _unpaidEntries.length) {
+                          return _buildEntryCards(
+                            context,
+                            _unpaidEntries[index - 1],
+                          );
+                        }
+                      } else if (index == 0) {
+                        return Container();
                       }
+
+                      if (_paidEntries.isNotEmpty) {
+                        if (index - 1 == _unpaidEntries.length) {
+                          return const SubtitleListLabel(
+                            label: "Pago",
+                          );
+                        } else if (index - _unpaidEntries.length - 2 <
+                            _paidEntries.length) {
+                          return _buildEntryCards(
+                            context,
+                            _paidEntries[index - _unpaidEntries.length - 2],
+                          );
+                        }
+                      }
+
                       return Container();
                     },
                   ),

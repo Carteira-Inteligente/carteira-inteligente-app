@@ -39,6 +39,7 @@ class ModalDialogContainer extends StatelessWidget {
         SecondaryButton(
           onPressed: () => Navigator.pop(context),
           textButton: "Voltar",
+          paddingTop: false,
         ),
       ],
     );

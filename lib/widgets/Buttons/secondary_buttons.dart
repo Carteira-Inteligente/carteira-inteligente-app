@@ -9,14 +9,17 @@ class SecondaryButton extends StatelessWidget {
     super.key,
     required this.textButton,
     required this.onPressed,
+    this.paddingTop,
   });
 
   final String textButton;
   final void Function() onPressed;
+  final bool? paddingTop;
 
   @override
   Widget build(BuildContext context) {
     return ButtonContainer(
+      paddingTop: paddingTop,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
