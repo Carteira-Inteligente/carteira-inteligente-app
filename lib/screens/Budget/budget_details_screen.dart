@@ -251,8 +251,12 @@ class _BudgetDetailsScreenState extends State<BudgetDetailsScreen> {
                             itemCount: _entries.length,
                             itemBuilder: (context, index) {
                               final entry = _entries[index];
+                              final DateTime entryDate = entry.dueDate;
+                              final int entryMonth = entryDate.month;
+
                               if (entry.category.id ==
-                                  widget.budget.category.id) {
+                                      widget.budget.category.id &&
+                                  entryMonth == DateTime.now().month) {
                                 return _buildEntryCards(context, entry);
                               }
                               return Container();

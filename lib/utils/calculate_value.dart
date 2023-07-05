@@ -2,10 +2,15 @@ import '../models/budget.dart';
 import '../models/entry.dart';
 
 double calculateTotalValue(List<Entry> entries, Budget budget) {
+  final DateTime currentDate = DateTime.now();
+  final int currentMonth = currentDate.month;
   double totalValue = 0;
 
   for (final entry in entries) {
-    if (entry.category.id == budget.category.id) {
+    final DateTime entryDate = entry.dueDate;
+    final int entryMonth = entryDate.month;
+
+    if (entry.category.id == budget.category.id && entryMonth == currentMonth) {
       totalValue += entry.paidValue;
     }
   }
