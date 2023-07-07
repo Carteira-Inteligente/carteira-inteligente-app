@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../constants/svgs.dart';
 import '../../models/payment_type.dart';
 import '../../services/payment_type_service.dart';
-import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -90,7 +89,6 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    sortAccounts(_paymentTypes);
     return ScreenFormContainer(
       title: "Contas",
       tooltip: "Nova conta",

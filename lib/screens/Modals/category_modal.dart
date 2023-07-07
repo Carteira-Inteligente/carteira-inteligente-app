@@ -5,7 +5,6 @@ import '../../constants/colors.dart';
 import '../../constants/svgs.dart';
 import '../../models/category.dart';
 import '../../services/category_service.dart';
-import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/category_cards.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -98,7 +97,6 @@ class _CategoryModalState extends State<CategoryModal> {
 
   @override
   Widget build(BuildContext context) {
-    sortDecriptions(_categories);
     Widget gridView = GridView.builder(
       padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

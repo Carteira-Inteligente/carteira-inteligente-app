@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../constants/svgs.dart';
 import '../../models/payment_type.dart';
 import '../../services/payment_type_service.dart';
-import '../../utils/sort_informations.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/Cards/payment_type_card.dart';
 import '../../widgets/Containers/divider_container.dart';
@@ -115,7 +114,6 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
                   itemCount: _paymentTypes.length,
                   itemBuilder: (context, index) {
                     if (index == 0 && _accounts.isNotEmpty) {
-                      sortAccounts(_accounts);
                       return Column(
                         children: <Widget>[
                           const SubtitleListLabel(label: "Contas"),
@@ -129,7 +127,7 @@ class _PaymentMethodModalState extends State<PaymentMethodModal> {
                       );
                     } else if (_creditCards.isNotEmpty &&
                         index == _accounts.length) {
-                      sortDecriptions(_creditCards);
+                      // sortDecriptions(_creditCards);
                       return Column(
                         children: <Widget>[
                           const SubtitleListLabel(

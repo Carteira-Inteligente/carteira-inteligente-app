@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../constants/svgs.dart';
 import '../../models/category.dart';
 import '../../services/category_service.dart';
-import '../../utils/sort_informations.dart';
 import '../../widgets/Cards/list_cards.dart';
 import '../../widgets/Containers/form_containers.dart';
 import '../../widgets/Containers/progress_containers.dart';
@@ -87,7 +86,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    sortDecriptions(_categories);
     return ScreenFormContainer(
       title: "Categorias personalizadas",
       tooltip: "Nova categoria",
