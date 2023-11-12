@@ -24,10 +24,17 @@ class HeaderModalContainer extends StatelessWidget {
           child: IconButton(
             padding: const EdgeInsets.only(bottom: 24.0),
             onPressed: () => Navigator.pop(context),
-            icon: Icon(
-              Icons.close,
-              color: cGrey.shade600,
-              size: 24,
+            icon: Container(
+              padding: const EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                color: cGrey.shade200,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Icon(
+                Icons.close,
+                color: cGrey.shade600,
+                size: 14,
+              ),
             ),
           ),
         ),

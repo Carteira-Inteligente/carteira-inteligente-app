@@ -1,3 +1,4 @@
+import 'package:carteira_inteligente/widgets/Containers/header_modal_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -43,26 +44,7 @@ class _FastEntryScreenState extends State<FastEntryScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Stack(
-          children: <Widget>[
-            const Align(
-              alignment: Alignment.center,
-              child: ModalTitleLabel(label: "Novo lançamento rápido"),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                padding: const EdgeInsets.only(bottom: 24.0),
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(
-                  Icons.close,
-                  color: cGrey.shade600,
-                  size: 24,
-                ),
-              ),
-            ),
-          ],
-        ),
+        const HeaderModalContainer(label: "Novo lançamento rápido"),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.25,
           child: Padding(
